@@ -1,0 +1,69 @@
+@use 'mixins/mixins.scss' as *;
+
+@include b(tree) {}
+
+@include b(tree-node) {
+	display: flex;
+	align-items: center;
+	padding: 2px 0;
+	cursor: pointer;
+
+	&:hover {
+		background-color: $color-garg-1;
+	}
+
+
+
+	@include when(expanded) {
+		@include b(tree-node-switcher) {
+			@include e(icon) {
+				i {
+					transform: rotate(90deg);
+				}
+			}
+		}
+	}
+
+	@include when(leaf) {
+		@include b(tree-node-switcher) {
+			@include e(icon) {
+				fill: transparent;
+			}
+		}
+	}
+
+	@include when(loading) {
+		@include b(tree-node-switcher) {
+			@include e(icon) {
+				i {
+					animation: rotate 2s linear infinite;
+				}
+			}
+		}
+	}
+
+	@include when(selected) {
+		background-color: $color-garg-2;
+	}
+
+	@include b(tree-node-switcher) {
+		@include e(icon) {
+			user-select: none;
+
+			i {
+				transition: transform 0.3s;
+			}
+		}
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+
+}

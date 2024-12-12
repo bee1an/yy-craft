@@ -2,16 +2,43 @@
 
 @include b(tree) {}
 
+@include b(tree-node-warpper) {
+	padding: 2px 0;
+}
+
+
 @include b(tree-node) {
+	position: relative;
 	display: flex;
 	align-items: center;
-	padding: 2px 0;
+	padding: 1px 0;
 	cursor: pointer;
 
 	&:hover {
 		background-color: $color-garg-1;
 	}
 
+	@include e(border) {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		border: 2px solid $color-primary;
+
+		@include m(bottom) {
+			position: absolute;
+			bottom: -4px;
+			right: 0;
+			height: 2px;
+			border: unset;
+			background-color: $color-primary;
+		}
+	}
+
+	@include e(text) {
+		flex: 1
+	}
 
 
 	@include when(expanded) {
@@ -45,17 +72,22 @@
 	@include when(selected) {
 		background-color: $color-garg-2;
 	}
+}
 
-	@include b(tree-node-switcher) {
-		@include e(icon) {
-			user-select: none;
+@include b(tree-node-indent) {
+	width: 21px;
+}
 
-			i {
-				transition: transform 0.3s;
-			}
+@include b(tree-node-switcher) {
+	@include e(icon) {
+		user-select: none;
+
+		i {
+			transition: transform 0.3s;
 		}
 	}
 }
+
 
 @keyframes rotate {
 	from {

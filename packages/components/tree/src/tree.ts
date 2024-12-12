@@ -26,6 +26,10 @@ export interface TreeData extends TreeOption {
   isLoading: boolean
   /** 是否选中 */
   isSelected: boolean
+  /** 是否有节点被拖拽到当前节点上 */
+  dragBorder?: boolean
+  /** 是否有节点被拖拽到当前节点边缘 */
+  dragBorderBottom?: number
 }
 
 export interface TreeOption {
@@ -76,14 +80,21 @@ export const treeProps = {
   /** 选中key */
   selectedKeys: {
     type: Array as PropType<TreeKey[]>
+  },
+  /** 缩进宽度 */
+  indentWidth: {
+    type: Number,
+    default: 21
   }
 } as const
 export type TreeProps = ExtractPropTypes<typeof treeProps>
 
 export type TreeEmitsType = {
+  /** v-model */
   (e: 'update:selectedKeys', value: TreeKey[]): void
 }
 
+/** 传递插槽给后代组件 */
 export const InjectSlots = Symbol('InjectSlots') as InjectionKey<{
   slots: SetupContext['slots']
 }>
@@ -98,13 +109,29 @@ export const InjectSlots = Symbol('InjectSlots') as InjectionKey<{
 //   level: number
 // }
 export const treeNodeProps = {
+  /** TreeData */
   node: {
     type: Object as PropType<TreeData>,
     required: true
+  },
+  /** 缩进宽度 */
+  indentWidth: {
+    type: Number,
+    default: 21
   }
 } as const
 
 export type TreeNodeEmitsType = {
+  /** 切换展开 */
   (e: 'toggleExpand', node: TreeData): void
+  /** 切换选中 */
   (e: 'toggleSelect', node: TreeData): void
+  /** dragstart */
+  (e: 'dragstart', event: DragEvent, node: TreeData): void
+  /** dragenter */
+  (e: 'dragenter', event: DragEvent, node: TreeData): void
+  /** dragover */
+  (e: 'dragover', event: DragEvent, node: TreeData): void
+  /** drop */
+  (e: 'drop', event: DragEvent, node: TreeData): void
 }

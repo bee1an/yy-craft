@@ -12,6 +12,7 @@ import {
   treeProps,
   TreeValue
 } from './tree'
+import useDragNode from './use-drag-node'
 
 defineOptions({ name: 'yy-tree' })
 
@@ -145,6 +146,9 @@ provide(InjectBem, nameSpace)
 defineSlots<{ default(slotProps: { node: TreeData }): VNode[] }>()
 // 将插槽传递给子组件
 provide(InjectSlots, { slots: useSlots() })
+
+const { onDragstart, onDragenter, onDragleave, onDragover, onDrop } =
+  useDragNode(tree, props.indentWidth, nameSpace, 16)
 </script>
 
 <template>
@@ -153,8 +157,13 @@ provide(InjectSlots, { slots: useSlots() })
       v-for="item in tree"
       :key="item.key"
       :node="item"
-      @toggleExpand="toggleExpand"
-      @toggleSelect="toggleSelect"
+      :indent-width="indentWidth"
+      @toggle-expand="toggleExpand"
+      @toggle-select="toggleSelect"
+      @dragenter="onDragenter"
+      @dragover="onDragover"
+      @drop="onDrop"
+      @dragstart="onDragstart"
     >
     </tree-node>
   </div>

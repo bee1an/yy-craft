@@ -1,9 +1,10 @@
 import { defineComponent, inject } from 'vue'
-import { InjectSlots, treeNodeProps } from './tree'
+import { InjectSlots } from './tree'
+import { treeNodeProps } from './tree-node'
 
 export default defineComponent({
   props: {
-    node: treeNodeProps['node']
+    node: treeNodeProps.node
   },
 
   setup(props) {

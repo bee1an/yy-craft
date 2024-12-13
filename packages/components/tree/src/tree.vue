@@ -168,6 +168,7 @@ const { onDragstart, onDragenter, onDragover, onDrop } = useDragNode(
       @dragover="onDragover"
       @drop="onDrop"
       @dragstart="onDragstart"
+      draggable
     >
     </tree-node>
   </div>

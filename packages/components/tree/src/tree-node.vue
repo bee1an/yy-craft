@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import { InjectBem, TreeNodeEmitsType, treeNodeProps } from './tree'
+import { InjectBem } from './tree'
 import { CreateNamespace } from '@yy-ui/utils'
 import YyIcon from '@yy-ui/components/icon/src/icon.vue'
 import TreeSwitcher from './icons/tree-switcher'
 import TreeLoading from './icons/tree-loading'
 import TreeNodeContent from './tree-node-content'
+import { TreeNodeEmitsType, treeNodeProps } from './tree-node'
 
 defineProps(treeNodeProps)
 
@@ -29,16 +30,18 @@ const bemBase = inject(InjectBem) as CreateNamespace
         bemBase.is('loading', node.isLoading),
         bemBase.is('selected', node.isSelected)
       ]"
-      draggable="true"
+      :draggable="draggable"
       @click="emits('toggleSelect', node)"
       @dragstart="emits('dragstart', $event, node)"
     >
+      <!-- 节点缩进 -->
       <div
         :class="bemBase.b('node').b('indent').value"
         v-for="item in node.level - 1"
         :key="item"
       ></div>
 
+      <!-- 图标 -->
       <div
         :class="bemBase.b('node').b('switcher').e('icon').value"
         @click.stop="emits('toggleExpand', node)"
@@ -50,10 +53,13 @@ const bemBase = inject(InjectBem) as CreateNamespace
           <tree-switcher />
         </yy-icon>
       </div>
+
+      <!-- 节点内容 -->
       <div :class="bemBase.b('node').e('text').value">
         <tree-node-content :node="node" />
       </div>
 
+      <!-- 拖动边框提示 -->
       <div
         v-if="node.dragBorder"
         :class="bemBase.b('node').e('border').value"

@@ -1,5 +1,6 @@
 import { CreateNamespace } from '@yy-ui/utils'
 import { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
+import { treeNodeProps } from './tree-node'
 
 /** inject Bem */
 export const InjectBem = Symbol('InjectBem') as InjectionKey<CreateNamespace>
@@ -82,10 +83,9 @@ export const treeProps = {
     type: Array as PropType<TreeKey[]>
   },
   /** 缩进宽度 */
-  indentWidth: {
-    type: Number,
-    default: 21
-  }
+  indentWidth: treeNodeProps.indentWidth,
+  /** 是否可拖动 */
+  draggable: treeNodeProps.draggable
 } as const
 export type TreeProps = ExtractPropTypes<typeof treeProps>
 
@@ -108,40 +108,3 @@ export type TreeEmitsType = {
 export const InjectSlots = Symbol('InjectSlots') as InjectionKey<{
   slots: SetupContext['slots']
 }>
-
-/************************************************************************* */
-// export interface TreeNodeData {
-//   /** 对应的值 */
-//   value: TreeValue
-//   /** 唯一key */
-//   key: TreeKey
-//   /** 等级 */
-//   level: number
-// }
-export const treeNodeProps = {
-  /** TreeData */
-  node: {
-    type: Object as PropType<TreeData>,
-    required: true
-  },
-  /** 缩进宽度 */
-  indentWidth: {
-    type: Number,
-    default: 21
-  }
-} as const
-
-export type TreeNodeEmitsType = {
-  /** 切换展开 */
-  (e: 'toggleExpand', node: TreeData): void
-  /** 切换选中 */
-  (e: 'toggleSelect', node: TreeData): void
-  /** dragstart */
-  (e: 'dragstart', event: DragEvent, node: TreeData): void
-  /** dragenter */
-  (e: 'dragenter', event: DragEvent, node: TreeData): void
-  /** dragover */
-  (e: 'dragover', event: DragEvent, node: TreeData): void
-  /** drop */
-  (e: 'drop', event: DragEvent, node: TreeData): void
-}

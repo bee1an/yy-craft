@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { AccessibilitySharp } from '@vicons/ionicons5'
 import { TreeOption } from '@yy-ui/components/tree/src/tree'
+import { getChildren } from '@yy-ui/components/tree/src/utils'
 import { ref } from 'vue'
 
 const createData = (deep: number, count: number, prefix = ''): any[] => {
@@ -17,7 +18,7 @@ const createData = (deep: number, count: number, prefix = ''): any[] => {
 }
 
 const data = ref<any[]>([])
-data.value.push(...createData(5, 2))
+data.value.push(...createData(5, 4))
 
 // const createData = () => {
 //   return [
@@ -53,6 +54,25 @@ data.value.push(...createData(5, 2))
 const expandedKeys = ref(['0', '0-0', '0-0-0', '0-0-0-0'])
 
 const selectedKeys = ref<string[]>([])
+
+const onDrag = (value: {
+  dragNode: TreeOption
+  dragNodeParent: TreeOption | null
+  dropNode: TreeOption | null
+  position: number
+}) => {
+  const { dragNode, dragNodeParent, dropNode, position } = value
+
+  // *切记先添加再删除
+  const dropNodePool = getChildren(data.value, dropNode)
+  dropNodePool.splice(position, 0, dragNode)
+
+  const dragNodePool = getChildren(data.value, dragNodeParent)
+  const index = dragNodePool.findIndex(item => item.key === dragNode.key)
+  dragNodePool.splice(index, 1)
+
+  data.value = [...data.value]
+}
 </script>
 
 <template>
@@ -65,10 +85,8 @@ const selectedKeys = ref<string[]>([])
     value-field="xx"
     selectable
     multiple
+    @drag="onDrag"
   >
-    <template #default="{ node }">
-      <div>{{ node.value + '-template' }}</div>
-    </template>
   </yy-tree>
 </template>
 

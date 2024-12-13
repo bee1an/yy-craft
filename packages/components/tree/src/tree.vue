@@ -147,8 +147,12 @@ defineSlots<{ default(slotProps: { node: TreeData }): VNode[] }>()
 // 将插槽传递给子组件
 provide(InjectSlots, { slots: useSlots() })
 
-const { onDragstart, onDragenter, onDragleave, onDragover, onDrop } =
-  useDragNode(tree, props.indentWidth, nameSpace, 16)
+const { onDragstart, onDragenter, onDragover, onDrop } = useDragNode(
+  tree,
+  nameSpace,
+  props,
+  emits
+)
 </script>
 
 <template>

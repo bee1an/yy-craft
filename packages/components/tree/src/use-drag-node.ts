@@ -1,13 +1,23 @@
 import { CreateNamespace } from '@yy-ui/utils'
-import { TreeData } from './tree'
-import { findParentNode, findTreeNodeWrapper, isAncestorNode } from './utils'
+import { TreeData, TreeEmitsType, TreeProps } from './tree'
+import {
+  findParentNode,
+  findTreeNodeWrapper,
+  getChildren,
+  isAncestorNode
+} from './utils'
 import { Ref } from 'vue'
+
+/** 缩进到内容的距离, 用于判断是否drag到缩进 */
+const DISTANCE = 16
+/** 主要区域的范围取值 */
+const MAINZONERANGE = 0.7
 
 const useDragNode = (
   tree: Ref<TreeData[]>,
-  indentWidth: number,
   nameSpace: CreateNamespace,
-  iconSize: number
+  props: TreeProps,
+  emits: TreeEmitsType
 ) => {
   let dragNode: TreeData | null = null
   const onDragstart = (e: DragEvent, node: TreeData) => {
@@ -23,33 +33,32 @@ const useDragNode = (
     presentNode = node
   }
 
-  const onDragleave = (e: DragEvent) => {}
-
   /* 
 		拖到节点上的判断
 			# drag节点: 被拖动的节点
 			# drop节点: 被拖放的节点
 
-				drop位置在drop节点的主要区域(上方70%位置)
-					drop节点是非leaf节点
-						# drop节点未展开, 长时间未drop(松开鼠标)则展开drop节点
-						# drop直接添加到children开头
-					drop节点是leaf节点
+				1. drop位置在drop节点的主要区域(上方70%位置)
+						drop节点是非leaf节点
+							# drop节点未展开, 长时间未drop(松开鼠标)则展开drop节点
+							# drop直接添加到children开头
+						drop节点是leaf节点
+							# 拖动到drop节点所有区域都相当于 -> drop位置在drop节点底部边缘
+				2. drop位置在drop节点底部边缘
+						drop节点是非leaf节点
+							# drop节点未展开, 添加到drop节点后
+							# drop节点展开, 添加到drop节点的children开头
+						drop节点是leaf节点
+							# 添加到drop节点后
+						drop位置在drop节点缩进上(拖拽到外部的逻辑)
+							drop节点是他父元素的children的最后一个
+								# 将darg节点添加到drop节点父元素的后面
+				3. drop节点为自身
 						# 拖动到drop节点所有区域都相当于 -> drop位置在drop节点底部边缘
-				drop位置在drop节点底部边缘
-					drop节点是非leaf节点
-						# drop节点未展开, 添加到drop节点后
-						# drop节点展开, 添加到drop节点的children开头
-					drop节点是leaf节点
-						# 添加到drop节点后
-					drop位置在drop节点缩进上(拖拽到外部的逻辑)
-						drop节点是他父元素的children的最后一个
-							# 将darg节点添加到drop节点父元素的后面
-				drop节点为自身
-					# 拖动到drop节点所有区域都相当于 -> drop位置在drop节点底部边缘
+				4. 不能drop到	自己的子节点
 	*/
-  let children: TreeData[] | null = null
-  let position: number = 0
+  let dropNode: TreeData | null = null
+  let position: number = -1
 
   function onDragover(e: DragEvent, node: TreeData) {
     const target = e.target as HTMLElement
@@ -67,13 +76,13 @@ const useDragNode = (
 
     const { top, left, height, width } = treeNodeWrapper.getBoundingClientRect()
 
-    const preSentIndentWidth = indentWidth * (node.level - 1)
+    const preSentIndentWidth = props.indentWidth * (node.level - 1)
 
     const offsetInWrapperX = e.clientX - left,
       offsetInWrapperY = e.clientY - top
 
     // 主要区域
-    const mainZone = height * 0.7
+    const mainZone = height * MAINZONERANGE
 
     const parentNode = findParentNode(tree.value, node)
 
@@ -91,44 +100,74 @@ const useDragNode = (
 
       if (!doNothing) {
         // 将drag节点添加到drop节点的children开头
-        children = parentNode?.children || tree.value
+        dropNode = node
         position = 0
+      } else {
+        dropNode = null
+        position = -1
       }
     } else {
-      node.dragBorderBottom = width - preSentIndentWidth - iconSize
+      node.dragBorderBottom = width - preSentIndentWidth - DISTANCE
 
       if (node.isExpanded) {
         // drop节点是展开的, 则选中当前节点
-        // 将drag节点添加到drop节点的children开头
         // leaf节点不能展开，所以不需要判断
         node.dragBorder = true
-      } else {
-        if (parentNode) {
-          const children = parentNode.children ?? []
-          const isLastChild = children[children.length - 1] === node
-          if (
-            isLastChild &&
-            offsetInWrapperX < width - node.dragBorderBottom - iconSize
-          ) {
-            // 如果当前节点是最后一个子节点，并且拖拽位置在节点的缩进上
-            // 将drag节点添加到drop节点的父节点的后面
-            node.dragBorderBottom += iconSize
 
-            const ancestorNode = findParentNode(tree.value, parentNode)
-            if (ancestorNode) {
-              ancestorNode.dragBorder = true
-            }
-          } else {
-            // 将drag节点添加到drop节点的后面
+        // 将drag节点添加到drop节点的children开头
+        dropNode = node
+        position = 0
+      } else {
+        const children = parentNode?.children ?? []
+
+        const add2ParentNode =
+          children[children.length - 1] === node && // 当前drop节点为最后一个节点
+          offsetInWrapperX < width - node.dragBorderBottom - DISTANCE // 当前拖动位置在缩进上
+        if (add2ParentNode) {
+          node.dragBorderBottom += DISTANCE
+          const ancestorNode = findParentNode(tree.value, parentNode)
+          if (ancestorNode) {
+            ancestorNode.dragBorder = true
+          }
+
+          // 将drag节点添加到drop节点的父节点的后面
+          dropNode = ancestorNode
+          position =
+            getChildren(props.data, ancestorNode?.rawData).findIndex(
+              item => item.key === parentNode?.key
+            ) + 1
+        } else {
+          if (parentNode) {
             parentNode.dragBorder = true
           }
+
+          // 将drag节点添加到drop节点的后面
+          dropNode = parentNode
+          position =
+            getChildren(props.data, parentNode).findIndex(
+              item => item.key === node.key
+            ) + 1
         }
       }
     }
   }
 
-  const onDrop = (e: DragEvent, node: TreeData) => {
+  const onDrop = () => {
     clearDragBorder()
+
+    if (dropNode === null && position === -1) {
+      // do nothing
+      return
+    }
+
+    const dragNodeParent = findParentNode(tree.value, dragNode)
+
+    emits('drag', {
+      dragNode: dragNode!.rawData,
+      dragNodeParent: dragNodeParent?.rawData ?? null,
+      dropNode: dropNode?.rawData ?? null,
+      position
+    })
   }
 
   const clearDragBorder = () => {
@@ -141,7 +180,6 @@ const useDragNode = (
   return {
     onDragstart,
     onDragenter,
-    onDragleave,
     onDragover,
     onDrop
   }

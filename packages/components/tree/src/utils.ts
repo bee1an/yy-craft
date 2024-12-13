@@ -38,3 +38,11 @@ export const isAncestorNode = (
 
   return isAncestorNode(tree, node, parentNode)
 }
+
+/** 获取子节点 */
+export const getChildren = <T extends { children?: T[] }>(
+  data: T[],
+  treeNode?: T | null
+) => {
+  return treeNode?.children ?? data
+}

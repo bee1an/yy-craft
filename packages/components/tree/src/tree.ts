@@ -91,7 +91,17 @@ export type TreeProps = ExtractPropTypes<typeof treeProps>
 
 export type TreeEmitsType = {
   /** v-model */
-  (e: 'update:selectedKeys', value: TreeKey[]): void
+  (e: 'update:selectedKeys', payload: TreeKey[]): void
+  /** drag */
+  (
+    e: 'drag',
+    payload: {
+      dragNode: TreeOption
+      dragNodeParent: TreeOption | null
+      dropNode: TreeOption | null
+      position: number
+    }
+  ): void
 }
 
 /** 传递插槽给后代组件 */

@@ -19,6 +19,7 @@ const bemBase = inject(InjectBem) as CreateNamespace
   <div
     :class="bemBase.b('node').b('warpper').value"
     @dragenter="emits('dragenter', $event, node)"
+    @dragend="emits('dragend', $event, node)"
     @dragover.prevent="emits('dragover', $event, node)"
     @drop.prevent="emits('drop', $event, node)"
   >

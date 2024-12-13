@@ -39,13 +39,16 @@ const createTree = (data: TreeOption[], level = 0) => {
   const treeData: TreeData[] = []
   const presentLevel = level + 1
   data.forEach(item => {
+    const isLeaf = item.isLeaf ?? !item.children
     const node: TreeData = {
       value: item[props.valueField] as TreeValue,
       key: item[props.keyField] as TreeKey,
       rawData: item,
       level: presentLevel,
+      // 没有指定这个节点是不是叶子节点时，根据是否有子节点来判断
       isLeaf: item.isLeaf ?? !item.children,
-      isExpanded: expandedKeys.value.has(item.key),
+      // 不是叶子节点时才可以展开
+      isExpanded: !isLeaf && expandedKeys.value.has(item.key),
       isLoading: false,
       isSelected: !!(props.selectable && props.selectedKeys?.includes(item.key))
     }
@@ -137,7 +140,7 @@ defineSlots<{ default(slotProps: { node: TreeData }): VNode[] }>()
 // 将插槽传递给子组件
 provide(InjectSlots, { slots: useSlots() })
 
-const { onDragstart, onDragenter, onDragover, onDrop } = useDragNode(
+const { onDragstart, onDragenter, onDragover, onDrop, onDragend } = useDragNode(
   tree,
   nameSpace,
   props,
@@ -158,6 +161,7 @@ const { onDragstart, onDragenter, onDragover, onDrop } = useDragNode(
       @dragover="onDragover"
       @drop="onDrop"
       @dragstart="onDragstart"
+      @dragend="onDragend"
       :draggable="draggable"
     >
     </tree-node>

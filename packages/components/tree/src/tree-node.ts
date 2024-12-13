@@ -32,4 +32,6 @@ export type TreeNodeEmitsType = {
   (e: 'dragover', event: DragEvent, node: TreeData): void
   /** drop */
   (e: 'drop', event: DragEvent, node: TreeData): void
+  /** dragend */
+  (e: 'dragend', event: DragEvent, node: TreeData): void
 }

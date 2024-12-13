@@ -31,7 +31,7 @@ watch(
 
 const tree = ref<TreeData[]>([])
 // 展开节点(数据扁平化)
-const createTree = (data: TreeOption[], isExpanded = true, level = 0) => {
+const createTree = (data: TreeOption[], level = 0) => {
   if (!level) {
     console.log('createTree')
   }
@@ -39,29 +39,19 @@ const createTree = (data: TreeOption[], isExpanded = true, level = 0) => {
   const treeData: TreeData[] = []
   const presentLevel = level + 1
   data.forEach(item => {
-    const childrenLength = item.children && item.children.length !== 0
-
     const node: TreeData = {
       value: item[props.valueField] as TreeValue,
       key: item[props.keyField] as TreeKey,
       rawData: item,
       level: presentLevel,
-      isLeaf: item.isLeaf ?? !childrenLength,
-      isExpanded: !!(
-        isExpanded &&
-        childrenLength &&
-        expandedKeys.value.has(item.key)
-      ),
+      isLeaf: item.isLeaf ?? !item.children,
+      isExpanded: expandedKeys.value.has(item.key),
       isLoading: false,
       isSelected: !!(props.selectable && props.selectedKeys?.includes(item.key))
     }
 
     // 递归子节点
-    const branch = createTree(
-      item.children || [],
-      node.isExpanded,
-      presentLevel
-    )
+    const branch = createTree(item.children || [], presentLevel)
     // 有子节点则赋值
     branch.treeData.length && (node.children = branch.treeData)
 
@@ -92,9 +82,9 @@ const expand = async (node: TreeData) => {
   expandedKeys.value.add(node.key)
 
   // 如果节点没有子节点并且不是叶子节点时，则触发加载子节点
-  if (typeof node.children === 'undefined' && !node.isLeaf) {
+  if (typeof node.children === 'undefined' && !node.isLeaf && props.onLoad) {
     node.isLoading = true
-    await props.onLoad!(node.rawData)
+    await props.onLoad(node.rawData)
     node.isLoading = false
   }
 
@@ -168,7 +158,7 @@ const { onDragstart, onDragenter, onDragover, onDrop } = useDragNode(
       @dragover="onDragover"
       @drop="onDrop"
       @dragstart="onDragstart"
-      draggable
+      :draggable="draggable"
     >
     </tree-node>
   </div>

@@ -65,11 +65,22 @@ const onDrag = (value: {
 
   // *切记先添加再删除
   const dropNodePool = getChildren(data.value, dropNode)
-  dropNodePool.splice(position, 0, dragNode)
-
   const dragNodePool = getChildren(data.value, dragNodeParent)
-  const index = dragNodePool.findIndex(item => item.key === dragNode.key)
-  dragNodePool.splice(index, 1)
+
+  if (dropNodePool === dragNodePool) {
+    // 同数组操作
+    const index = dragNodePool.findIndex(item => item.key === dragNode.key)
+
+    if (position - 1 === index) return
+
+    dropNodePool.splice(position, 0, dragNode)
+    // position - 1 > index向后拖动, 影响了原index位置
+    dropNodePool.splice(position - 1 > index ? index : index + 1, 1)
+  } else {
+    dropNodePool.splice(position, 0, dragNode)
+    const index = dragNodePool.findIndex(item => item.key === dragNode.key)
+    dragNodePool.splice(index, 1)
+  }
 
   data.value = [...data.value]
 }
@@ -89,5 +100,3 @@ const onDrag = (value: {
   >
   </yy-tree>
 </template>
-
-<style scoped></style>

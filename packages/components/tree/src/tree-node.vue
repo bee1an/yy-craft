@@ -66,5 +66,3 @@ const bemBase = inject(InjectBem) as CreateNamespace
     </div>
   </div>
 </template>
-
-<style scoped></style>

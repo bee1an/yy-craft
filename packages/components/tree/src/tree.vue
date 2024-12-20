@@ -13,6 +13,7 @@ import {
   TreeValue
 } from './tree'
 import useDragNode from './use-drag-node'
+import YyVirtualList from '@yy-ui/components/virtual-list/src/virtual-list'
 
 defineOptions({ name: 'yy-tree' })
 
@@ -150,20 +151,24 @@ const { onDragstart, onDragenter, onDragover, onDrop, onDragend } = useDragNode(
 
 <template>
   <div :class="nameSpace.b().value">
-    <tree-node
-      v-for="item in tree"
-      :key="item.key"
-      :node="item"
-      :indent-width="indentWidth"
-      @toggle-expand="toggleExpand"
-      @toggle-select="toggleSelect"
-      @dragenter="onDragenter"
-      @dragover="onDragover"
-      @drop="onDrop"
-      @dragstart="onDragstart"
-      @dragend="onDragend"
-      :draggable="draggable"
-    >
-    </tree-node>
+    <yy-virtual-list :virtual-scroll="false" :data="tree">
+      <template #default="{ item }: { item: TreeData }">
+        <tree-node
+          :data-set-key="item.key"
+          :key="item.key"
+          :node="item"
+          :indent-width="indentWidth"
+          @toggle-expand="toggleExpand"
+          @toggle-select="toggleSelect"
+          @dragenter="onDragenter"
+          @dragover="onDragover"
+          @drop="onDrop"
+          @dragstart="onDragstart"
+          @dragend="onDragend"
+          :draggable="draggable"
+        >
+        </tree-node>
+      </template>
+    </yy-virtual-list>
   </div>
 </template>

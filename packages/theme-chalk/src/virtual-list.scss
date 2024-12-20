@@ -1,0 +1,8 @@
+@use 'mixins/mixins.scss' as *;
+
+
+@include b(vl) {
+	position: relative;
+	overflow: auto;
+	border: 1px solid #ebeef5;
+}

@@ -1,6 +1,7 @@
 import { CreateNamespace } from '@yy-ui/utils'
 import { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
 import { treeNodeProps } from './tree-node'
+import { virtualListProps } from '@yy-ui/components/virtual-list'
 
 /** inject Bem */
 export const InjectBem = Symbol('InjectBem') as InjectionKey<CreateNamespace>
@@ -85,7 +86,9 @@ export const treeProps = {
   /** 缩进宽度 */
   indentWidth: treeNodeProps.indentWidth,
   /** 是否可拖动 */
-  draggable: treeNodeProps.draggable
+  draggable: treeNodeProps.draggable,
+  /** 虚拟滚动 */
+  virtualScroll: virtualListProps.virtualScroll
 } as const
 export type TreeProps = ExtractPropTypes<typeof treeProps>
 

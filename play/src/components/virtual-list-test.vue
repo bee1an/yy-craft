@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive, useTemplateRef } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 import yyVirtualList, {
   VirtualListExposed
 } from '@yy-ui/components/virtual-list/src/virtual-list'
@@ -8,7 +8,7 @@ const small = 20
 const medium = 30
 const large = 50
 const sizes = [small, medium, large]
-const data = reactive(
+const data = ref(
   new Array(100).fill(0).map((_, i) => {
     const sizesIndex = Math.round(Math.random() * 2)
     return {
@@ -21,8 +21,6 @@ const data = reactive(
 )
 // data.unshift({ id: 0, size: 1500, sizesIndex: 0 })
 // data.push({ id: data.length + 1, size: 500, sizesIndex: 0 })
-
-console.log('data', data)
 
 const vlInstance = useTemplateRef<VirtualListExposed>('vlInstance')
 
@@ -81,7 +79,7 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
             class="item"
             :style="{
               width: `${item.size}px`,
-              height: `${item.size}px`,
+              minHeight: `${item.size}px`,
               backgroundColor: `var(--color-${item.sizesIndex})`
             }"
           >

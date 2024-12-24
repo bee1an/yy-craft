@@ -10,6 +10,8 @@ export type VirtualListEvents = {
       maxScrollSize: number
     }
   ]
+  /** 数据变化 */
+  dataChange: [any[]]
 }
 
 export const emitter = new EventEmitter<VirtualListEvents>()

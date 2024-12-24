@@ -21,7 +21,7 @@ export interface ScrollTo {
 export const useScrollTo = (
   warpper: Ref<HTMLDivElement | null>,
   props: VirtualListProps,
-  sizeGather: number[]
+  sizeGather: Ref<number[]>
 ) => {
   const overload = new Overload()
 
@@ -63,11 +63,19 @@ export const useScrollTo = (
   // 滚动到指定索引
   let scrollListener: any
   const scrollToIndex = (index: number, options: ScrollToExtraOptions = {}) => {
+    if (index < 0) {
+      index = 0
+    }
+
+    if (index >= props.data.length) {
+      index = props.data.length - 1
+    }
+
     // 注销之前的监听
     emitter.off('scroll', scrollListener)
     let size = 0
     for (let i = 0; i < index; i++) {
-      size += sizeGather[i] || props.itemSize
+      size += sizeGather.value[i] || props.itemSize
     }
 
     if (!warpper.value) return
@@ -126,7 +134,7 @@ export const useScrollTo = (
       console.log('options: { key: string | number } & ScrollToExtraOptions')
 
       const index = props.data.findIndex(
-        item => item[props.keyField ?? 'key'] === options.key
+        item => item[props.keyField] === options.key
       )
 
       if (index !== -1) {
@@ -157,7 +165,7 @@ export const useScrollTo = (
 
       let index = 0
       if (position === 'bottom' || position === 'right') {
-        index = sizeGather.length - 1
+        index = sizeGather.value.length - 1
       }
 
       scrollToIndex(index, options)

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { reactive, ref, useTemplateRef } from 'vue'
+import { reactive, useTemplateRef } from 'vue'
 import yyVirtualList, {
-  ScrollTo
+  VirtualListExposed
 } from '@yy-ui/components/virtual-list/src/virtual-list'
 
 const small = 20
@@ -13,17 +13,20 @@ const data = reactive(
     const sizesIndex = Math.round(Math.random() * 2)
     return {
       id: i + 1,
+      key: i + 10,
       size: sizes[sizesIndex],
       sizesIndex
     }
   })
 )
-data.unshift({ id: 0, size: 1500, sizesIndex: 0 })
-data.push({ id: data.length + 1, size: 500, sizesIndex: 0 })
+// data.unshift({ id: 0, size: 1500, sizesIndex: 0 })
+// data.push({ id: data.length + 1, size: 500, sizesIndex: 0 })
 
-const vlInstance = ref<InstanceType<typeof yyVirtualList>>()
+console.log('data', data)
 
-const scrollTo: ScrollTo = (...options: any[]) => {
+const vlInstance = useTemplateRef<VirtualListExposed>('vlInstance')
+
+const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
   vlInstance.value!.scrollTo(...options)
 }
 
@@ -40,12 +43,28 @@ const scrollTo: ScrollTo = (...options: any[]) => {
 
 <template>
   <div class="virtual-list-test">
-    <button @click="scrollTo(0, 1500)">滚动到直接距离</button>
+    <button @click="scrollTo(0, 1500)">滚动到指定距离</button>
     <button @click="scrollTo({ distance: 1500, behavior: 'smooth' })">
-      平滑滚动到直接距离
+      平滑滚动到指定距离
     </button>
     <button @click="scrollTo({ top: 1500, behavior: 'smooth' })">
-      平滑滚动到直接距2
+      平滑滚动到指定距离2
+    </button>
+    <button @click="scrollTo({ index: 50 })">滚动到指定index</button>
+    <button @click="scrollTo({ index: 50, behavior: 'smooth' })">
+      平滑滚动到指定index
+    </button>
+    <button @click="scrollTo({ position: 'top' })">滚动到top</button>
+    <button @click="scrollTo({ position: 'top', behavior: 'smooth' })">
+      平滑滚动到top
+    </button>
+    <button @click="scrollTo({ position: 'bottom' })">滚动到bottom</button>
+    <button @click="scrollTo({ position: 'bottom', behavior: 'smooth' })">
+      平滑滚动到bottom
+    </button>
+    <button @click="scrollTo({ key: 50 })">滚动到key50</button>
+    <button @click="scrollTo({ key: 50, behavior: 'smooth' })">
+      平滑滚动到key50
     </button>
 
     <yy-virtual-list :data="data" ref="vlInstance">

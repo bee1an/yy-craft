@@ -5,4 +5,8 @@
 	position: relative;
 	overflow: auto;
 	border: 1px solid #ebeef5;
+
+
+	@include e(visible) {}
+
 }

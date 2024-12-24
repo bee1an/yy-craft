@@ -21,7 +21,9 @@ export default [
       '@typescript-eslint/no-explicit-any': 0,
       '@typescript-eslint/no-unused-expressions': 0,
       'no-debugger': 0,
-      '@typescript-eslint/no-unused-vars': 1
+      '@typescript-eslint/no-unused-vars': 1,
+      '@typescript-eslint/no-unsafe-function-type': 0,
+      '@typescript-eslint/no-empty-object-type': 0
     }
   }
 ]

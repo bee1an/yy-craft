@@ -1,2 +1,7 @@
 export * from './src/create'
 export * from './src/with-install'
+export * from './src/function-overload'
+export * from './src/tools'
+export * from './src/debounce'
+export * from './src/throttle'
+export * from './src/eventEmitter'

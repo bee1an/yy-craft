@@ -4,11 +4,14 @@ import {
   defineComponent,
   ExtractPropTypes,
   nextTick,
+  onMounted,
   PropType,
   reactive,
   ref,
   SlotsType
 } from 'vue'
+import { ScrollTo, useScrollTo } from './use-scroll-to'
+import { emitter } from './emitter-bus'
 
 export const virtualListProps = {
   /** 是否使用虚拟滚动 */
@@ -45,28 +48,18 @@ export const virtualListProps = {
   /** 最大边界: 当元素最小位置小于最大边界时才会渲染 */
   maxBound: {
     type: Number,
+    default: (props: { wrapperMaxSize: number }) => props.wrapperMaxSize,
     validator: (val: number, props: { wrapperMaxSize: number }) =>
       val >= props.wrapperMaxSize // 最大边界必须大于等于wrapperMaxSize
-  }
+  },
+  /** 每一项的key字段别名 */
+  keyField: String
 }
 
 export type VirtualListProps = ExtractPropTypes<typeof virtualListProps>
 
-interface ScrollToExtraOptions {
-  behavior?: ScrollBehavior
-  // debounce?: boolean
-}
-export interface ScrollTo {
-  (xCoord: number, yCoord: number): void
-  (options?: ScrollToOptions): void
-  (options: { distance: number } & ScrollToExtraOptions): void
-  (options: { index: number } & ScrollToExtraOptions): void
-  (options: { key: string | number } & ScrollToExtraOptions): void
-  (
-    options: {
-      position: 'top' | 'bottom' | 'left' | 'right'
-    } & ScrollToExtraOptions
-  ): void
+export interface VirtualListExposed {
+  scrollTo: ScrollTo
 }
 
 class VirtualListFactory<T = any> {
@@ -86,6 +79,17 @@ class VirtualListFactory<T = any> {
           return () => props.data.map(item => slots.default?.({ item }))
         }
 
+        const scrollPosKey = computed(() =>
+          props.vertical ? 'scrollTop' : 'scrollLeft'
+        )
+
+        const scrollSizeKey = computed(() =>
+          props.vertical ? 'scrollHeight' : 'scrollWidth'
+        )
+        const clientSizeKey = computed(() =>
+          props.vertical ? 'clientHeight' : 'clientWidth'
+        )
+
         const warpperSizeStyle = computed(() => {
           return {
             [props.vertical
@@ -96,7 +100,7 @@ class VirtualListFactory<T = any> {
 
         const bem = new CreateNamespace('vl')
 
-        const warpper = ref<HTMLDivElement>()
+        const warpper = ref<HTMLDivElement | null>(null)
         const view = ref<HTMLDivElement>()
         const virtualOption = reactive({
           start: 0,
@@ -123,10 +127,6 @@ class VirtualListFactory<T = any> {
         })
         // 记录每个item的size
         const sizeGather: number[] = new Array(props.data.length)
-        // 显示区域最小边界
-        const minBound = -props.wrapperMaxSize / 2
-        // 显示区域最大边界
-        const maxBound = props.wrapperMaxSize * 1.5
         // 更新元素尺寸
         const updateItemSize = () => {
           // 更新元素尺寸
@@ -143,53 +143,55 @@ class VirtualListFactory<T = any> {
             }
           })
         }
+
         const renderByScrollDistance = () => {
-          nextTick(() => {
-            updateItemSize()
+          updateItemSize()
 
-            const scrollDistance = props.vertical
-              ? warpper.value!.scrollTop
-              : warpper.value!.scrollLeft
+          const scrollDistance = warpper.value![scrollPosKey.value]
 
-            let start = 0
-            offset.value = 0
+          let start = 0
+          offset.value = 0
 
-            for (let index = 0; index < sizeGather.length; index++) {
-              const size = sizeGather[index] || props.itemSize
+          for (let index = 0; index < sizeGather.length; index++) {
+            const size = sizeGather[index] || props.itemSize
 
-              /*
+            /*
 								跟据滚动距离计算开始渲染的元素的索引
 								条件: 当前元素的结尾大于最小边界时, 作为开始渲染的元素
 							*/
-              if (offset.value + size - scrollDistance >= minBound) {
-                start = index
-                break
-              }
-              offset.value += size
+            if (offset.value + size - scrollDistance >= props.minBound) {
+              start = index
+              break
             }
+            offset.value += size
+          }
 
-            let size = 0
-            let index = start
-            const firstChildHiddenSize = scrollDistance - offset.value // 第一个元素被隐藏的部分
-            while (true) {
-              size += sizeGather[index] || 0
-              /*
+          let size = 0
+          let index = start
+          const firstChildHiddenSize = scrollDistance - offset.value // 第一个元素被隐藏的部分
+
+          while (true) {
+            size += sizeGather[index] || 0
+            /*
 								条件1: 当下一个元素需要渲染但是没有记录他的size时, 需要执行渲染, 并在渲染后更新他的size(updateItemSize)
 								条件2: 当下一个元素的结尾(size - firstChildHiddenSize)没有超出最大边界时, 继续渲染
 							*/
-              if (
-                !sizeGather[index] ||
-                size - firstChildHiddenSize >= maxBound
-              ) {
-                virtualOption.start = start
-                virtualOption.end = index + 1
-                const executed = sliceData() // executed防止溢栈
-                executed && renderByScrollDistance()
-                return
-              }
-              index++
+            if (
+              !sizeGather[index] ||
+              size - firstChildHiddenSize >= props.maxBound
+            ) {
+              virtualOption.start = start
+              virtualOption.end = index + 1
+              const executed = sliceData() // executed防止溢栈
+
+              executed
+                ? nextTick(renderByScrollDistance)
+                : emitter.emit('renderComplete')
+
+              return
             }
-          })
+            index++
+          }
         }
         const currentData = ref<any[]>([])
         const sliceData = () => {
@@ -221,29 +223,27 @@ class VirtualListFactory<T = any> {
         }
 
         // 初始化渲染
-        renderByScrollDistance()
+        onMounted(renderByScrollDistance)
 
+        const { handler } = useScrollTo(warpper, props, sizeGather)
         const scrollTo: ScrollTo = (...options: any[]) => {
           if (!warpper.value) return
-          const option = options[0]
 
-          if (!option || typeof option === 'number' || 'top' in option) {
-            warpper.value?.scrollTo(...options)
-          } else if ('distance' in option) {
-            warpper.value?.scrollTo({
-              ...option,
-              [props.vertical ? 'top' : 'left']: option.distance
-            })
-          } else if ('index' in option) {
-            // TODO
-          } else if ('key' in option) {
-            //
-          } else {
-            //
-          }
+          handler(...options)
         }
 
-        expose({ scrollTo })
+        expose({ scrollTo } satisfies VirtualListExposed)
+
+        const scrollHandler = () => {
+          emitter.emit('scroll', {
+            scrollSize: warpper.value![scrollPosKey.value],
+            maxScrollSize:
+              warpper.value![scrollSizeKey.value] -
+              warpper.value![clientSizeKey.value]
+          })
+
+          renderByScrollDistance()
+        }
 
         return () => {
           return (
@@ -251,7 +251,7 @@ class VirtualListFactory<T = any> {
               class={bem.b().value}
               style={warpperSizeStyle.value}
               ref={warpper}
-              onScroll={renderByScrollDistance}
+              onScroll={scrollHandler}
             >
               <div class={bem.e('view').value} style={minSizeStyle.value}>
                 <div
@@ -273,8 +273,10 @@ class VirtualListFactory<T = any> {
 const main = new VirtualListFactory().define()
 
 // 支持slot泛型, 导入时传递泛型
-export function GenericVirtualList<T>() {
-  return main as ReturnType<VirtualListFactory<T>['define']>
+export function GenericVirtualList<T>(): ReturnType<
+  VirtualListFactory<T>['define']
+> {
+  return main
 }
 
 export default main

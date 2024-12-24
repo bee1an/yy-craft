@@ -41,12 +41,16 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
 
 <template>
   <div class="virtual-list-test">
-    <button @click="scrollTo(0, 1500)">滚动到指定距离</button>
+    <button @click="scrollTo(1500, 0)">滚动到指定x距离</button>
+    <button @click="scrollTo({ left: 1500, behavior: 'smooth' })">
+      平滑滚动到指定left距离
+    </button>
+    <button @click="scrollTo(0, 1500)">滚动到指定y距离</button>
+    <button @click="scrollTo({ top: 1500, behavior: 'smooth' })">
+      平滑滚动到指定top距离
+    </button>
     <button @click="scrollTo({ distance: 1500, behavior: 'smooth' })">
       平滑滚动到指定距离
-    </button>
-    <button @click="scrollTo({ top: 1500, behavior: 'smooth' })">
-      平滑滚动到指定距离2
     </button>
     <button @click="scrollTo({ index: 50 })">滚动到指定index</button>
     <button @click="scrollTo({ index: 50, behavior: 'smooth' })">
@@ -65,14 +69,14 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
       平滑滚动到key50
     </button>
 
-    <yy-virtual-list :data="data" ref="vlInstance">
+    <yy-virtual-list :data="data" ref="vlInstance" :vertical="false">
       <!-- paddingTop: `var(--padding-${item.sizesIndex})` -->
       <template #default="{ item }">
         <div
           :key="item.id"
           :data-set-index="item.id"
           :style="{
-            paddingTop: `var(--padding-${item.sizesIndex})`
+            padding: `var(--padding-${item.sizesIndex})`
           }"
         >
           <div

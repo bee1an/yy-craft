@@ -304,7 +304,10 @@ class VirtualListFactory<T = any> {
             >
               <div class={bem.e('view').value} style={minSizeStyle.value}>
                 <div
-                  class={bem.e('visible').value}
+                  class={[
+                    bem.e('visible').value,
+                    bem.is('horizontal', !props.vertical)
+                  ]}
                   ref={visibleZone}
                   style={transformStyle.value}
                 >

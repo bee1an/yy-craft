@@ -40,7 +40,9 @@ export const useScrollTo = (
     (options?: ScrollToOptions) => {
       if (typeof options !== 'object') return false
 
-      return typeof options === 'undefined' || 'top' in options
+      return (
+        typeof options === 'undefined' || 'top' in options || 'left' in options
+      )
     }
   )
 

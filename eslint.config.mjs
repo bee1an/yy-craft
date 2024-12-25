@@ -23,7 +23,8 @@ export default [
       'no-debugger': 0,
       '@typescript-eslint/no-unused-vars': 1,
       '@typescript-eslint/no-unsafe-function-type': 0,
-      '@typescript-eslint/no-empty-object-type': 0
+      '@typescript-eslint/no-empty-object-type': 0,
+      'vue/multi-word-component-names': 0
     }
   }
 ]

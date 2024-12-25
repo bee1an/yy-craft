@@ -18,7 +18,6 @@ function create({
     pluginMakers.forEach(pluginMaker => {
       if (typeof pluginMaker === 'function') {
         const plugin = pluginMaker(componentPrefix)
-        console.log('v', plugin)
 
         'install' in plugin && app.use(plugin)
       }

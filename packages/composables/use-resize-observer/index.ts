@@ -1,13 +1,13 @@
-import { onMounted, onUnmounted, Ref } from 'vue'
+import { onMounted, onUnmounted, ShallowRef } from 'vue'
 
 /** 监听尺寸变化 */
 export const useResizeObserver = (
-  visibleZone: Ref<HTMLDivElement | null>,
+  target: Readonly<ShallowRef<Element | null>>,
   onResize: (entry: ResizeObserverEntry[]) => void
 ) => {
   const resizeObserver = new ResizeObserver(onResize)
 
-  onMounted(() => resizeObserver.observe(visibleZone.value!))
+  onMounted(() => resizeObserver.observe(target.value!))
 
   onUnmounted(resizeObserver.disconnect)
 }

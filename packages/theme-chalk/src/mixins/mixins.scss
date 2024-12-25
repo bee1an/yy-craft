@@ -1,7 +1,8 @@
 @use 'config' as *; // 导入config模块
 
 @forward 'config'; // 导出config模块
-@forward 'colors'; // 导出config模块
+@forward '../colors/colors.scss'; // 导出color模块
+@forward '../var/var.scss'; // 导出var模块
 
 // block
 @mixin b($block) {

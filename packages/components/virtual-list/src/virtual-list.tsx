@@ -13,7 +13,7 @@ import {
 } from 'vue'
 import { ScrollTo, useScrollTo } from './use-scroll-to'
 import { emitter } from './emitter-bus'
-import { useResizeObserver } from './use-resize-observer'
+import { useResizeObserver } from '@yy-ui/composables'
 
 export const virtualListProps = {
   /** 是否使用虚拟滚动 */

@@ -13,9 +13,11 @@ import {
   TreeValue
 } from './tree'
 import useDragNode from './use-drag-node'
-import YyVirtualList from '@yy-ui/components/virtual-list/src/virtual-list'
+import { GenericVirtualList } from '@yy-ui/components/virtual-list/src/virtual-list'
 
-defineOptions({ name: 'yy-tree' })
+const YyVirtualList = GenericVirtualList<TreeData>()
+
+defineOptions({ name: 'tree' })
 
 const props = defineProps(treeProps)
 const emits = defineEmits<TreeEmitsType>()
@@ -151,8 +153,8 @@ const { onDragstart, onDragenter, onDragover, onDrop, onDragend } = useDragNode(
 
 <template>
   <div :class="nameSpace.b().value">
-    <yy-virtual-list :virtual-scroll="false" :data="tree">
-      <template #default="{ item }: { item: TreeData }">
+    <yy-virtual-list :virtual-scroll="props.virtualScroll" :data="tree">
+      <template #default="{ item }">
         <tree-node
           :data-set-key="item.key"
           :key="item.key"

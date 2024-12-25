@@ -17,6 +17,9 @@ importers:
       '@yy-ui/utils':
         specifier: workspace:*
         version: link:packages/utils
+      '@yy-ui/yy-ui':
+        specifier: workspace:*
+        version: link:packages/yy-ui
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -63,6 +66,8 @@ importers:
   packages/theme-chalk: {}
 
   packages/utils: {}
+
+  packages/yy-ui: {}
 
   play:
     dependencies:

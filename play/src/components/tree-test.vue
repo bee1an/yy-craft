@@ -21,7 +21,7 @@ const createData = (
 }
 
 const data = ref<any[]>([])
-data.value.push(...(createData(2, 50) as any[]))
+data.value.push(...(createData(2, 100) as any[]))
 
 // const createData = () => {
 //   return [

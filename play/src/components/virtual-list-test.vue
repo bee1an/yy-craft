@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { ref, useTemplateRef } from 'vue'
-import yyVirtualList, {
-  VirtualListExposed
-} from '@yy-ui/components/virtual-list/src/virtual-list'
+import { VirtualListExposed } from '@yy-ui/components'
 
 const small = 20
 const medium = 30

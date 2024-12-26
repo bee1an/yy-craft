@@ -1,15 +1,20 @@
-import { onUnmounted, ShallowRef, watch } from 'vue'
+import { onUnmounted, ShallowRef } from 'vue'
+import { useEventListener } from '../use-event-listener'
 
 export const useBaseDrag = (
   target: Readonly<ShallowRef<HTMLElement | null>>,
   cb: {
     down?: (e: MouseEvent) => void
     move?: (e: {
+      /** move 事件对象 */
       event: MouseEvent
+      /** 当前drag移动的距离 */
       moveX: number
       moveY: number
+      /** 当前move移动的距离 */
       stepX: number
       stepY: number
+      /** mousedown的返回值 */
       downReturnVal: any
     }) => void
     up?: (e: MouseEvent) => void
@@ -49,15 +54,7 @@ export const useBaseDrag = (
     document.removeEventListener('mouseup', mouseupHandler)
   }
 
-  watch(
-    target,
-    () => {
-      if (target.value) {
-        target.value.addEventListener('mousedown', mousedownHandler)
-      }
-    },
-    { immediate: true }
-  )
+  useEventListener(target, 'mousedown', mousedownHandler)
 
   onUnmounted(() => {
     document.removeEventListener('mousemove', mousemoveHandler)

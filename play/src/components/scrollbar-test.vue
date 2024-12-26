@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
-import { ScrollBar as YyScrollBar } from '@yy-ui/yy-ui'
+import { Scrollbar as YyScrollbar } from '@yy-ui/yy-ui'
 
-const scrollbar = useTemplateRef<InstanceType<typeof YyScrollBar>>('scrollbar')
+const scrollbarRef =
+  useTemplateRef<InstanceType<typeof YyScrollbar>>('scrollbarRef')
 
-// setInterval(() => {
-//   scrollbar.value!.scrollBy(0, 10)
-// }, 1000)
+setTimeout(() => {
+  scrollbarRef.value!.scrollBy(0, 10)
+}, 1000)
 </script>
 
 <template>
   <div class="container">
-    <yy-scrollbar ref="scrollbar">
+    <yy-scrollbar ref="scrollbarRef">
       <div class="content">
         <div v-for="i in 20" :key="i">
           {{ i }}

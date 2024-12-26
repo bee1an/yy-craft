@@ -1,18 +1,5 @@
 @use 'mixins/mixins.scss' as *;
 
-@mixin scrollbar__controller {
-  position: absolute;
-  background-color: $color-scrollbar-color;
-  cursor: pointer;
-  border-radius: $var-scrollbar-border-radius;
-  user-select: none;
-  transition: background-color 0.2s $var-scrollbar-bezier;
-
-  &:hover {
-    background-color: $color-scrollbar-color-hover;
-  }
-}
-
 @include b(scrollbar) {
   position: relative;
   width: 100%;
@@ -36,10 +23,22 @@
 
   @include b(scrollbar-rail) {
     @include e(controller) {
-      @include scrollbar__controller;
-      background-color: transparent;
+      position: absolute;
       width: 100%;
       height: 100%;
+      background-color: transparent;
+      border-radius: $var-scrollbar-border-radius;
+      user-select: none;
+      transition: background-color 0.2s $var-scrollbar-bezier;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-scrollbar-color-hover;
+      }
+
+      @include when(active) {
+        background-color: $color-scrollbar-color-hover;
+      }
     }
   }
 }

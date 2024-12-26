@@ -1,4 +1,4 @@
-import { isObject } from './tools'
+import { isObject } from './object'
 
 /**
  * @function debounce

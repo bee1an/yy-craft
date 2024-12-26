@@ -1,0 +1,165 @@
+<script setup lang="ts">
+import { CreateNamespace } from '@yy-ui/utils'
+import { computed, ref, useTemplateRef } from 'vue'
+import { scrollbarInternalProps } from './scrollbar'
+import {
+  useBaseDrag,
+  useEventListener,
+  useResizeObserver
+} from '@yy-ui/composables'
+
+const props = defineProps(scrollbarInternalProps)
+
+const containerRef = useTemplateRef('containerRef')
+const mergedContainerRef = computed(() => {
+  const { container } = props
+
+  return container ? container() : containerRef.value
+})
+useEventListener(mergedContainerRef, 'scroll', () => update())
+
+const verticalRail = useTemplateRef('verticalRail')
+
+const horizontalRail = useTemplateRef('horizontalRail')
+
+const verticalBar = ref({ height: 0, top: 0, visible: true, active: false })
+const verticalBarStyle = computed(() => {
+  return {
+    height: `${verticalBar.value.height}px`,
+    top: `${verticalBar.value.top}px`
+  }
+})
+
+const horizontalBar = ref({ width: 0, left: 0, visible: true, active: false })
+const horizontalBarStyle = computed(() => {
+  return {
+    width: `${horizontalBar.value.width}px`,
+    left: `${horizontalBar.value.left}px`
+  }
+})
+
+const update = () => {
+  const {
+    scrollHeight,
+    clientHeight,
+    scrollWidth,
+    clientWidth,
+    scrollTop,
+    scrollLeft
+  } = mergedContainerRef.value!
+
+  verticalBar.value.visible = scrollHeight > clientHeight
+  if (verticalBar.value.visible) {
+    const { clientHeight: verticalRailHeight } = verticalRail.value!
+
+    verticalBar.value.height =
+      verticalRailHeight * (clientHeight / scrollHeight)
+
+    verticalBar.value.top = (scrollTop / scrollHeight) * verticalRailHeight
+  }
+
+  horizontalBar.value.visible = scrollWidth > clientWidth
+  if (horizontalBar.value.visible) {
+    const { clientWidth: horizontalRailWidth } = horizontalRail.value!
+    horizontalBar.value.width =
+      horizontalRailWidth * (clientWidth / scrollWidth)
+
+    horizontalBar.value.left = (scrollLeft / scrollWidth) * horizontalRailWidth
+  }
+}
+useResizeObserver(mergedContainerRef, update)
+
+const verticalController = useTemplateRef('verticalController')
+useBaseDrag(verticalController, {
+  down: () => {
+    verticalBar.value.active = true
+    return mergedContainerRef.value!.scrollTop
+  },
+  move: ({ moveY, downReturnVal }) => {
+    const { clientHeight: verticalRailHeight } = verticalRail.value!
+    const { scrollHeight } = mergedContainerRef.value!
+
+    mergedContainerRef.value!.scrollTop =
+      scrollHeight * (moveY / verticalRailHeight) + downReturnVal
+  },
+  up: () => {
+    verticalBar.value.active = false
+  }
+})
+
+const hoirzontalController = useTemplateRef('horizontalController')
+useBaseDrag(hoirzontalController, {
+  down: () => {
+    horizontalBar.value.active = true
+    return mergedContainerRef.value!.scrollLeft
+  },
+  move: ({ moveX, downReturnVal }) => {
+    const { clientWidth: horizontalRailWidth } = horizontalRail.value!
+    const { scrollWidth } = mergedContainerRef.value!
+
+    mergedContainerRef.value!.scrollLeft =
+      scrollWidth * (moveX / horizontalRailWidth) + downReturnVal
+  },
+  up: () => {
+    horizontalBar.value.active = false
+  }
+})
+
+function scrollTo(...args: Parameters<typeof window.scrollTo>) {
+  return mergedContainerRef.value?.scrollTo(...args)
+}
+
+function scrollBy(...args: Parameters<typeof window.scrollBy>) {
+  return mergedContainerRef.value?.scrollBy(...args)
+}
+
+defineExpose({ scrollTo, scrollBy })
+
+const bem = new CreateNamespace('scrollbar')
+</script>
+
+<template>
+  <div
+    :class="[
+      bem.b().value,
+      bem.is('display_controller', props.trigger === 'none')
+    ]"
+  >
+    <slot v-if="props.container"></slot>
+    <div v-else :class="bem.b('container').value" ref="containerRef">
+      <div :class="bem.b('content').value">
+        <slot></slot>
+      </div>
+    </div>
+
+    <div
+      v-if="verticalBar.visible"
+      :class="bem.b('rail').m('vertical').value"
+      ref="verticalRail"
+    >
+      <div
+        :class="[
+          bem.b('rail').e('controller').value,
+          bem.is('active', verticalBar.active)
+        ]"
+        :style="verticalBarStyle"
+        ref="verticalController"
+      ></div>
+    </div>
+
+    <div
+      v-if="horizontalBar.visible"
+      :class="bem.b('rail').m('horizontal').value"
+      ref="horizontalRail"
+    >
+      <div
+        :class="[
+          bem.b('rail').e('controller').value,
+          bem.is('active', horizontalBar.active)
+        ]"
+        :style="horizontalBarStyle"
+        ref="horizontalController"
+      ></div>
+    </div>
+  </div>
+</template>

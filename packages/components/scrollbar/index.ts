@@ -1,14 +1,14 @@
 import { withInstall } from '@yy-ui/utils'
-import ScrollBar from './src/scrollbar.vue'
+import Scrollbar from './src/scrollbar.vue'
 
-const ScrollBarWithInstall = withInstall(ScrollBar)
+const ScrollbarWithInstall = withInstall(Scrollbar)
 
 export * from './src/scrollbar'
-export { ScrollBarWithInstall, ScrollBar }
-export default ScrollBarWithInstall
+export { ScrollbarWithInstall, Scrollbar }
+export default ScrollbarWithInstall
 
 declare module 'vue' {
   export interface GlobalComponents {
-    YyScrollBar: typeof ScrollBar
+    YyScrollbar: typeof Scrollbar
   }
 }

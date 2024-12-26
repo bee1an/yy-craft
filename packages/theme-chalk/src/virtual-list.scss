@@ -2,7 +2,10 @@
 
 @include b(vl) {
   position: relative;
+  max-width: inherit;
+  max-height: inherit;
   overflow: auto;
+  scrollbar-width: none;
   border: 1px solid #ebeef5;
 
   @include e(visible) {

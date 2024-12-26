@@ -67,7 +67,14 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
       平滑滚动到key50
     </button>
 
-    <yy-virtual-list :data="data" ref="vlInstance" :vertical="false">
+    <yy-virtual-list
+      :data="data"
+      ref="vlInstance"
+      :vertical="false"
+      :scrollbar-props="{
+        trigger: 'hover'
+      }"
+    >
       <!-- paddingTop: `var(--padding-${item.sizesIndex})` -->
       <template #default="{ item }">
         <div

@@ -14,8 +14,11 @@ import {
 import { ScrollTo, useScrollTo } from './use-scroll-to'
 import { emitter } from './emitter-bus'
 import { useResizeObserver } from '@yy-ui/composables'
+import { ScrollbarProps } from '@yy-ui/components'
+import { YScrollbar } from '../../_internal'
 
 export const virtualListProps = {
+  scrollbarProps: Object as PropType<ScrollbarProps>,
   /** 是否使用虚拟滚动 */
   virtualScroll: {
     type: Boolean,
@@ -44,7 +47,7 @@ export const virtualListProps = {
   /** 最小边界: 当元素最大位置大于最小边界时才会渲染 */
   minBound: {
     type: Number,
-    default: 0,
+    default: -100,
     validator: (val: number) => val <= 0 // 最小边界必须小于等于0
   },
   /** 最大边界: 当元素最小位置小于最大边界时才会渲染 */
@@ -174,9 +177,9 @@ class VirtualListFactory<T = any> {
             const size = sizeGather.value[index] || props.itemSize
 
             /*
-								跟据滚动距离计算开始渲染的元素的索引
-								条件: 当前元素的结尾大于最小边界时, 作为开始渲染的元素
-							*/
+							跟据滚动距离计算开始渲染的元素的索引
+							条件: 当前元素的结尾大于最小边界时, 作为开始渲染的元素
+						*/
             if (offset.value + size - scrollDistance >= props.minBound) {
               start = index
               break
@@ -191,9 +194,9 @@ class VirtualListFactory<T = any> {
           while (true) {
             size += sizeGather.value[index] || 0
             /*
-								条件1: 当下一个元素需要渲染但是没有记录他的size时, 需要执行渲染, 并在渲染后更新他的size(updateItemSize)
-								条件2: 当下一个元素的结尾(size - firstChildHiddenSize)没有超出最大边界时, 继续渲染
-							*/
+							条件1: 当下一个元素需要渲染但是没有记录他的size时, 需要执行渲染, 并在渲染后更新他的size(updateItemSize)
+							条件2: 当下一个元素的结尾(size - firstChildHiddenSize)没有超出最大边界时, 继续渲染
+						*/
             if (
               !sizeGather.value[index] ||
               size - firstChildHiddenSize >= props.maxBound
@@ -294,27 +297,32 @@ class VirtualListFactory<T = any> {
           render()
         }
 
+        function getContainer() {
+          return warpper.value
+        }
+
         return () => {
           return (
-            <div
-              class={bem.b().value}
+            <YScrollbar
+              container={getContainer}
               style={warpperSizeStyle.value}
-              ref={warpper}
-              onScroll={scrollHandler}
+              {...props.scrollbarProps}
             >
-              <div class={bem.e('view').value} style={minSizeStyle.value}>
-                <div
-                  class={[
-                    bem.e('visible').value,
-                    bem.is('horizontal', !props.vertical)
-                  ]}
-                  ref={visibleZone}
-                  style={transformStyle.value}
-                >
-                  {currentData.value.map(item => slots.default?.({ item }))}
+              <div class={bem.b().value} ref={warpper} onScroll={scrollHandler}>
+                <div class={bem.e('view').value} style={minSizeStyle.value}>
+                  <div
+                    class={[
+                      bem.e('visible').value,
+                      bem.is('horizontal', !props.vertical)
+                    ]}
+                    ref={visibleZone}
+                    style={transformStyle.value}
+                  >
+                    {currentData.value.map(item => slots.default?.({ item }))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </YScrollbar>
           )
         }
       }

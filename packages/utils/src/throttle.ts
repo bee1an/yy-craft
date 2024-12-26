@@ -1,5 +1,5 @@
 import { debounce } from './debounce'
-import { isObject } from './tools'
+import { isObject } from './object'
 
 /**
  * @function throttle

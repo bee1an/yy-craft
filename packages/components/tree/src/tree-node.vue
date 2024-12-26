@@ -3,8 +3,8 @@ import { inject } from 'vue'
 import { InjectBem } from './tree'
 import { CreateNamespace } from '@yy-ui/utils'
 import YyIcon from '@yy-ui/components/icon/src/icon.vue'
-import TreeSwitcher from './icons/tree-switcher'
-import TreeLoading from './icons/tree-loading'
+import TSwitcher from './icons/Switcher'
+import TLoading from './icons/Loading'
 import TreeNodeContent from './tree-node-content'
 import { TreeNodeEmitsType, treeNodeProps } from './tree-node'
 
@@ -48,10 +48,10 @@ const bemBase = inject(InjectBem) as CreateNamespace
         @click.stop="emits('toggleExpand', node)"
       >
         <yy-icon v-if="node.isLoading" :size="12" color="green">
-          <tree-loading />
+          <t-loading />
         </yy-icon>
         <yy-icon v-else>
-          <tree-switcher />
+          <t-switcher />
         </yy-icon>
       </div>
 

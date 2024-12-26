@@ -1,5 +1,13 @@
 @use 'mixins/mixins.scss' as *;
 
+$color-scrollbar-color: rgba(0, 0, 0, 0.25);
+$color-scrollbar-color-hover: rgba(0, 0, 0, 0.4);
+
+$var-scrollbar-border-radius: 5px;
+$var-scrollbar-width: 5px;
+$var-scrollbar-height: 5px;
+$var-scrollbar-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+
 @include b(scrollbar) {
   position: relative;
   width: 100%;

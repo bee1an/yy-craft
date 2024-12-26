@@ -1,10 +1,10 @@
 import { withInstall } from '@yy-ui/utils'
 import VirtualList from './src/virtual-list'
 
-const VirtualListWithInstall = withInstall(VirtualList)
+const virtualListWithInstall = withInstall(VirtualList)
 
 export * from './src/virtual-list'
-export { VirtualListWithInstall, VirtualList }
+export { virtualListWithInstall, VirtualList }
 export default VirtualList
 
 declare module 'vue' {

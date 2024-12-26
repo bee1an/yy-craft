@@ -1,11 +1,11 @@
 import { withInstall } from '@yy-ui/utils'
 import Tree from './src/tree.vue'
 
-const TreeWithInstall = withInstall(Tree)
+const treeWithInstall = withInstall(Tree)
 
 export * from './src/tree'
 export * from './src/tree-node'
-export { TreeWithInstall, Tree }
+export { treeWithInstall, Tree }
 export default Tree
 
 declare module 'vue' {

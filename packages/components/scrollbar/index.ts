@@ -1,11 +1,11 @@
 import { withInstall } from '@yy-ui/utils'
 import Scrollbar from './src/scrollbar.vue'
 
-const ScrollbarWithInstall = withInstall(Scrollbar)
+const scrollbarWithInstall = withInstall(Scrollbar)
 
 export * from './src/scrollbar'
-export { ScrollbarWithInstall, Scrollbar }
-export default ScrollbarWithInstall
+export { scrollbarWithInstall, Scrollbar }
+export default Scrollbar
 
 declare module 'vue' {
   export interface GlobalComponents {

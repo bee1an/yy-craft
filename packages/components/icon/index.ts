@@ -1,10 +1,10 @@
 import { withInstall } from '@yy-ui/utils'
 import Icon from './src/icon.vue'
 
-const IconWithInstall = withInstall(Icon)
+const iconWithInstall = withInstall(Icon)
 
 export * from './src/icon'
-export { IconWithInstall, Icon }
+export { iconWithInstall, Icon }
 export default Icon
 
 declare module 'vue' {

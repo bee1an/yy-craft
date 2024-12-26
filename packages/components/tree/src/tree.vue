@@ -153,7 +153,12 @@ const { onDragstart, onDragenter, onDragover, onDrop, onDragend } = useDragNode(
 
 <template>
   <div :class="nameSpace.b().value">
-    <yy-virtual-list :virtual-scroll="props.virtualScroll" :data="tree">
+    <yy-virtual-list
+      :virtual-scroll="props.virtualScroll"
+      :scrollbar-props="props.scrollbarProps"
+      v-bind="props.virtualListProps"
+      :data="tree"
+    >
       <template #default="{ item }">
         <tree-node
           :data-set-key="item.key"

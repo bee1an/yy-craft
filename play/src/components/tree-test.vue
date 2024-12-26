@@ -95,6 +95,13 @@ const onDrag = (value: {
     v-model:selectedKeys="selectedKeys"
     :data="data"
     :default-expanded-keys="expandedKeys"
+    :virtual-list-props="{
+      wrapperMaxSize: 100
+    }"
+    :scrollbar-props="{
+      trigger: 'none'
+    }"
+    virtual-scroll
     value-field="xx"
     selectable
     multiple

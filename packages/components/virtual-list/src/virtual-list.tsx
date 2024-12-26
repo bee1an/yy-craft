@@ -18,6 +18,7 @@ import { ScrollbarProps } from '@yy-ui/components'
 import { YScrollbar } from '../../_internal'
 
 export const virtualListProps = {
+  /** 滚动条配置 */
   scrollbarProps: Object as PropType<ScrollbarProps>,
   /** 是否使用虚拟滚动 */
   virtualScroll: {
@@ -42,7 +43,7 @@ export const virtualListProps = {
   /** 每一项的尺寸: 数值约接近, scrollTo的准确度越高 */
   itemSize: {
     type: Number,
-    default: 30
+    default: 27
   },
   /** 最小边界: 当元素最大位置大于最小边界时才会渲染 */
   minBound: {

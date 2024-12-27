@@ -1,102 +1,112 @@
 @use 'mixins/mixins.scss' as *;
 
-@include b(tree) {}
-
-@include b(tree-node-warpper) {
-	padding: 2px 0;
+$var-tree-node-warpper-padding: 2px 0;
+$var-tree-node-padding: 1px 0;
+$var-tree-node__border--bottom-bottom: -4px;
+$var-tree-node__border--bottom-height: 2px;
+$var-tree-node__text-fontsize: 14px;
+$var-tree-node-switcher__icon-rotate: 90deg;
+$var-tree-node-switcher__icon-size: 24px;
+$var-tree-node-indent-width: 21px;
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
+@include b(tree) {
+}
+
+@include b(tree-node-warpper) {
+  padding: $var-tree-node-warpper-padding;
+}
 
 @include b(tree-node) {
-	position: relative;
-	display: flex;
-	align-items: center;
-	padding: 1px 0;
-	cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: $var-tree-node-padding;
+  cursor: pointer;
 
-	&:hover,
-	&:active {
-		background-color: $color-garg-1;
-	}
+  &:hover,
+  &:active {
+    background-color: $color-garg-1;
+  }
 
-	@include e(border) {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		border: 2px solid $color-primary;
+  @include e(border) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border: 2px solid $color-primary;
 
-		@include m(bottom) {
-			position: absolute;
-			bottom: -4px;
-			right: 0;
-			height: 2px;
-			border: unset;
-			background-color: $color-primary;
-		}
-	}
+    @include m(bottom) {
+      position: absolute;
+      bottom: $var-tree-node__border--bottom-bottom;
+      right: 0;
+      height: $var-tree-node__border--bottom-height;
+      border: unset;
+      background-color: $color-primary;
+    }
+  }
 
-	@include e(text) {
-		flex: 1
-	}
+  @include e(text) {
+    flex: 1;
+    font-size: $var-tree-node__text-fontsize;
+  }
 
+  @include when(expanded) {
+    @include b(tree-node-switcher) {
+      @include e(icon) {
+        i {
+          transform: rotate($var-tree-node-switcher__icon-rotate);
+        }
+      }
+    }
+  }
 
-	@include when(expanded) {
-		@include b(tree-node-switcher) {
-			@include e(icon) {
-				i {
-					transform: rotate(90deg);
-				}
-			}
-		}
-	}
+  @include when(leaf) {
+    @include b(tree-node-switcher) {
+      @include e(icon) {
+        fill: transparent;
+      }
+    }
+  }
 
-	@include when(leaf) {
-		@include b(tree-node-switcher) {
-			@include e(icon) {
-				fill: transparent;
-			}
-		}
-	}
+  @include when(loading) {
+    @include b(tree-node-switcher) {
+      @include e(icon) {
+        i {
+          animation: rotate 2s linear infinite;
+        }
+      }
+    }
+  }
 
-	@include when(loading) {
-		@include b(tree-node-switcher) {
-			@include e(icon) {
-				i {
-					animation: rotate 2s linear infinite;
-				}
-			}
-		}
-	}
-
-	@include when(selected) {
-		background-color: $color-garg-2;
-	}
+  @include when(selected) {
+    background-color: $color-garg-2;
+  }
 }
 
 @include b(tree-node-indent) {
-	width: 21px;
+  width: $var-tree-node-indent-width;
 }
 
 @include b(tree-node-switcher) {
-	@include e(icon) {
-		user-select: none;
+  @include e(icon) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $var-tree-node-switcher__icon-size;
+    height: $var-tree-node-switcher__icon-size;
+    user-select: none;
 
-		i {
-			transition: transform 0.3s;
-		}
-	}
-}
-
-
-@keyframes rotate {
-	from {
-		transform: rotate(0deg);
-	}
-
-	to {
-		transform: rotate(360deg);
-	}
-
+    i {
+      transition: transform 0.3s;
+    }
+  }
 }

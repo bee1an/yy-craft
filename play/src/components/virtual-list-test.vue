@@ -88,8 +88,7 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
             class="item"
             :style="{
               width: `${item.size}px`,
-              minHeight: `${item.size}px`,
-              backgroundColor: `var(--color-${item.sizesIndex})`
+              minHeight: `${item.size}px`
             }"
           >
             {{ item.id }}
@@ -102,9 +101,6 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
 
 <style scoped>
 .virtual-list-test {
-  --color-0: rgb(214, 223, 135);
-  --color-1: rgb(0, 255, 191);
-  --color-2: rgb(255, 0, 221);
   --padding-0: 2px;
   --padding-1: 4px;
   --padding-2: 6px;

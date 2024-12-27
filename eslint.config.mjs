@@ -24,7 +24,8 @@ export default [
       '@typescript-eslint/no-unused-vars': 1,
       '@typescript-eslint/no-unsafe-function-type': 0,
       '@typescript-eslint/no-empty-object-type': 0,
-      'vue/multi-word-component-names': 0
+      'vue/multi-word-component-names': 0,
+      'vue/no-reserved-component-names': 0
     }
   }
 ]

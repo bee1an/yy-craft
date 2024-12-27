@@ -21,7 +21,7 @@ const createData = (
 }
 
 const data = ref<any[]>([])
-data.value.push(...(createData(2, 100) as any[]))
+data.value.push(...(createData(2, 10) as any[]))
 
 // const createData = () => {
 //   return [
@@ -95,13 +95,6 @@ const onDrag = (value: {
     v-model:selectedKeys="selectedKeys"
     :data="data"
     :default-expanded-keys="expandedKeys"
-    :virtual-list-props="{
-      wrapperMaxSize: 100
-    }"
-    :scrollbar-props="{
-      trigger: 'none'
-    }"
-    virtual-scroll
     value-field="xx"
     selectable
     multiple

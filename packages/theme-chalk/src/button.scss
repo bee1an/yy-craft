@@ -1,0 +1,1238 @@
+@use 'mixins/mixins.scss' as *;
+
+$var-button-padding: 0 15px;
+$var-button-height: 34px;
+$var-button-border: 1px solid transparent;
+$var-button-border-radius: 3px;
+$var-button__content-fontsize: 14px;
+
+$color-bg: rgba(46, 51, 56, 0.05);
+$color-bg-hover: rgba(46, 51, 56, 0.09);
+$color-bg-active: rgba(46, 51, 56, 0.13);
+$color-primary-hover: #c99b31;
+$color-primary-active: #a3760d;
+$color-success-hover: #36ad6a;
+$color-success-active: #0c7a43;
+$color-warning-hover: #fcb040;
+$color-warning-active: #c97c10;
+$color-error-hover: #de576d;
+$color-error-active: #ab1f3f;
+$color-info-hover: #4098fc;
+$color-info-active: #1060c9;
+
+@include b(button) {
+  all: unset;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: $var-button-height;
+  padding: $var-button-padding;
+  border: $var-button-border;
+  border-radius: $var-button-border-radius;
+  font-size: $var-button__content-fontsize;
+  cursor: pointer;
+  transition: color 0.3s $var-bezier, border-color 0.3s $var-bezier,
+    background-color 0.3s $var-bezier;
+
+  @include e(content) {
+    @include when(strong) {
+      font-weight: 600;
+    }
+  }
+
+  $types: (
+    default: (
+      text: #333639,
+      border: #e0e0e6,
+      bg: transparent,
+      text-hover: $color-primary-hover,
+      border-hover: $color-primary-hover,
+      bg-hover: transparent,
+      text-active: $color-primary-active,
+      border-active: $color-primary-active,
+      bg-active: transparent,
+      secondary-text: #333639,
+      secondary-border: transparent,
+      secondary-bg: $color-bg,
+      secondary-text-hover: #333639,
+      secondary-border-hover: transparent,
+      secondary-bg-hover: $color-bg-hover,
+      secondary-text-active: #333639,
+      secondary-border-active: transparent,
+      secondary-bg-active: $color-bg-active,
+      tertiary-text: #333639,
+      tertiary-border: transparent,
+      tertiary-bg: $color-bg,
+      tertiary-text-hover: #333639,
+      tertiary-border-hover: transparent,
+      tertiary-bg-hover: $color-bg-hover,
+      tertiary-text-active: #333639,
+      tertiary-border-active: transparent,
+      tertiary-bg-active: $color-bg-active,
+      quaternary-text: #333639,
+      quaternary-border: transparent,
+      quaternary-bg: transparent,
+      quaternary-text-hover: #333639,
+      quaternary-border-hover: transparent,
+      quaternary-bg-hover: $color-bg-hover,
+      quaternary-text-active: #333639,
+      quaternary-border-active: transparent,
+      quaternary-bg-active: $color-bg-active,
+      wave-color: $color-primary
+    ),
+    tertiary: (
+      text: #767c82,
+      border: #e0e0e6,
+      bg: transparent,
+      text-hover: $color-primary-hover,
+      border-hover: $color-primary-hover,
+      bg-hover: transparent,
+      text-active: $color-primary-active,
+      border-active: $color-primary-active,
+      bg-active: transparent,
+      secondary-text: #767c82,
+      secondary-border: transparent,
+      secondary-bg: $color-bg,
+      secondary-text-hover: #767c82,
+      secondary-border-hover: transparent,
+      secondary-bg-hover: $color-bg-hover,
+      secondary-text-active: #333639,
+      secondary-border-active: transparent,
+      secondary-bg-active: $color-bg-active,
+      tertiary-text: #767c82,
+      tertiary-border: transparent,
+      tertiary-bg: $color-bg,
+      tertiary-text-hover: #767c82,
+      tertiary-border-hover: transparent,
+      tertiary-bg-hover: $color-bg-hover,
+      tertiary-text-active: #333639,
+      tertiary-border-active: transparent,
+      tertiary-bg-active: $color-bg-active,
+      quaternary-text: #767c82,
+      quaternary-border: transparent,
+      quaternary-bg: transparent,
+      quaternary-text-hover: #767c82,
+      quaternary-border-hover: transparent,
+      quaternary-bg-hover: $color-bg-hover,
+      quaternary-text-active: #333639,
+      quaternary-border-active: transparent,
+      quaternary-bg-active: $color-bg-active,
+      wave-color: $color-primary
+    ),
+    primary: (
+      text: #ffffff,
+      border: $color-primary,
+      bg: $color-primary,
+      text-hover: #ffffff,
+      border-hover: transparent,
+      bg-hover: $color-primary-hover,
+      text-active: #ffffff,
+      border-active: $color-primary-active,
+      bg-active: $color-primary-active,
+      secondary-text: $color-primary,
+      secondary-border: transparent,
+      secondary-bg: rgba($color-primary, 0.16),
+      secondary-text-hover: $color-primary,
+      secondary-border-hover: transparent,
+      secondary-bg-hover: rgba($color-primary, 0.22),
+      secondary-text-active: $color-primary,
+      secondary-border-active: transparent,
+      secondary-bg-active: rgba($color-primary, 0.28),
+      tertiary-text: $color-primary,
+      tertiary-border: transparent,
+      tertiary-bg: $color-bg,
+      tertiary-text-hover: $color-primary,
+      tertiary-border-hover: transparent,
+      tertiary-bg-hover: $color-bg-hover,
+      tertiary-text-active: $color-primary,
+      tertiary-border-active: transparent,
+      tertiary-bg-active: $color-bg-active,
+      quaternary-text: $color-primary,
+      quaternary-border: transparent,
+      quaternary-bg: transparent,
+      quaternary-text-hover: $color-primary,
+      quaternary-border-hover: transparent,
+      quaternary-bg-hover: $color-bg-hover,
+      quaternary-text-active: $color-primary,
+      quaternary-border-active: transparent,
+      quaternary-bg-active: $color-bg-active,
+      wave-color: $color-primary
+    ),
+    success: (
+      text: #ffffff,
+      border: $color-success,
+      bg: $color-success,
+      text-hover: #ffffff,
+      border-hover: transparent,
+      bg-hover: $color-success-hover,
+      text-active: #ffffff,
+      border-active: transparent,
+      bg-active: $color-success-active,
+      secondary-text: $color-success,
+      secondary-border: transparent,
+      secondary-bg: rgba($color-success, 0.16),
+      secondary-text-hover: $color-success,
+      secondary-border-hover: transparent,
+      secondary-bg-hover: rgba($color-success, 0.22),
+      secondary-text-active: $color-success,
+      secondary-border-active: transparent,
+      secondary-bg-active: rgba($color-success, 0.28),
+      tertiary-text: $color-success,
+      tertiary-border: transparent,
+      tertiary-bg: $color-bg,
+      tertiary-text-hover: $color-success,
+      tertiary-border-hover: transparent,
+      tertiary-bg-hover: $color-bg-hover,
+      tertiary-text-active: $color-success,
+      tertiary-border-active: transparent,
+      tertiary-bg-active: $color-bg-active,
+      quaternary-text: $color-success,
+      quaternary-border: transparent,
+      quaternary-bg: transparent,
+      quaternary-text-hover: $color-success,
+      quaternary-border-hover: transparent,
+      quaternary-bg-hover: $color-bg-hover,
+      quaternary-text-active: $color-success,
+      quaternary-border-active: transparent,
+      quaternary-bg-active: $color-bg-active,
+      wave-color: #18a058
+    ),
+    warning: (
+      text: #ffffff,
+      border: $color-warning,
+      bg: $color-warning,
+      text-hover: #ffffff,
+      border-hover: transparent,
+      bg-hover: $color-warning-hover,
+      text-active: #ffffff,
+      border-active: transparent,
+      bg-active: $color-warning-active,
+      secondary-text: $color-warning,
+      secondary-border: transparent,
+      secondary-bg: rgba($color-warning, 0.16),
+      secondary-text-hover: $color-warning,
+      secondary-border-hover: transparent,
+      secondary-bg-hover: rgba($color-warning, 0.22),
+      secondary-text-active: $color-warning,
+      secondary-border-active: transparent,
+      secondary-bg-active: rgba($color-warning, 0.28),
+      tertiary-text: $color-warning,
+      tertiary-border: transparent,
+      tertiary-bg: $color-bg,
+      tertiary-text-hover: $color-warning,
+      tertiary-border-hover: transparent,
+      tertiary-bg-hover: $color-bg-hover,
+      tertiary-text-active: $color-warning,
+      tertiary-border-active: transparent,
+      tertiary-bg-active: $color-bg-active,
+      quaternary-text: $color-warning,
+      quaternary-border: transparent,
+      quaternary-bg: transparent,
+      quaternary-text-hover: $color-warning,
+      quaternary-border-hover: transparent,
+      quaternary-bg-hover: $color-bg-hover,
+      quaternary-text-active: $color-warning,
+      quaternary-border-active: transparent,
+      quaternary-bg-active: $color-bg-active,
+      wave-color: #f0a020
+    ),
+    error: (
+      text: #ffffff,
+      border: $color-error,
+      bg: $color-error,
+      text-hover: #ffffff,
+      border-hover: transparent,
+      bg-hover: $color-error-hover,
+      text-active: #ffffff,
+      border-active: transparent,
+      bg-active: $color-error-active,
+      secondary-text: $color-error,
+      secondary-border: transparent,
+      secondary-bg: rgba($color-error, 0.16),
+      secondary-text-hover: $color-error,
+      secondary-border-hover: transparent,
+      secondary-bg-hover: rgba($color-error, 0.22),
+      secondary-text-active: $color-error,
+      secondary-border-active: transparent,
+      secondary-bg-active: rgba($color-error, 0.28),
+      tertiary-text: $color-error,
+      tertiary-border: transparent,
+      tertiary-bg: $color-bg,
+      tertiary-text-hover: $color-error,
+      tertiary-border-hover: transparent,
+      tertiary-bg-hover: $color-bg-hover,
+      tertiary-text-active: $color-error,
+      tertiary-border-active: transparent,
+      tertiary-bg-active: $color-bg-active,
+      quaternary-text: $color-error,
+      quaternary-border: transparent,
+      quaternary-bg: transparent,
+      quaternary-text-hover: $color-error,
+      quaternary-border-hover: transparent,
+      quaternary-bg-hover: $color-bg-hover,
+      quaternary-text-active: $color-error,
+      quaternary-border-active: transparent,
+      quaternary-bg-active: $color-bg-active,
+      wave-color: #d03050
+    ),
+
+    info: (
+      text: #ffffff,
+      border: $color-info,
+      bg: $color-info,
+      text-hover: #ffffff,
+      border-hover: transparent,
+      bg-hover: $color-info-hover,
+      text-active: #ffffff,
+      border-active: transparent,
+      bg-active: $color-info-active,
+      secondary-text: $color-info,
+      secondary-border: transparent,
+      secondary-bg: rgba($color-info, 0.16),
+      secondary-text-hover: $color-info,
+      secondary-border-hover: transparent,
+      secondary-bg-hover: rgba($color-info, 0.22),
+      secondary-text-active: $color-info,
+      secondary-border-active: transparent,
+      secondary-bg-active: rgba($color-info, 0.28),
+      tertiary-text: $color-info,
+      tertiary-border: transparent,
+      tertiary-bg: $color-bg,
+      tertiary-text-hover: $color-info,
+      tertiary-border-hover: transparent,
+      tertiary-bg-hover: $color-bg-hover,
+      tertiary-text-active: $color-info,
+      tertiary-border-active: transparent,
+      tertiary-bg-active: $color-bg-active,
+      quaternary-text: $color-info,
+      quaternary-border: transparent,
+      quaternary-bg: transparent,
+      quaternary-text-hover: $color-info,
+      quaternary-border-hover: transparent,
+      quaternary-bg-hover: $color-bg-hover,
+      quaternary-text-active: $color-info,
+      quaternary-border-active: transparent,
+      quaternary-bg-active: $color-bg-active,
+      wave-color: #2080f0
+    )
+  );
+
+  @each $type, $colors in $types {
+    @include m($type) {
+      color: map-get($colors, text);
+      border-color: map-get($colors, border);
+      background-color: map-get($colors, bg);
+      --wave-color: #{map-get($colors, wave-color)};
+
+      &:hover,
+      &:focus {
+        color: map-get($colors, text-hover);
+        border-color: map-get($colors, border-hover);
+        background-color: map-get($colors, bg-hover);
+      }
+
+      &:active {
+        color: map-get($colors, text-active);
+        border-color: map-get($colors, border-active);
+        background-color: map-get($colors, bg-active);
+      }
+
+      @include when(secondary) {
+        color: map-get($colors, secondary-text);
+        border-color: map-get($colors, secondary-border);
+        background-color: map-get($colors, secondary-bg);
+
+        &:hover,
+        &:focus {
+          color: map-get($colors, secondary-text-hover);
+          border-color: map-get($colors, secondary-border-hover);
+          background-color: map-get($colors, secondary-bg-hover);
+        }
+        &:active {
+          color: map-get($colors, secondary-text-active);
+          border-color: map-get($colors, secondary-border-active);
+          background-color: map-get($colors, secondary-bg-active);
+        }
+      }
+
+      @include when(tertiary) {
+        color: map-get($colors, tertiary-text);
+        border-color: map-get($colors, tertiary-border);
+        background-color: map-get($colors, tertiary-bg);
+
+        &:hover,
+        &:focus {
+          color: map-get($colors, tertiary-text-hover);
+          border-color: map-get($colors, tertiary-border-hover);
+          background-color: map-get($colors, tertiary-bg-hover);
+        }
+        &:active {
+          color: map-get($colors, tertiary-text-active);
+          border-color: map-get($colors, tertiary-border-active);
+          background-color: map-get($colors, tertiary-bg-active);
+        }
+      }
+
+      @include when(quaternary) {
+        color: map-get($colors, quaternary-text);
+        border-color: map-get($colors, quaternary-border);
+        background-color: map-get($colors, quaternary-bg);
+
+        &:hover,
+        &:focus {
+          color: map-get($colors, quaternary-text-hover);
+          border-color: map-get($colors, quaternary-border-hover);
+          background-color: map-get($colors, quaternary-bg-hover);
+        }
+        &:active {
+          color: map-get($colors, quaternary-text-active);
+          border-color: map-get($colors, quaternary-border-active);
+          background-color: map-get($colors, quaternary-bg-active);
+        }
+      }
+
+      @include when(dashed) {
+        color: map-get($colors, secondary-text);
+        border-color: map-get($colors, border);
+        background-color: transparent;
+        border-style: dashed;
+
+        &:hover,
+        &:focus {
+          color: map-get($colors, secondary-text);
+          border-color: map-get($colors, border);
+          background-color: transparent;
+        }
+        &:active {
+          color: map-get($colors, secondary-text);
+          border-color: map-get($colors, border);
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  // @include m(default) {
+  //   color: $color-button;
+  //   border-color: $color-button-border;
+  //   background-color: $color-button-bg;
+
+  //   &:hover,
+  //   &:focus {
+  //     color: $color-button-hover;
+  //     border-color: $color-button-border-hover;
+  //     background-color: $color-button-bg-hover;
+  //   }
+  //   &:active {
+  //     color: $color-button-active;
+  //     border-color: $color-button-border-active;
+  //     background-color: $color-button-bg-active;
+  //   }
+
+  //   @include when(secondary) {
+  //     color: $color-button-secondary;
+  //     border-color: $color-button-secondary-border;
+  //     background-color: $color-button-secondary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button-secondary-hover;
+  //       border-color: $color-button-secondary-border-hover;
+  //       background-color: $color-button-secondary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button-secondary-active;
+  //       border-color: $color-button-secondary-border-active;
+  //       background-color: $color-button-secondary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(tertiary) {
+  //     color: $color-button-tertiary;
+  //     border-color: $color-button-tertiary-border;
+  //     background-color: $color-button-tertiary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button-tertiary-hover;
+  //       border-color: $color-button-tertiary-border-hover;
+  //       background-color: $color-button-tertiary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button-tertiary-active;
+  //       border-color: $color-button-tertiary-border-active;
+  //       background-color: $color-button-tertiary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(quaternary) {
+  //     color: $color-button-quaternary;
+  //     border-color: $color-button-quaternary-border;
+  //     background-color: $color-button-quaternary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button-quaternary-hover;
+  //       border-color: $color-button-quaternary-border-hover;
+  //       background-color: $color-button-quaternary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button-quaternary-active;
+  //       border-color: $color-button-quaternary-border-active;
+  //       background-color: $color-button-quaternary-bg-active;
+  //     }
+  //   }
+  // }
+
+  // @include m(tertiary) {
+  //   color: $color-button--tertiary;
+  //   border-color: $color-button--tertiary-border;
+  //   background-color: $color-button--tertiary-bg;
+
+  //   &:hover,
+  //   &:focus {
+  //     color: $color-button--tertiary-hover;
+  //     border-color: $color-button--tertiary-border-hover;
+  //     background-color: $color-button--tertiary-bg-hover;
+  //   }
+  //   &:active {
+  //     color: $color-button--tertiary-active;
+  //     border-color: $color-button--tertiary-border-active;
+  //     background-color: $color-button--tertiary-bg-active;
+  //   }
+
+  //   @include when(secondary) {
+  //     color: $color-button--tertiary-secondary;
+  //     border-color: $color-button--tertiary-secondary-border;
+  //     background-color: $color-button--tertiary-secondary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--tertiary-secondary-hover;
+  //       border-color: $color-button--tertiary-secondary-border-hover;
+  //       background-color: $color-button--tertiary-secondary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--tertiary-secondary-active;
+  //       border-color: $color-button--tertiary-secondary-border-active;
+  //       background-color: $color-button--tertiary-secondary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(tertiary) {
+  //     color: $color-button--tertiary-tertiary;
+  //     border-color: $color-button--tertiary-tertiary-border;
+  //     background-color: $color-button--tertiary-tertiary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--tertiary-tertiary-hover;
+  //       border-color: $color-button--tertiary-tertiary-border-hover;
+  //       background-color: $color-button--tertiary-tertiary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--tertiary-tertiary-active;
+  //       border-color: $color-button--tertiary-tertiary-border-active;
+  //       background-color: $color-button--tertiary-tertiary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(quaternary) {
+  //     color: $color-button--tertiary-quaternary;
+  //     border-color: $color-button--tertiary-quaternary-border;
+  //     background-color: $color-button--tertiary-quaternary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--tertiary-quaternary-hover;
+  //       border-color: $color-button--tertiary-quaternary-border-hover;
+  //       background-color: $color-button--tertiary-quaternary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--tertiary-quaternary-active;
+  //       border-color: $color-button--tertiary-quaternary-border-active;
+  //       background-color: $color-button--tertiary-quaternary-bg-active;
+  //     }
+  //   }
+  // }
+
+  // @include m(primary) {
+  //   color: $color-button--primary;
+  //   border-color: $color-button--primary-border;
+  //   background-color: $color-button--primary-bg;
+
+  //   &:hover,
+  //   &:focus {
+  //     color: $color-button--primary-hover;
+  //     border-color: $color-button--primary-border-hover;
+  //     background-color: $color-button--primary-bg-hover;
+  //   }
+  //   &:active {
+  //     color: $color-button--primary-active;
+  //     border-color: $color-button--primary-border-active;
+  //     background-color: $color-button--primary-bg-active;
+  //   }
+
+  //   @include when(secondary) {
+  //     color: $color-button--primary-secondary;
+  //     border-color: $color-button--primary-secondary-border;
+  //     background-color: $color-button--primary-secondary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--primary-secondary-hover;
+  //       border-color: $color-button--primary-secondary-border-hover;
+  //       background-color: $color-button--primary-secondary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--primary-secondary-active;
+  //       border-color: $color-button--primary-secondary-border-active;
+  //       background-color: $color-button--primary-secondary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(tertiary) {
+  //     color: $color-button--primary-tertiary;
+  //     border-color: $color-button--primary-tertiary-border;
+  //     background-color: $color-button--primary-tertiary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--primary-tertiary-hover;
+  //       border-color: $color-button--primary-tertiary-border-hover;
+  //       background-color: $color-button--primary-tertiary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--primary-tertiary-active;
+  //       border-color: $color-button--primary-tertiary-border-active;
+  //       background-color: $color-button--primary-tertiary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(quaternary) {
+  //     color: $color-button--primary-quaternary;
+  //     border-color: $color-button--primary-quaternary-border;
+  //     background-color: $color-button--primary-quaternary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--primary-quaternary-hover;
+  //       border-color: $color-button--primary-quaternary-border-hover;
+  //       background-color: $color-button--primary-quaternary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--primary-quaternary-active;
+  //       border-color: $color-button--primary-quaternary-border-active;
+  //       background-color: $color-button--primary-quaternary-bg-active;
+  //     }
+  //   }
+  // }
+
+  // @include m(success) {
+  //   color: $color-button--success;
+  //   border-color: $color-button--success-border;
+  //   background-color: $color-button--success-bg;
+
+  //   &:hover,
+  //   &:focus {
+  //     color: $color-button--success-hover;
+  //     border-color: $color-button--success-border-hover;
+  //     background-color: $color-button--success-bg-hover;
+  //   }
+  //   &:active {
+  //     color: $color-button--success-active;
+  //     border-color: $color-button--success-border-active;
+  //     background-color: $color-button--success-bg-active;
+  //   }
+
+  //   @include when(secondary) {
+  //     color: $color-button--success-secondary;
+  //     border-color: $color-button--success-secondary-border;
+  //     background-color: $color-button--success-secondary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--success-secondary-hover;
+  //       border-color: $color-button--success-secondary-border-hover;
+  //       background-color: $color-button--success-secondary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--success-secondary-active;
+  //       border-color: $color-button--success-secondary-border-active;
+  //       background-color: $color-button--success-secondary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(tertiary) {
+  //     color: $color-button--success-tertiary;
+  //     border-color: $color-button--success-tertiary-border;
+  //     background-color: $color-button--success-tertiary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--success-tertiary-hover;
+  //       border-color: $color-button--success-tertiary-border-hover;
+  //       background-color: $color-button--success-tertiary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--success-tertiary-active;
+  //       border-color: $color-button--success-tertiary-border-active;
+  //       background-color: $color-button--success-tertiary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(quaternary) {
+  //     color: $color-button--success-quaternary;
+  //     border-color: $color-button--success-quaternary-border;
+  //     background-color: $color-button--success-quaternary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--success-quaternary-hover;
+  //       border-color: $color-button--success-quaternary-border-hover;
+  //       background-color: $color-button--success-quaternary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--success-quaternary-active;
+  //       border-color: $color-button--success-quaternary-border-active;
+  //       background-color: $color-button--success-quaternary-bg-active;
+  //     }
+  //   }
+  // }
+
+  // @include m(warning) {
+  //   color: $color-button--warning;
+  //   border-color: $color-button--warning-border;
+  //   background-color: $color-button--warning-bg;
+
+  //   &:hover,
+  //   &:focus {
+  //     color: $color-button--warning-hover;
+  //     border-color: $color-button--warning-border-hover;
+  //     background-color: $color-button--warning-bg-hover;
+  //   }
+  //   &:active {
+  //     color: $color-button--warning-active;
+  //     border-color: $color-button--warning-border-active;
+  //     background-color: $color-button--warning-bg-active;
+  //   }
+
+  //   @include when(secondary) {
+  //     color: $color-button--warning-secondary;
+  //     border-color: $color-button--warning-secondary-border;
+  //     background-color: $color-button--warning-secondary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--warning-secondary-hover;
+  //       border-color: $color-button--warning-secondary-border-hover;
+  //       background-color: $color-button--warning-secondary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--warning-secondary-active;
+  //       border-color: $color-button--warning-secondary-border-active;
+  //       background-color: $color-button--warning-secondary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(tertiary) {
+  //     color: $color-button--warning-tertiary;
+  //     border-color: $color-button--warning-tertiary-border;
+  //     background-color: $color-button--warning-tertiary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--warning-tertiary-hover;
+  //       border-color: $color-button--warning-tertiary-border-hover;
+  //       background-color: $color-button--warning-tertiary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--warning-tertiary-active;
+  //       border-color: $color-button--warning-tertiary-border-active;
+  //       background-color: $color-button--warning-tertiary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(quaternary) {
+  //     color: $color-button--warning-quaternary;
+  //     border-color: $color-button--warning-quaternary-border;
+  //     background-color: $color-button--warning-quaternary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--warning-quaternary-hover;
+  //       border-color: $color-button--warning-quaternary-border-hover;
+  //       background-color: $color-button--warning-quaternary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--warning-quaternary-active;
+  //       border-color: $color-button--warning-quaternary-border-active;
+  //       background-color: $color-button--warning-quaternary-bg-active;
+  //     }
+  //   }
+  // }
+
+  // @include m(error) {
+  //   color: $color-button--error;
+  //   border-color: $color-button--error-border;
+  //   background-color: $color-button--error-bg;
+
+  //   &:hover,
+  //   &:focus {
+  //     color: $color-button--error-hover;
+  //     border-color: $color-button--error-border-hover;
+  //     background-color: $color-button--error-bg-hover;
+  //   }
+  //   &:active {
+  //     color: $color-button--error-active;
+  //     border-color: $color-button--error-border-active;
+  //     background-color: $color-button--error-bg-active;
+  //   }
+
+  //   @include when(secondary) {
+  //     color: $color-button--error-secondary;
+  //     border-color: $color-button--error-secondary-border;
+  //     background-color: $color-button--error-secondary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--error-secondary-hover;
+  //       border-color: $color-button--error-secondary-border-hover;
+  //       background-color: $color-button--error-secondary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--error-secondary-active;
+  //       border-color: $color-button--error-secondary-border-active;
+  //       background-color: $color-button--error-secondary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(tertiary) {
+  //     color: $color-button--error-tertiary;
+  //     border-color: $color-button--error-tertiary-border;
+  //     background-color: $color-button--error-tertiary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--error-tertiary-hover;
+  //       border-color: $color-button--error-tertiary-border-hover;
+  //       background-color: $color-button--error-tertiary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--error-tertiary-active;
+  //       border-color: $color-button--error-tertiary-border-active;
+  //       background-color: $color-button--error-tertiary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(quaternary) {
+  //     color: $color-button--error-quaternary;
+  //     border-color: $color-button--error-quaternary-border;
+  //     background-color: $color-button--error-quaternary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--error-quaternary-hover;
+  //       border-color: $color-button--error-quaternary-border-hover;
+  //       background-color: $color-button--error-quaternary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--error-quaternary-active;
+  //       border-color: $color-button--error-quaternary-border-active;
+  //       background-color: $color-button--error-quaternary-bg-active;
+  //     }
+  //   }
+  // }
+
+  // @include m(info) {
+  //   color: $color-button--info;
+  //   border-color: $color-button--info-border;
+  //   background-color: $color-button--info-bg;
+
+  //   &:hover,
+  //   &:focus {
+  //     color: $color-button--info-hover;
+  //     border-color: $color-button--info-border-hover;
+  //     background-color: $color-button--info-bg-hover;
+  //   }
+  //   &:active {
+  //     color: $color-button--info-active;
+  //     border-color: $color-button--info-border-active;
+  //     background-color: $color-button--info-bg-active;
+  //   }
+
+  //   @include when(secondary) {
+  //     color: $color-button--info-secondary;
+  //     border-color: $color-button--info-secondary-border;
+  //     background-color: $color-button--info-secondary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--info-secondary-hover;
+  //       border-color: $color-button--info-secondary-border-hover;
+  //       background-color: $color-button--info-secondary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--info-secondary-active;
+  //       border-color: $color-button--info-secondary-border-active;
+  //       background-color: $color-button--info-secondary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(tertiary) {
+  //     color: $color-button--info-tertiary;
+  //     border-color: $color-button--info-tertiary-border;
+  //     background-color: $color-button--info-tertiary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--info-tertiary-hover;
+  //       border-color: $color-button--info-tertiary-border-hover;
+  //       background-color: $color-button--info-tertiary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--info-tertiary-active;
+  //       border-color: $color-button--info-tertiary-border-active;
+  //       background-color: $color-button--info-tertiary-bg-active;
+  //     }
+  //   }
+
+  //   @include when(quaternary) {
+  //     color: $color-button--info-quaternary;
+  //     border-color: $color-button--info-quaternary-border;
+  //     background-color: $color-button--info-quaternary-bg;
+
+  //     &:hover,
+  //     &:focus {
+  //       color: $color-button--info-quaternary-hover;
+  //       border-color: $color-button--info-quaternary-border-hover;
+  //       background-color: $color-button--info-quaternary-bg-hover;
+  //     }
+  //     &:active {
+  //       color: $color-button--info-quaternary-active;
+  //       border-color: $color-button--info-quaternary-border-active;
+  //       background-color: $color-button--info-quaternary-bg-active;
+  //     }
+  //   }
+  // }
+}
+
+@keyframes button-wave-spread {
+  0% {
+    box-shadow: 0 0 0.5px 0 var(--wave-color);
+  }
+
+  100% {
+    box-shadow: 0 0 0.5px 4.5px var(--wave-color);
+  }
+}
+
+@keyframes button-wave-opacity {
+  0% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@include b(button-wave) {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  animation-iteration-count: 1;
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1),
+    cubic-bezier(0, 0, 0.2, 1);
+
+  @include m(active) {
+    z-index: 1;
+    animation-name: button-wave-spread, button-wave-opacity;
+  }
+}
+
+// $color-button: #333639;
+// $color-button-border: #e0e0e6;
+// $color-button-bg: transparent;
+// $color-button-hover: $color-primary-hover;
+// $color-button-border-hover: $color-primary-hover;
+// $color-button-bg-hover: transparent;
+// $color-button-active: $color-primary-active;
+// $color-button-border-active: $color-primary-active;
+// $color-button-bg-active: transparent;
+
+// $color-button-secondary: #333639;
+// $color-button-secondary-border: transparent;
+// $color-button-secondary-bg: $color-bg;
+// $color-button-secondary-hover: #333639;
+// $color-button-secondary-border-hover: transparent;
+// $color-button-secondary-bg-hover: $color-bg-hover;
+// $color-button-secondary-active: #333639;
+// $color-button-secondary-border-active: transparent;
+// $color-button-secondary-bg-active: $color-bg-active;
+
+// $color-button-tertiary: #333639;
+// $color-button-tertiary-border: transparent;
+// $color-button-tertiary-bg: $color-bg;
+// $color-button-tertiary-hover: #333639;
+// $color-button-tertiary-border-hover: transparent;
+// $color-button-tertiary-bg-hover: $color-bg-hover;
+// $color-button-tertiary-active: #333639;
+// $color-button-tertiary-border-active: transparent;
+// $color-button-tertiary-bg-active: $color-bg-active;
+
+// $color-button-quaternary: #333639;
+// $color-button-quaternary-border: transparent;
+// $color-button-quaternary-bg: transparent;
+// $color-button-quaternary-hover: #333639;
+// $color-button-quaternary-border-hover: transparent;
+// $color-button-quaternary-bg-hover: $color-bg-hover;
+// $color-button-quaternary-active: #333639;
+// $color-button-quaternary-border-active: transparent;
+// $color-button-quaternary-bg-active: $color-bg-active;
+
+// $color-button--tertiary: #767c82;
+// $color-button--tertiary-border: #e0e0e6;
+// $color-button--tertiary-bg: transparent;
+// $color-button--tertiary-hover: $color-primary-hover;
+// $color-button--tertiary-border-hover: $color-primary-hover;
+// $color-button--tertiary-bg-hover: transparent;
+// $color-button--tertiary-active: $color-primary-active;
+// $color-button--tertiary-border-active: $color-primary-active;
+// $color-button--tertiary-bg-active: transparent;
+
+// $color-button--tertiary-secondary: #767c82;
+// $color-button--tertiary-secondary-border: transparent;
+// $color-button--tertiary-secondary-bg: $color-bg;
+// $color-button--tertiary-secondary-hover: #767c82;
+// $color-button--tertiary-secondary-border-hover: transparent;
+// $color-button--tertiary-secondary-bg-hover: $color-bg-hover;
+// $color-button--tertiary-secondary-active: #333639;
+// $color-button--tertiary-secondary-border-active: transparent;
+// $color-button--tertiary-secondary-bg-active: $color-bg-active;
+
+// $color-button--tertiary-tertiary: #767c82;
+// $color-button--tertiary-tertiary-border: transparent;
+// $color-button--tertiary-tertiary-bg: $color-bg;
+// $color-button--tertiary-tertiary-hover: #767c82;
+// $color-button--tertiary-tertiary-border-hover: transparent;
+// $color-button--tertiary-tertiary-bg-hover: $color-bg-hover;
+// $color-button--tertiary-tertiary-active: #333639;
+// $color-button--tertiary-tertiary-border-active: transparent;
+// $color-button--tertiary-tertiary-bg-active: $color-bg-active;
+
+// $color-button--tertiary-quaternary: #767c82;
+// $color-button--tertiary-quaternary-border: transparent;
+// $color-button--tertiary-quaternary-bg: transparent;
+// $color-button--tertiary-quaternary-hover: #767c82;
+// $color-button--tertiary-quaternary-border-hover: transparent;
+// $color-button--tertiary-quaternary-bg-hover: $color-bg-hover;
+// $color-button--tertiary-quaternary-active: #333639;
+// $color-button--tertiary-quaternary-border-active: transparent;
+// $color-button--tertiary-quaternary-bg-active: $color-bg-active;
+
+// $color-button--primary: #ffffff;
+// $color-button--primary-border: transparent;
+// $color-button--primary-bg: $color-primary;
+// $color-button--primary-hover: #ffffff;
+// $color-button--primary-border-hover: transparent;
+// $color-button--primary-bg-hover: $color-primary-hover;
+// $color-button--primary-active: #ffffff;
+// $color-button--primary-border-active: $color-primary-active;
+// $color-button--primary-bg-active: $color-primary-active;
+
+// $color-button--primary-secondary: $color-primary;
+// $color-button--primary-secondary-border: transparent;
+// $color-button--primary-secondary-bg: rgba($color-primary, 0.16);
+// $color-button--primary-secondary-hover: $color-primary;
+// $color-button--primary-secondary-border-hover: transparent;
+// $color-button--primary-secondary-bg-hover: rgba($color-primary, 0.22);
+// $color-button--primary-secondary-active: $color-primary;
+// $color-button--primary-secondary-border-active: transparent;
+// $color-button--primary-secondary-bg-active: rgba($color-primary, 0.28);
+
+// $color-button--primary-tertiary: $color-primary;
+// $color-button--primary-tertiary-border: transparent;
+// $color-button--primary-tertiary-bg: $color-bg;
+// $color-button--primary-tertiary-hover: $color-primary;
+// $color-button--primary-tertiary-border-hover: transparent;
+// $color-button--primary-tertiary-bg-hover: $color-bg-hover;
+// $color-button--primary-tertiary-active: $color-primary;
+// $color-button--primary-tertiary-border-active: transparent;
+// $color-button--primary-tertiary-bg-active: $color-bg-active;
+
+// $color-button--primary-quaternary: $color-primary;
+// $color-button--primary-quaternary-border: transparent;
+// $color-button--primary-quaternary-bg: transparent;
+// $color-button--primary-quaternary-hover: $color-primary;
+// $color-button--primary-quaternary-border-hover: transparent;
+// $color-button--primary-quaternary-bg-hover: $color-bg-hover;
+// $color-button--primary-quaternary-active: $color-primary;
+// $color-button--primary-quaternary-border-active: transparent;
+// $color-button--primary-quaternary-bg-active: $color-bg-active;
+
+// $color-button--success: #ffffff;
+// $color-button--success-border: transparent;
+// $color-button--success-bg: $color-success;
+// $color-button--success-hover: #ffffff;
+// $color-button--success-border-hover: transparent;
+// $color-button--success-bg-hover: $color-success-hover;
+// $color-button--success-active: #ffffff;
+// $color-button--success-border-active: transparent;
+// $color-button--success-bg-active: $color-success-active;
+
+// $color-button--success-secondary: $color-success;
+// $color-button--success-secondary-border: transparent;
+// $color-button--success-secondary-bg: rgba($color-success, 0.16);
+// $color-button--success-secondary-hover: $color-success;
+// $color-button--success-secondary-border-hover: transparent;
+// $color-button--success-secondary-bg-hover: rgba($color-success, 0.22);
+// $color-button--success-secondary-active: $color-success;
+// $color-button--success-secondary-border-active: transparent;
+// $color-button--success-secondary-bg-active: rgba($color-success, 0.28);
+
+// $color-button--success-tertiary: $color-success;
+// $color-button--success-tertiary-border: transparent;
+// $color-button--success-tertiary-bg: $color-bg;
+// $color-button--success-tertiary-hover: $color-success;
+// $color-button--success-tertiary-border-hover: transparent;
+// $color-button--success-tertiary-bg-hover: $color-bg-hover;
+// $color-button--success-tertiary-active: $color-success;
+// $color-button--success-tertiary-border-active: transparent;
+// $color-button--success-tertiary-bg-active: $color-bg-active;
+
+// $color-button--success-quaternary: $color-success;
+// $color-button--success-quaternary-border: transparent;
+// $color-button--success-quaternary-bg: transparent;
+// $color-button--success-quaternary-hover: $color-success;
+// $color-button--success-quaternary-border-hover: transparent;
+// $color-button--success-quaternary-bg-hover: $color-bg-hover;
+// $color-button--success-quaternary-active: $color-success;
+// $color-button--success-quaternary-border-active: transparent;
+// $color-button--success-quaternary-bg-active: $color-bg-active;
+
+// $color-button--warning: #ffffff;
+// $color-button--warning-border: transparent;
+// $color-button--warning-bg: $color-warning;
+// $color-button--warning-hover: #ffffff;
+// $color-button--warning-border-hover: transparent;
+// $color-button--warning-bg-hover: $color-warning-hover;
+// $color-button--warning-active: #ffffff;
+// $color-button--warning-border-active: transparent;
+// $color-button--warning-bg-active: $color-warning-active;
+
+// $color-button--warning-secondary: $color-warning;
+// $color-button--warning-secondary-border: transparent;
+// $color-button--warning-secondary-bg: rgba($color-warning, 0.16);
+// $color-button--warning-secondary-hover: $color-warning;
+// $color-button--warning-secondary-border-hover: transparent;
+// $color-button--warning-secondary-bg-hover: rgba($color-warning, 0.22);
+// $color-button--warning-secondary-active: $color-warning;
+// $color-button--warning-secondary-border-active: transparent;
+// $color-button--warning-secondary-bg-active: rgba($color-warning, 0.28);
+
+// $color-button--warning-tertiary: $color-warning;
+// $color-button--warning-tertiary-border: transparent;
+// $color-button--warning-tertiary-bg: $color-bg;
+// $color-button--warning-tertiary-hover: $color-warning;
+// $color-button--warning-tertiary-border-hover: transparent;
+// $color-button--warning-tertiary-bg-hover: $color-bg-hover;
+// $color-button--warning-tertiary-active: $color-warning;
+// $color-button--warning-tertiary-border-active: transparent;
+// $color-button--warning-tertiary-bg-active: $color-bg-active;
+
+// $color-button--warning-quaternary: $color-warning;
+// $color-button--warning-quaternary-border: transparent;
+// $color-button--warning-quaternary-bg: transparent;
+// $color-button--warning-quaternary-hover: $color-warning;
+// $color-button--warning-quaternary-border-hover: transparent;
+// $color-button--warning-quaternary-bg-hover: $color-bg-hover;
+// $color-button--warning-quaternary-active: $color-warning;
+// $color-button--warning-quaternary-border-active: transparent;
+// $color-button--warning-quaternary-bg-active: $color-bg-active;
+
+// $color-button--error: #ffffff;
+// $color-button--error-border: transparent;
+// $color-button--error-bg: $color-error;
+// $color-button--error-hover: #ffffff;
+// $color-button--error-border-hover: transparent;
+// $color-button--error-bg-hover: $color-error-hover;
+// $color-button--error-active: #ffffff;
+// $color-button--error-border-active: transparent;
+// $color-button--error-bg-active: $color-error-active;
+
+// $color-button--error-secondary: $color-error;
+// $color-button--error-secondary-border: transparent;
+// $color-button--error-secondary-bg: rgba($color-error, 0.16);
+// $color-button--error-secondary-hover: $color-error;
+// $color-button--error-secondary-border-hover: transparent;
+// $color-button--error-secondary-bg-hover: rgba($color-error, 0.22);
+// $color-button--error-secondary-active: $color-error;
+// $color-button--error-secondary-border-active: transparent;
+// $color-button--error-secondary-bg-active: rgba($color-error, 0.28);
+
+// $color-button--error-tertiary: $color-error;
+// $color-button--error-tertiary-border: transparent;
+// $color-button--error-tertiary-bg: $color-bg;
+// $color-button--error-tertiary-hover: $color-error;
+// $color-button--error-tertiary-border-hover: transparent;
+// $color-button--error-tertiary-bg-hover: $color-bg-hover;
+// $color-button--error-tertiary-active: $color-error;
+// $color-button--error-tertiary-border-active: transparent;
+// $color-button--error-tertiary-bg-active: $color-bg-active;
+
+// $color-button--error-quaternary: $color-error;
+// $color-button--error-quaternary-border: transparent;
+// $color-button--error-quaternary-bg: transparent;
+// $color-button--error-quaternary-hover: $color-error;
+// $color-button--error-quaternary-border-hover: transparent;
+// $color-button--error-quaternary-bg-hover: $color-bg-hover;
+// $color-button--error-quaternary-active: $color-error;
+// $color-button--error-quaternary-border-active: transparent;
+// $color-button--error-quaternary-bg-active: $color-bg-active;
+
+// $color-button--info: #ffffff;
+// $color-button--info-border: transparent;
+// $color-button--info-bg: $color-info;
+// $color-button--info-hover: #ffffff;
+// $color-button--info-border-hover: transparent;
+// $color-button--info-bg-hover: $color-info-hover;
+// $color-button--info-active: #ffffff;
+// $color-button--info-border-active: transparent;
+// $color-button--info-bg-active: $color-info-active;
+
+// $color-button--info-secondary: $color-info;
+// $color-button--info-secondary-border: transparent;
+// $color-button--info-secondary-bg: rgba($color-info, 0.16);
+// $color-button--info-secondary-hover: $color-info;
+// $color-button--info-secondary-border-hover: transparent;
+// $color-button--info-secondary-bg-hover: rgba($color-info, 0.22);
+// $color-button--info-secondary-active: $color-info;
+// $color-button--info-secondary-border-active: transparent;
+// $color-button--info-secondary-bg-active: rgba($color-info, 0.28);
+
+// $color-button--info-tertiary: $color-info;
+// $color-button--info-tertiary-border: transparent;
+// $color-button--info-tertiary-bg: $color-bg;
+// $color-button--info-tertiary-hover: $color-info;
+// $color-button--info-tertiary-border-hover: transparent;
+// $color-button--info-tertiary-bg-hover: $color-bg-hover;
+// $color-button--info-tertiary-active: $color-info;
+// $color-button--info-tertiary-border-active: transparent;
+// $color-button--info-tertiary-bg-active: $color-bg-active;
+
+// $color-button--info-quaternary: $color-info;
+// $color-button--info-quaternary-border: transparent;
+// $color-button--info-quaternary-bg: transparent;
+// $color-button--info-quaternary-hover: $color-info;
+// $color-button--info-quaternary-border-hover: transparent;
+// $color-button--info-quaternary-bg-hover: $color-bg-hover;
+// $color-button--info-quaternary-active: $color-info;
+// $color-button--info-quaternary-border-active: transparent;
+// $color-button--info-quaternary-bg-active: $color-bg-active;

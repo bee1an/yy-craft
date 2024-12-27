@@ -1,9 +1,9 @@
 @use 'mixins/mixins.scss' as *;
 
 $color-checkbox-border: #dcdfe6;
-$color-checkbox-border-hover: #b8860b;
+$color-checkbox-border-hover: $color-primary;
 $color-checkbox-icon: #fff;
-$color-checkbox-icon-bg: #b8860b;
+$color-checkbox-icon-bg: $color-primary;
 
 $var-checkbox-size-small: 14px;
 $var-checkbox-size-medium: 16px;

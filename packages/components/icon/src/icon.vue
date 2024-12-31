@@ -2,31 +2,34 @@
 import { computed } from 'vue'
 import { IconProps } from './icon'
 import { CreateNamespace } from '@yy-ui/utils'
+import style from './style/index.cssr'
 
 defineOptions({ name: 'Icon' })
 
 const props = defineProps<IconProps>()
-const style = computed(() => {
+const propsStyle = computed(() => {
   const style: Record<string, any> = {}
 
   if (typeof props.color !== 'undefined') {
-    style.color = props.color
+    style['--y-icon-color'] = props.color
   }
 
   if (typeof props.size === 'number') {
-    style.fontSize = `${props.size}px`
+    style['--y-icon-size'] = `${props.size}px`
   } else if (typeof props.size === 'string') {
-    style.fontSize = props.size
+    style['--y-icon-size'] = props.size
   }
 
   return style
 })
 
+style.mount({ id: 'yy-icon' })
+
 const bem = new CreateNamespace('icon')
 </script>
 
 <template>
-  <i :style="style" :class="bem.value">
+  <i :style="propsStyle" :class="bem.value">
     <slot></slot>
   </i>
 </template>

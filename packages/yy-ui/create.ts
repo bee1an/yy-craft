@@ -1,20 +1,13 @@
 import { App } from 'vue'
-import * as components from './components'
 
 function create({
   componentPrefix = 'Yy',
-  pluginMakers
+  pluginMakers = []
 }: {
   componentPrefix?: string
   pluginMakers?: any[]
 } = {}) {
   function install(app: App) {
-    if (!pluginMakers) {
-      pluginMakers = Object.keys(components).map(
-        key => components[key as keyof typeof components]
-      )
-    }
-
     pluginMakers.forEach(pluginMaker => {
       if (typeof pluginMaker === 'function') {
         const plugin = pluginMaker(componentPrefix)
@@ -27,5 +20,4 @@ function create({
   return { install }
 }
 
-export { create }
-export default create()
+export default create

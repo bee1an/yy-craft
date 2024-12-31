@@ -4,6 +4,9 @@ import { CheckboxEmits, checkboxProps } from './checkbox'
 import CChecked from './icon/Checked'
 import CIndeterminate from './icon/Indeterminate'
 import { Icon as YIcon } from '@yy-ui/yy-ui'
+import style from './style/index.cssr'
+import { useTheme } from '@yy-ui/composables/use-theme'
+import { checkboxLight, checkboxDark } from '../style'
 
 defineOptions({ name: 'Checkbox' })
 
@@ -16,14 +19,21 @@ const toggleChecked = () => {
 }
 
 const bem = new CreateNamespace('checkbox')
+
+const styleVars = useTheme(
+  { light: checkboxLight, dark: checkboxDark },
+  style,
+  props
+)
 </script>
 
 <template>
   <div
+    :style="styleVars"
     :class="[
       bem.b().value,
-      bem.is('checked', modelValue || indeterminate),
-      bem.is('indeterminate', indeterminate)
+      bem.m((modelValue || indeterminate) && 'checked').value,
+      bem.m(indeterminate && 'indeterminate').value
     ]"
     tabindex="0"
     @click="toggleChecked"

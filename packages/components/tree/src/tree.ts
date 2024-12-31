@@ -1,10 +1,7 @@
 import { CreateNamespace } from '@yy-ui/utils'
 import { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
 import { treeNodeProps } from './tree-node'
-import {
-  VirtualListProps,
-  virtualListProps
-} from '@yy-ui/components/virtual-list'
+import { VirtualListProps, virtualListProps } from '@yy-ui/components'
 
 /** inject Bem */
 export const InjectBem = Symbol('InjectBem') as InjectionKey<CreateNamespace>

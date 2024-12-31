@@ -26,7 +26,7 @@ export class CreateNamespace {
     return this
   }
 
-  e(element: string = '') {
+  e(element: string | boolean = '') {
     if (!element) {
       this._prefixName = ''
       return this
@@ -36,7 +36,7 @@ export class CreateNamespace {
     return this
   }
 
-  m(modifier: string = '') {
+  m(modifier: string | boolean = '') {
     if (!modifier) {
       this._prefixName = ''
       return this

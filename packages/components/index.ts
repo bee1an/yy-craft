@@ -1,6 +1,6 @@
 export * from './icon'
 export * from './scrollbar'
-export * from './tree'
 export * from './virtual-list'
 export * from './checkbox'
 export * from './button'
+export * from './tree'

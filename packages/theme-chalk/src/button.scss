@@ -42,6 +42,7 @@ $color-info-active: #1060c9;
     }
   }
 
+  //#region
   $types: (
     default: (
       text: #333639,
@@ -413,7 +414,9 @@ $color-info-active: #1060c9;
       }
     }
   }
+  //#endregion
 
+  //#region
   // @include m(default) {
   //   color: $color-button;
   //   border-color: $color-button-border;
@@ -917,45 +920,46 @@ $color-info-active: #1060c9;
   //     }
   //   }
   // }
+  //#endregion
 }
 
-@keyframes button-wave-spread {
-  0% {
-    box-shadow: 0 0 0.5px 0 var(--wave-color);
-  }
+// @keyframes button-wave-spread {
+//   0% {
+//     box-shadow: 0 0 0.5px 0 var(--wave-color);
+//   }
 
-  100% {
-    box-shadow: 0 0 0.5px 4.5px var(--wave-color);
-  }
-}
+//   100% {
+//     box-shadow: 0 0 0.5px 4.5px var(--wave-color);
+//   }
+// }
 
-@keyframes button-wave-opacity {
-  0% {
-    opacity: 0.6;
-  }
+// @keyframes button-wave-opacity {
+//   0% {
+//     opacity: 0.6;
+//   }
 
-  100% {
-    opacity: 0;
-  }
-}
+//   100% {
+//     opacity: 0;
+//   }
+// }
 
-@include b(button-wave) {
-  position: absolute;
-  pointer-events: none;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  animation-iteration-count: 1;
-  animation-duration: 0.6s;
-  animation-timing-function: cubic-bezier(0, 0, 0.2, 1),
-    cubic-bezier(0, 0, 0.2, 1);
+// @include b(button-wave) {
+//   position: absolute;
+//   pointer-events: none;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   animation-iteration-count: 1;
+//   animation-duration: 0.6s;
+//   animation-timing-function: cubic-bezier(0, 0, 0.2, 1),
+//     cubic-bezier(0, 0, 0.2, 1);
 
-  @include m(active) {
-    z-index: 1;
-    animation-name: button-wave-spread, button-wave-opacity;
-  }
-}
+//   @include m(active) {
+//     z-index: 1;
+//     animation-name: button-wave-spread, button-wave-opacity;
+//   }
+// }
 
 // $color-button: #333639;
 // $color-button-border: #e0e0e6;

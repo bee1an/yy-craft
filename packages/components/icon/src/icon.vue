@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { IconProps } from './icon'
 import { CreateNamespace } from '@yy-ui/utils'
 
-defineOptions({ name: 'icon' })
+defineOptions({ name: 'Icon' })
 
 const props = defineProps<IconProps>()
 const style = computed(() => {

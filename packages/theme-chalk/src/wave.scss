@@ -1,0 +1,39 @@
+@use 'mixins/mixins.scss' as *;
+
+@keyframes wave-spread {
+  0% {
+    box-shadow: 0 0 0.5px 0 var(--wave-color);
+  }
+
+  100% {
+    box-shadow: 0 0 0.5px 4.5px var(--wave-color);
+  }
+}
+
+@keyframes wave-opacity {
+  0% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@include b(wave) {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  animation-iteration-count: 1;
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1),
+    cubic-bezier(0, 0, 0.2, 1);
+
+  @include m(active) {
+    z-index: 1;
+    animation-name: wave-spread, wave-opacity;
+  }
+}

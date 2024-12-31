@@ -17,7 +17,7 @@ import { GenericVirtualList } from '@yy-ui/components/virtual-list/src/virtual-l
 
 const YyVirtualList = GenericVirtualList<TreeData>()
 
-defineOptions({ name: 'tree' })
+defineOptions({ name: 'Tree' })
 
 const props = defineProps(treeProps)
 const emits = defineEmits<TreeEmitsType>()

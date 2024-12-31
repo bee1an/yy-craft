@@ -30,11 +30,12 @@ setTimeout(() => {
 
 .content {
   /* 渐变 */
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     rgba(146, 114, 114, 0.1) 0%,
     rgba(121, 53, 53, 0.5) 100%
-  );
+  ); */
+  background-color: #b8860b;
   /* width: 200px; */
 }
 </style>

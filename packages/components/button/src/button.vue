@@ -3,7 +3,7 @@ import { CreateNamespace } from '@yy-ui/utils'
 import { buttonProps } from './button'
 import { computed, ref, useTemplateRef } from 'vue'
 
-defineOptions({ name: 'button' })
+defineOptions({ name: 'Button' })
 
 const props = defineProps(buttonProps)
 

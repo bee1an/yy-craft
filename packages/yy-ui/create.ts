@@ -2,7 +2,7 @@ import { App } from 'vue'
 import * as components from './components'
 
 function create({
-  componentPrefix = 'yy-',
+  componentPrefix = 'Yy',
   pluginMakers
 }: {
   componentPrefix?: string

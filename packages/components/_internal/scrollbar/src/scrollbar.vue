@@ -8,6 +8,8 @@ import {
   useResizeObserver
 } from '@yy-ui/composables'
 
+defineOptions({ name: 'Scrollbar' })
+
 const props = defineProps(scrollbarInternalProps)
 
 const containerRef = useTemplateRef('containerRef')

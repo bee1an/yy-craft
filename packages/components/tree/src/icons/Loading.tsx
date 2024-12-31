@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'loading',
+  name: 'Loading',
   render() {
     return (
       <svg

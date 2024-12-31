@@ -5,7 +5,7 @@ import CChecked from './icon/Checked'
 import CIndeterminate from './icon/Indeterminate'
 import { Icon as YIcon } from '@yy-ui/yy-ui'
 
-defineOptions({ name: 'checkbox' })
+defineOptions({ name: 'Checkbox' })
 
 const props = defineProps(checkboxProps)
 

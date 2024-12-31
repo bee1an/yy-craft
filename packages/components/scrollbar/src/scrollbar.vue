@@ -4,7 +4,7 @@ import { YScrollbar } from '../../_internal'
 import { scrollbarProps } from './scrollbar'
 
 defineOptions({
-  name: 'scrollbar'
+  name: 'Scrollbar'
 })
 const props = defineProps(scrollbarProps)
 

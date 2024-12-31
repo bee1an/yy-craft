@@ -77,7 +77,7 @@ export interface VirtualListExposed {
 class VirtualListFactory<T = any> {
   define() {
     return defineComponent({
-      name: 'virtual-list',
+      name: 'VirtualList',
       props: {
         ...virtualListProps,
         data: { type: Array as PropType<T[]>, default: () => [] }

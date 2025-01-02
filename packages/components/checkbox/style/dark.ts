@@ -14,6 +14,7 @@ export const checkboxDark = {
     checkboxIconBgColor: 'red',
     checkboxIconColor: '#ffffff',
     transparent: commonLight.transparent,
+    checkboxShadowTransitionTime: '0.3s',
     cubicBezierEaseInOut: commonLight.cubicBezierEaseInOut
   }
 }

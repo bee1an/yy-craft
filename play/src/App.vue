@@ -8,7 +8,7 @@ import ButtonTest from './components/button-test.vue'
 </script>
 
 <template>
-  <div class="padding"></div>
+  <!-- <div class="padding"></div> -->
   <ButtonTest />
   <TreeTest />
   <CheckboxTest />

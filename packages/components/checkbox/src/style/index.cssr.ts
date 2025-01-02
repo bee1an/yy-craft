@@ -55,7 +55,7 @@ export default cB(
       border: 'var(--y-checkbox-border)',
       borderRadius: 'var(--y-checkbox-border-radius)',
       transition:
-        'box-shadow var(--y-cubic-bezier-ease-in-out), border-color var(--y-cubic-bezier-ease-in-out)'
+        'box-shadow var(--y-checkbox-shadow-transition-time) var(--y-cubic-bezier-ease-in-out), border-color var(--y-checkbox-shadow-transition-time) var(--y-cubic-bezier-ease-in-out)'
     })
   ]
 )

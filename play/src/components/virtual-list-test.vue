@@ -39,33 +39,35 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
 
 <template>
   <div class="virtual-list-test">
-    <button @click="scrollTo(1500, 0)">滚动到指定x距离</button>
-    <button @click="scrollTo({ left: 1500, behavior: 'smooth' })">
+    <yy-button @click="scrollTo(1500, 0)">滚动到指定x距离</yy-button>
+    <yy-button @click="scrollTo({ left: 1500, behavior: 'smooth' })">
       平滑滚动到指定left距离
-    </button>
-    <button @click="scrollTo(0, 1500)">滚动到指定y距离</button>
-    <button @click="scrollTo({ top: 1500, behavior: 'smooth' })">
+    </yy-button>
+    <yy-button @click="scrollTo(0, 1500)">滚动到指定y距离</yy-button>
+    <yy-button @click="scrollTo({ top: 1500, behavior: 'smooth' })">
       平滑滚动到指定top距离
-    </button>
-    <button @click="scrollTo({ distance: 1500, behavior: 'smooth' })">
+    </yy-button>
+    <yy-button @click="scrollTo({ distance: 1500, behavior: 'smooth' })">
       平滑滚动到指定距离
-    </button>
-    <button @click="scrollTo({ index: 50 })">滚动到指定index</button>
-    <button @click="scrollTo({ index: 50, behavior: 'smooth' })">
+    </yy-button>
+    <yy-button @click="scrollTo({ index: 50 })">滚动到指定index</yy-button>
+    <yy-button @click="scrollTo({ index: 50, behavior: 'smooth' })">
       平滑滚动到指定index
-    </button>
-    <button @click="scrollTo({ position: 'top' })">滚动到top</button>
-    <button @click="scrollTo({ position: 'top', behavior: 'smooth' })">
+    </yy-button>
+    <yy-button @click="scrollTo({ position: 'top' })">滚动到top</yy-button>
+    <yy-button @click="scrollTo({ position: 'top', behavior: 'smooth' })">
       平滑滚动到top
-    </button>
-    <button @click="scrollTo({ position: 'bottom' })">滚动到bottom</button>
-    <button @click="scrollTo({ position: 'bottom', behavior: 'smooth' })">
+    </yy-button>
+    <yy-button @click="scrollTo({ position: 'bottom' })"
+      >滚动到bottom</yy-button
+    >
+    <yy-button @click="scrollTo({ position: 'bottom', behavior: 'smooth' })">
       平滑滚动到bottom
-    </button>
-    <button @click="scrollTo({ key: 50 })">滚动到key50</button>
-    <button @click="scrollTo({ key: 50, behavior: 'smooth' })">
+    </yy-button>
+    <yy-button @click="scrollTo({ key: 50 })">滚动到key50</yy-button>
+    <yy-button @click="scrollTo({ key: 50, behavior: 'smooth' })">
       平滑滚动到key50
-    </button>
+    </yy-button>
 
     <yy-virtual-list
       :data="data"

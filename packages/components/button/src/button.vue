@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils'
 import { buttonProps } from './button'
-import { computed, ref, useTemplateRef } from 'vue'
+import { computed, useTemplateRef, watchEffect } from 'vue'
+import style from './style/index.cssr'
+import { useTheme } from '@yy-ui/composables'
+import {
+  buttonDark,
+  buttonLight,
+  buttonDarkColors,
+  buttonLightColors
+} from '../style'
+import YWave from '../../_internal/wave/src/wave.vue'
 
 defineOptions({ name: 'Button' })
 
@@ -13,50 +22,57 @@ const primary = computed(() => {
   return !props.secondary && !props.tertiary && !props.quaternary
 })
 
-const warpperClass = computed(() => {
-  return [
-    bem.b().value,
-    bem.b().m(props.type).value,
-    bem.is('secondary', props.secondary),
-    bem.is('tertiary', props.tertiary),
-    bem.is('quaternary', props.quaternary),
-    bem.is('dashed', props.dashed)
-  ]
-})
-
 const waveRef = useTemplateRef('waveRef')
-const wave = ref(false)
-const restartAnimation = () => {
-  if (!primary.value) return
-  waveRef.value?.getAnimations().forEach(item => {
-    item.currentTime = 0
-  })
-  wave.value = true
-}
 
 const clickHandler = () => {
-  restartAnimation()
+  waveRef.value?.start()
 }
 
-const animationendHandler = () => {
-  wave.value = false
-}
+const { styleVars, vars, injectTheme } = useTheme(
+  { light: buttonLight, dark: buttonDark },
+  style,
+  props
+)
+
+watchEffect(() => {
+  const theme = injectTheme?.theme.value || 'light'
+
+  const colors = theme === 'light' ? buttonLightColors : buttonDarkColors
+
+  const grade = props.secondary
+    ? 'secondary'
+    : props.tertiary
+    ? 'tertiary'
+    : props.quaternary
+    ? 'quaternary'
+    : props.dashed
+    ? 'dashed'
+    : 'default'
+
+  Object.assign(vars, colors[props.type][grade])
+})
 </script>
 
 <template>
-  <button :class="warpperClass" tabindex="0" @click="clickHandler">
-    <span :class="[bem.b().e('content').value, bem.is('strong', strong)]">
+  <button
+    :style="styleVars"
+    :class="bem.b().value"
+    tabindex="0"
+    @click="clickHandler"
+  >
+    <span
+      :class="[
+        bem.e('content').value,
+        bem.e('content').m(strong && 'strong').value
+      ]"
+    >
       <slot></slot>
     </span>
 
-    <div
+    <y-wave
       v-if="primary"
       ref="waveRef"
-      :class="[
-        bem.b('wave').value,
-        bem.b('wave').m(wave ? 'active' : '').value
-      ]"
-      @animationend="animationendHandler"
-    ></div>
+      animation-name="button-wave-spread,button-wave-opacity"
+    ></y-wave>
   </button>
 </template>

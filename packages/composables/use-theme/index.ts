@@ -1,15 +1,55 @@
 import { createCSSVar } from '@yy-ui/utils'
-import { ThemeConfig, injectTheme as _injectTheme } from '@yy-ui/yy-ui'
+import { ThemeKey, ThemeType, injectTheme as _injectTheme } from '@yy-ui/yy-ui'
 import { CNode } from 'css-render'
-import { computed, ExtractPropTypes, inject, PropType } from 'vue'
+import {
+  computed,
+  ComputedRef,
+  ExtractPropTypes,
+  inject,
+  PropType,
+  reactive,
+  Ref
+} from 'vue'
 
-export const useTheme = (
-  themes: { light: ThemeConfig; dark: ThemeConfig },
+function useTheme<T extends ThemeType>(
+  themes: { light?: T; dark: T } | { light: T; dark?: T },
   style: CNode,
-  props: ExtractPropTypes<ReturnType<typeof useThemeProps>> = {},
+  props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  prefix?: string
+): {
+  styleVars: ComputedRef<
+    {
+      [x: string]: string
+    }[]
+  >
+  vars: T['vars']
+  injectTheme: {
+    theme: Ref<ThemeKey>
+  } | null
+}
+function useTheme(
+  themes: string,
+  style: CNode,
+  props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  prefix?: string
+): void
+
+function useTheme(
+  themes:
+    | { light?: ThemeType; dark: ThemeType }
+    | { light: ThemeType; dark?: ThemeType }
+    | string,
+  style: CNode,
+  props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
   prefix = 'y'
-) => {
-  style.mount({ id: prefix + '-' + themes.light.name })
+) {
+  if (typeof themes !== 'string') {
+    themes = reactive(themes)
+    style.mount({ id: prefix + '-' + (themes.light || themes.dark)!.name })
+  } else {
+    style.mount({ id: prefix + '-' + themes })
+    return undefined
+  }
 
   const ctmVars = computed(() => {
     return Object.entries(props.themeOverrides || {}).map(([key, value]) => {
@@ -27,19 +67,22 @@ export const useTheme = (
     return injectTheme?.theme.value !== 'dark' ? themes.light : themes.dark
   })
 
+  const vars = { ...theme.value!.vars }
+
   const styleVars = computed(() => {
-    return Object.entries(theme.value.vars).map(([key, value]) => {
-      return { [createCSSVar(key, prefix)]: value }
-    })
+    return [
+      ...Object.entries(vars).map(([key, value]) => {
+        return { [createCSSVar(key, prefix)]: value }
+      }),
+      ...ctmVars.value
+    ]
   })
 
-  const vars = computed(() => {
-    return [...ctmVars.value, ...styleVars.value]
-  })
-
-  return vars
+  return { styleVars, vars, injectTheme }
 }
 
-export const useThemeProps = <T extends ThemeConfig['vars']>() => {
+export { useTheme }
+
+export const useThemeProps = <T extends ThemeType['vars']>() => {
   return { themeOverrides: Object as PropType<T> }
 }

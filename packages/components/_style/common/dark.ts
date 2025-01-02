@@ -3,34 +3,29 @@ import commonVar from './_common'
 const base = {
   neutralTextBase: '#000',
   // primary
-  primaryHover: '#7fe7c4',
-  primaryDefault: '#63e2b7',
-  primaryActive: '#5acea7',
-  primarySuppl: 'rgb(42, 148, 125)',
+  primaryHover: '#c99b31',
+  primaryDefault: '#b8860b',
+  primaryActive: '#a3760d',
 
   // info
-  infoHover: '#8acbec',
-  infoDefault: '#70c0e8',
-  infoActive: '#66afd3',
-  infoSuppl: 'rgb(56, 137, 197)',
+  infoHover: '#4098fc',
+  infoDefault: '#2080f0',
+  infoActive: '#1060c9',
 
   // error
-  errorHover: '#e98b8b',
-  errorDefault: '#e88080',
-  errorActive: '#e57272',
-  errorSuppl: 'rgb(208, 58, 82)',
+  errorHover: '#de576d',
+  errorDefault: '#d03050',
+  errorActive: '#ab1f3f',
 
   // warning
-  warningHover: '#f5d599',
-  warningDefault: '#f2c97d',
-  warningActive: '#e6c260',
-  warningSuppl: 'rgb(240, 138, 0)',
+  warningHover: '#fcb040',
+  warningDefault: '#f0a020',
+  warningActive: '#c97c10',
 
   // success
-  successHover: '#7fe7c4',
-  successDefault: '#63e2b7',
-  successActive: '#5acea7',
-  successSuppl: 'rgb(42, 148, 125)'
+  successHover: '#36ad6a',
+  successDefault: '#18a058',
+  successActive: '#0c7a43'
 }
 
 const derived = {
@@ -40,29 +35,32 @@ const derived = {
   primaryColor: base.primaryDefault,
   primaryColorHover: base.primaryHover,
   primaryColorPressed: base.primaryActive,
-  primaryColorSuppl: base.primarySuppl,
   // info color
   infoColor: base.infoDefault,
   infoColorHover: base.infoHover,
   infoColorPressed: base.infoActive,
-  infoColorSuppl: base.infoSuppl,
   // success color
   successColor: base.successDefault,
   successColorHover: base.successHover,
   successColorPressed: base.successActive,
-  successColorSuppl: base.successSuppl,
   // warning color
   warningColor: base.warningDefault,
   warningColorHover: base.warningHover,
   warningColorPressed: base.warningActive,
-  warningColorSuppl: base.warningSuppl,
   // error color
   errorColor: base.errorDefault,
   errorColorHover: base.errorHover,
   errorColorPressed: base.errorActive,
-  errorColorSuppl: base.errorSuppl,
   // text color
-  textColorBase: base.neutralTextBase
+  textColorBase: base.neutralTextBase,
+  textColor1: '#333639',
+  textColor2: '#767c82',
+
+  buttonColor2: 'rgba(46, 51, 56, .05)',
+  buttonColor2Hover: 'rgba(46, 51, 56, .09)',
+  buttonColor2Pressed: 'rgba(46, 51, 56, .13)',
+
+  borderColor: '#e0e0e6'
 }
 
 export default derived

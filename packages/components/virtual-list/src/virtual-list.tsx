@@ -13,9 +13,10 @@ import {
 } from 'vue'
 import { ScrollTo, useScrollTo } from './use-scroll-to'
 import { emitter } from './emitter-bus'
-import { useResizeObserver } from '@yy-ui/composables'
+import { useResizeObserver, useTheme } from '@yy-ui/composables'
 import { ScrollbarProps } from '@yy-ui/components'
 import { YScrollbar } from '../../_internal'
+import style from './style/index.cssr'
 
 export const virtualListProps = {
   /** 滚动条配置 */
@@ -302,6 +303,8 @@ class VirtualListFactory<T = any> {
           return warpper.value
         }
 
+        useTheme('virtual-list', style, props)
+
         return () => {
           return (
             <YScrollbar
@@ -314,7 +317,7 @@ class VirtualListFactory<T = any> {
                   <div
                     class={[
                       bem.e('visible').value,
-                      bem.is('horizontal', !props.vertical)
+                      bem.e('visible').m(!props.vertical && 'horizontal').value
                     ]}
                     ref={visibleZone}
                     style={transformStyle.value}

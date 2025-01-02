@@ -2,6 +2,8 @@ import { CreateNamespace } from '@yy-ui/utils'
 import { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
 import { treeNodeProps } from './tree-node'
 import { VirtualListProps, virtualListProps } from '@yy-ui/components'
+import { TreeTheme } from '../style'
+import { useThemeProps } from '@yy-ui/composables'
 
 /** inject Bem */
 export const InjectBem = Symbol('InjectBem') as InjectionKey<CreateNamespace>
@@ -47,6 +49,7 @@ export interface TreeOption {
   [key: string]: unknown
 }
 export const treeProps = {
+  ...useThemeProps<TreeTheme['vars']>(),
   data: {
     type: Array as PropType<TreeOption[]>,
     required: true

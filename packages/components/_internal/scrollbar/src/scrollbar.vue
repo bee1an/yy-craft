@@ -5,8 +5,11 @@ import { scrollbarInternalProps } from './scrollbar'
 import {
   useBaseDrag,
   useEventListener,
-  useResizeObserver
+  useResizeObserver,
+  useTheme
 } from '@yy-ui/composables'
+import style from './style/index.cssr'
+import { scrollbarDark, scrollbarLight } from '../style'
 
 defineOptions({ name: 'Scrollbar' })
 
@@ -118,13 +121,20 @@ function scrollBy(...args: Parameters<typeof window.scrollBy>) {
 defineExpose({ scrollTo, scrollBy })
 
 const bem = new CreateNamespace('scrollbar')
+
+const { styleVars } = useTheme(
+  { light: scrollbarLight, dark: scrollbarDark },
+  style,
+  props
+)
 </script>
 
 <template>
   <div
+    :style="styleVars"
     :class="[
       bem.b().value,
-      bem.is('display_controller', props.trigger === 'none')
+      bem.m(props.trigger === 'none' && 'display_controller').value
     ]"
   >
     <slot v-if="props.container"></slot>
@@ -136,13 +146,16 @@ const bem = new CreateNamespace('scrollbar')
 
     <div
       v-if="verticalBar.visible"
-      :class="bem.b('rail').m('vertical').value"
+      :class="[bem.b('rail').value, bem.b('rail').m('vertical').value]"
       ref="verticalRail"
     >
       <div
         :class="[
           bem.b('rail').e('controller').value,
-          bem.is('active', verticalBar.active)
+          bem
+            .b('rail')
+            .e('controller')
+            .m(verticalBar.active && 'active').value
         ]"
         :style="verticalBarStyle"
         ref="verticalController"
@@ -151,13 +164,16 @@ const bem = new CreateNamespace('scrollbar')
 
     <div
       v-if="horizontalBar.visible"
-      :class="bem.b('rail').m('horizontal').value"
+      :class="[bem.b('rail').value, bem.b('rail').m('horizontal').value]"
       ref="horizontalRail"
     >
       <div
         :class="[
           bem.b('rail').e('controller').value,
-          bem.is('active', horizontalBar.active)
+          bem
+            .b('rail')
+            .e('controller')
+            .m(horizontalBar.active && 'active').value
         ]"
         :style="horizontalBarStyle"
         ref="horizontalController"

@@ -28,7 +28,7 @@ export default {
   transparent: 'transparent'
 }
 
-export type ThemeConfig<
+export type ThemeType<
   T extends {
     name: string
     vars: Record<string, string>

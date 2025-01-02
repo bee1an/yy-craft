@@ -1,4 +1,4 @@
-import { commonLight, ThemeConfig } from '../../_style/common'
+import { commonLight, ThemeType } from '../../_style/common'
 
 export const checkboxLight = {
   name: 'checkbox',
@@ -19,4 +19,4 @@ export const checkboxLight = {
   }
 }
 
-export type CheckboxTheme = ThemeConfig<typeof checkboxLight>
+export type CheckboxTheme = ThemeType<typeof checkboxLight>

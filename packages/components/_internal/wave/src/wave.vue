@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { useTheme } from '@yy-ui/composables'
 import { CreateNamespace } from '@yy-ui/utils'
-import { ref, useTemplateRef } from 'vue'
+import { ref, useTemplateRef, watchEffect } from 'vue'
+import style, { waveTheme } from './style/index.cssr'
+import { waveProps } from './wave'
+
+defineOptions({ name: 'Wave' })
+
+const props = defineProps(waveProps)
 
 const bem = new CreateNamespace('wave')
 const waveRef = useTemplateRef('waveRef')
@@ -15,12 +22,25 @@ const start = () => {
 }
 
 defineExpose({ start })
+
+const { styleVars, vars } = useTheme({ light: waveTheme }, style, props)
+
+watchEffect(() => {
+  if (props.animationDuration) {
+    vars.waveAnimationDuration = props.animationDuration
+  }
+
+  if (props.animationName) {
+    vars.waveAnimationName = props.animationName
+  }
+})
 </script>
 
 <template>
   <div
     ref="waveRef"
-    :class="[bem.b().value, bem.b('wave').m(active ? 'active' : '').value]"
+    :style="styleVars"
+    :class="[bem.b().value, bem.m(active && 'active').value]"
     @animationend="active = false"
   ></div>
 </template>

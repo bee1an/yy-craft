@@ -26,10 +26,10 @@ const bemBase = inject(InjectBem) as CreateNamespace
     <div
       :class="[
         bemBase.b('node').value,
-        bemBase.is('expanded', node.isExpanded),
-        bemBase.is('leaf', node.isLeaf),
-        bemBase.is('loading', node.isLoading),
-        bemBase.is('selected', node.isSelected)
+        bemBase.b('node').m(node.isExpanded && 'expanded').value,
+        bemBase.b('node').m(node.isLeaf && 'leaf').value,
+        bemBase.b('node').m(node.isLoading && 'loading').value,
+        bemBase.b('node').m(node.isSelected && 'selected').value
       ]"
       :draggable="draggable"
       @click="emits('toggleSelect', node)"
@@ -44,15 +44,17 @@ const bemBase = inject(InjectBem) as CreateNamespace
 
       <!-- 图标 -->
       <div
-        :class="bemBase.b('node').b('switcher').e('icon').value"
+        :class="bemBase.b('node').b('switcher').value"
         @click.stop="emits('toggleExpand', node)"
       >
-        <yy-icon v-if="node.isLoading" :size="12" color="green">
-          <t-loading />
-        </yy-icon>
-        <yy-icon v-else>
-          <t-switcher />
-        </yy-icon>
+        <div :class="bemBase.b('node').b('switcher').e('icon').value">
+          <yy-icon v-if="node.isLoading" :size="12" color="green">
+            <t-loading />
+          </yy-icon>
+          <yy-icon v-else>
+            <t-switcher />
+          </yy-icon>
+        </div>
       </div>
 
       <!-- 节点内容 -->
@@ -67,7 +69,10 @@ const bemBase = inject(InjectBem) as CreateNamespace
       ></div>
       <div
         v-if="node.dragBorderBottom"
-        :class="bemBase.b('node').e('border').m('bottom').value"
+        :class="[
+          bemBase.b('node').e('border').value,
+          bemBase.b('node').e('border').m('bottom').value
+        ]"
         :style="{ width: node.dragBorderBottom + 'px' }"
       ></div>
     </div>

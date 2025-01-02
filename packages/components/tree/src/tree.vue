@@ -14,6 +14,9 @@ import {
 } from './tree'
 import useDragNode from './use-drag-node'
 import { GenericVirtualList } from '@yy-ui/components/virtual-list/src/virtual-list'
+import { useTheme } from '@yy-ui/composables'
+import { treeDark, treeLight } from '../style'
+import style from './style/index.cssr'
 
 const YyVirtualList = GenericVirtualList<TreeData>()
 
@@ -149,10 +152,16 @@ const { onDragstart, onDragenter, onDragover, onDrop, onDragend } = useDragNode(
   props,
   emits
 )
+
+const { styleVars } = useTheme(
+  { light: treeLight, dark: treeDark },
+  style,
+  props
+)
 </script>
 
 <template>
-  <div :class="nameSpace.b().value">
+  <div :style="styleVars" :class="nameSpace.b().value">
     <yy-virtual-list
       :virtual-scroll="props.virtualScroll"
       :scrollbar-props="props.scrollbarProps"

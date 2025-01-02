@@ -3,9 +3,7 @@ import { useTemplateRef } from 'vue'
 import { YScrollbar } from '../../_internal'
 import { scrollbarProps } from './scrollbar'
 
-defineOptions({
-  name: 'Scrollbar'
-})
+defineOptions({ name: 'Scrollbar' })
 const props = defineProps(scrollbarProps)
 
 const scrollbarInstRef =

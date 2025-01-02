@@ -20,7 +20,7 @@ const toggleChecked = () => {
 
 const bem = new CreateNamespace('checkbox')
 
-const styleVars = useTheme(
+const { styleVars } = useTheme(
   { light: checkboxLight, dark: checkboxDark },
   style,
   props

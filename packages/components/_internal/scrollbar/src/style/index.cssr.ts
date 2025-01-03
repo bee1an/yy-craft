@@ -10,17 +10,21 @@ export default c([
     },
     [
       cM('display_controller', [
-        cB('scrollbar-rail', [
-          cE('controller', {
-            backgroundColor: 'var(--y-scrollbar-background-color)'
-          })
+        c('>', [
+          cB('scrollbar-rail', [
+            cE('controller', {
+              backgroundColor: 'var(--y-scrollbar-background-color)'
+            })
+          ])
         ])
       ]),
       c('&:hover', [
-        cB('scrollbar-rail', [
-          cE('controller', {
-            backgroundColor: 'var(--y-scrollbar-background-color)'
-          })
+        c('>', [
+          cB('scrollbar-rail', [
+            cE('controller', {
+              backgroundColor: 'var(--y-scrollbar-background-color)'
+            })
+          ])
         ])
       ]),
       cB('scrollbar-rail', [

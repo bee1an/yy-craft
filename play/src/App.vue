@@ -9,16 +9,28 @@ import ButtonTest from './components/button-test.vue'
 
 <template>
   <!-- <div class="padding"></div> -->
-  <ButtonTest />
-  <TreeTest />
-  <CheckboxTest />
-  <ScrollbarTest />
-  <VirtualListTest />
-  <IconTest />
+  <yy-scrollbar trigger="none">
+    <TreeTest />
+    <ButtonTest />
+    <CheckboxTest />
+    <ScrollbarTest />
+    <VirtualListTest />
+    <IconTest />
+  </yy-scrollbar>
 </template>
 
-<style scoped>
+<style>
 .padding {
   padding-top: 100px;
+}
+
+#app {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  padding: 0;
+  margin: 0;
 }
 </style>

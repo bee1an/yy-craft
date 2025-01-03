@@ -5,32 +5,41 @@ import VirtualListTest from './components/virtual-list-test.vue'
 import ScrollbarTest from './components/scrollbar-test.vue'
 import CheckboxTest from './components/checkbox-test.vue'
 import ButtonTest from './components/button-test.vue'
+import DividerTest from './components/divider-test.vue'
 </script>
 
 <template>
-  <!-- <div class="padding"></div> -->
   <yy-scrollbar trigger="none">
+    <yy-divider content-position="left">树</yy-divider>
     <TreeTest />
+    <yy-divider content-position="left">按钮</yy-divider>
     <ButtonTest />
+    <yy-divider content-position="left">复选框</yy-divider>
     <CheckboxTest />
+    <yy-divider content-position="left">滚动条</yy-divider>
     <ScrollbarTest />
+    <yy-divider content-position="left">虚拟列表</yy-divider>
     <VirtualListTest />
+    <yy-divider content-position="left">字体图标</yy-divider>
     <IconTest />
+    <yy-divider content-position="left">分割线</yy-divider>
+    <DividerTest />
   </yy-scrollbar>
 </template>
 
 <style>
-.padding {
-  padding-top: 100px;
+* {
+  padding: 0;
+  margin: 0;
 }
 
 #app {
   height: 100vh;
   overflow: hidden;
+  font-size: 14px;
 }
 
-body {
-  padding: 0;
-  margin: 0;
+.padding {
+  padding-top: 10px;
 }
 </style>

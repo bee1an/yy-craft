@@ -20,7 +20,13 @@ export const buttonDark = {
     buttonColorActive: commonDark.primaryColorPressed,
     buttonBorderColorActive: commonDark.primaryColorPressed,
     buttonBackgroundColorActive: commonDark.transparent,
-    buttonFontWeightStrong: commonDark.fontWeightStrong
+    buttonFontWeightStrong: commonDark.fontWeightStrong,
+    buttonBorderStyle: 'solid',
+    buttonWaveSpreadFrom: '',
+    buttonWaveSpreadTo: '',
+    buttonWaveOpacityFrom: '',
+    buttonWaveOpacityTo: '',
+    waveBorderRadius: commonDark.borderRadius
   }
 }
 

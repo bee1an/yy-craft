@@ -23,7 +23,8 @@ export default c([
       left: '0',
       animationIterationCount: '1',
       animationDuration: 'var(--y-wave-animation-duration)',
-      animationTimingFunction: 'var(--y-cubic-bezier-ease-out)'
+      animationTimingFunction: 'var(--y-cubic-bezier-ease-out)',
+      borderRadius: 'var(--y-wave-border-radius)'
     },
     [
       cM('active', {

@@ -25,7 +25,8 @@ export const buttonLight = {
     buttonWaveSpreadFrom: '',
     buttonWaveSpreadTo: '',
     buttonWaveOpacityFrom: '',
-    buttonWaveOpacityTo: ''
+    buttonWaveOpacityTo: '',
+    waveBorderRadius: commonLight.borderRadius
   }
 }
 

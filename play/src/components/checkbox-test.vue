@@ -18,7 +18,7 @@ setTimeout(() => {
     <div class="row">
       <yy-checkbox
         v-model="value"
-        label="test"
+        :label="$t[0]"
         :indeterminate="true"
       ></yy-checkbox>
       <yy-checkbox :model-value="value"></yy-checkbox>

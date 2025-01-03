@@ -61,6 +61,10 @@
 </template>
 
 <style scoped>
+.container {
+  font-size: 14px;
+}
+
 .flex {
   display: flex;
   gap: 10px;

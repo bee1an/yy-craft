@@ -1,1 +1,1 @@
-export * from '@yy-ui/components/_style/common'
+export * from '@yy-ui/theme-chalk'

@@ -25,7 +25,7 @@ const list = Array.from(
 </script>
 
 <template>
-  <div>
+  <div class="warpper">
     <yy-button @click="scrollBy">滚动+10</yy-button>
     <div class="container">
       <yy-scrollbar ref="scrollbarRef">
@@ -49,6 +49,10 @@ const list = Array.from(
 </template>
 
 <style scoped>
+.warpper {
+  font-size: 14px;
+}
+
 .container {
   height: 100px;
   width: fit-content;
@@ -60,9 +64,17 @@ const list = Array.from(
   border: 1px solid #ececec;
 }
 
+.vertical > div:not(:first-child) {
+  margin-top: 3px;
+}
+
 .horizontal {
   display: flex;
   width: 100px;
+}
+
+.horizontal > div:not(:first-child) {
+  margin-left: 3px;
 }
 
 .horizontal > div {

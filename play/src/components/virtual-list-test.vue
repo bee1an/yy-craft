@@ -2,6 +2,15 @@
 import { ref, useTemplateRef } from 'vue'
 import { VirtualListExposed } from '@yy-ui/components'
 
+const texts = [
+  '不要因为走得太远而忘记为什么出发',
+  '生活就像海洋，只有意志坚强的人才能到达彼岸',
+  '成功不是将来才有的，而是从现在开始努力，一步一步累积而成',
+  '不要等待机会，而要创造机会',
+  '只有不断学习，才能不断进步',
+  '人生就像一场马拉松，不在乎速度，而在乎坚持'
+]
+
 const small = 20
 const medium = 30
 const large = 50
@@ -11,6 +20,7 @@ const data = ref(
     const sizesIndex = Math.round(Math.random() * 2)
     return {
       id: i + 1,
+      lable: texts[Math.floor(Math.random() * texts.length)],
       key: i + 10,
       size: sizes[sizesIndex],
       sizesIndex
@@ -39,10 +49,6 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
 
 <template>
   <div class="virtual-list-test">
-    <yy-button @click="scrollTo(1500, 0)">滚动到指定x距离</yy-button>
-    <yy-button @click="scrollTo({ left: 1500, behavior: 'smooth' })">
-      平滑滚动到指定left距离
-    </yy-button>
     <yy-button @click="scrollTo(0, 1500)">滚动到指定y距离</yy-button>
     <yy-button @click="scrollTo({ top: 1500, behavior: 'smooth' })">
       平滑滚动到指定top距离
@@ -69,35 +75,48 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
       平滑滚动到key50
     </yy-button>
 
-    <yy-virtual-list
-      :data="data"
-      ref="vlInstance"
-      :vertical="false"
-      :scrollbar-props="{
-        trigger: 'hover'
-      }"
-    >
-      <!-- paddingTop: `var(--padding-${item.sizesIndex})` -->
-      <template #default="{ item }">
-        <div
-          :key="item.id"
-          :data-set-index="item.id"
-          :style="{
-            padding: `var(--padding-${item.sizesIndex})`
-          }"
-        >
+    <div class="warpper">
+      <yy-virtual-list :data="data" ref="vlInstance">
+        <!-- paddingTop: `var(--padding-${item.sizesIndex})` -->
+        <template #default="{ item }">
           <div
-            class="item"
+            :key="item.id"
+            :data-set-index="item.id"
             :style="{
-              width: `${item.size}px`,
-              minHeight: `${item.size}px`
+              padding: `var(--padding-${item.sizesIndex})`
             }"
           >
-            {{ item.id }}
+            <div class="item">
+              {{ item.lable }}
+            </div>
           </div>
-        </div>
-      </template>
-    </yy-virtual-list>
+        </template>
+      </yy-virtual-list>
+    </div>
+    <div class="warpper">
+      <yy-virtual-list
+        :data="data"
+        :vertical="false"
+        :scrollbar-props="{
+          trigger: 'none'
+        }"
+      >
+        <!-- paddingTop: `var(--padding-${item.sizesIndex})` -->
+        <template #default="{ item }">
+          <div
+            :key="item.id"
+            :data-set-index="item.id"
+            :style="{
+              padding: `var(--padding-${item.sizesIndex})`
+            }"
+          >
+            <div class="item">
+              {{ item.lable }}
+            </div>
+          </div>
+        </template>
+      </yy-virtual-list>
+    </div>
   </div>
 </template>
 
@@ -106,13 +125,17 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
   --padding-0: 2px;
   --padding-1: 4px;
   --padding-2: 6px;
+  font-size: 14px;
+}
+
+.warpper {
+  border: 1px solid #ccc;
+  width: 500px;
 }
 
 .item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: 1px solid #ccc;
   box-sizing: border-box;
 }
 </style>

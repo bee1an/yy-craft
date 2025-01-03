@@ -1,5 +1,5 @@
 import { rgba } from '@yy-ui/utils'
-import { commonLight, ThemeType } from '@yy-ui/yy-ui'
+import { commonLight, ThemeType } from '@yy-ui/yy-ui/style'
 
 export const buttonLight = {
   name: 'button',

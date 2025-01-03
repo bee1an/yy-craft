@@ -1,4 +1,4 @@
-import { commonLight, ThemeType } from '../../_style/common'
+import { commonLight, ThemeType } from '@yy-ui/yy-ui/style'
 
 export const checkboxLight = {
   name: 'checkbox',

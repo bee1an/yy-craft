@@ -1,5 +1,9 @@
 import { createCSSVar } from '@yy-ui/utils'
-import { ThemeKey, ThemeType, injectTheme as _injectTheme } from '@yy-ui/yy-ui'
+import {
+  ThemeKey,
+  ThemeType,
+  injectTheme as _injectTheme
+} from '@yy-ui/yy-ui/style'
 import { CNode } from 'css-render'
 import {
   computed,

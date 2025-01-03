@@ -1,6 +1,6 @@
 import { c, cB, cE, cM } from '@yy-ui/utils'
 
-export default c([
+export const treeStyle = c([
   c('@keyframes rotate', {
     from: {
       transform: 'rotate(0deg)'

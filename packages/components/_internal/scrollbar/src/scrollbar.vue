@@ -8,8 +8,11 @@ import {
   useResizeObserver,
   useTheme
 } from '@yy-ui/composables'
-import style from './style/index.cssr'
-import { scrollbarDark, scrollbarLight } from '../style'
+import {
+  scrollbarDark,
+  scrollbarLight,
+  scrollbarStyle
+} from '@yy-ui/theme-chalk'
 
 defineOptions({ name: 'Scrollbar' })
 
@@ -124,7 +127,7 @@ const bem = new CreateNamespace('scrollbar')
 
 const { styleVars } = useTheme(
   { light: scrollbarLight, dark: scrollbarDark },
-  style,
+  scrollbarStyle,
   props
 )
 </script>

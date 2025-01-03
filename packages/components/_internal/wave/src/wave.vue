@@ -2,8 +2,8 @@
 import { useTheme } from '@yy-ui/composables'
 import { CreateNamespace } from '@yy-ui/utils'
 import { ref, useTemplateRef, watchEffect } from 'vue'
-import style, { waveTheme } from './style/index.cssr'
 import { waveProps } from './wave'
+import { waveStyle, waveTheme } from '@yy-ui/theme-chalk'
 
 defineOptions({ name: 'Wave' })
 
@@ -23,7 +23,7 @@ const start = () => {
 
 defineExpose({ start })
 
-const { styleVars, vars } = useTheme({ light: waveTheme }, style, props)
+const { styleVars, vars } = useTheme({ light: waveTheme }, waveStyle, props)
 
 watchEffect(() => {
   if (props.animationDuration) {

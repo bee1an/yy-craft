@@ -2,15 +2,15 @@
 import { CreateNamespace } from '@yy-ui/utils'
 import { buttonProps } from './button'
 import { computed, useTemplateRef, watchEffect } from 'vue'
-import style from './style/index.cssr'
 import { useTheme } from '@yy-ui/composables'
+import YWave from '../../_internal/wave/src/wave.vue'
 import {
   buttonDark,
-  buttonLight,
   buttonDarkColors,
-  buttonLightColors
-} from '../style'
-import YWave from '../../_internal/wave/src/wave.vue'
+  buttonLight,
+  buttonLightColors,
+  buttonStyle
+} from '@yy-ui/theme-chalk'
 
 defineOptions({ name: 'Button' })
 
@@ -30,7 +30,7 @@ const clickHandler = () => {
 
 const { styleVars, vars, injectTheme } = useTheme(
   { light: buttonLight, dark: buttonDark },
-  style,
+  buttonStyle,
   props
 )
 

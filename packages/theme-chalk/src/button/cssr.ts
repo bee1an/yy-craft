@@ -1,6 +1,6 @@
 import { c, cB, cE, cM } from '@yy-ui/utils'
 
-export default c([
+export const buttonStyle = c([
   cB(
     'button',
     {

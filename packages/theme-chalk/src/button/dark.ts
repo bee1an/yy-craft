@@ -1,5 +1,5 @@
 import { rgba } from '@yy-ui/utils'
-import { commonDark } from '@yy-ui/yy-ui'
+import { commonDark } from '@yy-ui/yy-ui/style'
 
 export const buttonDark = {
   name: 'button',

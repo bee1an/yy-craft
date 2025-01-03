@@ -16,7 +16,7 @@ import { emitter } from './emitter-bus'
 import { useResizeObserver, useTheme } from '@yy-ui/composables'
 import { ScrollbarProps } from '@yy-ui/components'
 import { YScrollbar } from '../../_internal'
-import style from './style/index.cssr'
+import { vlStyle } from '@yy-ui/theme-chalk'
 
 export const virtualListProps = {
   /** 滚动条配置 */
@@ -303,7 +303,7 @@ class VirtualListFactory<T = any> {
           return warpper.value
         }
 
-        useTheme('virtual-list', style, props)
+        useTheme('virtual-list', vlStyle, props)
 
         return () => {
           return (

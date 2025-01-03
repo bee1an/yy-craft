@@ -34,7 +34,7 @@ function useTheme<T extends ThemeType>(
 function useTheme(
   themes: string,
   style: CNode,
-  props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  props?: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
   prefix?: string
 ): void
 
@@ -44,7 +44,7 @@ function useTheme(
     | { light: ThemeType; dark?: ThemeType }
     | string,
   style: CNode,
-  props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  props?: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
   prefix = 'y'
 ) {
   if (typeof themes !== 'string') {
@@ -56,7 +56,7 @@ function useTheme(
   }
 
   const ctmVars = computed(() => {
-    return Object.entries(props.themeOverrides || {}).map(([key, value]) => {
+    return Object.entries(props!.themeOverrides || {}).map(([key, value]) => {
       return { [createCSSVar(key, prefix)]: value }
     })
   })

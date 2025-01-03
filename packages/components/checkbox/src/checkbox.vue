@@ -3,10 +3,9 @@ import { CreateNamespace } from '@yy-ui/utils'
 import { CheckboxEmits, checkboxProps } from './checkbox'
 import CChecked from './icon/Checked'
 import CIndeterminate from './icon/Indeterminate'
-import { Icon as YIcon } from '@yy-ui/yy-ui'
-import style from './style/index.cssr'
+import { checkboxDark, checkboxLight, checkboxStyle } from '@yy-ui/theme-chalk'
+import { Icon as YIcon } from '@yy-ui/yy-ui/components'
 import { useTheme } from '@yy-ui/composables/use-theme'
-import { checkboxLight, checkboxDark } from '../style'
 
 defineOptions({ name: 'Checkbox' })
 
@@ -22,7 +21,7 @@ const bem = new CreateNamespace('checkbox')
 
 const { styleVars } = useTheme(
   { light: checkboxLight, dark: checkboxDark },
-  style,
+  checkboxStyle,
   props
 )
 </script>

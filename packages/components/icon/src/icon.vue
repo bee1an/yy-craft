@@ -2,7 +2,8 @@
 import { computed } from 'vue'
 import { IconProps } from './icon'
 import { CreateNamespace } from '@yy-ui/utils'
-import style from './style/index.cssr'
+import { useTheme } from '@yy-ui/composables'
+import { iconStyle } from '@yy-ui/theme-chalk'
 
 defineOptions({ name: 'Icon' })
 
@@ -23,7 +24,7 @@ const propsStyle = computed(() => {
   return style
 })
 
-style.mount({ id: 'yy-icon' })
+useTheme('icon', iconStyle)
 
 const bem = new CreateNamespace('icon')
 </script>

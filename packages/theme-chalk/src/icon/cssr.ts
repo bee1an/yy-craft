@@ -1,6 +1,6 @@
 import { cB } from '@yy-ui/utils/src/cssr'
 
-export default cB('icon', () => {
+export const iconStyle = cB('icon', () => {
   return {
     display: 'inline-flex',
     verticalAlign: 'middle',

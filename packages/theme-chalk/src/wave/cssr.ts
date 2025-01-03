@@ -11,7 +11,7 @@ export const waveTheme = {
 }
 export type WaveTheme = ThemeType<typeof waveTheme>
 
-export default c([
+export const waveStyle = c([
   cB(
     'wave',
     {

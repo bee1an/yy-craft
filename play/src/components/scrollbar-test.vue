@@ -19,7 +19,7 @@ const list = Array.from(
 </script>
 
 <template>
-  <div class="warpper">
+  <yy-flex vertical inline>
     <yy-button @click="scrollBy">滚动+10</yy-button>
     <div class="container">
       <yy-scrollbar ref="scrollbarRef">
@@ -39,14 +39,10 @@ const list = Array.from(
         </div>
       </yy-scrollbar>
     </div>
-  </div>
+  </yy-flex>
 </template>
 
 <style scoped>
-.warpper {
-  font-size: 14px;
-}
-
 .container {
   height: 300px;
   width: fit-content;

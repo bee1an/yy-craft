@@ -6,10 +6,13 @@ import ScrollbarTest from './components/scrollbar-test.vue'
 import CheckboxTest from './components/checkbox-test.vue'
 import ButtonTest from './components/button-test.vue'
 import DividerTest from './components/divider-test.vue'
+import FlexTest from './components/flex-test.vue'
 </script>
 
 <template>
   <yy-scrollbar trigger="none">
+    <yy-divider content-position="left">弹性盒</yy-divider>
+    <FlexTest />
     <yy-divider content-position="left">树</yy-divider>
     <TreeTest />
     <yy-divider content-position="left">按钮</yy-divider>

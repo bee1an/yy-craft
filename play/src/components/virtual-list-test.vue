@@ -43,74 +43,80 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
 
 <template>
   <div class="virtual-list-test">
-    <yy-button @click="scrollTo(0, 1500)">滚动到指定y距离</yy-button>
-    <yy-button @click="scrollTo({ top: 1500, behavior: 'smooth' })">
-      平滑滚动到指定top距离
-    </yy-button>
-    <yy-button @click="scrollTo({ distance: 1500, behavior: 'smooth' })">
-      平滑滚动到指定距离
-    </yy-button>
-    <yy-button @click="scrollTo({ index: 50 })">滚动到指定index</yy-button>
-    <yy-button @click="scrollTo({ index: 50, behavior: 'smooth' })">
-      平滑滚动到指定index
-    </yy-button>
-    <yy-button @click="scrollTo({ position: 'top' })">滚动到top</yy-button>
-    <yy-button @click="scrollTo({ position: 'top', behavior: 'smooth' })">
-      平滑滚动到top
-    </yy-button>
-    <yy-button @click="scrollTo({ position: 'bottom' })"
-      >滚动到bottom</yy-button
-    >
-    <yy-button @click="scrollTo({ position: 'bottom', behavior: 'smooth' })">
-      平滑滚动到bottom
-    </yy-button>
-    <yy-button @click="scrollTo({ key: 50 })">滚动到key50</yy-button>
-    <yy-button @click="scrollTo({ key: 50, behavior: 'smooth' })">
-      平滑滚动到key50
-    </yy-button>
+    <yy-flex vertical>
+      <yy-flex>
+        <yy-button @click="scrollTo(0, 1500)">滚动到指定y距离</yy-button>
+        <yy-button @click="scrollTo({ top: 1500, behavior: 'smooth' })">
+          平滑滚动到指定top距离
+        </yy-button>
+        <yy-button @click="scrollTo({ distance: 1500, behavior: 'smooth' })">
+          平滑滚动到指定距离
+        </yy-button>
+        <yy-button @click="scrollTo({ index: 50 })">滚动到指定index</yy-button>
+        <yy-button @click="scrollTo({ index: 50, behavior: 'smooth' })">
+          平滑滚动到指定index
+        </yy-button>
+        <yy-button @click="scrollTo({ position: 'top' })">滚动到top</yy-button>
+        <yy-button @click="scrollTo({ position: 'top', behavior: 'smooth' })">
+          平滑滚动到top
+        </yy-button>
+        <yy-button @click="scrollTo({ position: 'bottom' })"
+          >滚动到bottom</yy-button
+        >
+        <yy-button
+          @click="scrollTo({ position: 'bottom', behavior: 'smooth' })"
+        >
+          平滑滚动到bottom
+        </yy-button>
+        <yy-button @click="scrollTo({ key: 50 })">滚动到key50</yy-button>
+        <yy-button @click="scrollTo({ key: 50, behavior: 'smooth' })">
+          平滑滚动到key50
+        </yy-button>
+      </yy-flex>
 
-    <div class="warpper">
-      <yy-virtual-list :data="data" ref="vlInstance">
-        <!-- paddingTop: `var(--padding-${item.sizesIndex})` -->
-        <template #default="{ item }">
-          <div
-            :key="item.id"
-            :data-set-index="item.id"
-            :style="{
-              padding: `var(--padding-${item.sizesIndex})`
-            }"
-          >
-            <div class="item">
-              {{ item.lable }}
+      <div class="warpper">
+        <yy-virtual-list :data="data" ref="vlInstance">
+          <!-- paddingTop: `var(--padding-${item.sizesIndex})` -->
+          <template #default="{ item }">
+            <div
+              :key="item.id"
+              :data-set-index="item.id"
+              :style="{
+                padding: `var(--padding-${item.sizesIndex})`
+              }"
+            >
+              <div class="item">
+                {{ item.lable }}
+              </div>
             </div>
-          </div>
-        </template>
-      </yy-virtual-list>
-    </div>
-    <div class="warpper">
-      <yy-virtual-list
-        :data="data"
-        :vertical="false"
-        :scrollbar-props="{
-          trigger: 'none'
-        }"
-      >
-        <!-- paddingTop: `var(--padding-${item.sizesIndex})` -->
-        <template #default="{ item }">
-          <div
-            :key="item.id"
-            :data-set-index="item.id"
-            :style="{
-              padding: `var(--padding-${item.sizesIndex})`
-            }"
-          >
-            <div class="item">
-              {{ item.lable }}
+          </template>
+        </yy-virtual-list>
+      </div>
+      <div class="warpper">
+        <yy-virtual-list
+          :data="data"
+          :vertical="false"
+          :scrollbar-props="{
+            trigger: 'none'
+          }"
+        >
+          <!-- paddingTop: `var(--padding-${item.sizesIndex})` -->
+          <template #default="{ item }">
+            <div
+              :key="item.id"
+              :data-set-index="item.id"
+              :style="{
+                padding: `var(--padding-${item.sizesIndex})`
+              }"
+            >
+              <div class="item">
+                {{ item.lable }}
+              </div>
             </div>
-          </div>
-        </template>
-      </yy-virtual-list>
-    </div>
+          </template>
+        </yy-virtual-list>
+      </div>
+    </yy-flex>
   </div>
 </template>
 
@@ -119,7 +125,6 @@ const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
   --padding-0: 2px;
   --padding-1: 4px;
   --padding-2: 6px;
-  font-size: 14px;
 }
 
 .warpper {

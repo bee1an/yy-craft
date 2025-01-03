@@ -1,9 +1,9 @@
 import { CreateNamespace } from '@yy-ui/utils'
 import { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
 import { treeNodeProps } from './tree-node'
-import { VirtualListProps, virtualListProps } from '@yy-ui/components'
-import { TreeTheme } from '../style'
+import { ScrollbarProps, VirtualListProps } from '@yy-ui/components'
 import { useThemeProps } from '@yy-ui/composables'
+import { TreeTheme } from '@yy-ui/theme-chalk'
 
 /** inject Bem */
 export const InjectBem = Symbol('InjectBem') as InjectionKey<CreateNamespace>
@@ -92,7 +92,7 @@ export const treeProps = {
   draggable: treeNodeProps.draggable,
   /** 虚拟滚动 */
   virtualScroll: {
-    ...virtualListProps.virtualScroll,
+    type: Boolean,
     default: false
   },
   /** 虚拟滚动配置 */
@@ -100,7 +100,7 @@ export const treeProps = {
     Pick<VirtualListProps, 'wrapperMaxSize'>
   >,
   /** 滚动条配置: 仅在虚拟滚动时生效 */
-  scrollbarProps: virtualListProps.scrollbarProps
+  scrollbarProps: Object as PropType<ScrollbarProps>
 } as const
 export type TreeProps = ExtractPropTypes<typeof treeProps>
 

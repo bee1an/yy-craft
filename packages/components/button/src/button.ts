@@ -1,6 +1,6 @@
 import { useThemeProps } from '@yy-ui/composables'
+import { ButtonTheme } from '@yy-ui/theme-chalk'
 import { ExtractPropTypes, PropType } from 'vue'
-import { ButtonTheme } from '../style'
 
 export type ButtonType =
   | 'default'

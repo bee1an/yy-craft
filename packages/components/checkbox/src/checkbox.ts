@@ -1,6 +1,6 @@
 import { useThemeProps } from '@yy-ui/composables'
+import { CheckboxTheme } from '@yy-ui/theme-chalk'
 import { ExtractPropTypes } from 'vue'
-import { CheckboxTheme } from '../style'
 
 export const checkboxProps = {
   ...useThemeProps<CheckboxTheme['vars']>(),

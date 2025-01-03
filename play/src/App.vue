@@ -7,16 +7,19 @@ import CheckboxTest from './components/checkbox-test.vue'
 import ButtonTest from './components/button-test.vue'
 import DividerTest from './components/divider-test.vue'
 import FlexTest from './components/flex-test.vue'
+import CardTest from './components/card-test.vue'
 </script>
 
 <template>
   <yy-scrollbar trigger="none">
+    <yy-divider content-position="left">按钮</yy-divider>
+    <ButtonTest />
+    <yy-divider content-position="left">卡片</yy-divider>
+    <CardTest />
     <yy-divider content-position="left">弹性盒</yy-divider>
     <FlexTest />
     <yy-divider content-position="left">树</yy-divider>
     <TreeTest />
-    <yy-divider content-position="left">按钮</yy-divider>
-    <ButtonTest />
     <yy-divider content-position="left">复选框</yy-divider>
     <CheckboxTest />
     <yy-divider content-position="left">滚动条</yy-divider>

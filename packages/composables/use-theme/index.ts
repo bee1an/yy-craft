@@ -15,6 +15,7 @@ import {
   Ref
 } from 'vue'
 
+// TODO: refactor
 function useTheme<T extends ThemeType>(
   themes: { light?: T; dark: T } | { light: T; dark?: T },
   style: CNode,

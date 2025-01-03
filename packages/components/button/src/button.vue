@@ -28,17 +28,13 @@ const clickHandler = () => {
   waveRef.value?.start()
 }
 
-const { styleVars, vars, injectTheme } = useTheme(
-  { light: buttonLight, dark: buttonDark },
-  buttonStyle,
-  props
-)
+// const { styleVars, vars, injectTheme } = useTheme(
+//   { light: buttonLight, dark: buttonDark },
+//   buttonStyle,
+//   props
+// )
 
-watchEffect(() => {
-  const theme = injectTheme?.theme.value || 'light'
-
-  const colors = theme === 'light' ? buttonLightColors : buttonDarkColors
-
+const style = computed(() => {
   const grade = props.secondary
     ? 'secondary'
     : props.tertiary
@@ -49,13 +45,49 @@ watchEffect(() => {
     ? 'dashed'
     : 'default'
 
-  Object.assign(vars, colors[props.type][grade])
+  const { styleVars } = useTheme(
+    {
+      light: {
+        name: buttonLight.name,
+        vars: {
+          ...buttonLight.vars,
+          ...buttonLightColors[props.type][grade]
+        }
+      },
+      dark: {
+        name: buttonDark.name,
+        vars: { ...buttonDark.vars, ...buttonDarkColors[props.type][grade] }
+      }
+    },
+    buttonStyle,
+    props
+  )
+
+  return styleVars
 })
+
+// watchEffect(() => {
+//   const theme = injectTheme?.theme.value || 'light'
+
+//   const colors = theme === 'light' ? buttonLightColors : buttonDarkColors
+
+//   const grade = props.secondary
+//     ? 'secondary'
+//     : props.tertiary
+//     ? 'tertiary'
+//     : props.quaternary
+//     ? 'quaternary'
+//     : props.dashed
+//     ? 'dashed'
+//     : 'default'
+
+//   Object.assign(vars, colors[props.type][grade])
+// })
 </script>
 
 <template>
   <button
-    :style="styleVars"
+    :style="style.value"
     :class="bem.b().value"
     tabindex="0"
     @click="clickHandler"

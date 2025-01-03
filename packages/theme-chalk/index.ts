@@ -1,5 +1,6 @@
 export * from './src/common'
 export * from './src/button'
+export * from './src/card'
 export * from './src/checkbox'
 export * from './src/divider'
 export * from './src/flex'

@@ -49,6 +49,7 @@
       <yy-button quaternary type="info" strong>Strong</yy-button>
     </yy-flex>
 
+    虚线按钮
     <yy-flex>
       <yy-button dashed>Default</yy-button>
       <yy-button dashed type="tertiary">Tertiary</yy-button>

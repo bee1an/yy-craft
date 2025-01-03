@@ -9,7 +9,7 @@ defineOptions({ name: 'Flex' })
 
 const props = defineProps(flexProps)
 
-useTheme('flex', flexStyle, props)
+useTheme(undefined, 'flex', flexStyle, props)
 
 const margin = computed<{ horizontal: number; vertical: number }>(() => {
   const { size } = props

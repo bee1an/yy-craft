@@ -23,7 +23,12 @@ const start = () => {
 
 defineExpose({ start })
 
-const { styleVars, vars } = useTheme({ light: waveTheme }, waveStyle, props)
+const { styleVars, vars } = useTheme(
+  { light: waveTheme.vars },
+  'wave',
+  waveStyle,
+  props
+)
 
 watchEffect(() => {
   if (props.animationDuration) {

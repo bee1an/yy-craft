@@ -3,7 +3,7 @@ import { FlexTheme } from '@yy-ui/theme-chalk/src/flex/light'
 import { ExtractPropTypes, PropType } from 'vue'
 
 export const flexProps = {
-  ...useThemeProps<FlexTheme['vars']>(),
+  ...useThemeProps<FlexTheme>(),
   /** [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/align-items) */
   align: {
     type: String

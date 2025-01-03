@@ -153,7 +153,8 @@ const { onDragstart, onDragenter, onDragover, onDrop, onDragend } = useDragNode(
 )
 
 const { styleVars } = useTheme(
-  { light: treeLight, dark: treeDark },
+  { light: treeLight.vars, dark: treeDark.vars },
+  'tree',
   treeStyle,
   props
 )

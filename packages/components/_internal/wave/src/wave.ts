@@ -3,7 +3,7 @@ import { WaveTheme } from '@yy-ui/theme-chalk'
 import { ExtractPropTypes } from 'vue'
 
 export const waveProps = {
-  ...useThemeProps<WaveTheme['vars']>(),
+  ...useThemeProps<WaveTheme>(),
   animationDuration: {
     type: String
   },

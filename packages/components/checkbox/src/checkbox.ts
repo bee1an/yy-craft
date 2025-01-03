@@ -3,7 +3,7 @@ import { CheckboxTheme } from '@yy-ui/theme-chalk'
 import { ExtractPropTypes } from 'vue'
 
 export const checkboxProps = {
-  ...useThemeProps<CheckboxTheme['vars']>(),
+  ...useThemeProps<CheckboxTheme>(),
   /** value */
   modelValue: {
     type: Boolean,

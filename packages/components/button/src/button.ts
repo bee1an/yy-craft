@@ -12,7 +12,7 @@ export type ButtonType =
   | 'info'
 
 export const buttonProps = {
-  ...useThemeProps<ButtonTheme['vars']>(),
+  ...useThemeProps<ButtonTheme>(),
   /** 按钮类型 */
   type: {
     type: String as PropType<ButtonType>,

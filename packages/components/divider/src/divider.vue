@@ -12,7 +12,8 @@ const props = defineProps(dividerProps)
 const bem = new CreateNamespace('divider')
 
 const { styleVars, vars } = useTheme(
-  { light: dividerLight, dark: dividerDark },
+  { light: dividerLight.vars, dark: dividerDark.vars },
+  'divider',
   dividerStyle,
   props
 )

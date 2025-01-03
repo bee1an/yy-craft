@@ -24,7 +24,7 @@ const propsStyle = computed(() => {
   return style
 })
 
-useTheme('icon', iconStyle)
+useTheme(undefined, 'icon', iconStyle)
 
 const bem = new CreateNamespace('icon')
 </script>

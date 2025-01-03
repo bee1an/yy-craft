@@ -3,7 +3,7 @@ import { DividerTheme } from '@yy-ui/theme-chalk'
 import { ExtractPropTypes, PropType } from 'vue'
 
 export const dividerProps = {
-  ...useThemeProps<DividerTheme['vars']>(),
+  ...useThemeProps<DividerTheme>(),
   /** 是否使用虚线 */
   borderStyle: {
     type: String as PropType<

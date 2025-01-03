@@ -15,9 +15,9 @@ import {
   Ref
 } from 'vue'
 
-// TODO: refactor
 function useTheme<T extends ThemeType>(
   themes: { light?: T; dark: T } | { light: T; dark?: T },
+  mountId: string,
   style: CNode,
   props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
   prefix?: string
@@ -27,13 +27,14 @@ function useTheme<T extends ThemeType>(
       [x: string]: string
     }[]
   >
-  vars: T['vars']
+  vars: T
   injectTheme: {
     theme: Ref<ThemeKey>
   } | null
 }
 function useTheme(
-  themes: string,
+  themes: undefined,
+  mountId: string,
   style: CNode,
   props?: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
   prefix?: string
@@ -43,18 +44,18 @@ function useTheme(
   themes:
     | { light?: ThemeType; dark: ThemeType }
     | { light: ThemeType; dark?: ThemeType }
-    | string,
+    | undefined,
+  mountId: string,
   style: CNode,
   props?: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
   prefix = 'y'
 ) {
-  if (typeof themes !== 'string') {
-    themes = reactive(themes)
-    style.mount({ id: prefix + '-' + (themes.light || themes.dark)!.name })
-  } else {
-    style.mount({ id: prefix + '-' + themes })
-    return undefined
+  style.mount({ id: prefix + '-' + mountId })
+
+  if (typeof themes === 'undefined') {
+    return
   }
+  themes = reactive(themes)
 
   const ctmVars = computed(() => {
     return Object.entries(props!.themeOverrides || {}).map(([key, value]) => {
@@ -72,7 +73,7 @@ function useTheme(
     return injectTheme?.theme.value !== 'dark' ? themes.light : themes.dark
   })
 
-  const vars = { ...theme.value!.vars }
+  const vars = { ...theme.value }
 
   const styleVars = computed(() => {
     return [
@@ -88,6 +89,6 @@ function useTheme(
 
 export { useTheme }
 
-export const useThemeProps = <T extends ThemeType['vars']>() => {
+export const useThemeProps = <T extends ThemeType>() => {
   return { themeOverrides: Object as PropType<T> }
 }

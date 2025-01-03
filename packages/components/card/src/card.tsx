@@ -6,7 +6,7 @@ import { defineComponent, PropType, VNodeChild } from 'vue'
 import { ExtractPropTypes } from 'vue'
 
 export const cardProps = {
-  ...useThemeProps<CardTheme['vars']>(),
+  ...useThemeProps<CardTheme>(),
   /** 标题 */
   title: {
     type: [String, Function] as PropType<string | (() => VNodeChild)>
@@ -22,7 +22,8 @@ export default defineComponent({
     const bem = new CreateNamespace('card')
 
     const { styleVars } = useTheme(
-      { light: cardLight, dark: cardDark },
+      { light: cardLight.vars, dark: cardDark.vars },
+      'card',
       cardStyle,
       props
     )

@@ -303,7 +303,7 @@ class VirtualListFactory<T = any> {
           return warpper.value
         }
 
-        useTheme('virtual-list', vlStyle, props)
+        useTheme(undefined, 'virtual-list', vlStyle, props)
 
         return () => {
           return (

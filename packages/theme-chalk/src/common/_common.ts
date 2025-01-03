@@ -36,4 +36,4 @@ export type ThemeType<
     name: string
     vars: Record<string, string>
   }
-> = T
+> = T['vars']

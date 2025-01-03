@@ -49,7 +49,7 @@ export interface TreeOption {
   [key: string]: unknown
 }
 export const treeProps = {
-  ...useThemeProps<TreeTheme['vars']>(),
+  ...useThemeProps<TreeTheme>(),
   data: {
     type: Array as PropType<TreeOption[]>,
     required: true

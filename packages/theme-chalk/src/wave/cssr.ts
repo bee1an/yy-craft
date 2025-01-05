@@ -3,11 +3,11 @@ import { commonBase, commonLight, ThemeType } from '@yy-ui/yy-ui/style'
 
 export const waveTheme = {
   name: 'wave',
-  vars: {
+  vars: () => ({
     waveAnimationDuration: '0.6s',
     cubicBezierEaseOut: commonBase.cubicBezierEaseOut,
     waveAnimationName: 'wave-spread, wave-opacity'
-  }
+  })
 }
 export type WaveTheme = ThemeType<typeof waveTheme>
 

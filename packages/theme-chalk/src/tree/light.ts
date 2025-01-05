@@ -3,7 +3,7 @@ import { commonLight, ThemeType } from '@yy-ui/yy-ui/style'
 
 export const treeLight = {
   name: 'tree',
-  vars: {
+  vars: () => ({
     treeWarpperPadding: '2px 0',
     treePadding: '1px 0',
     treeBackgroundColorHover: '#f5f5f5',
@@ -17,7 +17,7 @@ export const treeLight = {
     treeIndentSize: '21px',
     treeIconSize: '24px',
     treeIconTransitionTime: '0.3s'
-  }
+  })
 }
 
 export type TreeTheme = ThemeType<typeof treeLight>

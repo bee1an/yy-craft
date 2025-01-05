@@ -1,4 +1,4 @@
 export const cardDark = {
   name: 'card',
-  vars: {}
+  vars: () => ({})
 }

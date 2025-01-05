@@ -31,9 +31,9 @@ export default {
 export type ThemeType<
   T extends {
     name: string
-    vars: Record<string, string>
+    vars: () => Record<string, string>
   } = {
     name: string
-    vars: Record<string, string>
+    vars: () => Record<string, string>
   }
-> = T['vars']
+> = ReturnType<T['vars']>

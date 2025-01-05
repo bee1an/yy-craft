@@ -3,7 +3,7 @@ import { commonDark } from '@yy-ui/yy-ui/style'
 
 export const treeDark = {
   name: 'tree',
-  vars: {
+  vars: () => ({
     treeWarpperPadding: '2px 0',
     treePadding: '1px 0',
     treeBackgroundColorHover: '#f5f5f5',
@@ -17,5 +17,5 @@ export const treeDark = {
     treeIndentSize: '21px',
     treeIconSize: '24px',
     treeIconTransitionTime: '0.3s'
-  }
+  })
 }

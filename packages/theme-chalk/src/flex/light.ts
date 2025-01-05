@@ -2,7 +2,7 @@ import { ThemeType } from '../common'
 
 export const flexLight = {
   name: 'flex',
-  vars: {}
+  vars: () => ({})
 }
 
 export type FlexTheme = ThemeType<typeof flexLight>

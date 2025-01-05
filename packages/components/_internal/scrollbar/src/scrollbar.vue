@@ -126,7 +126,7 @@ defineExpose({ scrollTo, scrollBy })
 const bem = new CreateNamespace('scrollbar')
 
 const { styleVars } = useTheme(
-  { light: scrollbarLight.vars, dark: scrollbarDark.vars },
+  { light: scrollbarLight.vars(), dark: scrollbarDark.vars() },
   'scrollbar',
   scrollbarStyle,
   props

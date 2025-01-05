@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTheme } from '@yy-ui/composables'
 import { CreateNamespace } from '@yy-ui/utils'
-import { ref, useTemplateRef, watchEffect } from 'vue'
+import { computed, ref, useTemplateRef, watchEffect } from 'vue'
 import { waveProps } from './wave'
 import { waveStyle, waveTheme } from '@yy-ui/theme-chalk'
 
@@ -23,14 +23,11 @@ const start = () => {
 
 defineExpose({ start })
 
-const { styleVars, vars } = useTheme(
-  { light: waveTheme.vars },
-  'wave',
-  waveStyle,
-  props
-)
+const waveThemeVars = waveTheme.vars()
 
-watchEffect(() => {
+const theme = computed(() => {
+  const vars = { ...waveThemeVars }
+
   if (props.animationDuration) {
     vars.waveAnimationDuration = props.animationDuration
   }
@@ -38,7 +35,13 @@ watchEffect(() => {
   if (props.animationName) {
     vars.waveAnimationName = props.animationName
   }
+
+  return vars
 })
+
+const { styleVars } = useTheme(theme, 'wave', waveStyle, props)
+
+watchEffect(() => {})
 </script>
 
 <template>

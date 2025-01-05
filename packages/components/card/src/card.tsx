@@ -22,7 +22,7 @@ export default defineComponent({
     const bem = new CreateNamespace('card')
 
     const { styleVars } = useTheme(
-      { light: cardLight.vars, dark: cardDark.vars },
+      { light: cardLight.vars(), dark: cardDark.vars() },
       'card',
       cardStyle,
       props

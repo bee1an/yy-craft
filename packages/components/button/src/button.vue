@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils'
 import { buttonProps } from './button'
-import { computed, useTemplateRef, watchEffect } from 'vue'
+import { computed, useTemplateRef } from 'vue'
 import { useTheme } from '@yy-ui/composables'
 import YWave from '../../_internal/wave/src/wave.vue'
 import {
@@ -28,50 +28,10 @@ const clickHandler = () => {
   waveRef.value?.start()
 }
 
-const { styleVars, vars, injectTheme } = useTheme(
-  { light: buttonLight.vars, dark: buttonDark.vars },
-  'button',
-  buttonStyle,
-  props
-)
+const lightVars = buttonLight.vars()
+const darkVars = buttonDark.vars()
 
-// const style = computed(() => {
-//   const grade = props.secondary
-//     ? 'secondary'
-//     : props.tertiary
-//     ? 'tertiary'
-//     : props.quaternary
-//     ? 'quaternary'
-//     : props.dashed
-//     ? 'dashed'
-//     : 'default'
-
-//   const { styleVars } = useTheme(
-//     {
-//       light: {
-//         name: buttonLight.name,
-//         vars: {
-//           ...buttonLight.vars,
-//           ...buttonLightColors[props.type][grade]
-//         }
-//       },
-//       dark: {
-//         name: buttonDark.name,
-//         vars: { ...buttonDark.vars, ...buttonDarkColors[props.type][grade] }
-//       }
-//     },
-//     buttonStyle,
-//     props
-//   )
-
-//   return styleVars
-// })
-
-watchEffect(() => {
-  const theme = injectTheme?.theme.value || 'light'
-
-  const colors = theme === 'light' ? buttonLightColors : buttonDarkColors
-
+const themeVars = computed(() => {
   const grade = props.secondary
     ? 'secondary'
     : props.tertiary
@@ -82,8 +42,13 @@ watchEffect(() => {
     ? 'dashed'
     : 'default'
 
-  Object.assign(vars, colors[props.type][grade])
+  return {
+    light: Object.assign({}, lightVars, buttonLightColors[props.type][grade]),
+    dark: Object.assign({}, darkVars, buttonDarkColors[props.type][grade])
+  }
 })
+
+const { styleVars } = useTheme(themeVars, 'button', buttonStyle, props)
 </script>
 
 <template>

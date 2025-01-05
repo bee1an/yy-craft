@@ -3,7 +3,7 @@ import { useTheme } from '@yy-ui/composables'
 import { CreateNamespace } from '@yy-ui/utils'
 import { dividerProps } from './divider'
 import { dividerDark, dividerLight, dividerStyle } from '@yy-ui/theme-chalk'
-import { watchEffect } from 'vue'
+import { computed } from 'vue'
 
 defineOptions({ name: 'Divider' })
 
@@ -11,18 +11,20 @@ const props = defineProps(dividerProps)
 
 const bem = new CreateNamespace('divider')
 
-const { styleVars, vars } = useTheme(
-  { light: dividerLight.vars, dark: dividerDark.vars },
-  'divider',
-  dividerStyle,
-  props
-)
+const lightVars = dividerLight.vars()
 
-watchEffect(() => {
+const darkVars = dividerDark.vars()
+const themeVars = computed(() => {
+  const lVars = { ...lightVars }
+  const dVars = { ...darkVars }
   if (props.borderStyle) {
-    vars.dividerBorderStyle = props.borderStyle
+    lVars.dividerBorderStyle = props.borderStyle
+    dVars.dividerBorderStyle = props.borderStyle
   }
+  return { light: lVars, dark: dVars }
 })
+
+const { styleVars } = useTheme(themeVars, 'divider', dividerStyle, props)
 </script>
 
 <template>

@@ -10,13 +10,12 @@ import {
   ComputedRef,
   ExtractPropTypes,
   inject,
-  PropType,
-  reactive,
-  Ref
+  isRef,
+  PropType
 } from 'vue'
 
 function useTheme<T extends ThemeType>(
-  themes: { light?: T; dark: T } | { light: T; dark?: T },
+  themes: { light: T; dark: T } | ComputedRef<{ light: T; dark: T }>,
   mountId: string,
   style: CNode,
   props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
@@ -27,10 +26,19 @@ function useTheme<T extends ThemeType>(
       [x: string]: string
     }[]
   >
-  vars: T
-  injectTheme: {
-    theme: Ref<ThemeKey>
-  } | null
+}
+function useTheme<T extends ThemeType>(
+  themes: T | ComputedRef<T>,
+  mountId: string,
+  style: CNode,
+  props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  prefix?: string
+): {
+  styleVars: ComputedRef<
+    {
+      [x: string]: string
+    }[]
+  >
 }
 function useTheme(
   themes: undefined,
@@ -40,10 +48,12 @@ function useTheme(
   prefix?: string
 ): void
 
-function useTheme(
+function useTheme<T extends ThemeType>(
   themes:
-    | { light?: ThemeType; dark: ThemeType }
-    | { light: ThemeType; dark?: ThemeType }
+    | { light: T; dark: T }
+    | ComputedRef<{ light: T; dark: T }>
+    | T
+    | ComputedRef<T>
     | undefined,
   mountId: string,
   style: CNode,
@@ -55,7 +65,15 @@ function useTheme(
   if (typeof themes === 'undefined') {
     return
   }
-  themes = reactive(themes)
+
+  const getTheme = (type: ThemeKey) => {
+    const themesVal = isRef(themes) ? themes.value : themes
+
+    if ('light' in themesVal || 'dark' in themesVal) {
+      return themesVal[type]
+    }
+    return themesVal
+  }
 
   const ctmVars = computed(() => {
     return Object.entries(props!.themeOverrides || {}).map(([key, value]) => {
@@ -66,29 +84,29 @@ function useTheme(
   const injectTheme = inject(_injectTheme, null)
 
   const theme = computed(() => {
-    if (ctmVars.value.length) {
-      return themes.light
-    }
+    const themeStr = props?.theme ?? injectTheme?.theme.value ?? 'light'
 
-    return injectTheme?.theme.value !== 'dark' ? themes.light : themes.dark
+    return themeStr === 'light' ? getTheme('light') : getTheme('dark')
   })
-
-  const vars = { ...theme.value }
 
   const styleVars = computed(() => {
     return [
-      ...Object.entries(vars).map(([key, value]) => {
+      ...Object.entries(theme.value).map(([key, value]) => {
         return { [createCSSVar(key, prefix)]: value }
       }),
       ...ctmVars.value
     ]
   })
 
-  return { styleVars, vars, injectTheme }
+  return { styleVars }
 }
 
 export { useTheme }
 
+/** 生成主题prop */
 export const useThemeProps = <T extends ThemeType>() => {
-  return { themeOverrides: Object as PropType<T> }
+  return {
+    theme: { type: String as PropType<ThemeKey> },
+    themeOverrides: Object as PropType<T>
+  }
 }

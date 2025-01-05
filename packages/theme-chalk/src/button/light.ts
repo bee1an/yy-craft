@@ -3,7 +3,7 @@ import { commonLight, ThemeType } from '@yy-ui/yy-ui/style'
 
 export const buttonLight = {
   name: 'button',
-  vars: {
+  vars: () => ({
     buttonHeight: commonLight.heightMedium,
     buttonPadding: '0 15px',
     buttonBorder: '1px solid transparent',
@@ -27,7 +27,7 @@ export const buttonLight = {
     buttonWaveOpacityFrom: '',
     buttonWaveOpacityTo: '',
     waveBorderRadius: commonLight.borderRadius
-  }
+  })
 }
 
 export type ButtonTheme = ThemeType<typeof buttonLight>

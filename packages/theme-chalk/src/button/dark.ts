@@ -3,7 +3,7 @@ import { commonDark } from '@yy-ui/yy-ui/style'
 
 export const buttonDark = {
   name: 'button',
-  vars: {
+  vars: () => ({
     buttonHeight: commonDark.heightMedium,
     buttonPadding: '0 15px',
     buttonBorder: '1px solid transparent',
@@ -27,7 +27,7 @@ export const buttonDark = {
     buttonWaveOpacityFrom: '',
     buttonWaveOpacityTo: '',
     waveBorderRadius: commonDark.borderRadius
-  }
+  })
 }
 
 export const buttonDarkColors = {

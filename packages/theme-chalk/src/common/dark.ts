@@ -53,9 +53,9 @@ const derived = {
   errorColorPressed: base.errorActive,
   // text color
   textColorBase: base.neutralTextBase,
-  textColor1: '#333639',
-  textColor2: '#767c82',
-
+  textColor1: '#1F2225',
+  textColor2: '#333639',
+  textColor3: '#767C82',
   buttonColor2: 'rgba(46, 51, 56, .05)',
   buttonColor2Hover: 'rgba(46, 51, 56, .09)',
   buttonColor2Pressed: 'rgba(46, 51, 56, .13)',

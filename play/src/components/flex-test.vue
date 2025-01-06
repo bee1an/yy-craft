@@ -10,33 +10,37 @@ setTimeout(() => {
 
 <template>
   <div class="container">
-    <yy-flex vertical>
-      水平
+    <yy-card title="水平">
       <yy-flex :theme-overrides="{ gapMedium: gapMedium }">
         <yy-button>水平</yy-button>
         <yy-button>水平</yy-button>
       </yy-flex>
-      尾部
+    </yy-card>
+    <yy-card title="尾部">
       <yy-flex justify="flex-end">
         <yy-button>尾部</yy-button>
         <yy-button>尾部</yy-button>
       </yy-flex>
-      间隙
+    </yy-card>
+    <yy-card title="间隙">
       <yy-flex :size="40">
         <yy-button>间隙</yy-button>
         <yy-button>间隙</yy-button>
       </yy-flex>
-      垂直
+    </yy-card>
+    <yy-card title="垂直">
       <yy-flex vertical>
         <yy-button>垂直</yy-button>
         <yy-button>垂直</yy-button>
       </yy-flex>
-    </yy-flex>
+    </yy-card>
   </div>
 </template>
 
 <style scoped>
 .container {
-  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
 }
 </style>

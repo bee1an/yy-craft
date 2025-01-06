@@ -1,8 +1,9 @@
 /// <reference types="vite/client" />
+import { textArr } from './plugins'
 
 export {}
 declare module 'vue' {
   interface ComponentCustomProperties {
-    $t: string[]
+    $t: typeof textArr
   }
 }

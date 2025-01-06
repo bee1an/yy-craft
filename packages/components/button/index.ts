@@ -3,6 +3,7 @@ import Button from './src/button.vue'
 
 const buttonWithInstall = withInstall(Button)
 
+export * from './src/button'
 export { buttonWithInstall, Button }
 export default Button
 

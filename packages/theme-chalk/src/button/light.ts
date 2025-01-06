@@ -101,7 +101,7 @@ export const buttonLightColors = {
   },
   tertiary: {
     default: {
-      buttonColor: commonLight.textColor2,
+      buttonColor: commonLight.textColor3,
       buttonBorderColor: commonLight.borderColor,
       buttonBackgroundColor: commonLight.transparent,
       buttonColorHover: commonLight.primaryColorHover,
@@ -116,10 +116,10 @@ export const buttonLightColors = {
       buttonWaveOpacityTo: '0'
     },
     secondary: {
-      buttonColor: commonLight.textColor2,
+      buttonColor: commonLight.textColor3,
       buttonBorderColor: commonLight.transparent,
       buttonBackgroundColor: commonLight.buttonColor2,
-      buttonColorHover: commonLight.textColor2,
+      buttonColorHover: commonLight.textColor3,
       buttonBorderColorHover: commonLight.transparent,
       buttonBackgroundColorHover: commonLight.buttonColor2Hover,
       buttonColorActive: commonLight.textColor1,
@@ -127,10 +127,10 @@ export const buttonLightColors = {
       buttonBackgroundColorActive: commonLight.buttonColor2Pressed
     },
     tertiary: {
-      buttonColor: commonLight.textColor2,
+      buttonColor: commonLight.textColor3,
       buttonBorderColor: commonLight.transparent,
       buttonBackgroundColor: commonLight.buttonColor2,
-      buttonColorHover: commonLight.textColor2,
+      buttonColorHover: commonLight.textColor3,
       buttonBorderColorHover: commonLight.transparent,
       buttonBackgroundColorHover: commonLight.buttonColor2Hover,
       buttonColorActive: commonLight.textColor1,
@@ -138,10 +138,10 @@ export const buttonLightColors = {
       buttonBackgroundColorActive: commonLight.buttonColor2Pressed
     },
     quaternary: {
-      buttonColor: commonLight.textColor2,
+      buttonColor: commonLight.textColor3,
       buttonBorderColor: commonLight.transparent,
       buttonBackgroundColor: commonLight.transparent,
-      buttonColorHover: commonLight.textColor2,
+      buttonColorHover: commonLight.textColor3,
       buttonBorderColorHover: commonLight.transparent,
       buttonBackgroundColorHover: commonLight.buttonColor2Hover,
       buttonColorActive: commonLight.textColor1,
@@ -149,7 +149,7 @@ export const buttonLightColors = {
       buttonBackgroundColorActive: commonLight.buttonColor2Pressed
     },
     dashed: {
-      buttonColor: commonLight.textColor2,
+      buttonColor: commonLight.textColor3,
       buttonBorderColor: commonLight.borderColor,
       buttonBackgroundColor: commonLight.transparent,
       buttonColorHover: commonLight.primaryColorHover,

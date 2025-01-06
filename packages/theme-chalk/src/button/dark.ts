@@ -91,7 +91,7 @@ export const buttonDarkColors = {
   },
   tertiary: {
     default: {
-      buttonColor: commonDark.textColor2,
+      buttonColor: commonDark.textColor3,
       buttonBorderColor: commonDark.borderColor,
       buttonBackgroundColor: commonDark.transparent,
       buttonColorHover: commonDark.primaryColorHover,
@@ -102,10 +102,10 @@ export const buttonDarkColors = {
       buttonBackgroundColorActive: commonDark.transparent
     },
     secondary: {
-      buttonColor: commonDark.textColor2,
+      buttonColor: commonDark.textColor3,
       buttonBorderColor: commonDark.transparent,
       buttonBackgroundColor: commonDark.buttonColor2,
-      buttonColorHover: commonDark.textColor2,
+      buttonColorHover: commonDark.textColor3,
       buttonBorderColorHover: commonDark.transparent,
       buttonBackgroundColorHover: commonDark.buttonColor2Hover,
       buttonColorActive: commonDark.textColor1,
@@ -113,10 +113,10 @@ export const buttonDarkColors = {
       buttonBackgroundColorActive: commonDark.buttonColor2Pressed
     },
     tertiary: {
-      buttonColor: commonDark.textColor2,
+      buttonColor: commonDark.textColor3,
       buttonBorderColor: commonDark.transparent,
       buttonBackgroundColor: commonDark.buttonColor2,
-      buttonColorHover: commonDark.textColor2,
+      buttonColorHover: commonDark.textColor3,
       buttonBorderColorHover: commonDark.transparent,
       buttonBackgroundColorHover: commonDark.buttonColor2Hover,
       buttonColorActive: commonDark.textColor1,
@@ -124,10 +124,10 @@ export const buttonDarkColors = {
       buttonBackgroundColorActive: commonDark.buttonColor2Pressed
     },
     quaternary: {
-      buttonColor: commonDark.textColor2,
+      buttonColor: commonDark.textColor3,
       buttonBorderColor: commonDark.transparent,
       buttonBackgroundColor: commonDark.transparent,
-      buttonColorHover: commonDark.textColor2,
+      buttonColorHover: commonDark.textColor3,
       buttonBorderColorHover: commonDark.transparent,
       buttonBackgroundColorHover: commonDark.buttonColor2Hover,
       buttonColorActive: commonDark.textColor1,
@@ -135,7 +135,7 @@ export const buttonDarkColors = {
       buttonBackgroundColorActive: commonDark.buttonColor2Pressed
     },
     dashed: {
-      buttonColor: commonDark.textColor2,
+      buttonColor: commonDark.textColor3,
       buttonBorderColor: commonDark.borderColor,
       buttonBackgroundColor: commonDark.transparent,
       buttonColorHover: commonDark.primaryColorHover,

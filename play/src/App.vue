@@ -12,10 +12,10 @@ import CardTest from './components/card-test.vue'
 
 <template>
   <yy-scrollbar trigger="none">
-    <yy-divider content-position="left">按钮</yy-divider>
-    <ButtonTest />
     <yy-divider content-position="left">卡片</yy-divider>
     <CardTest />
+    <yy-divider content-position="left">按钮</yy-divider>
+    <ButtonTest />
     <yy-divider content-position="left">弹性盒</yy-divider>
     <FlexTest />
     <yy-divider content-position="left">树</yy-divider>

@@ -22,11 +22,9 @@ function useTheme<T extends ThemeVars>(
   exclude?: string[],
   prefix?: string
 ): {
-  styleVars: ComputedRef<
-    {
-      [x: string]: string
-    }[]
-  >
+  styleVars: ComputedRef<{
+    [x: string]: string
+  }>
   vars: ComputedRef<T>
 }
 function useTheme<T extends ThemeVars>(
@@ -37,11 +35,9 @@ function useTheme<T extends ThemeVars>(
   exclude?: string[],
   prefix?: string
 ): {
-  styleVars: ComputedRef<
-    {
-      [x: string]: string
-    }[]
-  >
+  styleVars: ComputedRef<{
+    [x: string]: string
+  }>
   vars: ComputedRef<T>
 }
 function useTheme(
@@ -94,16 +90,12 @@ function useTheme<T extends ThemeVars>(
   })
 
   const styleVars = computed(() => {
-    // return Object.entries(vars).map(([key, value]) => {
-    //   return { [createCSSVar(key, prefix)]: value }
-    // })
-
     return Object.entries(vars.value).reduce((acc, [key, value]) => {
       if (exclude?.includes(key)) return acc
-      acc.push({ [createCSSVar(key, prefix)]: value })
+      acc[createCSSVar(key, prefix)] = value
 
       return acc
-    }, [] as Record<string, any>[])
+    }, {} as Record<string, any>)
   })
 
   return { styleVars, vars }

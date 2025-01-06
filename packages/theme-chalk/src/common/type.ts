@@ -6,8 +6,8 @@ export type ThemeVars<
 
 export type ThemeConfig<T extends ThemeVars = ThemeVars> = {
   name: string
-  vars: () => T
-  exclude?: (keyof T)[]
+  vars: () => Record<keyof T & string, string>
+  exclude?: (keyof T)[] | string[]
 }
 
 export type ExtractThemeVars<T extends ThemeConfig<any>> = Partial<

@@ -38,3 +38,32 @@ export function depx(value: string | number): number {
   }
   return value
 }
+
+/**
+ * @function createCSSVar
+ * @description 生成CSS变量
+ * @param {string} name 变量名
+ * @param {string} [prefix] 前缀
+ * @returns {string}
+ */
+export function createCSSVar(name: string, prefix: string = 'y'): string {
+  let newName = '--' + prefix + '-'
+
+  for (let index = 0; index < name.length; index++) {
+    const char = name[index]
+
+    newName += char === char.toUpperCase() ? '-' + char.toLowerCase() : char
+  }
+
+  return newName
+}
+
+/**
+ * @function var
+ * @description 生成CSS变量，并使用var()函数
+ * @param 同createCSSVar函数
+ * @returns {'var(同createCSSVar函数返回值)'}
+ */
+export function cVar(...args: Parameters<typeof createCSSVar>): string {
+  return `var(${createCSSVar(...args)})`
+}

@@ -1,5 +1,5 @@
 import { rgba } from '@yy-ui/utils'
-import { commonLight, ThemeType } from '@yy-ui/yy-ui/style'
+import { commonLight, ExtractThemeVars } from '@yy-ui/yy-ui/style'
 
 export const buttonLight = {
   name: 'button',
@@ -30,7 +30,7 @@ export const buttonLight = {
   })
 }
 
-export type ButtonTheme = ThemeType<typeof buttonLight>
+export type ButtonThemeVars = ExtractThemeVars<typeof buttonLight>
 
 export const buttonLightColors = {
   default: {

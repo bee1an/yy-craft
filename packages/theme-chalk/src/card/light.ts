@@ -1,4 +1,4 @@
-import { commonLight, ThemeType } from '../common'
+import { commonLight, ExtractThemeVars } from '../common'
 
 export const cardLight = {
   name: 'card',
@@ -8,4 +8,4 @@ export const cardLight = {
   })
 }
 
-export type CardTheme = ThemeType<typeof cardLight>
+export type CardThemeVars = ExtractThemeVars<typeof cardLight>

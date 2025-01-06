@@ -1,4 +1,4 @@
-import { commonLight, ThemeType } from '@yy-ui/theme-chalk'
+import { commonLight, ExtractThemeVars } from '@yy-ui/theme-chalk'
 
 export const dividerLight = {
   name: 'divider',
@@ -9,4 +9,4 @@ export const dividerLight = {
   })
 }
 
-export type DividerTheme = ThemeType<typeof dividerLight>
+export type DividerThemeVars = ExtractThemeVars<typeof dividerLight>

@@ -1,9 +1,9 @@
 import { useThemeProps } from '@yy-ui/composables'
-import { FlexTheme } from '@yy-ui/theme-chalk/src/flex/light'
+import { FlexThemeVars } from '@yy-ui/theme-chalk'
 import { ExtractPropTypes, PropType } from 'vue'
 
 export const flexProps = {
-  ...useThemeProps<FlexTheme>(),
+  ...useThemeProps<FlexThemeVars>(),
   /** [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/align-items) */
   align: {
     type: String

@@ -1,9 +1,9 @@
 import { useThemeProps } from '@yy-ui/composables'
-import { DividerTheme } from '@yy-ui/theme-chalk'
+import { DividerThemeVars } from '@yy-ui/theme-chalk'
 import { ExtractPropTypes, PropType } from 'vue'
 
 export const dividerProps = {
-  ...useThemeProps<DividerTheme>(),
+  ...useThemeProps<DividerThemeVars>(),
   /** 是否使用虚线 */
   borderStyle: {
     type: String as PropType<

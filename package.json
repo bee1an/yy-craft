@@ -16,7 +16,6 @@
     "@yy-ui/theme-chalk": "workspace:*",
     "@yy-ui/utils": "workspace:*",
     "@yy-ui/yy-ui": "workspace:*",
-    "typescript": "^5.7.2",
     "vue": "^3.5.13"
   },
   "devDependencies": {
@@ -29,6 +28,7 @@
     "eslint-plugin-vue": "^9.32.0",
     "globals": "^15.13.0",
     "sass": "^1.82.0",
+    "typescript": "^5.7.2",
     "typescript-eslint": "^8.17.0",
     "unplugin-vue-define-options": "^1.5.2"
   }

@@ -27,13 +27,3 @@ export default {
   heightHuge: '46px',
   transparent: 'transparent'
 }
-
-export type ThemeType<
-  T extends {
-    name: string
-    vars: () => Record<string, string>
-  } = {
-    name: string
-    vars: () => Record<string, string>
-  }
-> = ReturnType<T['vars']>

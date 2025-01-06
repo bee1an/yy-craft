@@ -3,13 +3,13 @@ import { createKey, CreateNamespace, depx, getGap } from '@yy-ui/utils'
 import { flexProps } from './flex'
 import { computed } from 'vue'
 import { useTheme } from '@yy-ui/composables'
-import { common, flexStyle } from '@yy-ui/theme-chalk'
+import { flexTheme } from '@yy-ui/theme-chalk'
 
 defineOptions({ name: 'Flex' })
 
 const props = defineProps(flexProps)
 
-useTheme(undefined, 'flex', flexStyle, props)
+const { vars } = useTheme(flexTheme.vars(), 'flex', undefined, props)
 
 const margin = computed<{ horizontal: number; vertical: number }>(() => {
   const { size } = props
@@ -27,7 +27,7 @@ const margin = computed<{ horizontal: number; vertical: number }>(() => {
     }
   }
 
-  const { [createKey('gap', size)]: gap } = common
+  const { [createKey('gap', size)]: gap } = vars.value
   const { row, col } = getGap(gap)
   return {
     horizontal: depx(col),

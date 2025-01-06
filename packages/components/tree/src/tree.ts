@@ -3,7 +3,7 @@ import { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
 import { treeNodeProps } from './tree-node'
 import { ScrollbarProps, VirtualListProps } from '@yy-ui/components'
 import { useThemeProps } from '@yy-ui/composables'
-import { TreeTheme } from '@yy-ui/theme-chalk'
+import { TreeThemeVars } from '@yy-ui/theme-chalk'
 
 /** inject Bem */
 export const InjectBem = Symbol('InjectBem') as InjectionKey<CreateNamespace>
@@ -49,7 +49,7 @@ export interface TreeOption {
   [key: string]: unknown
 }
 export const treeProps = {
-  ...useThemeProps<TreeTheme>(),
+  ...useThemeProps<TreeThemeVars>(),
   data: {
     type: Array as PropType<TreeOption[]>,
     required: true

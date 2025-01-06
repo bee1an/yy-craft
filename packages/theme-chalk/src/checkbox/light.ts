@@ -1,4 +1,4 @@
-import { commonLight, ThemeType } from '@yy-ui/yy-ui/style'
+import { commonLight, ExtractThemeVars } from '@yy-ui/yy-ui/style'
 
 export const checkboxLight = {
   name: 'checkbox',
@@ -20,4 +20,4 @@ export const checkboxLight = {
   })
 }
 
-export type CheckboxTheme = ThemeType<typeof checkboxLight>
+export type CheckboxThemeVars = ExtractThemeVars<typeof checkboxLight>

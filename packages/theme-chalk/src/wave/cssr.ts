@@ -1,5 +1,5 @@
 import { c, cB, cM } from '@yy-ui/utils'
-import { commonBase, commonLight, ThemeType } from '@yy-ui/yy-ui/style'
+import { commonBase, commonLight, ExtractThemeVars } from '@yy-ui/yy-ui/style'
 
 export const waveTheme = {
   name: 'wave',
@@ -9,7 +9,7 @@ export const waveTheme = {
     waveAnimationName: 'wave-spread, wave-opacity'
   })
 }
-export type WaveTheme = ThemeType<typeof waveTheme>
+export type WaveThemeVars = ExtractThemeVars<typeof waveTheme>
 
 export const waveStyle = c([
   cB(

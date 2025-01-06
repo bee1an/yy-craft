@@ -1,10 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const gapMedium = ref('50px 50px')
+
+setTimeout(() => {
+  gapMedium.value = '10px 10px'
+}, 1000)
+</script>
 
 <template>
   <div class="container">
     <yy-flex vertical>
       水平
-      <yy-flex>
+      <yy-flex :theme-overrides="{ gapMedium: gapMedium }">
         <yy-button>水平</yy-button>
         <yy-button>水平</yy-button>
       </yy-flex>

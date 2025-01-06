@@ -1,9 +1,9 @@
 import { useThemeProps } from '@yy-ui/composables'
-import { WaveTheme } from '@yy-ui/theme-chalk'
+import { WaveThemeVars } from '@yy-ui/theme-chalk'
 import { ExtractPropTypes } from 'vue'
 
 export const waveProps = {
-  ...useThemeProps<WaveTheme>(),
+  ...useThemeProps<WaveThemeVars>(),
   animationDuration: {
     type: String
   },

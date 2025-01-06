@@ -1,7 +1,7 @@
 import { createCSSVar } from '@yy-ui/utils'
 import {
   ThemeKey,
-  ThemeType,
+  ThemeVars,
   injectTheme as _injectTheme
 } from '@yy-ui/yy-ui/style'
 import { CNode } from 'css-render'
@@ -14,11 +14,12 @@ import {
   PropType
 } from 'vue'
 
-function useTheme<T extends ThemeType>(
+function useTheme<T extends ThemeVars>(
   themes: { light: T; dark: T } | ComputedRef<{ light: T; dark: T }>,
   mountId: string,
-  style: CNode,
-  props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  style?: CNode,
+  props?: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  exclude?: string[],
   prefix?: string
 ): {
   styleVars: ComputedRef<
@@ -26,12 +27,14 @@ function useTheme<T extends ThemeType>(
       [x: string]: string
     }[]
   >
+  vars: ComputedRef<T>
 }
-function useTheme<T extends ThemeType>(
+function useTheme<T extends ThemeVars>(
   themes: T | ComputedRef<T>,
   mountId: string,
-  style: CNode,
-  props: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  style?: CNode,
+  props?: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  exclude?: string[],
   prefix?: string
 ): {
   styleVars: ComputedRef<
@@ -39,16 +42,18 @@ function useTheme<T extends ThemeType>(
       [x: string]: string
     }[]
   >
+  vars: ComputedRef<T>
 }
 function useTheme(
   themes: undefined,
   mountId: string,
-  style: CNode,
+  style?: CNode,
   props?: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  exclude?: string[],
   prefix?: string
 ): void
 
-function useTheme<T extends ThemeType>(
+function useTheme<T extends ThemeVars>(
   themes:
     | { light: T; dark: T }
     | ComputedRef<{ light: T; dark: T }>
@@ -56,11 +61,12 @@ function useTheme<T extends ThemeType>(
     | ComputedRef<T>
     | undefined,
   mountId: string,
-  style: CNode,
+  style?: CNode,
   props?: ExtractPropTypes<ReturnType<typeof useThemeProps>>,
+  exclude?: string[],
   prefix = 'y'
 ) {
-  style.mount({ id: prefix + '-' + mountId })
+  style?.mount({ id: prefix + '-' + mountId })
 
   if (typeof themes === 'undefined') {
     return
@@ -75,12 +81,6 @@ function useTheme<T extends ThemeType>(
     return themesVal
   }
 
-  const ctmVars = computed(() => {
-    return Object.entries(props!.themeOverrides || {}).map(([key, value]) => {
-      return { [createCSSVar(key, prefix)]: value }
-    })
-  })
-
   const injectTheme = inject(_injectTheme, null)
 
   const theme = computed(() => {
@@ -89,22 +89,30 @@ function useTheme<T extends ThemeType>(
     return themeStr === 'light' ? getTheme('light') : getTheme('dark')
   })
 
-  const styleVars = computed(() => {
-    return [
-      ...Object.entries(theme.value).map(([key, value]) => {
-        return { [createCSSVar(key, prefix)]: value }
-      }),
-      ...ctmVars.value
-    ]
+  const vars = computed(() => {
+    return Object.assign({}, theme.value, props?.themeOverrides || {})
   })
 
-  return { styleVars }
+  const styleVars = computed(() => {
+    // return Object.entries(vars).map(([key, value]) => {
+    //   return { [createCSSVar(key, prefix)]: value }
+    // })
+
+    return Object.entries(vars.value).reduce((acc, [key, value]) => {
+      if (exclude?.includes(key)) return acc
+      acc.push({ [createCSSVar(key, prefix)]: value })
+
+      return acc
+    }, [] as Record<string, any>[])
+  })
+
+  return { styleVars, vars }
 }
 
 export { useTheme }
 
 /** 生成主题prop */
-export const useThemeProps = <T extends ThemeType>() => {
+export const useThemeProps = <T extends ThemeVars>() => {
   return {
     theme: { type: String as PropType<ThemeKey> },
     themeOverrides: Object as PropType<T>

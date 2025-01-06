@@ -1,5 +1,5 @@
 import { rgba } from '@yy-ui/utils'
-import { commonLight, ThemeType } from '@yy-ui/yy-ui/style'
+import { commonLight, ExtractThemeVars } from '@yy-ui/yy-ui/style'
 
 export const treeLight = {
   name: 'tree',
@@ -20,4 +20,4 @@ export const treeLight = {
   })
 }
 
-export type TreeTheme = ThemeType<typeof treeLight>
+export type TreeThemeVars = ExtractThemeVars<typeof treeLight>

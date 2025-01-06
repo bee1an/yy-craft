@@ -1,4 +1,4 @@
-import { commonLight, ThemeType } from '@yy-ui/yy-ui/style'
+import { commonLight, ExtractThemeVars } from '@yy-ui/yy-ui/style'
 
 export const scrollbarLight = {
   name: 'scrollbar',
@@ -12,4 +12,4 @@ export const scrollbarLight = {
   })
 }
 
-export type ScrollbarTheme = ThemeType<typeof scrollbarLight>
+export type ScrollbarThemeVars = ExtractThemeVars<typeof scrollbarLight>

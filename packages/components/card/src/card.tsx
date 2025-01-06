@@ -1,12 +1,17 @@
 import { useTheme, useThemeProps } from '@yy-ui/composables'
-import { cardDark, cardLight, cardStyle, CardTheme } from '@yy-ui/theme-chalk'
+import {
+  cardDark,
+  cardLight,
+  cardStyle,
+  CardThemeVars
+} from '@yy-ui/theme-chalk'
 import { CreateNamespace } from '@yy-ui/utils'
 import { defineComponent, PropType, VNodeChild } from 'vue'
 
 import { ExtractPropTypes } from 'vue'
 
 export const cardProps = {
-  ...useThemeProps<CardTheme>(),
+  ...useThemeProps<CardThemeVars>(),
   /** 标题 */
   title: {
     type: [String, Function] as PropType<string | (() => VNodeChild)>

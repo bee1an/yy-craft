@@ -3,7 +3,7 @@ import type { App, Component, DefineComponent } from 'vue'
 export function withInstall<T extends Component | DefineComponent>(
   component: T
 ) {
-  return (componentPrefix: string) => {
+  function installFunciton(componentPrefix: string) {
     return {
       install(app: App) {
         const { name } = component
@@ -17,4 +17,8 @@ export function withInstall<T extends Component | DefineComponent>(
       }
     }
   }
+
+  installFunciton.useInstall = true
+
+  return installFunciton
 }

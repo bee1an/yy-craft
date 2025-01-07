@@ -9,11 +9,14 @@ import DividerTest from './components/divider-test.vue'
 import FlexTest from './components/flex-test.vue'
 import CardTest from './components/card-test.vue'
 import TypographyTest from './components/typography-test.vue'
+import MessageTest from './components/message-test.vue'
 </script>
 
 <template>
   <yy-scrollbar trigger="none">
     <div class="container_padding">
+      <yy-divider content-position="left">信息</yy-divider>
+			<MessageTest />
       <yy-divider content-position="left">排版</yy-divider>
       <TypographyTest />
       <yy-divider content-position="left">卡片</yy-divider>

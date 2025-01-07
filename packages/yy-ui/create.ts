@@ -9,7 +9,7 @@ function create({
 } = {}) {
   function install(app: App) {
     pluginMakers.forEach(pluginMaker => {
-      if (typeof pluginMaker === 'function') {
+      if (typeof pluginMaker === 'function' && pluginMaker.useInstall) {
         const plugin = pluginMaker(componentPrefix)
 
         'install' in plugin && app.use(plugin)

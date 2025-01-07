@@ -1,4 +1,4 @@
-import { commonBase } from '../common'
+import { commonBase } from '../../common'
 
 export default {
   transitionDuration: commonBase.transitionDuration,

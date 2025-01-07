@@ -1,4 +1,4 @@
-import { commonDark } from '../common'
+import { commonDark } from '../../common'
 import commonVars from './_common'
 
 export const pDark = {

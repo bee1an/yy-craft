@@ -96,7 +96,7 @@ export default defineComponent({
     } = this
 
     return h(
-      tag,
+      code ? 'code' : tag,
       {
         style: styleVars,
         class: [

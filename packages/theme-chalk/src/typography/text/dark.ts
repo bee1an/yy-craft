@@ -1,5 +1,5 @@
 import commonVars from './_common'
-import { commonDark, ThemeConfig } from '../common'
+import { commonDark, ThemeConfig } from '../../common'
 
 export const textDark: ThemeConfig = {
   name: 'text',

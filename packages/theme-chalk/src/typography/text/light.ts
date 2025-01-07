@@ -1,5 +1,5 @@
 import commonVars from './_common'
-import { commonLight, ExtractThemeVars, ThemeConfig } from '../common'
+import { commonLight, ExtractThemeVars, ThemeConfig } from '../../common'
 
 export const textLight: ThemeConfig = {
   name: 'text',

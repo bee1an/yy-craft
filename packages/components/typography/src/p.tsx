@@ -1,9 +1,10 @@
-import { useTheme } from '@yy-ui/composables'
-import { PDark, pLight, pStyle } from '@yy-ui/theme-chalk/src/p'
+import { useTheme, useThemeProps } from '@yy-ui/composables'
+import { pDark, pLight, pStyle, PThemeVars } from '@yy-ui/theme-chalk'
 import { createKey, CreateNamespace } from '@yy-ui/utils'
 import { computed, defineComponent, ExtractPropTypes, PropType } from 'vue'
 
-export const props = {
+export const Pprops = {
+  ...useThemeProps<PThemeVars>(),
   /** 文字深度 */
   depth: {
     type: [Number, String] as PropType<1 | 2 | 3 | '1' | '2' | '3'>,
@@ -11,16 +12,16 @@ export const props = {
   }
 }
 
-export type PProps = ExtractPropTypes<typeof props>
+export type PProps = ExtractPropTypes<typeof Pprops>
 
 export default defineComponent({
   name: 'P',
-  props,
+  props: Pprops,
   setup(props) {
     const bem = new CreateNamespace('p')
 
     const lightVars = pLight.vars()
-    const darkVars = PDark.vars()
+    const darkVars = pDark.vars()
 
     const theme = computed(() => {
       const textColorKey = createKey(

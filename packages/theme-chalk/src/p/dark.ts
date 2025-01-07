@@ -1,7 +1,7 @@
 import { commonDark } from '../common'
 import commonVars from './_common'
 
-export const PDark = {
+export const pDark = {
   name: 'p',
   vars: () => ({
     ...commonVars,

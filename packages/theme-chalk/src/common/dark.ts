@@ -56,6 +56,7 @@ const derived = {
   textColor1: '#1F2225',
   textColor2: '#333639',
   textColor3: '#767C82',
+  codeBackgroundColor: '#F4F4F8', // 244, 244, 248
   buttonColor2: 'rgba(46, 51, 56, .05)',
   buttonColor2Hover: 'rgba(46, 51, 56, .09)',
   buttonColor2Pressed: 'rgba(46, 51, 56, .13)',

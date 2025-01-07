@@ -3,6 +3,7 @@ import Checkbox from './src/checkbox.vue'
 
 const checkboxWithInstall = withInstall(Checkbox)
 
+export * from './src/checkbox'
 export { checkboxWithInstall, Checkbox }
 export default Checkbox
 

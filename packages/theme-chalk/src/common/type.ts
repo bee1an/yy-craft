@@ -2,7 +2,7 @@ export type ThemeKey = 'light' | 'dark'
 
 export type ThemeVars<
   T extends Record<string, string> = Record<string, string>
-> = T
+> = Partial<T>
 
 export type ThemeConfig<T extends ThemeVars = ThemeVars> = {
   name: string

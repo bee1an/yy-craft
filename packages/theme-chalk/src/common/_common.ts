@@ -25,5 +25,7 @@ export default {
   heightMedium: '34px',
   heightLarge: '40px',
   heightHuge: '46px',
-  transparent: 'transparent'
+  transparent: 'transparent',
+
+  transitionDuration: '.3s'
 }

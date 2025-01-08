@@ -7,6 +7,7 @@ export const iconStyle = cB('icon', () => {
     width: '1em',
     height: '1em',
     color: 'var(--y-icon-color)',
-    fontSize: 'var(--y-icon-size)'
+    fontSize: 'var(--y-icon-size)',
+    fill: 'currentColor'
   }
 })

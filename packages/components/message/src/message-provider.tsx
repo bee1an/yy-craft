@@ -1,24 +1,36 @@
 import { CreateNamespace } from '@yy-ui/utils'
-import { defineComponent, ExtractPropTypes } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ExtractPropTypes,
+  PropType,
+  VNode
+} from 'vue'
 
-export const messageProviderProps = {}
+export const messageProviderProps = {
+  children: {
+    type: Array as PropType<(() => VNode)[]>,
+    default: () => []
+  }
+}
 
 export type MessageProviderProps = ExtractPropTypes<typeof messageProviderProps>
 
 export default defineComponent({
   name: 'MessageProvider',
   props: messageProviderProps,
-  setup() {
+  setup(props, { expose }) {
     const bem = new CreateNamespace('message-provider')
 
-    return { bem }
+    const childrenCpt = computed(() => props.children.map(child => child()))
+
+    expose({ childrenCpt })
+
+    return { bem, childrenCpt }
   },
   render() {
-    const {
-      bem,
-      $slots: { default: defaultSlots }
-    } = this
+    const { bem, childrenCpt } = this
 
-    return <div class={bem.b().value}>{defaultSlots?.()}</div>
+    return <div class={bem.b().value}>{childrenCpt}</div>
   }
 })

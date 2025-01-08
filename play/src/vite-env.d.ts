@@ -5,5 +5,6 @@ export {}
 declare module 'vue' {
   interface ComponentCustomProperties {
     $t: typeof textArr
+    $rt: () => (typeof textArr)[number]
   }
 }

@@ -16,6 +16,10 @@ defineOptions({ name: 'Button' })
 
 const props = defineProps(buttonProps)
 
+const emits = defineEmits<{
+  click: [MouseEvent]
+}>()
+
 const bem = new CreateNamespace('button')
 
 const primary = computed(() => {
@@ -24,8 +28,9 @@ const primary = computed(() => {
 
 const waveRef = useTemplateRef('waveRef')
 
-const clickHandler = () => {
+const clickHandler = (payload: MouseEvent) => {
   waveRef.value?.start()
+  emits('click', payload)
 }
 
 const lightVars = buttonLight.vars()

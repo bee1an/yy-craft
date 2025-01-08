@@ -24,10 +24,13 @@ export const textArr = [
   '你热爱生命吗？那么别浪费时间，因为时间是组成生命的材料。—— 富兰克林'
 ] as const
 
+export const randomText = () =>
+  textArr[Math.floor(Math.random() * textArr.length)]
 export const texts = {
   install(app: App) {
     // 鸡汤
     app.config.globalProperties.$t = textArr
+    app.config.globalProperties.$rt = randomText
     app.provide(t, app.config.globalProperties.$t)
   }
 }

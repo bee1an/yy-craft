@@ -1,13 +1,18 @@
-import { CreateNamespace } from '@yy-ui/utils'
 import {
   computed,
   defineComponent,
   ExtractPropTypes,
+  h,
   PropType,
   VNode
 } from 'vue'
 
 export const messageProviderProps = {
+  tag: {
+    type: String,
+    default: 'div'
+  },
+
   children: {
     type: Array as PropType<(() => VNode)[]>,
     default: () => []
@@ -20,17 +25,18 @@ export default defineComponent({
   name: 'MessageProvider',
   props: messageProviderProps,
   setup(props, { expose }) {
-    const bem = new CreateNamespace('message-provider')
-
     const childrenCpt = computed(() => props.children.map(child => child()))
 
     expose({ childrenCpt })
 
-    return { bem, childrenCpt }
+    return { childrenCpt }
   },
   render() {
-    const { bem, childrenCpt } = this
+    const {
+      childrenCpt,
+      $props: { tag }
+    } = this
 
-    return <div class={bem.b().value}>{childrenCpt}</div>
+    return h(tag, null, childrenCpt)
   }
 })

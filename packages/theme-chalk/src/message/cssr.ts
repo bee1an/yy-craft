@@ -11,17 +11,52 @@ export const messageStyle = c(null, [
       transform: 'rotate(360deg)'
     }
   }),
-  cB('message-provider', {
-    position: 'fixed',
-    height: '0',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    zIndex: '6000',
-    top: '12px',
-    left: 0,
-    right: 0
-  }),
+  cB(
+    'message-provider',
+    {
+      position: 'fixed',
+      height: '0',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      zIndex: '6000',
+      top: '12px',
+      left: 0,
+      right: 0
+    },
+    [
+      cM('top-left', {
+        left: '12px',
+        alignItems: 'flex-start'
+      }),
+
+      cM('top-right', {
+        right: '12px',
+        alignItems: 'flex-end'
+      }),
+
+      cM('bottom', {
+        top: 'unset',
+        bottom: '12px',
+        justifyContent: 'flex-end'
+      }),
+
+      cM('bottom-left', {
+        top: 'unset',
+        bottom: '12px',
+        justifyContent: 'flex-end',
+        left: '12px',
+        alignItems: 'flex-start'
+      }),
+      cM('bottom-right', {
+        top: 'unset',
+        bottom: '12px',
+        justifyContent: 'flex-end',
+        left: '12px',
+        alignItems: 'flex-end'
+      })
+    ]
+  ),
   cB(
     'message',
     {

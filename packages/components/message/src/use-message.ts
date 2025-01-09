@@ -1,7 +1,8 @@
-import { AppContext, h, reactive, render, VNode } from 'vue'
-import MessageProvider from './message-provider'
+import { AppContext, h } from 'vue'
 import Message, { MessageProps } from './message'
-import { createId } from '@yy-ui/utils'
+import { createId, CreateNamespace } from '@yy-ui/utils'
+import { useVNodeProvider, VNodeProviderInstance } from '@yy-ui/composables'
+import { YProvider } from '../../_internal'
 
 export type MessagePlacement =
   | 'top'
@@ -11,14 +12,8 @@ export type MessagePlacement =
   | 'bottom-left'
   | 'bottom-right'
 
-type MessageProviderRecorder = {
-  borrower: HTMLDivElement
-  children: (() => VNode)[]
-  vNode: VNode
-}
-
 const providersRecorder: Partial<
-  Record<MessagePlacement, MessageProviderRecorder>
+  Record<MessagePlacement, VNodeProviderInstance>
 > = {}
 
 export type MessageOptions = {
@@ -51,42 +46,36 @@ export const useMessage = (_context?: AppContext) => {
         onDestroy: () => {
           const provider = providersRecorder[placement]!
 
-          const idx = provider.children.indexOf(messageVNode)
+          const surplusChildren = provider.unmountChild(messageVNode)
 
-          if (idx !== -1) {
-            provider.children.splice(idx, 1)
-
-            if (provider.children.length === 0) {
-              render(null, provider.borrower)
-
-              Reflect.deleteProperty(providersRecorder, placement)
-            }
+          if (surplusChildren.length === 0) {
+            provider.unmount()
+            Reflect.deleteProperty(providersRecorder, placement)
           }
         }
       })
 
     if (!placementVnode) {
-      const borrower = document.createElement('div')
-      const children = reactive([messageVNode])
-      const providerVNode = h(MessageProvider, { children })
-      const context = __context || _context || useMessage._context
-      context && (providerVNode.appContext = context)
-      providersRecorder[placement] = {
-        children,
-        vNode: providerVNode,
-        borrower
-      }
+      const bem = new CreateNamespace('message-provider')
 
-      render(providerVNode, borrower)
-      document.body.appendChild(borrower.firstElementChild as HTMLElement)
-    } else {
-      placementVnode.children.push(messageVNode)
+      const provider = useVNodeProvider(
+        YProvider,
+        { class: [bem.b().value, bem.m(placement).value] },
+        __context || _context || useMessage._context
+      )
+
+      providersRecorder[placement] = provider
+
+      document.body.appendChild(provider.el)
     }
 
+    providersRecorder[placement]!.mountChild(messageVNode)
+
     const findMessageVNode = () => {
-      if (!providersRecorder[placement]) return
-      const children = providersRecorder[placement].vNode.component!.exposed!
-        .childrenCpt.value as VNode[]
+      const provider = providersRecorder[placement]
+
+      if (!provider) return
+      const children = provider.children
 
       return children.find(item => item.props!.id === props.id)
     }

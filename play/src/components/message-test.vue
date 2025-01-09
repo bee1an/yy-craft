@@ -65,8 +65,8 @@ const closeMessage1 = () => {
     <yy-card title="基础使用">
       <yy-p>点击下方按钮打开一条消息</yy-p>
       <yy-flex>
-        <yy-button @click="message($rt())">发送一条消息</yy-button>
-        <yy-button @click="message($rt(), { keepAliveOnHover: true })"
+        <yy-button @click="message(randomText())">发送一条消息</yy-button>
+        <yy-button @click="message(randomText(), { keepAliveOnHover: true })"
           >Hover 不消失</yy-button
         >
       </yy-flex>
@@ -120,6 +120,29 @@ const closeMessage1 = () => {
         <yy-button @click="changeType">切换类型</yy-button>
         <yy-button @click="changeText">换一句话试试吧</yy-button>
         <yy-button @click="closeMessage1">关闭</yy-button>
+      </yy-flex>
+    </yy-card>
+    <yy-card title="创建不同位置的消息">
+      <yy-p>可以通过placement属性选择消息出现的位置</yy-p>
+      <yy-flex>
+        <yy-button @click="message(randomText(), { placement: 'top' })"
+          >默认(正上)</yy-button
+        >
+        <yy-button @click="message(randomText(), { placement: 'bottom' })"
+          >正下</yy-button
+        >
+        <yy-button @click="message(randomText(), { placement: 'top-left' })"
+          >左上</yy-button
+        >
+        <yy-button @click="message(randomText(), { placement: 'top-right' })"
+          >右上</yy-button
+        >
+        <yy-button @click="message(randomText(), { placement: 'bottom-left' })"
+          >左下</yy-button
+        >
+        <yy-button @click="message(randomText(), { placement: 'bottom-right' })"
+          >右下</yy-button
+        >
       </yy-flex>
     </yy-card>
   </div>

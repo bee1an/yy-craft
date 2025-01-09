@@ -1,7 +1,16 @@
 import { c, cB, cE, cM, cVar } from '@yy-ui/utils'
 import { fadeInHeightExpandTransition } from '../transition'
+import { iconSwitchTransition } from '../transition/icon-switch.cssr'
 
 export const messageStyle = c(null, [
+  c('@keyframes loading', {
+    from: {
+      transform: 'rotate(0deg)'
+    },
+    to: {
+      transform: 'rotate(360deg)'
+    }
+  }),
   cB('message-provider', {
     position: 'fixed',
     height: '0',
@@ -22,7 +31,7 @@ export const messageStyle = c(null, [
       transformOrigin: 'top center'
     },
     [
-      ...fadeInHeightExpandTransition({
+      fadeInHeightExpandTransition({
         overflow: 'visible',
         originalTransition: `transform ${cVar('transitionDuration')} ${cVar(
           'transitionTimingFuntion'
@@ -74,37 +83,53 @@ export const messageStyle = c(null, [
               flexShrink: 0
             },
             [
-              cB('icon', {
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                bottom: '0',
-                right: '0'
+              cB(
+                'icon',
+                {
+                  position: 'absolute',
+                  top: '0',
+                  left: '0',
+                  bottom: '0',
+                  right: '0'
+                },
+                [c('> *', [iconSwitchTransition()])]
+              ),
+
+              ['success', 'warning', 'error', 'info'].map(type => {
+                return cM(type, [
+                  c('> *', {
+                    color: cVar(type + 'IconColor')
+                  })
+                ])
               }),
 
-              cM('success', [
+              cM('loading', [
                 c('> *', {
                   color: cVar('successIconColor')
-                })
-              ]),
+                }),
 
-              cM('warning', [
-                c('> *', {
-                  color: cVar('warningIconColor')
-                })
-              ]),
-
-              cM('error', [
-                c('> *', {
-                  color: cVar('errorIconColor')
-                })
-              ]),
-
-              cM('info', [
-                c('> *', {
-                  color: cVar('infoIconColor')
+                cB('icon', {
+                  animation: 'loading 1.5s linear infinite'
                 })
               ])
+
+              // cM('warning', [
+              //   c('> *', {
+              //     color: cVar('warningIconColor')
+              //   })
+              // ]),
+
+              // cM('error', [
+              //   c('> *', {
+              //     color: cVar('errorIconColor')
+              //   })
+              // ]),
+
+              // cM('info', [
+              //   c('> *', {
+              //     color: cVar('infoIconColor')
+              //   })
+              // ])
             ]
           ),
           cE('content', {

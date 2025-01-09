@@ -8,7 +8,7 @@ const { message } = useMessage()
 let messageInstance: MessageReturn | null
 const openMessage = () => {
   if (messageInstance) return
-  messageInstance = message.info(randomText(), { duration: 0 })
+  messageInstance = message.loading(randomText(), { duration: 0 })
 }
 
 const closeMessage = () => {
@@ -94,6 +94,9 @@ const closeMessage1 = () => {
         >
         <yy-button type="info" dashed @click="message.info('这是一条通知消息')"
           >通知</yy-button
+        >
+        <yy-button dashed @click="message.loading('加载中....')"
+          >加载</yy-button
         >
       </yy-flex>
     </yy-card>

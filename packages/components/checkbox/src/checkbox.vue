@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils'
 import { CheckboxEmits, checkboxProps } from './checkbox'
-import CChecked from './icon/Checked'
-import CIndeterminate from './icon/Indeterminate'
 import { checkboxDark, checkboxLight, checkboxStyle } from '@yy-ui/theme-chalk'
 import { Icon as YIcon } from '@yy-ui/yy-ui/components'
 import { useTheme } from '@yy-ui/composables/use-theme'
+import { YBaseChecked, YBaseIndeterminate } from '../../_internal'
 
 defineOptions({ name: 'Checkbox' })
 
@@ -41,8 +40,8 @@ const { styleVars } = useTheme(
     <div :class="bem.b('box').value">
       <div :class="bem.e('icon').value">
         <y-icon>
-          <c-indeterminate v-if="indeterminate" />
-          <c-checked v-else />
+          <y-base-indeterminate v-if="indeterminate" />
+          <y-base-checked v-else />
         </y-icon>
       </div>
     </div>

@@ -16,11 +16,14 @@ import {
   messageStyle
 } from '@yy-ui/theme-chalk'
 import YyIcon from '@yy-ui/components/icon'
-import MSuccess from './icon/success'
-import MWarning from './icon/warning'
-import MError from './icon/error'
-import MInfo from './icon/info'
-import { YFadeInExpandTransition } from '../../_internal'
+import {
+  YBaseError,
+  YBaseInfo,
+  YBaseLoading,
+  YBaseSuccess,
+  YBaseWarning
+} from '../../_internal'
+import { YFadeInExpandTransition, YIconSwitchTransition } from '../../_internal'
 
 export const messageProps = {
   ...useThemeProps<MessageThemeVars>(),
@@ -144,15 +147,19 @@ export default defineComponent({
                 ]}
               >
                 <YyIcon>
-                  {type === 'success' ? (
-                    <MSuccess />
-                  ) : type === 'warning' ? (
-                    <MWarning />
-                  ) : type === 'error' ? (
-                    <MError />
-                  ) : (
-                    <MInfo />
-                  )}
+                  <YIconSwitchTransition>
+                    {type === 'success' ? (
+                      <YBaseSuccess />
+                    ) : type === 'warning' ? (
+                      <YBaseWarning />
+                    ) : type === 'error' ? (
+                      <YBaseError />
+                    ) : type === 'info' ? (
+                      <YBaseInfo />
+                    ) : (
+                      <YBaseLoading />
+                    )}
+                  </YIconSwitchTransition>
                 </YyIcon>
               </div>
             )}

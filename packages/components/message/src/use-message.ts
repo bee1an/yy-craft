@@ -58,7 +58,8 @@ export const useMessage = (_context?: AppContext) => {
 
             if (provider.children.length === 0) {
               render(null, provider.borrower)
-              delete providersRecorder[placement]
+
+              Reflect.deleteProperty(providersRecorder, placement)
             }
           }
         }

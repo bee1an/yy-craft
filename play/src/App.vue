@@ -11,11 +11,14 @@ import CardTest from './components/card-test.vue'
 import TypographyTest from './components/typography-test.vue'
 import MessageTest from './components/message-test.vue'
 import GridTest from './components/grid-test.vue'
+import LayoutTest from './components/layout-test.vue'
 </script>
 
 <template>
   <yy-scrollbar trigger="none">
     <div class="container_padding">
+      <yy-h1 prefix align-text>布局</yy-h1>
+      <LayoutTest />
       <yy-h1 prefix align-text>栅格</yy-h1>
       <GridTest />
       <yy-divider content-position="left"></yy-divider>
@@ -65,7 +68,6 @@ import GridTest from './components/grid-test.vue'
 #app {
   height: 100vh;
   overflow: hidden;
-  font-size: 14px;
 }
 
 .container_padding {

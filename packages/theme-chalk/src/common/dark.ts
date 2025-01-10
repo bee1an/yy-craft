@@ -63,6 +63,7 @@ const derived = {
   buttonColor2Pressed: 'rgba(46, 51, 56, .13)',
 
   borderColor: '#e0e0e6',
+  borderColo2: '#efeff5',
 
   boxShadow1:
     '0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04)',

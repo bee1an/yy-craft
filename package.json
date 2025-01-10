@@ -13,6 +13,7 @@
   "dependencies": {
     "@yy-ui/components": "workspace:*",
     "@yy-ui/composables": "workspace:*",
+    "@yy-ui/constants": "workspace:*",
     "@yy-ui/theme-chalk": "workspace:*",
     "@yy-ui/utils": "workspace:*",
     "@yy-ui/yy-ui": "workspace:*",

@@ -48,10 +48,12 @@ const openMessage1 = () => {
   })
 }
 const changeText = () => {
-  messageInstance1!.content = randomText()
+  if (!messageInstance1) return
+  messageInstance1.content = randomText()
 }
 const changeType = () => {
-  messageInstance1!.type = types[++typeIndex % types.length]
+  if (!messageInstance1) return
+  messageInstance1.type = types[++typeIndex % types.length]
 }
 
 const closeMessage1 = () => {

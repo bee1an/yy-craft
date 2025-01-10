@@ -14,6 +14,9 @@ importers:
       '@yy-ui/composables':
         specifier: workspace:*
         version: link:packages/composables
+      '@yy-ui/constants':
+        specifier: workspace:^
+        version: link:packages/constants
       '@yy-ui/theme-chalk':
         specifier: workspace:*
         version: link:packages/theme-chalk
@@ -73,6 +76,8 @@ importers:
   packages/components: {}
 
   packages/composables: {}
+
+  packages/constants: {}
 
   packages/theme-chalk: {}
 

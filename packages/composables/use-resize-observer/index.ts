@@ -1,4 +1,10 @@
-import { onMounted, onUnmounted, ShallowRef } from 'vue'
+import { onScopeDispose, ShallowRef, watch } from 'vue'
+
+export type UseResizeObserverOptions = {
+  autoObserve?: boolean
+}
+
+export type UseResizeObserverReturn = ReturnType<typeof useResizeObserver>
 
 /** 监听尺寸变化 */
 export const useResizeObserver = (
@@ -7,7 +13,35 @@ export const useResizeObserver = (
 ) => {
   const resizeObserver = new ResizeObserver(onResize)
 
-  onMounted(() => resizeObserver.observe(target.value!))
+  const cleanups: Function[] = []
+  const cleanup = () => {
+    cleanups.forEach(fn => fn())
+    cleanups.length = 0
+  }
 
-  onUnmounted(resizeObserver.disconnect)
+  const observe = () => {
+    resizeObserver.observe(target.value!)
+    return () => resizeObserver.disconnect()
+  }
+
+  const unwatch = watch(
+    target,
+    el => {
+      cleanup()
+      if (!el) return
+      cleanups.push(observe())
+    },
+    {
+      immediate: true
+    }
+  )
+
+  const stop = () => {
+    unwatch()
+    cleanup()
+  }
+
+  onScopeDispose(stop, true)
+
+  return stop
 }

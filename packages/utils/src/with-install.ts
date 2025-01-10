@@ -7,6 +7,7 @@ export function withInstall<T extends Component | DefineComponent>(
     return {
       install(app: App) {
         const { name } = component
+        const { alias } = component as { alias?: string[] }
 
         if (!name) {
           // 组件必须注册名称
@@ -14,6 +15,9 @@ export function withInstall<T extends Component | DefineComponent>(
         }
 
         app.component(componentPrefix + name, component)
+        alias?.forEach(aliasName => {
+          app.component(componentPrefix + aliasName, component)
+        })
       }
     }
   }

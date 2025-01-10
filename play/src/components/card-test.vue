@@ -6,9 +6,7 @@
       <yy-flex class="wapper" vertical>
         <yy-card title="标题">
           <template #cover>
-            <img
-              src="https://images.unsplash.com/photo-1735437629103-0fac198c7c2e"
-            />
+            <img src="https://avatars.githubusercontent.com/u/137426505" />
           </template>
           <template #headerExtra>#headerExtra</template>
           内容

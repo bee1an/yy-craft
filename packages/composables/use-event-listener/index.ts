@@ -1,4 +1,6 @@
-import { isRef, onUnmounted, ShallowRef, watch } from 'vue'
+import { onScopeDispose, ShallowRef, toValue, watch } from 'vue'
+
+export type UseEventListenerReturn = ReturnType<typeof useEventListener>
 
 export function useEventListener<K extends keyof WindowEventMap>(
   target: Readonly<ShallowRef<HTMLElement | null>> | Window | Document,
@@ -12,21 +14,38 @@ export function useEventListener(
   listener: EventListenerOrEventListenerObject,
   options?: boolean | AddEventListenerOptions
 ) {
-  watch(
-    target,
-    () => {
-      const element = isRef(target) ? target.value : target
-      element?.addEventListener(type, listener, options)
-    },
-    { immediate: true }
-  )
-
-  const stopListenHandler = () => {
-    const element = isRef(target) ? target.value : target
-    element?.removeEventListener(type, listener, options)
+  const cleanups: Function[] = []
+  const cleanup = () => {
+    cleanups.forEach(fn => fn())
+    cleanups.length = 0
   }
 
-  onUnmounted(() => stopListenHandler())
+  const register = (el: any, event: string, listener: any, options: any) => {
+    el.addEventListener(event, listener, options)
+    return () => el.removeEventListener(event, listener, options)
+  }
 
-  return stopListenHandler
+  const watchCallback = () => {
+    cleanup()
+
+    const element = toValue(target as any)
+
+    if (!element) return
+
+    cleanups.push(register(element, type, listener, options))
+  }
+
+  const stopWatcher = watch(() => toValue(target as any), watchCallback, {
+    immediate: true,
+    flush: 'post'
+  })
+
+  const stop = () => {
+    stopWatcher()
+    cleanup()
+  }
+
+  onScopeDispose(stop, true)
+
+  return stop
 }

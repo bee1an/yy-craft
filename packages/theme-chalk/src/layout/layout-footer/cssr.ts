@@ -1,4 +1,4 @@
-import { cB, cVar } from '@yy-ui/utils'
+import { cB, cM, cVar } from '@yy-ui/utils'
 
 export const layoutFooterStyle = cB('layout-footer', {
   boxSizing: 'border-box',
@@ -13,4 +13,6 @@ export const layoutFooterStyle = cB('layout-footer', {
 		border-color ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')}
 	`,
   backgroundColor: cVar('backgroundColor')
-})
+},[cM('bordered',{
+	borderTop: `1px solid ${cVar('borderColor')}`
+})])

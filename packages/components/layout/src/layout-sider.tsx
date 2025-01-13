@@ -1,5 +1,11 @@
 import { CreateNamespace } from '@yy-ui/utils'
-import { computed, defineComponent, ExtractPropTypes } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ExtractPropTypes,
+  PropType,
+  StyleValue
+} from 'vue'
 import {
   layoutSiderDark,
   layoutSiderLight,
@@ -10,7 +16,12 @@ import { useTheme, useThemeProps } from '@yy-ui/composables'
 import YyScrollbar from '../../scrollbar'
 
 export const layoutSiderProps = {
-  ...useThemeProps<LayoutSiderThemeVars>()
+  ...useThemeProps<LayoutSiderThemeVars>(),
+  bordered: Boolean,
+  /** 内容类名 */
+  contentClass: [Object, Array, String] as PropType<any>,
+  /** 内容样式 */
+  contentStyle: [Object, Array, String] as PropType<StyleValue>
 }
 
 export type LayoutSiderProps = ExtractPropTypes<typeof layoutSiderProps>
@@ -44,12 +55,18 @@ export default defineComponent({
     const {
       bem,
       styleVars,
+      $props: { bordered, contentClass, contentStyle },
       $slots: { default: defaultSlot }
     } = this
 
     return (
-      <aside style={styleVars} class={bem.b().value}>
-        <YyScrollbar>{defaultSlot?.()}</YyScrollbar>
+      <aside
+        style={styleVars}
+        class={[bem.b().value, bem.m(bordered && 'bordered').value]}
+      >
+        <YyScrollbar contentClass={contentClass} contentStyle={contentStyle}>
+          {defaultSlot?.()}
+        </YyScrollbar>
       </aside>
     )
   }

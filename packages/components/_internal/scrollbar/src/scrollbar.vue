@@ -177,7 +177,10 @@ const { styleVars } = useTheme(
   >
     <slot v-if="props.container"></slot>
     <div v-else :class="bem.b('container').value" ref="containerRef">
-      <div :class="bem.b('content').value">
+      <div
+        :class="[bem.b('content').value, contentClass]"
+        :style="contentStyle"
+      >
         <slot></slot>
       </div>
     </div>

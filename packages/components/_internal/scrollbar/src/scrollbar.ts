@@ -1,4 +1,4 @@
-import { PropType } from 'vue'
+import { PropType, StyleValue } from 'vue'
 import { useThemeProps } from '@yy-ui/composables'
 import { ScrollbarThemeVars } from '@yy-ui/theme-chalk'
 
@@ -12,7 +12,11 @@ export const scrollbarInternalProps = {
   trigger: {
     type: String as PropType<'none' | 'hover'>,
     default: 'hover'
-  }
+  },
+  /** 内容类名 */
+  contentClass: [Object, Array, String] as PropType<any>,
+  /** 内容样式 */
+  contentStyle: [Object, Array, String] as PropType<StyleValue>
 }
 
 type ScrollHandlerType = {

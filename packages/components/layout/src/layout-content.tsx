@@ -1,5 +1,12 @@
 import { CreateNamespace } from '@yy-ui/utils'
-import { computed, defineComponent, ExtractPropTypes, inject } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ExtractPropTypes,
+  inject,
+  PropType,
+  StyleValue
+} from 'vue'
 import YyScrollbar from '../../scrollbar'
 import { useTheme, useThemeProps } from '@yy-ui/composables'
 import { layoutDark, layoutLight, LayoutThemeVars } from '@yy-ui/yy-ui'
@@ -7,8 +14,10 @@ import { layoutInjectKey } from './layout'
 
 export const layoutContentProps = {
   ...useThemeProps<LayoutThemeVars>(),
-
-  contentStyle: String
+  /** 内容类名 */
+  contentClass: [Object, Array, String] as PropType<any>,
+  /** 内容样式 */
+  contentStyle: [Object, Array, String] as PropType<StyleValue>
 }
 
 export type LayoutContentProps = ExtractPropTypes<typeof layoutContentProps>
@@ -40,15 +49,15 @@ export default defineComponent({
       layoutBem,
       bem,
       styleVars,
-      $props: { contentStyle },
+      $props: { contentClass, contentStyle },
       $slots: { default: defaultSlot }
     } = this
 
     return (
       <div style={styleVars} class={[layoutBem.b().value, bem.b().value]}>
-        <div style={contentStyle} class={layoutBem.b('scroll-container').value}>
-          <YyScrollbar>{defaultSlot?.()}</YyScrollbar>
-        </div>
+        <YyScrollbar contentClass={contentClass} contentStyle={contentStyle}>
+          {defaultSlot?.()}
+        </YyScrollbar>
       </div>
     )
   }

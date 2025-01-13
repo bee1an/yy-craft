@@ -6,7 +6,9 @@ export const scrollbarStyle = c([
     {
       position: 'relative',
       width: '100%',
-      height: '100%'
+      height: '100%',
+      maxWidth: 'inherit',
+      maxHeight: 'inherit'
     },
     [
       cM('display_controller', [
@@ -58,6 +60,8 @@ export const scrollbarStyle = c([
     position: 'relative',
     width: '100%',
     height: '100%',
+    maxWidth: 'inherit',
+    maxHeight: 'inherit',
     overflow: 'scroll',
     scrollbarWidth: 'none'
   }),

@@ -4,7 +4,8 @@ export const layoutSiderLight = {
   name: 'layout-sider',
   vars: () => ({
     textColor: commonLight.textColor2,
-    backgroundColor: commonLight.bodyColor
+    backgroundColor: commonLight.bodyColor,
+    borderColor: commonLight.borderColor1
   })
 } satisfies ThemeConfig
 

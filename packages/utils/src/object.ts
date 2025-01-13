@@ -12,11 +12,14 @@ export const isObject = (value: any): boolean => {
 /**
  * @function omitObject
  * @description 删除对象中的某些key
- * @param {Record<string, any>} obj 对象
+ * @param {Record<string | symbol, any>} obj 对象
  * @param {string[]} keys 需要删除的key
- * @returns {Record<string, any>}
+ * @returns {Record<string | symbol, any>}
  */
-export const omitObject = <T extends Record<string, any>, K extends keyof T>(
+export const omitObject = <
+  T extends Record<string | symbol, any>,
+  K extends keyof T
+>(
   obj: T,
   keys: K[]
 ): Omit<T, K> => {
@@ -30,11 +33,14 @@ export const omitObject = <T extends Record<string, any>, K extends keyof T>(
 /**
  * @function pickObject
  * @description 保留对象中的某些key
- * @param {Record<string, any>} obj 对象
+ * @param {Record<string | symbol, any>} obj 对象
  * @param {string[]} keys 需要保留的key
- * @returns {Record<string, any>}
+ * @returns {Record<string | symbol, any>}
  */
-export const pickObject = <T extends Record<string, any>, K extends keyof T>(
+export const pickObject = <
+  T extends Record<string | symbol, any>,
+  K extends keyof T
+>(
   obj: T,
   keys: K[]
 ): Pick<T, K> => {
@@ -43,4 +49,22 @@ export const pickObject = <T extends Record<string, any>, K extends keyof T>(
     result[key] = obj[key]
   })
   return result as Pick<T, K>
+}
+
+/**
+ * @function pickObject
+ * @description 合并对象
+ * @returns {Record<string | symbol, any>}
+ */
+export const mergeObject = <T extends Record<string | symbol, any> | undefined>(
+  ...objs: T[]
+): T => {
+  const result: any = {}
+  objs.forEach(obj => {
+    if (!obj) return
+    Object.keys(obj).forEach(key => {
+      result[key] = obj[key]
+    })
+  })
+  return result as T
 }

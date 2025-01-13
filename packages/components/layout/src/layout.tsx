@@ -4,7 +4,9 @@ import {
   defineComponent,
   ExtractPropTypes,
   InjectionKey,
-  provide
+  PropType,
+  provide,
+  StyleValue
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables'
 import {
@@ -18,7 +20,11 @@ import YyScrollbar from '../../scrollbar'
 export const layoutProps = {
   ...useThemeProps<LayoutThemeVars>(),
   /** 是否有侧边栏 */
-  hasSider: Boolean
+  hasSider: Boolean,
+  /** 内容类名 */
+  contentClass: [Object, Array, String] as PropType<any>,
+  /** 内容样式 */
+  contentStyle: [Object, Array, String] as PropType<StyleValue>
 }
 
 export const layoutInjectKey = Symbol('layoutInjectKey') as InjectionKey<{
@@ -53,33 +59,29 @@ export default defineComponent({
     const {
       bem,
       styleVars,
-      $props: { hasSider },
+      $props: { hasSider, contentClass, contentStyle },
       $slots: { default: defaultSlot }
     } = this
+
+    const siderStyle = {
+      display: 'flex',
+      flexFlow: 'row',
+      width: '100%'
+    }
+
+    console.log('contentStyle', contentStyle)
 
     return (
       <div
         style={styleVars}
         class={[bem.b().value, bem.m(hasSider && 'has-sider').value]}
       >
-        <div class={bem.b('scroll-container').value}>
-          <YyScrollbar>
-            <div
-              style={
-                hasSider
-                  ? {
-                      display: 'flex',
-                      flexFlow: 'row',
-                      width: '100%'
-                    }
-                  : ''
-              }
-              class={bem.b('container').value}
-            >
-              {defaultSlot?.()}
-            </div>
-          </YyScrollbar>
-        </div>
+        <YyScrollbar
+          contentStyle={[hasSider && siderStyle, contentStyle]}
+          contentClass={contentClass}
+        >
+          {defaultSlot?.()}
+        </YyScrollbar>
       </div>
     )
   }

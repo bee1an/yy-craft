@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, useTemplateRef } from 'vue'
+import { inject, reactive, useTemplateRef } from 'vue'
 import { Scrollbar as YyScrollbar } from '@yy-ui/yy-ui'
 import { t } from '../plugins'
 
@@ -22,6 +22,8 @@ const list = Array.from(
   { length: 30 },
   () => texts[Math.floor(Math.random() * texts.length)]
 )
+
+const maxList = reactive(Array.from(list))
 </script>
 
 <template>
@@ -32,7 +34,7 @@ const list = Array.from(
         <yy-card title="基础用法">
           <yy-p>会自动识别父元素的高度生成滚动条</yy-p>
           <div class="container">
-            <yy-scrollbar ref="scrollbarRef">
+            <yy-scrollbar>
               <div class="vertical">
                 <div v-for="text in list" :key="text">
                   {{ text }}
@@ -54,6 +56,29 @@ const list = Array.from(
               </div>
             </yy-scrollbar>
           </div>
+        </yy-card>
+
+        <yy-card title="最大高(宽)度">
+          <yy-flex vertical>
+            <yy-flex>
+              <yy-button @click="maxList.splice(1, maxList.length - 1)"
+                >减少内容</yy-button
+              >
+              <yy-button @click="maxList.splice(0, maxList.length, ...list)"
+                >还原内容</yy-button
+              >
+            </yy-flex>
+
+            <div class="container3">
+              <yy-scrollbar>
+                <div class="vertical">
+                  <div v-for="text in maxList" :key="text">
+                    {{ text }}
+                  </div>
+                </div>
+              </yy-scrollbar>
+            </div>
+          </yy-flex>
         </yy-card>
       </yy-flex>
 
@@ -88,7 +113,7 @@ const list = Array.from(
             >时长显</yy-p
           >
           <div class="container">
-            <yy-scrollbar ref="scrollbarRef" trigger="none">
+            <yy-scrollbar trigger="none">
               <div class="vertical">
                 <div v-for="text in list" :key="text">
                   {{ text }}
@@ -112,6 +137,13 @@ const list = Array.from(
 
 .container2 {
   width: 500px;
+  border: 1px solid #ececec;
+  padding: 10px;
+}
+
+.container3 {
+  max-height: 300px;
+  width: fit-content;
   border: 1px solid #ececec;
   padding: 10px;
 }

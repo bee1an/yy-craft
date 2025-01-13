@@ -9,7 +9,8 @@ import {
 import { computed, defineComponent, ExtractPropTypes } from 'vue'
 
 export const layoutFooterProps = {
-  ...useThemeProps<LayoutFooterThemeVars>()
+  ...useThemeProps<LayoutFooterThemeVars>(),
+  bordered: Boolean
 }
 
 export type LayoutFooterProps = ExtractPropTypes<typeof layoutFooterProps>
@@ -43,11 +44,15 @@ export default defineComponent({
     const {
       bem,
       styleVars,
+      $props: { bordered },
       $slots: { default: defaultSlot }
     } = this
 
     return (
-      <div style={styleVars} class={bem.b().value}>
+      <div
+        style={styleVars}
+        class={[bem.b().value, bem.m(bordered && 'bordered').value]}
+      >
         {defaultSlot?.()}
       </div>
     )

@@ -96,15 +96,18 @@ const onDrag = (value: {
 </script>
 
 <template>
-  <yy-tree
-    v-model:selectedKeys="selectedKeys"
-    :data="data"
-    :default-expanded-keys="expandedKeys"
-    value-field="xx"
-    selectable
-    multiple
-    draggable
-    @drag="onDrag"
-  >
-  </yy-tree>
+  <div class="container_padding">
+    <yy-h1 prefix align-text>树形控件</yy-h1>
+    <yy-tree
+      v-model:selectedKeys="selectedKeys"
+      :data="data"
+      :default-expanded-keys="expandedKeys"
+      value-field="xx"
+      selectable
+      multiple
+      draggable
+      @drag="onDrag"
+    >
+    </yy-tree>
+  </div>
 </template>

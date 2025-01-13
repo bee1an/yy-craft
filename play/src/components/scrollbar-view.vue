@@ -19,27 +19,30 @@ const list = Array.from(
 </script>
 
 <template>
-  <yy-flex vertical inline>
-    <yy-button @click="scrollBy">滚动+10</yy-button>
-    <div class="container">
-      <yy-scrollbar ref="scrollbarRef">
-        <div class="vertical">
-          <div v-for="text in list" :key="text">
-            {{ text }}
+  <div class="container_padding">
+    <yy-h1 prefix align-text>滚动条</yy-h1>
+    <yy-flex vertical inline>
+      <yy-button @click="scrollBy">滚动+10</yy-button>
+      <div class="container">
+        <yy-scrollbar ref="scrollbarRef">
+          <div class="vertical">
+            <div v-for="text in list" :key="text">
+              {{ text }}
+            </div>
           </div>
-        </div>
-      </yy-scrollbar>
-    </div>
-    <div class="container2">
-      <yy-scrollbar>
-        <div class="horizontal">
-          <div v-for="text in list" :key="text">
-            {{ text }}
+        </yy-scrollbar>
+      </div>
+      <div class="container2">
+        <yy-scrollbar>
+          <div class="horizontal">
+            <div v-for="text in list" :key="text">
+              {{ text }}
+            </div>
           </div>
-        </div>
-      </yy-scrollbar>
-    </div>
-  </yy-flex>
+        </yy-scrollbar>
+      </div>
+    </yy-flex>
+  </div>
 </template>
 
 <style scoped>

@@ -11,7 +11,8 @@ export const cardStyle = cB(
 			background-color ${cVar('transitionTime')} ${cVar('cubicBezierEaseInOut')}, 
 			box-shadow ${cVar('transitionTime')} ${cVar('cubicBezierEaseInOut')}, 
 			border-color ${cVar('transitionTime')} ${cVar('cubicBezierEaseInOut')}
-		`
+		`,
+    boxSizing: 'border-box'
   },
   [
     cM('bordered', {

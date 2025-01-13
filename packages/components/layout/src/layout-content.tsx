@@ -2,12 +2,7 @@ import { CreateNamespace } from '@yy-ui/utils'
 import { computed, defineComponent, ExtractPropTypes, inject } from 'vue'
 import YyScrollbar from '../../scrollbar'
 import { useTheme, useThemeProps } from '@yy-ui/composables'
-import {
-  layoutDark,
-  layoutLight,
-  layoutStyle,
-  LayoutThemeVars
-} from '@yy-ui/yy-ui'
+import { layoutDark, layoutLight, LayoutThemeVars } from '@yy-ui/yy-ui'
 import { layoutInjectKey } from './layout'
 
 export const layoutContentProps = {

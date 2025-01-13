@@ -74,7 +74,8 @@ const responsiveSpan = computed(() => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container_padding">
+    <yy-h1 prefix align-text>网格布局</yy-h1>
     <yy-flex>
       <yy-card title="响应式单元格">
         <yy-flex vertical>

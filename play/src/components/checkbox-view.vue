@@ -14,20 +14,13 @@ setTimeout(() => {
 </script>
 
 <template>
-  <div>
-    <div class="row">
-      <yy-checkbox
-        v-model="value"
-        :label="$t[0]"
-        :indeterminate="true"
-      ></yy-checkbox>
-      <yy-checkbox :model-value="value"></yy-checkbox>
-    </div>
+  <div class="container_padding">
+    <yy-h1 prefix align-text>复选框</yy-h1>
+    <yy-checkbox
+      v-model="value"
+      :label="$t[0]"
+      :indeterminate="true"
+    ></yy-checkbox>
+    <yy-checkbox :model-value="value"></yy-checkbox>
   </div>
 </template>
-
-<style scoped>
-.row {
-  display: flex;
-}
-</style>

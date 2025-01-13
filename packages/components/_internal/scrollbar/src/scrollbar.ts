@@ -14,3 +14,13 @@ export const scrollbarInternalProps = {
     default: 'hover'
   }
 }
+
+type ScrollHandlerType = {
+  (options?: ScrollToOptions): void
+  (x?: number, y?: number): void
+}
+
+export interface ScrollbarExpose {
+  scrollTo: ScrollHandlerType
+  scrollBy: ScrollHandlerType
+}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils'
-import { computed, ref, useTemplateRef } from 'vue'
-import { scrollbarInternalProps } from './scrollbar'
+import { computed, nextTick, ref, useTemplateRef } from 'vue'
+import { ScrollbarExpose, scrollbarInternalProps } from './scrollbar'
 import {
   useBaseDrag,
   useEventListener,
@@ -56,8 +56,35 @@ const update = () => {
     scrollLeft
   } = mergedContainerRef.value!
 
+  // verticalBar.value.visible = scrollHeight > clientHeight
+  // if (verticalBar.value.visible) {
+  //   const { clientHeight: verticalRailHeight } = verticalRail.value!
+
+  //   verticalBar.value.height =
+  //     verticalRailHeight * (clientHeight / scrollHeight)
+
+  //   verticalBar.value.top = (scrollTop / scrollHeight) * verticalRailHeight
+  // }
+
+  // horizontalBar.value.visible = scrollWidth > clientWidth
+  // if (horizontalBar.value.visible) {
+  //   const { clientWidth: horizontalRailWidth } = horizontalRail.value!
+  //   horizontalBar.value.width =
+  //     horizontalRailWidth * (clientWidth / scrollWidth)
+
+  //   horizontalBar.value.left = (scrollLeft / scrollWidth) * horizontalRailWidth
+  // }
+  updateVerticalBar(scrollHeight, clientHeight, scrollTop)
+  updateHorizontalBar(scrollWidth, clientWidth, scrollLeft)
+}
+const updateVerticalBar = async (
+  scrollHeight: number,
+  clientHeight: number,
+  scrollTop: number
+) => {
   verticalBar.value.visible = scrollHeight > clientHeight
   if (verticalBar.value.visible) {
+    if (!verticalRail.value) await new Promise<void>(r => nextTick(r))
     const { clientHeight: verticalRailHeight } = verticalRail.value!
 
     verticalBar.value.height =
@@ -65,9 +92,15 @@ const update = () => {
 
     verticalBar.value.top = (scrollTop / scrollHeight) * verticalRailHeight
   }
-
+}
+const updateHorizontalBar = async (
+  scrollWidth: number,
+  clientWidth: number,
+  scrollLeft: number
+) => {
   horizontalBar.value.visible = scrollWidth > clientWidth
   if (horizontalBar.value.visible) {
+    if (!horizontalRail.value) await new Promise<void>(r => nextTick(r))
     const { clientWidth: horizontalRailWidth } = horizontalRail.value!
     horizontalBar.value.width =
       horizontalRailWidth * (clientWidth / scrollWidth)
@@ -75,6 +108,7 @@ const update = () => {
     horizontalBar.value.left = (scrollLeft / scrollWidth) * horizontalRailWidth
   }
 }
+
 useResizeObserver(mergedContainerRef, update)
 
 const verticalController = useTemplateRef('verticalController')
@@ -113,15 +147,15 @@ useBaseDrag(hoirzontalController, {
   }
 })
 
-function scrollTo(...args: Parameters<typeof window.scrollTo>) {
+function scrollTo(...args: any[]) {
   return mergedContainerRef.value?.scrollTo(...args)
 }
 
-function scrollBy(...args: Parameters<typeof window.scrollBy>) {
+function scrollBy(...args: any[]) {
   return mergedContainerRef.value?.scrollBy(...args)
 }
 
-defineExpose({ scrollTo, scrollBy })
+defineExpose({ scrollTo, scrollBy } as ScrollbarExpose)
 
 const bem = new CreateNamespace('scrollbar')
 

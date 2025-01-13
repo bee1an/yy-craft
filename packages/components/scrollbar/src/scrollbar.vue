@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
-import { YScrollbar } from '../../_internal'
+import { ScrollbarExpose, YScrollbar } from '../../_internal'
 import { scrollbarProps } from './scrollbar'
 
 defineOptions({ name: 'Scrollbar' })
@@ -9,19 +9,19 @@ const props = defineProps(scrollbarProps)
 const scrollbarInstRef =
   useTemplateRef<InstanceType<typeof YScrollbar>>('scrollbarInstRef')
 
-function scrollTo(
-  ...rest: Parameters<InstanceType<typeof YScrollbar>['scrollTo']>
-) {
+function scrollTo(options?: ScrollToOptions): void
+function scrollTo(x?: number, y?: number): void
+function scrollTo(...rest: any[]) {
   return scrollbarInstRef.value?.scrollTo(...rest)
 }
 
-function scrollBy(
-  ...rest: Parameters<InstanceType<typeof YScrollbar>['scrollBy']>
-) {
+function scrollBy(options?: ScrollToOptions): void
+function scrollBy(x?: number, y?: number): void
+function scrollBy(...rest: any[]) {
   return scrollbarInstRef.value?.scrollBy(...rest)
 }
 
-defineExpose({ scrollTo, scrollBy })
+defineExpose({ scrollTo, scrollBy } as ScrollbarExpose)
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 export { default as YBaseChecked } from './checked'
 export { default as YBaseCollapsed } from './collapsed'
+export { default as YBaseCollapsed2 } from './collapsed2'
 export { default as YBaseError } from './error'
 export { default as YBaseIndeterminate } from './indeterminate'
 export { default as YBaseInfo } from './info'

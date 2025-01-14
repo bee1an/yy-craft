@@ -1,4 +1,4 @@
-import { commonDark } from '@yy-ui/yy-ui/style'
+import { commonDark } from '@yy-ui/theme-chalk'
 
 export const scrollbarDark = {
   name: 'scrollbar',

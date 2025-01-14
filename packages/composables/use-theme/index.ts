@@ -3,7 +3,7 @@ import {
   ThemeKey,
   ThemeVars,
   injectTheme as _injectTheme
-} from '@yy-ui/yy-ui/style'
+} from '@yy-ui/theme-chalk'
 import { CNode } from 'css-render'
 import {
   computed,

@@ -60,6 +60,7 @@ const derived = {
   textColor3: '#767C82', // 118,124,130
 
   bodyColor: base.neutralBody,
+  hoverColor: '#f3f3f5',
   layoutFooterBg: '#fafafc',
 
   codeBackgroundColor: '#F4F4F8', // 244, 244, 248

@@ -2,7 +2,7 @@
 import { CreateNamespace } from '@yy-ui/utils'
 import { CheckboxEmits, checkboxProps } from './checkbox'
 import { checkboxDark, checkboxLight, checkboxStyle } from '@yy-ui/theme-chalk'
-import { Icon as YIcon } from '@yy-ui/yy-ui/components'
+import { Icon as YIcon } from '@yy-ui/components'
 import { useTheme } from '@yy-ui/composables/use-theme'
 import { YBaseChecked, YBaseIndeterminate } from '../../_internal'
 

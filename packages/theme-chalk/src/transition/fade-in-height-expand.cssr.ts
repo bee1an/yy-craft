@@ -2,9 +2,6 @@ import { c } from '@yy-ui/utils'
 import { CNode } from 'css-render'
 import { commonBase } from '../common'
 
-const { cubicBezierEaseInOut, cubicBezierEaseOut, cubicBezierEaseIn } =
-  commonBase
-
 interface FadeInHeightExpandTransitionOption {
   overflow?: string
   duration?: string
@@ -26,6 +23,9 @@ export function fadeInHeightExpandTransition({
   leaveToProps = undefined,
   reverse = false
 }: FadeInHeightExpandTransitionOption = {}): CNode[] {
+  const { cubicBezierEaseInOut, cubicBezierEaseOut, cubicBezierEaseIn } =
+    commonBase
+
   const enterClass = reverse ? 'leave' : 'enter'
   const leaveClass = reverse ? 'enter' : 'leave'
   return [

@@ -10,6 +10,7 @@ import FlexView from '../components/flex-view.vue'
 import GridView from '../components/grid-view.vue'
 import IconView from '../components/icon-view.vue'
 import LayoutView from '../components/layout-view.vue'
+import MenuView from '../components/menu-view.vue'
 import MessageView from '../components/message-view.vue'
 import ScrollbarView from '../components/scrollbar-view.vue'
 import TreeView from '../components/tree-view.vue'
@@ -80,6 +81,14 @@ export const components: RouteRecordRaw[] = [
       sider: '布局'
     },
     component: LayoutView
+  },
+  {
+    path: 'menu',
+    name: 'menu',
+    meta: {
+      sider: '菜单'
+    },
+    component: MenuView
   },
   {
     path: 'message',

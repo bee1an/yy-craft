@@ -1,5 +1,5 @@
 import { c, cB, cM } from '@yy-ui/utils'
-import { commonBase, commonLight, ExtractThemeVars } from '@yy-ui/yy-ui/style'
+import { commonBase, commonLight, ExtractThemeVars } from '@yy-ui/theme-chalk'
 
 export const waveTheme = {
   name: 'wave',

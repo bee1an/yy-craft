@@ -13,7 +13,7 @@ import {
   layoutSiderLight,
   layoutSiderStyle,
   LayoutSiderThemeVars
-} from '@yy-ui/yy-ui'
+} from '@yy-ui/theme-chalk'
 import { useTheme, useThemeProps } from '@yy-ui/composables'
 import YyScrollbar from '../../scrollbar'
 import { YBaseCollapsed } from '../../_internal'

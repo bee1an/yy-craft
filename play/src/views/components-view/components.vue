@@ -18,7 +18,7 @@ import { components } from '../../router'
       :style="{ overflow: 'hidden' }"
       content-style="height: 100%"
     >
-      <yy-layout-sider>
+      <yy-layout-sider bordered content-style="padding: 10px">
         <div v-for="cmp in components" :key="cmp.path">
           <router-link :to="cmp.path">{{ cmp.meta!.sider }}</router-link>
         </div>

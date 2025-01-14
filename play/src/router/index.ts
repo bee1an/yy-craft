@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import HomeView from '../views/home-view/home-view.vue'
-import ComponentsView from '../views/components/components.vue'
+import ComponentsView from '../views/components-view/components.vue'
 import ButtonView from '../components/button-view.vue'
 import CardView from '../components/card-view.vue'
 import CheckboxView from '../components/checkbox-view.vue'

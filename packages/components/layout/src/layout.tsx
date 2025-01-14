@@ -69,8 +69,6 @@ export default defineComponent({
       width: '100%'
     }
 
-    console.log('contentStyle', contentStyle)
-
     return (
       <div
         style={styleVars}

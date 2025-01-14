@@ -24,6 +24,20 @@ function getGap(value: string, orient?: 'row' | 'col'): string | Gap {
 export { getGap }
 
 /**
+ * @function px
+ * @description 给一个值添加px单位
+ * @param {string | number} value
+ * @returns {string}
+ */
+export function px(value: number | string | undefined): string | undefined {
+  if (typeof value === 'undefined') {
+    return value
+  }
+
+  return `${depx(value)}px`
+}
+
+/**
  * @function depx
  * @description 去掉px单位
  * @param {string | number} value px value

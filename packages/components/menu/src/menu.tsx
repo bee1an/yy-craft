@@ -1,10 +1,11 @@
-import { CreateNamespace } from '@yy-ui/utils'
+import { createKey, CreateNamespace, depx, px } from '@yy-ui/utils'
 import {
   computed,
   defineComponent,
   ExtractPropTypes,
   PropType,
   reactive,
+  useTemplateRef,
   VNodeChild
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables'
@@ -16,10 +17,11 @@ import {
 } from '@yy-ui/theme-chalk'
 import { Icon } from '@yy-ui/components'
 import { YBaseCollapsed2, YFadeInExpandTransition } from '../../_internal'
+import { watch } from 'vue'
 
 export type MenuOption = {
   /** 显示内容: 可以传入render函数 */
-  label?: string | (() => VNodeChild)
+  label: string | (() => VNodeChild)
   /** 显示图标, 默认没有图标 */
   icon?: () => VNodeChild
   /** 唯一key */
@@ -31,7 +33,7 @@ export type MenuOption = {
 }
 
 export type MenuItem = {
-  label?: string | (() => VNodeChild)
+  label: string | (() => VNodeChild)
   icon?: () => VNodeChild
   active: boolean
   selected: boolean
@@ -59,15 +61,35 @@ export const menuProps = {
   defaultSelectedKeys: {
     type: Array as PropType<MenuOption['key'][]>,
     default: () => []
+  },
+
+  /** 收起状态 */
+  collapsed: {
+    type: Boolean
+  },
+
+  /** 收起后宽度 */
+  collapsedWidth: {
+    type: [Number, String]
   }
 }
 
 export type MenuProps = ExtractPropTypes<typeof menuProps>
 
+export const menuEmits = {
+  /** 菜单展开后 */
+  expanded: () => true,
+  /** 菜单收起后 */
+  collapsed: () => true
+}
+
+export type MenuEmits = typeof menuEmits
+
 export default defineComponent({
   name: 'Menu',
   props: menuProps,
-  setup(props) {
+  emits: menuEmits,
+  setup(props, { emit }) {
     const bem = new CreateNamespace('menu')
 
     const lightVars = menuLight.vars()
@@ -80,11 +102,14 @@ export default defineComponent({
       }
     })
 
-    const { styleVars } = useTheme(theme, 'menu', menuStyle, props)
+    const { styleVars, vars } = useTheme(
+      theme,
+      'menu',
+      menuStyle,
+      props,
+      menuLight.exclude
+    )
 
-    const menuItems = reactive([]) as MenuItem[]
-
-    const expandedKeys = reactive(new Set(props.defaultExpandedKeys))
     const activeKeys = reactive(new Set())
     const selectedKeys = reactive(new Set(props.defaultSelectedKeys))
     const setChainActive = (item: MenuItem) => {
@@ -100,6 +125,8 @@ export default defineComponent({
       selectedKeys.clear()
     }
 
+    const expandedKeys = reactive(new Set(props.defaultExpandedKeys))
+    const menuItems = reactive([]) as MenuItem[]
     const createItems = (
       option: MenuOption,
       level: number,
@@ -124,7 +151,8 @@ export default defineComponent({
 
       items.push(item)
 
-      item.expanded &&
+      !props.collapsed &&
+        item.expanded &&
         option.children?.forEach(child => {
           createItems(child, level + 1, item, items)
         })
@@ -138,6 +166,7 @@ export default defineComponent({
       })
     }
     createMenu()
+    watch(() => props.collapsed, createMenu)
 
     const toggleExpandItem = (item: MenuItem) => {
       expandedKeys.has(item.key) ? collapseItem(item) : expandItem(item)
@@ -160,26 +189,84 @@ export default defineComponent({
       }
     }
 
-    return { bem, styleVars, menuItems, itemClickHandler }
+    const wapperWidth = computed(() => {
+      return props.collapsed ? px(props.collapsedWidth) : '100%'
+    })
+
+    const iconSize = computed(() => {
+      if (!props.collapsed) return undefined
+
+      const collapsedWidthDepx = depx(props.collapsedWidth!)
+
+      const sizeKey =
+        collapsedWidthDepx < 48
+          ? 'small'
+          : collapsedWidthDepx < 64
+          ? 'medium'
+          : 'large'
+
+      return vars.value[createKey('iconSize', sizeKey)]
+    })
+    const iconMargin = computed(() => {
+      if (!props.collapsed) return undefined
+
+      return px((depx(props.collapsedWidth!) - depx(iconSize.value!)) / 2)
+    })
+
+    const menuContainer = useTemplateRef('menuContainer')
+    const transitionendHandler = (e: TransitionEvent) => {
+      if (e.propertyName === 'width' && e.target === menuContainer.value) {
+        if (props.collapsed) {
+          // 收起
+          emit('collapsed')
+        } else {
+          // 展开
+          emit('expanded')
+        }
+      }
+    }
+
+    return {
+      bem,
+      styleVars,
+      menuItems,
+      itemClickHandler,
+      wapperWidth,
+      iconSize,
+      iconMargin,
+      transitionendHandler
+    }
   },
   render() {
-    const { bem, styleVars, menuItems, itemClickHandler } = this
+    const {
+      bem,
+      styleVars,
+      menuItems,
+      itemClickHandler,
+      wapperWidth,
+      iconSize,
+      iconMargin,
+      transitionendHandler,
+      $props: { collapsed }
+    } = this
 
     return (
-      <div style={styleVars} class={bem.b().value}>
-        <YFadeInExpandTransition>
+      <div
+        style={[styleVars, { width: wapperWidth }]}
+        class={[bem.b().value, bem.b().m(collapsed && 'collapsed').value]}
+        onTransitionend={transitionendHandler}
+        ref="menuContainer"
+      >
+        <YFadeInExpandTransition group>
           {menuItems.map(item => {
-            const selected = item.type === 'item' && item.selected && 'selected'
-            const active = item.type === 'item' && item.active && 'active'
-
             return (
               <div
                 key={item.key}
                 class={[
                   bem.b('item').value,
-                  item.type === 'group' && bem.b('group').value,
-                  bem.b('item').m(selected).value,
-                  bem.b('item').m(active).value
+                  bem.b('item').m(item.type === 'group' && 'group-title').value,
+                  bem.b('item').m(item.selected && 'selected').value,
+                  bem.b('item').m(item.active && 'active').value
                 ]}
                 onClick={() => {
                   itemClickHandler(item)
@@ -187,18 +274,27 @@ export default defineComponent({
               >
                 <div class={bem.b('item').e('indent').value}>
                   {Array.from({ length: item.level }).map(() => (
-                    <div class={bem.b('item').e('indent-box').value}></div>
+                    <div
+                      class={bem.b('item').e('indent-box').value}
+                      style={{ width: iconMargin }}
+                    ></div>
                   ))}
                 </div>
 
                 <div class={bem.b('item').e('content').value}>
                   {item.icon && (
-                    <div class={bem.b('item').e('content-icon').value}>
+                    <div
+                      class={bem.b('item').e('content-icon').value}
+                      style={{
+                        fontSize: iconSize,
+                        marginRight: iconMargin
+                      }}
+                    >
                       <Icon>{item.icon()}</Icon>
                     </div>
                   )}
                   <div class={bem.b('item').e('content-main').value}>
-                    {item.label}
+                    {typeof item.label === 'string' ? item.label : item.label()}
                   </div>
                   {!item.isLeaf && item.type === 'item' && (
                     <div

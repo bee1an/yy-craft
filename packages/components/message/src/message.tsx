@@ -163,11 +163,11 @@ export default defineComponent({
                 </YyIcon>
               </div>
             )}
-            {typeof content === 'string' ? (
-              <div class={bem.b('block').e('content').value}>{content}</div>
-            ) : (
-              content()
-            )}
+            {
+              <div class={bem.b('block').e('content').value}>
+                {typeof content === 'string' ? content : content()}
+              </div>
+            }
           </div>
         </div>
       </YFadeInExpandTransition>

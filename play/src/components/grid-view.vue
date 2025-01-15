@@ -77,33 +77,6 @@ const responsiveSpan = computed(() => {
   <div class="container_padding">
     <yy-h1 prefix align-text>网格布局</yy-h1>
     <yy-flex>
-      <yy-card title="响应式单元格">
-        <yy-flex vertical>
-          <yy-flex>
-            <yy-checkbox
-              v-model="fixedSize2"
-              label="切换为固定尺寸"
-            ></yy-checkbox>
-            <yy-checkbox
-              v-model="responsiveSize2"
-              label="切换为元素尺寸响应"
-            ></yy-checkbox>
-            <yy-checkbox
-              v-model="screenResponsiveSize2"
-              label="切换为跟据窗口响应"
-            ></yy-checkbox>
-          </yy-flex>
-          <yy-grid :cols="12" :gap="gap">
-            <yy-grid-item :span="responsiveSpan">
-              <div class="darkgoldenrod h108"></div>
-            </yy-grid-item>
-            <yy-grid-item :span="1">
-              <div class="wheat h108"></div>
-            </yy-grid-item>
-          </yy-grid>
-        </yy-flex>
-      </yy-card>
-
       <yy-card title="基础使用">
         <yy-grid :cols="5" :gap="gap">
           <yy-grid-item :span="1" :row-span="2">
@@ -164,6 +137,33 @@ const responsiveSpan = computed(() => {
                 <div class="wheat h108"></div>
               </yy-gi>
             </template>
+          </yy-grid>
+        </yy-flex>
+      </yy-card>
+
+      <yy-card title="响应式单元格">
+        <yy-flex vertical>
+          <yy-flex>
+            <yy-checkbox
+              v-model="fixedSize2"
+              label="切换为固定尺寸"
+            ></yy-checkbox>
+            <yy-checkbox
+              v-model="responsiveSize2"
+              label="切换为元素尺寸响应"
+            ></yy-checkbox>
+            <yy-checkbox
+              v-model="screenResponsiveSize2"
+              label="切换为跟据窗口响应"
+            ></yy-checkbox>
+          </yy-flex>
+          <yy-grid :cols="12" :gap="gap">
+            <yy-grid-item :span="responsiveSpan">
+              <div class="darkgoldenrod h108"></div>
+            </yy-grid-item>
+            <yy-grid-item :span="1">
+              <div class="wheat h108"></div>
+            </yy-grid-item>
           </yy-grid>
         </yy-flex>
       </yy-card>

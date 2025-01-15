@@ -9,3 +9,9 @@ export const commonVars = {
   transitionTimingFunction: commonBase.cubicBezierEaseInOut,
   itemHeight: '42px'
 }
+
+export default {
+  iconSizeSmall: '20px',
+  iconSizeMedium: '22px',
+  iconSizeLarge: '24px'
+}

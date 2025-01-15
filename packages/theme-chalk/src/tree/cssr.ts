@@ -62,7 +62,7 @@ export const treeStyle = c([
       cM('leaf', [
         cB('tree-node-switcher', [
           cE('icon', {
-            fill: 'transparent'
+            color: 'transparent'
           })
         ])
       ]),

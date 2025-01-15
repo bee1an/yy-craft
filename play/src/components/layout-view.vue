@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useMessage } from '@yy-ui/components'
 
-const unmount = ref(false)
-
-// setTimeout(() => {
-//   unmount.value = true
-// }, 2000)
+const { message } = useMessage()
 </script>
 
 <template>
@@ -112,6 +108,10 @@ const unmount = ref(false)
             width="100"
             collapsed-width="50"
             content-class="h100p"
+            @before-collapse="message('执行收起侧边栏')"
+            @collapsed="message('收起侧边栏')"
+            @before-expand="message('执行展开侧边栏')"
+            @expanded="message('展开侧边栏')"
           >
             <div class="center bbox h100p p24">这里可以收缩起来</div>
           </yy-layout-sider>

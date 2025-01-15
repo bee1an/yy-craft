@@ -45,17 +45,18 @@ const createTree = (data: TreeOption[], level = 0) => {
   const presentLevel = level + 1
   data.forEach(item => {
     const isLeaf = item.isLeaf ?? !item.children
+    const key = item[props.keyField] as TreeKey
     const node: TreeData = {
       value: item[props.valueField] as TreeValue,
-      key: item[props.keyField] as TreeKey,
+      key,
       rawData: item,
       level: presentLevel,
       // 没有指定这个节点是不是叶子节点时，根据是否有子节点来判断
       isLeaf: item.isLeaf ?? !item.children,
       // 不是叶子节点时才可以展开
-      isExpanded: !isLeaf && expandedKeys.value.has(item.key),
+      isExpanded: !isLeaf && expandedKeys.value.has(key),
       isLoading: false,
-      isSelected: !!(props.selectable && props.selectedKeys?.includes(item.key))
+      isSelected: !!(props.selectable && props.selectedKeys?.includes(key))
     }
 
     // 递归子节点
@@ -68,7 +69,7 @@ const createTree = (data: TreeOption[], level = 0) => {
 
     node.isExpanded
       ? flattenData.push(...branch.flattenData)
-      : expandedKeys.value.delete(item.key)
+      : expandedKeys.value.delete(key)
   })
 
   return { flattenData, treeData }

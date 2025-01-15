@@ -37,36 +37,48 @@
           >Shall We Talk
         </yy-a>
       </yy-card>
-      <yy-card title="标题">
-        <yy-p>也给标题加了特殊的样式</yy-p>
-        <yy-h1>不想h1的文字太多... </yy-h1>
-        <yy-h2>{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }} </yy-h2>
-        <yy-h3>{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }} </yy-h3>
-        <yy-h4>{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }} </yy-h4>
-        <yy-h5>{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }} </yy-h5>
-        <yy-h6>{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }} </yy-h6>
-        <yy-h6 prefix
-          >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
-        </yy-h6>
-        <yy-h6 prefix align-text
-          >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
-        </yy-h6>
-        <yy-h6 prefix align-text prefix-color="#1F2225"
-          >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
-        </yy-h6>
-        <yy-h6 prefix align-text type="success"
-          >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
-        </yy-h6>
-        <yy-h6 type="warning"
-          >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
-        </yy-h6>
-        <yy-h6 prefix align-text type="error"
-          >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
-        </yy-h6>
-        <yy-h6 prefix align-text type="info"
-          >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
-        </yy-h6>
-      </yy-card>
+      <yy-gi span="2">
+        <yy-card title="标题">
+          <yy-p>也给标题加了特殊的样式</yy-p>
+          <yy-h1>不想h1的文字太多... </yy-h1>
+          <yy-h2
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h2>
+          <yy-h3
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h3>
+          <yy-h4
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h4>
+          <yy-h5
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h5>
+          <yy-h6
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h6>
+          <yy-h6 prefix
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h6>
+          <yy-h6 prefix align-text
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h6>
+          <yy-h6 prefix align-text prefix-color="#1F2225"
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h6>
+          <yy-h6 prefix align-text type="success"
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h6>
+          <yy-h6 type="warning"
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h6>
+          <yy-h6 prefix align-text type="error"
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h6>
+          <yy-h6 prefix align-text type="info"
+            >{{ $t[Math.floor(Math.random() * $t.length - 1) + 1] }}
+          </yy-h6>
+        </yy-card></yy-gi
+      >
     </yy-grid>
   </div>
 </template>

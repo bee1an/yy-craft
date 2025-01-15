@@ -32,6 +32,7 @@ export const virtualListProps = {
     default: () => []
   },
   /** 滚动区域最大尺寸 */
+  // TODO: 优化取消这个参数
   wrapperMaxSize: {
     type: Number,
     default: 500

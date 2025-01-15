@@ -62,6 +62,8 @@ export const layoutSiderStyle = cB(
           'transitionTimingFunction'
         )},border-color ${cVar('transitionDuration')} ${cVar(
           'transitionTimingFunction'
+        )},right ${cVar('transitionDuration')} ${cVar(
+          'transitionTimingFunction'
         )}`
       },
       [

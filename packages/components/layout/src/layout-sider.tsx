@@ -1,4 +1,4 @@
-import { CreateNamespace, px } from '@yy-ui/utils'
+import { CreateNamespace, depx, px } from '@yy-ui/utils'
 import {
   computed,
   defineComponent,
@@ -6,6 +6,7 @@ import {
   PropType,
   ref,
   StyleValue,
+  useTemplateRef,
   watch
 } from 'vue'
 import {
@@ -37,10 +38,24 @@ export const layoutSiderProps = {
 
 export type LayoutSiderProps = ExtractPropTypes<typeof layoutSiderProps>
 
+export const layoutSiderEmits = {
+  /** 侧边栏展开前 */
+  beforeExpand: () => true,
+  /** 侧边栏展开后 */
+  expanded: () => true,
+  /** 侧边栏收起前 */
+  beforeCollapse: () => true,
+  /** 侧边栏收起后 */
+  collapsed: () => true
+}
+
+export type LayoutSiderEmits = typeof layoutSiderEmits
+
 export default defineComponent({
   name: 'LayoutSider',
   props: layoutSiderProps,
-  setup(props) {
+  emits: layoutSiderEmits,
+  setup(props, { emit }) {
     const bem = new CreateNamespace('layout-sider')
 
     const lightVars = layoutSiderLight.vars()
@@ -74,11 +89,32 @@ export default defineComponent({
 
     const toggleHandler = () => {
       collapsed.value = !collapsed.value
+      if (collapsed.value) {
+        emit('beforeCollapse')
+      } else {
+        emit('beforeExpand')
+      }
     }
 
     const showCollapsedTrigger = computed(() => {
       return typeof props.collapsedWidth !== 'undefined'
     })
+
+    const layoutSiderContainer = useTemplateRef('layoutSiderContainer')
+    const transitionendHandler = (e: TransitionEvent) => {
+      if (
+        e.propertyName === 'width' &&
+        e.target === layoutSiderContainer.value
+      ) {
+        if (collapsed.value) {
+          // 收起
+          emit('collapsed')
+        } else {
+          // 展开
+          emit('expanded')
+        }
+      }
+    }
 
     return {
       bem,
@@ -86,7 +122,8 @@ export default defineComponent({
       collapsed,
       resolveWidth,
       toggleHandler,
-      showCollapsedTrigger
+      showCollapsedTrigger,
+      transitionendHandler
     }
   },
   render() {
@@ -97,7 +134,14 @@ export default defineComponent({
       resolveWidth,
       toggleHandler,
       showCollapsedTrigger,
-      $props: { bordered, contentClass, contentStyle, showCollapsedContent },
+      transitionendHandler,
+      $props: {
+        bordered,
+        contentClass,
+        contentStyle,
+        collapsedWidth,
+        showCollapsedContent
+      },
       $slots: { default: defaultSlot }
     } = this
 
@@ -105,6 +149,8 @@ export default defineComponent({
       <aside
         style={{ ...styleVars, width: resolveWidth }}
         class={[bem.b().value, bem.m(bordered && 'bordered').value]}
+        onTransitionend={transitionendHandler}
+        ref="layoutSiderContainer"
       >
         <YyScrollbar
           contentClass={[
@@ -124,6 +170,10 @@ export default defineComponent({
               bem.e('collapsed-trigger').value,
               bem.e('collapsed-trigger').m(collapsed && 'collapsed').value
             ]}
+            style={{
+              right:
+                collapsed && depx(collapsedWidth!) <= 12 ? '-20px' : undefined
+            }}
             onClick={toggleHandler}
           >
             <YBaseCollapsed></YBaseCollapsed>

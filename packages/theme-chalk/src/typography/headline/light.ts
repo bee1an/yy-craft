@@ -1,18 +1,20 @@
 import { commonLight, ExtractThemeVars, ThemeConfig } from '../../common'
 import _common, { commonVars } from './_common'
 
-export const headlineLight = {
+const vars = {
+  ..._common,
+  ...commonVars,
+  prefixColor: commonLight.primaryColor,
+  textColor: commonLight.textColor1,
+  textColorSuccess: commonLight.successColor,
+  textColorWarning: commonLight.warningColor,
+  textColorError: commonLight.errorColorPressed,
+  textColorInfo: commonLight.infoColor
+}
+
+export const headlineLight: ThemeConfig<typeof vars> = {
   name: 'headline',
-  vars: () => ({
-    ..._common,
-    ...commonVars,
-    prefixColor: commonLight.primaryColor,
-    textColor: commonLight.textColor1,
-    textColorSuccess: commonLight.successColor,
-    textColorWarning: commonLight.warningColor,
-    textColorError: commonLight.errorColorPressed,
-    textColorInfo: commonLight.infoColor
-  }),
+  vars: () => ({ ...vars }),
   exclude: [
     ...Object.keys(_common),
     'textColorSuccess',
@@ -20,6 +22,6 @@ export const headlineLight = {
     'textColorError',
     'textColorInfo'
   ]
-} satisfies ThemeConfig
+}
 
 export type HeadlineThemeVars = ExtractThemeVars<typeof headlineLight>

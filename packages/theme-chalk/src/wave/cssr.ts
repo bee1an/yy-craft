@@ -1,13 +1,21 @@
 import { c, cB, cM } from '@yy-ui/utils'
-import { commonBase, commonLight, ExtractThemeVars } from '@yy-ui/theme-chalk'
+import {
+  commonBase,
+  commonLight,
+  ExtractThemeVars,
+  ThemeConfig
+} from '@yy-ui/theme-chalk'
 
-export const waveTheme = {
+const vars = {
+  waveAnimationDuration: '0.6s',
+  cubicBezierEaseOut: commonBase.cubicBezierEaseOut,
+  waveAnimationName: 'wave-spread, wave-opacity',
+  waveBorderRadius: commonBase.borderRadius
+}
+
+export const waveTheme: ThemeConfig<typeof vars> = {
   name: 'wave',
-  vars: () => ({
-    waveAnimationDuration: '0.6s',
-    cubicBezierEaseOut: commonBase.cubicBezierEaseOut,
-    waveAnimationName: 'wave-spread, wave-opacity'
-  })
+  vars: () => ({ ...vars })
 }
 export type WaveThemeVars = ExtractThemeVars<typeof waveTheme>
 

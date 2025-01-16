@@ -28,14 +28,6 @@ const waveThemeVars = waveTheme.vars()
 const theme = computed(() => {
   const vars = { ...waveThemeVars }
 
-  if (props.animationDuration) {
-    vars.waveAnimationDuration = props.animationDuration
-  }
-
-  if (props.animationName) {
-    vars.waveAnimationName = props.animationName
-  }
-
   return vars
 })
 

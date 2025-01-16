@@ -1,12 +1,14 @@
-import { commonLight, ExtractThemeVars } from '@yy-ui/theme-chalk'
+import { commonLight, ExtractThemeVars, ThemeConfig } from '@yy-ui/theme-chalk'
 
-export const dividerLight = {
+const vars = {
+  dividerBorderStyle: '',
+  borderColor: commonLight.borderColor,
+  fontSize: commonLight.fontSize
+}
+
+export const dividerLight: ThemeConfig<typeof vars> = {
   name: 'divider',
-  vars: () => ({
-    dividerBorderStyle: '',
-    borderColor: commonLight.borderColor,
-    fontSize: commonLight.fontSize
-  })
+  vars: () => ({ ...vars })
 }
 
 export type DividerThemeVars = ExtractThemeVars<typeof dividerLight>

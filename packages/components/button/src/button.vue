@@ -75,7 +75,9 @@ const { styleVars } = useTheme(themeVars, 'button', buttonStyle, props)
     <y-wave
       v-if="primary"
       ref="waveRef"
-      animation-name="button-wave-spread,button-wave-opacity"
+      :theme-overrides="{
+        waveAnimationName: 'button-wave-spread,button-wave-opacity'
+      }"
     ></y-wave>
   </button>
 </template>

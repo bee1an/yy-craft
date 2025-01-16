@@ -1,14 +1,16 @@
 import { commonLight, ExtractThemeVars, ThemeConfig } from '../../common'
 import { commonVars } from './_common'
 
-export const layoutHeaderLight = {
+const vars = {
+  ...commonVars,
+  textColor: commonLight.textColor2,
+  backgroundColor: commonLight.bodyColor,
+  borderColor: commonLight.borderColor1
+}
+
+export const layoutHeaderLight: ThemeConfig<typeof vars> = {
   name: 'layoutHeader',
-  vars: () => ({
-    ...commonVars,
-    textColor: commonLight.textColor2,
-    backgroundColor: commonLight.bodyColor,
-    borderColor: commonLight.borderColor1
-  })
-} satisfies ThemeConfig
+  vars: () => ({ ...vars })
+}
 
 export type LayoutHeaderThemeVars = ExtractThemeVars<typeof layoutHeaderLight>

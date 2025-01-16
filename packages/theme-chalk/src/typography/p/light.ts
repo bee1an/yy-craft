@@ -1,14 +1,16 @@
 import commonVars from './_common'
-import { commonLight, ExtractThemeVars } from '@yy-ui/theme-chalk'
+import { commonLight, ExtractThemeVars, ThemeConfig } from '@yy-ui/theme-chalk'
 
-export const pLight = {
+const vars = {
+  ...commonVars,
+  textColor1: commonLight.textColor1,
+  textColor2: commonLight.textColor2,
+  textColor3: commonLight.textColor3
+}
+
+export const pLight: ThemeConfig<typeof vars> = {
   name: 'p',
-  vars: () => ({
-    ...commonVars,
-    textColor1: commonLight.textColor1,
-    textColor2: commonLight.textColor2,
-    textColor3: commonLight.textColor3
-  }),
+  vars: () => ({ ...vars }),
   exclude: ['textColor1', 'textColor2', 'textColor3']
 }
 

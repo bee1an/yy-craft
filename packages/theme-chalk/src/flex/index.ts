@@ -1,9 +1,11 @@
 import { ExtractThemeVars, ThemeConfig } from '../common'
 import commonVars from './_common'
 
-export const flexTheme: ThemeConfig<typeof commonVars> = {
+const vars = { ...commonVars }
+
+export const flexTheme: ThemeConfig<typeof vars> = {
   name: 'flex',
-  vars: () => ({ ...commonVars }),
+  vars: () => ({ ...vars }),
   exclude: ['gapLarge', 'gapMedium', 'gapSmall']
 }
 

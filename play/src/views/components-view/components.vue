@@ -2,7 +2,6 @@
 import { h } from 'vue'
 import { components } from '../../router'
 import { RouterLink, useRoute } from 'vue-router'
-import HeaderTitle from '../../components/header-title.vue'
 
 const renderRouterLink = (path: string, text: string) => {
   return () => h(RouterLink, { to: path }, () => text)
@@ -28,8 +27,14 @@ const defaultSelectedKeys = [route.name as string]
     }"
   >
     <yy-layout-header bordered>
-      <HeaderTitle />
-      <!-- <yy-h3 prefix align-text>这里要做点什么...</yy-h3> -->
+      <yy-h2
+        style="margin-left: 2px; user-select: none"
+        class="title"
+        prefix
+        align-text
+        :theme-overrides="{ fontWeight: 600 }"
+        >Yy UI</yy-h2
+      >
     </yy-layout-header>
     <yy-layout
       has-sider
@@ -42,9 +47,6 @@ const defaultSelectedKeys = [route.name as string]
         width="240"
         collapsed-width="0"
       >
-        <!-- <div v-for="cmp in components" :key="cmp.path">
-          <router-link :to="cmp.path">{{ cmp.meta!.sider }}</router-link>
-        </div>  -->
         <yy-menu
           :options="options"
           :defaultSelectedKeys="defaultSelectedKeys"

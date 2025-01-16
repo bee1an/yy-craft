@@ -96,17 +96,22 @@ export const menuStyle = c(null, [
                   fontSize: '20px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
-                },
-                [
-                  cB('icon', {
-                    transition: `width ${cVar('transitionDuration')} ${cVar(
-                      'transitionTimingFunction'
-                    )},height ${cVar('transitionDuration')} ${cVar(
-                      'transitionTimingFunction'
-                    )}`
-                  })
-                ]
+                  justifyContent: 'center',
+                  transition: `font-size ${cVar('transitionDuration')} ${cVar(
+                    'transitionTimingFunction'
+                  )},margin-right ${cVar('transitionDuration')} ${cVar(
+                    'transitionTimingFunction'
+                  )}`
+                }
+                // [
+                //   cB('icon', {
+                //     transition: `width ${cVar('transitionDuration')} ${cVar(
+                //       'transitionTimingFunction'
+                //     )},height ${cVar('transitionDuration')} ${cVar(
+                //       'transitionTimingFunction'
+                //     )}`
+                //   })
+                // ]
               ),
               cE(
                 'content-main',

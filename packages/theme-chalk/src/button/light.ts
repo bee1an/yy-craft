@@ -1,33 +1,34 @@
 import { rgba } from '@yy-ui/utils'
-import { commonLight, ExtractThemeVars } from '@yy-ui/theme-chalk'
+import { commonLight, ExtractThemeVars, ThemeConfig } from '@yy-ui/theme-chalk'
 
-export const buttonLight = {
+const vars = {
+  buttonHeight: commonLight.heightMedium,
+  buttonPadding: '0 15px',
+  buttonBorder: '1px solid transparent',
+  buttonBorderRadius: commonLight.borderRadius,
+  buttonFontSize: commonLight.fontSize,
+  buttonTransitionTime: '0.3s',
+  cubicBezierEaseInOut: commonLight.cubicBezierEaseInOut,
+  buttonColor: commonLight.textColor1,
+  buttonBorderColor: commonLight.borderColor,
+  buttonBackgroundColor: commonLight.transparent,
+  buttonColorHover: commonLight.primaryColorHover,
+  buttonBorderColorHover: commonLight.primaryColorHover,
+  buttonBackgroundColorHover: commonLight.transparent,
+  buttonColorActive: commonLight.primaryColorPressed,
+  buttonBorderColorActive: commonLight.primaryColorPressed,
+  buttonBackgroundColorActive: commonLight.transparent,
+  buttonFontWeightStrong: commonLight.fontWeightStrong,
+  buttonBorderStyle: 'solid',
+  buttonWaveSpreadFrom: '',
+  buttonWaveSpreadTo: '',
+  buttonWaveOpacityFrom: '',
+  buttonWaveOpacityTo: ''
+}
+
+export const buttonLight: ThemeConfig<typeof vars> = {
   name: 'button',
-  vars: () => ({
-    buttonHeight: commonLight.heightMedium,
-    buttonPadding: '0 15px',
-    buttonBorder: '1px solid transparent',
-    buttonBorderRadius: commonLight.borderRadius,
-    buttonFontSize: commonLight.fontSize,
-    buttonTransitionTime: '0.3s',
-    cubicBezierEaseInOut: commonLight.cubicBezierEaseInOut,
-    buttonColor: commonLight.textColor1,
-    buttonBorderColor: commonLight.borderColor,
-    buttonBackgroundColor: commonLight.transparent,
-    buttonColorHover: commonLight.primaryColorHover,
-    buttonBorderColorHover: commonLight.primaryColorHover,
-    buttonBackgroundColorHover: commonLight.transparent,
-    buttonColorActive: commonLight.primaryColorPressed,
-    buttonBorderColorActive: commonLight.primaryColorPressed,
-    buttonBackgroundColorActive: commonLight.transparent,
-    buttonFontWeightStrong: commonLight.fontWeightStrong,
-    buttonBorderStyle: 'solid',
-    buttonWaveSpreadFrom: '',
-    buttonWaveSpreadTo: '',
-    buttonWaveOpacityFrom: '',
-    buttonWaveOpacityTo: '',
-    waveBorderRadius: commonLight.borderRadius
-  })
+  vars: () => ({ ...vars })
 }
 
 export type ButtonThemeVars = ExtractThemeVars<typeof buttonLight>

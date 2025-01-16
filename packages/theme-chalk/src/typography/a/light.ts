@@ -1,9 +1,11 @@
 import commonVars from './_common'
 import { commonLight, ExtractThemeVars, ThemeConfig } from '../../common'
 
-export const aLight: ThemeConfig = {
+const vars = { ...commonVars, textColor: commonLight.primaryColor }
+
+export const aLight: ThemeConfig<typeof vars> = {
   name: 'a',
-  vars: () => ({ ...commonVars, textColor: commonLight.primaryColor })
+  vars: () => ({ ...vars })
 }
 
 export type AThemeVars = ExtractThemeVars<typeof aLight>

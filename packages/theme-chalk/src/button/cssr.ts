@@ -21,7 +21,9 @@ export const buttonStyle = c([
       color: 'var(--y-button-color)',
       borderColor: 'var(--y-button-border-color)',
       backgroundColor: 'var(--y-button-background-color)',
-      borderStyle: 'var(--y-button-border-style)'
+      borderStyle: 'var(--y-button-border-style)',
+      whiteSpace: 'nowrap',
+      userSelect: 'none'
     },
     [
       c('&:hover, &:focus', {

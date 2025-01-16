@@ -6,12 +6,14 @@ import ButtonView from '../components/button-view.vue'
 import CardView from '../components/card-view.vue'
 import CheckboxView from '../components/checkbox-view.vue'
 import DividerView from '../components/divider-view.vue'
+import DropdownView from '../components/dropdown-view.vue'
 import FlexView from '../components/flex-view.vue'
 import GridView from '../components/grid-view.vue'
 import IconView from '../components/icon-view.vue'
 import LayoutView from '../components/layout-view.vue'
 import MenuView from '../components/menu-view.vue'
 import MessageView from '../components/message-view.vue'
+import PopoverView from '../components/popover-view.vue'
 import ScrollbarView from '../components/scrollbar-view.vue'
 import TreeView from '../components/tree-view.vue'
 import TypographyView from '../components/typography-view.vue'
@@ -49,6 +51,14 @@ export const components: RouteRecordRaw[] = [
       sider: '分割线'
     },
     component: DividerView
+  },
+  {
+    path: 'dropdown',
+    name: 'dropdown',
+    meta: {
+      sider: '下拉菜单'
+    },
+    component: DropdownView
   },
   {
     path: 'flex',
@@ -97,6 +107,14 @@ export const components: RouteRecordRaw[] = [
       sider: '消息提示'
     },
     component: MessageView
+  },
+  {
+    path: 'popover',
+    name: 'popover',
+    meta: {
+      sider: '弹出框'
+    },
+    component: PopoverView
   },
   {
     path: 'scrollbar',

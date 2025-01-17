@@ -1,5 +1,12 @@
 import { CreateNamespace } from '@yy-ui/utils'
-import { computed, defineComponent, ExtractPropTypes, ref, Teleport } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ExtractPropTypes,
+  PropType,
+  ref,
+  Teleport
+} from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables'
 import {
   PopoverThemeVars,
@@ -9,8 +16,27 @@ import {
 } from '@yy-ui/theme-chalk'
 import PopoverHijack from './popover-hijack'
 
+export type PopoverPlacement =
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left-start'
+  | 'left-end'
+  | 'right-start'
+  | 'right-end'
+
 export const popoverProps = {
-  ...useThemeProps<PopoverThemeVars>()
+  ...useThemeProps<PopoverThemeVars>(),
+
+  /** 位置 */
+  placement: {
+    type: String as PropType<PopoverPlacement>
+  }
 }
 
 export type PopoverProps = ExtractPropTypes<typeof popoverProps>

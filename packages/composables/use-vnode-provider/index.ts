@@ -2,15 +2,36 @@ import { AppContext, Component, h, reactive, render, VNode } from 'vue'
 
 export type VNodeProviderInstance = ReturnType<typeof useVNodeProvider>
 
+/**
+ * @description
+ * 创建一个vnode供养者
+ * 旨在创建一个vnode的容器，并将该容器提供给子组件使用
+ */
 export const useVNodeProvider = (
+  /** 供养者组件 */
   providerCmp: Component,
+  /** 供养者组件props */
   props: any,
+  /** 组件上下文 */
   context?: AppContext | null
-) => {
+): {
+  /** 供养者vnode */
+  providerVNode: VNode
+  /** 子组件vnode  */
+  get children(): VNode[]
+  /** 供养者dom */
+  el: HTMLElement
+  /** 卸载供养者 */
+  unmount: () => void
+  /** 挂载子组件 */
+  mountChild: (child: () => VNode, index?: number) => void
+  /** 卸载子组件 */
+  unmountChild: (child: () => VNode) => (() => VNode)[]
+} => {
   const borrower = document.createElement('div')
   const childrenFactoy = reactive([]) as (() => VNode)[]
 
-  const providerVNode = h(providerCmp as any, {
+  const providerVNode = h(providerCmp, {
     ...props,
     children: childrenFactoy
   })

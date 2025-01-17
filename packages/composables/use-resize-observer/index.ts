@@ -6,9 +6,13 @@ export type UseResizeObserverOptions = {
 
 export type UseResizeObserverReturn = ReturnType<typeof useResizeObserver>
 
-/** 监听尺寸变化 */
+/**
+ * @description 监听尺寸变化
+ */
 export const useResizeObserver = (
+  /** 监听对象 */
   target: Readonly<ShallowRef<Element | null>>,
+  /** 尺寸变化时回调 */
   onResize: (entry: ResizeObserverEntry[]) => void
 ) => {
   const resizeObserver = new ResizeObserver(onResize)

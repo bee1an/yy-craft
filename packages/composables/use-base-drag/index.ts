@@ -1,10 +1,14 @@
 import { onUnmounted, ShallowRef } from 'vue'
 import { useEventListener } from '../use-event-listener'
 
+/**
+ * @description 基础拖拽
+ */
 export const useBaseDrag = (
+  /** 拖拽对象 */
   target: Readonly<ShallowRef<HTMLElement | null>>,
   cb: {
-    down?: (e: MouseEvent) => void
+    down?: (e: MouseEvent) => any
     move?: (e: {
       /** move 事件对象 */
       event: MouseEvent
@@ -19,7 +23,7 @@ export const useBaseDrag = (
     }) => void
     up?: (e: MouseEvent) => void
   }
-) => {
+): void => {
   let downX = 0,
     downY = 0
   let lastClientX = 0,

@@ -1,9 +1,5 @@
 import { onScopeDispose, ShallowRef, watch } from 'vue'
 
-export type UseResizeObserverOptions = {
-  autoObserve?: boolean
-}
-
 export type UseResizeObserverReturn = ReturnType<typeof useResizeObserver>
 
 /**

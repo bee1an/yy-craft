@@ -1,13 +1,16 @@
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace, px } from '@yy-ui/utils'
 import {
   computed,
   defineComponent,
   ExtractPropTypes,
+  InjectionKey,
   PropType,
+  provide,
   ref,
-  Teleport
+  Teleport,
+  useTemplateRef
 } from 'vue'
-import { useTheme, useThemeProps } from '@yy-ui/composables'
+import { usePlacement, useTheme, useThemeProps } from '@yy-ui/composables'
 import {
   PopoverThemeVars,
   popoverDark,
@@ -35,11 +38,16 @@ export const popoverProps = {
 
   /** 位置 */
   placement: {
-    type: String as PropType<PopoverPlacement>
+    type: String as PropType<PopoverPlacement>,
+    default: 'bottom'
   }
 }
 
 export type PopoverProps = ExtractPropTypes<typeof popoverProps>
+
+export const popoverInjectKey = Symbol('PopoverInjectKey') as InjectionKey<{
+  setTargetRef: (target: HTMLElement | null) => void
+}>
 
 export default defineComponent({
   name: 'Popover',
@@ -57,16 +65,25 @@ export default defineComponent({
       }
     })
 
+    const { styleVars } = useTheme(theme, 'popover', popoverStyle, props)
+
     const visible = ref(false)
 
     const triggerHandler = () => {
-      console.log('trigger')
       visible.value = !visible.value
     }
 
-    const { styleVars } = useTheme(theme, 'popover', popoverStyle, props)
+    const triggerRef = ref<HTMLElement | null>(null)
+    const setTargetRef = (target: HTMLElement | null) => {
+      triggerRef.value = target
+    }
 
-    return { bem, styleVars, visible, triggerHandler }
+    const contentRef = useTemplateRef<HTMLElement | null>('contentRef')
+
+    const { top, left } = usePlacement(triggerRef, contentRef, props)
+
+    provide(popoverInjectKey, { setTargetRef })
+    return { bem, styleVars, visible, triggerHandler, top, left }
   },
   render() {
     const {
@@ -74,15 +91,23 @@ export default defineComponent({
       styleVars,
       visible,
       triggerHandler,
+      top,
+      left,
       $slots: { trigger }
     } = this
+
+    const contentStyle = [styleVars, { top: px(top), left: px(left) }]
 
     return (
       <>
         <PopoverHijack onTrigger={triggerHandler}>{trigger}</PopoverHijack>
         <Teleport to="body">
           {visible ? (
-            <div class={bem.b().value} style={styleVars}></div>
+            <div
+              class={bem.b().value}
+              style={contentStyle}
+              ref="contentRef"
+            ></div>
           ) : (
             <></>
           )}

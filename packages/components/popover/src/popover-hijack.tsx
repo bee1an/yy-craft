@@ -1,4 +1,11 @@
-import { defineComponent, ExtractPropTypes, h } from 'vue'
+import {
+  defineComponent,
+  ExtractPropTypes,
+  h,
+  inject,
+  withDirectives
+} from 'vue'
+import { popoverInjectKey } from './popover'
 
 export const popoverHijackProps = {}
 
@@ -13,8 +20,21 @@ export type PopoverHijackEmits = typeof popoverHijackEmits
 export default defineComponent({
   name: 'PopoverHijack',
   emits: popoverHijackEmits,
+
+  setup() {
+    const { setTargetRef } = inject(popoverInjectKey)!
+
+    const setTargetDirective = {
+      mounted: setTargetRef,
+      updated: setTargetRef
+    }
+
+    return { setTargetDirective }
+  },
+
   render() {
     const {
+      setTargetDirective,
       $emit,
       $slots: { default: defaultSlot }
     } = this
@@ -23,9 +43,14 @@ export default defineComponent({
       if (index) {
         return h(child)
       }
-      return h(child, {
-        onClick: (event: MouseEvent) => $emit('trigger', event)
-      })
+
+      /** 使用指令的方式获取slot的dom, naive ui作者真的是甜菜 */
+      return withDirectives(
+        h(child, {
+          onClick: (event: MouseEvent) => $emit('trigger', event)
+        }),
+        [[setTargetDirective]]
+      )
     })
   }
 })

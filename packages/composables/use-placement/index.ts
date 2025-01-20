@@ -1,4 +1,4 @@
-import { computed, ShallowRef } from 'vue'
+import { computed, Ref, ref, ShallowRef, toValue } from 'vue'
 import { useElementBounding } from '../use-element-bounding'
 import { useWindowSize } from '../use-window-size'
 
@@ -18,18 +18,29 @@ export type DefaultPlacement =
 
 export type PlacementOptions = {
   placement: DefaultPlacement
+
+  /** 吸附元素距离触发器的距离 */
+  distanceFromTrigger?: number
+
+  /**
+   * @descrption 判定触发器是否在可视区域的冗余值
+   * @example 若值为20, 则触发器还有20px在可视区域时, 触发器也会被判定为不在可视区域
+   */
+  visibleAreaThreshold?: number
 }
 
 export const usePlacement = (
   trigger: Readonly<ShallowRef<HTMLElement | null>>,
   content: Readonly<ShallowRef<HTMLElement | null>>,
-  options: PlacementOptions
+  options: PlacementOptions | Ref<PlacementOptions>
 ) => {
   const {
     width: triggerWidth,
     height: triggerHeight,
     top: triggerTop,
-    left: triggerLeft
+    left: triggerLeft,
+    right: triggerRight,
+    bottom: triggerBottom
   } = useElementBounding(trigger)
 
   const { width: windowWidth, height: windowHeight } = useWindowSize()
@@ -38,29 +49,40 @@ export const usePlacement = (
     useElementBounding(content)
 
   const primePlacement = computed(() => {
-    return options.placement.split('-')[0] as
+    return toValue(options).placement.split('-')[0] as
       | 'top'
       | 'bottom'
       | 'left'
       | 'right'
   })
+  const placementDirection = ref(primePlacement.value)
+
+  const distanceFromTrigger = computed(() => {
+    return toValue(options).distanceFromTrigger ?? 10
+  })
+  const visibleAreaThreshold = computed(() => {
+    return toValue(options).visibleAreaThreshold ?? 0
+  })
 
   const secondPlacement = computed(() => {
-    return options.placement.split('-')[1] as 'start' | 'end' | undefined
+    return toValue(options).placement.split('-')[1] as
+      | 'start'
+      | 'end'
+      | undefined
   })
 
   function getPosition(placement: 'top' | 'bottom' | 'left' | 'right') {
     if (placement === 'top') {
-      return triggerTop.value - contentHeight.value - 10
+      return triggerTop.value - contentHeight.value - distanceFromTrigger.value
     }
     if (placement === 'bottom') {
-      return triggerTop.value + triggerHeight.value + 10
+      return triggerTop.value + triggerHeight.value + distanceFromTrigger.value
     }
     if (placement === 'left') {
-      return triggerLeft.value - contentWidth.value - 10
+      return triggerLeft.value - contentWidth.value - distanceFromTrigger.value
     }
     if (placement === 'right') {
-      return triggerLeft.value + triggerWidth.value + 10
+      return triggerLeft.value + triggerWidth.value + distanceFromTrigger.value
     }
 
     return null as never
@@ -83,12 +105,10 @@ export const usePlacement = (
   }
 
   const unregulatedTop = computed(() => {
-    if (primePlacement.value === 'top') {
-      return getPosition('top')
+    if (primePlacement.value === 'top' || primePlacement.value === 'bottom') {
+      return getPosition(primePlacement.value)
     }
-    if (primePlacement.value === 'bottom') {
-      return getPosition('bottom')
-    }
+
     return getSecondPosition(
       secondPlacement.value,
       triggerTop.value,
@@ -122,26 +142,36 @@ export const usePlacement = (
     if (['top', 'bottom'].includes(primePlacement.value)) {
       const { overStart, overEnd } = overViewport('vertical')
       if (overStart && !overEnd) {
+        placementDirection.value = 'bottom'
         return getPosition('bottom')
       }
 
       if (overEnd && !overStart) {
+        placementDirection.value = 'top'
         return getPosition('top')
       }
+
+      placementDirection.value = primePlacement.value
     } else {
       const { overStart, overEnd } = overViewport(
         'vertical',
         unregulatedTop.value
       )
       if (overStart && !overEnd) {
-        return triggerTop.value + triggerHeight.value > 0
+        const triggerVisible =
+          triggerTop.value + triggerHeight.value > visibleAreaThreshold.value
+
+        return triggerVisible
           ? 0
-          : triggerTop.value + triggerHeight.value
+          : triggerTop.value + triggerHeight.value - visibleAreaThreshold.value
       }
       if (overEnd && !overStart) {
-        return triggerTop.value < windowHeight.value
+        const triggerVisible =
+          triggerTop.value + visibleAreaThreshold.value < windowHeight.value
+
+        return triggerVisible
           ? windowHeight.value - contentHeight.value
-          : triggerTop.value - contentHeight.value
+          : triggerTop.value + visibleAreaThreshold.value - contentHeight.value
       }
     }
 
@@ -149,12 +179,10 @@ export const usePlacement = (
   })
 
   const unregulatedLeft = computed(() => {
-    if (primePlacement.value === 'left') {
-      return getPosition('left')
+    if (primePlacement.value === 'left' || primePlacement.value === 'right') {
+      return getPosition(primePlacement.value)
     }
-    if (primePlacement.value === 'right') {
-      return getPosition('right')
-    }
+
     return getSecondPosition(
       secondPlacement.value,
       triggerLeft.value,
@@ -166,31 +194,54 @@ export const usePlacement = (
     if (['left', 'right'].includes(primePlacement.value)) {
       const { overStart, overEnd } = overViewport('horizontal')
       if (overStart && !overEnd) {
+        placementDirection.value = 'right'
         return getPosition('right')
       }
 
       if (overEnd && !overStart) {
+        placementDirection.value = 'left'
         return getPosition('left')
       }
+
+      placementDirection.value = primePlacement.value
     } else {
       const { overStart, overEnd } = overViewport(
         'horizontal',
         unregulatedLeft.value
       )
       if (overStart && !overEnd) {
-        return triggerLeft.value + triggerWidth.value > 0
+        const triggerVisible =
+          triggerLeft.value + triggerWidth.value > visibleAreaThreshold.value
+
+        return triggerVisible
           ? 0
-          : triggerLeft.value + triggerWidth.value
+          : triggerLeft.value + triggerWidth.value - visibleAreaThreshold.value
       }
       if (overEnd && !overStart) {
-        return triggerLeft.value < windowWidth.value
+        const triggerVisible =
+          triggerLeft.value + visibleAreaThreshold.value < windowWidth.value
+        return triggerVisible
           ? windowWidth.value - contentWidth.value
-          : triggerLeft.value - contentWidth.value
+          : triggerLeft.value + visibleAreaThreshold.value - contentWidth.value
       }
     }
 
     return unregulatedLeft.value
   })
 
-  return { top: resolveTop, left: resolveLeft }
+  return {
+    top: resolveTop,
+    left: resolveLeft,
+    placementDirection,
+    triggerWidth,
+    triggerHeight,
+    triggerTop,
+    triggerLeft,
+    triggerRight,
+    triggerBottom,
+    windowWidth,
+    windowHeight,
+    contentWidth,
+    contentHeight
+  }
 }

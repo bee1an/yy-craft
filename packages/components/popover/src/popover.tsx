@@ -1,4 +1,4 @@
-import { CreateNamespace, px } from '@yy-ui/utils'
+import { CreateNamespace, getIntersection, px } from '@yy-ui/utils'
 import {
   computed,
   defineComponent,
@@ -80,10 +80,54 @@ export default defineComponent({
 
     const contentRef = useTemplateRef<HTMLElement | null>('contentRef')
 
-    const { top, left } = usePlacement(triggerRef, contentRef, props)
+    const {
+      top,
+      left,
+      placementDirection,
+      triggerTop,
+      triggerLeft,
+      triggerRight,
+      triggerBottom,
+      contentWidth,
+      contentHeight
+    } = usePlacement(
+      triggerRef,
+      contentRef,
+      computed(() => ({
+        placement: props.placement,
+        visibleAreaThreshold: 10
+      }))
+    )
+
+    const arrowPosition = computed(() => {
+      if (['top', 'bottom'].includes(placementDirection.value)) {
+        const [min, max] = getIntersection(
+          [triggerLeft.value, triggerRight.value],
+          [left.value, left.value + contentWidth.value]
+        )!
+
+        return { left: (min + max) / 2 - left.value + 'px' }
+      }
+
+      const [min, max] = getIntersection(
+        [triggerTop.value, triggerBottom.value],
+        [top.value, top.value + contentHeight.value]
+      )!
+
+      return { top: (min + max) / 2 - top.value + 'px' }
+    })
 
     provide(popoverInjectKey, { setTargetRef })
-    return { bem, styleVars, visible, triggerHandler, top, left }
+    return {
+      bem,
+      styleVars,
+      visible,
+      triggerHandler,
+      top,
+      left,
+      placementDirection,
+      arrowPosition
+    }
   },
   render() {
     const {
@@ -93,7 +137,9 @@ export default defineComponent({
       triggerHandler,
       top,
       left,
-      $slots: { trigger }
+      placementDirection,
+      arrowPosition,
+      $slots: { trigger, default: defaultSlot }
     } = this
 
     const contentStyle = [styleVars, { top: px(top), left: px(left) }]
@@ -104,10 +150,16 @@ export default defineComponent({
         <Teleport to="body">
           {visible ? (
             <div
-              class={bem.b().value}
+              class={[
+                bem.b().value,
+                bem.m('placement-' + placementDirection).value
+              ]}
               style={contentStyle}
               ref="contentRef"
-            ></div>
+            >
+              <div class={bem.b('arrow').value} style={[arrowPosition]}></div>
+              <div class={bem.b('content').value}>{defaultSlot?.()}</div>
+            </div>
           ) : (
             <></>
           )}

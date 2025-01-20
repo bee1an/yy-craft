@@ -1,5 +1,8 @@
 import { onScopeDispose, ShallowRef, watch } from 'vue'
 
+// TODO
+export type UseResizeObserverOptions = ResizeObserverOptions
+
 export type UseResizeObserverReturn = ReturnType<typeof useResizeObserver>
 
 /**
@@ -9,7 +12,9 @@ export const useResizeObserver = (
   /** 监听对象 */
   target: Readonly<ShallowRef<Element | null>>,
   /** 尺寸变化时回调 */
-  onResize: (entry: ResizeObserverEntry[]) => void
+  onResize: (entry: ResizeObserverEntry[]) => void,
+  /**  */
+  options: UseResizeObserverOptions = {}
 ) => {
   const resizeObserver = new ResizeObserver(onResize)
 
@@ -20,7 +25,7 @@ export const useResizeObserver = (
   }
 
   const observe = () => {
-    resizeObserver.observe(target.value!)
+    resizeObserver.observe(target.value!, options)
     return () => resizeObserver.disconnect()
   }
 

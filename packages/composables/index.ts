@@ -1,5 +1,6 @@
 export * from './use-base-drag'
 export * from './use-element-bounding'
+export * from './use-element-size'
 export * from './use-event-listener'
 export * from './use-mutation-observer'
 export * from './use-placement'

@@ -1,4 +1,4 @@
-import type { App, Component, DefineComponent } from 'vue'
+import type { App, Component, DefineComponent, Directive } from 'vue'
 
 export function withInstall<T extends Component | DefineComponent>(
   component: T
@@ -17,6 +17,27 @@ export function withInstall<T extends Component | DefineComponent>(
         app.component(componentPrefix + name, component)
         alias?.forEach(aliasName => {
           app.component(componentPrefix + aliasName, component)
+        })
+      }
+    }
+  }
+
+  installFunciton.useInstall = true
+
+  return installFunciton
+}
+
+export function directiveWithInstall<T extends Directive>(
+  directive: T,
+  name: string,
+  alias?: string[]
+) {
+  function installFunciton() {
+    return {
+      install(app: App) {
+        app.directive(name, directive)
+        alias?.forEach(aliasName => {
+          app.directive(aliasName, directive)
         })
       }
     }

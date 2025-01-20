@@ -1,6 +1,7 @@
 import { computed, Ref, ref, ShallowRef, toValue } from 'vue'
 import { useElementBounding } from '../use-element-bounding'
 import { useWindowSize } from '../use-window-size'
+import { useElementSize } from '../use-element-size'
 
 export type DefaultPlacement =
   | 'top'
@@ -45,8 +46,7 @@ export const usePlacement = (
 
   const { width: windowWidth, height: windowHeight } = useWindowSize()
 
-  const { width: contentWidth, height: contentHeight } =
-    useElementBounding(content)
+  const { width: contentWidth, height: contentHeight } = useElementSize(content)
 
   const primePlacement = computed(() => {
     return toValue(options).placement.split('-')[0] as
@@ -229,6 +229,15 @@ export const usePlacement = (
     return unregulatedLeft.value
   })
 
+  const getOppositeDirection = (
+    direction: 'top' | 'bottom' | 'left' | 'right'
+  ) => {
+    if (direction === 'top') return 'bottom'
+    if (direction === 'bottom') return 'top'
+    if (direction === 'left') return 'right'
+    if (direction === 'right') return 'left'
+  }
+
   return {
     top: resolveTop,
     left: resolveLeft,
@@ -242,6 +251,7 @@ export const usePlacement = (
     windowWidth,
     windowHeight,
     contentWidth,
-    contentHeight
+    contentHeight,
+    getOppositeDirection
   }
 }

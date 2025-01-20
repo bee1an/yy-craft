@@ -1,39 +1,43 @@
-import { cB, cM } from '@yy-ui/utils'
+import { c, cB, cM, cVar } from '@yy-ui/utils'
 
 export const popoverStyle = cB(
   'popover',
   {
     position: 'fixed',
     zIndex: 2000,
-    boxShadow: '0 2px 12px 0 rgba(0, 0, 0, .2)',
-    borderRadius: '4px'
+    boxShadow: cVar('boxShadow'),
+    borderRadius: cVar('borderRadius'),
+    fontSize: cVar('fontSize'),
+    color: cVar('textColor'),
+    transition: `
+		box-shadow ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')},
+		background-color ${cVar('transitionDuration')} ${cVar(
+      'transitionTimingFunction'
+    )},
+		color ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')}`
   },
   [
     cM('placement-top', [
       cB('popover-arrow', {
         bottom: '-5px',
-        left: '50%',
         transform: 'translateX(-50%) rotate(45deg)'
       })
     ]),
     cM('placement-bottom', [
       cB('popover-arrow', {
         top: '-5px',
-        left: '50%',
         transform: 'translateX(-50%) rotate(45deg)'
       })
     ]),
     cM('placement-left', [
       cB('popover-arrow', {
         right: '-5px',
-        top: '50%',
         transform: 'translateY(-50%) rotate(45deg)'
       })
     ]),
     cM('placement-right', [
       cB('popover-arrow', {
         left: '-5px',
-        top: '50%',
         transform: 'translateY(-50%) rotate(45deg)'
       })
     ]),
@@ -42,18 +46,44 @@ export const popoverStyle = cB(
       position: 'absolute',
       width: '10px',
       height: '10px',
-      backgroundColor: '#fff',
-      boxShadow: '0 2px 12px 0 rgba(0, 0, 0, .2)'
+      backgroundColor: cVar('backgroundColor'),
+      boxShadow: cVar('boxShadow')
     }),
 
     cB('popover-content', {
       position: 'relative',
-      left: 0,
-      top: 0,
-      padding: '10px',
-      backgroundColor: '#fff',
-      borderRadius: '4px',
-      fontSize: '14px'
+      padding: cVar('padding'),
+      backgroundColor: cVar('backgroundColor'),
+      borderRadius: cVar('borderRadius')
+    }),
+
+    c('&.popover-transition-enter-from, &.popover-transition-leave-to', {
+      opacity: 0,
+      transform: 'scale(.85)'
+    }),
+    c('&.popover-transition-enter-to, &.popover-transition-leave-from', {
+      transform: ' scale(1)',
+      opacity: 1
+    }),
+    c('&.popover-transition-enter-active', {
+      transition: `
+				box-shadow ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')},
+				background-color ${cVar('transitionDuration')} ${cVar(
+        'transitionTimingFunction'
+      )},
+				color ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')},
+				opacity ${cVar('transitionDuration1')} ${cVar('transitionTimingFunction1')},
+				transform ${cVar('transitionDuration1')} ${cVar('transitionTimingFunction1')}`
+    }),
+    c('&.popover-transition-leave-active', {
+      transition: `
+				box-shadow ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')},
+				background-color ${cVar('transitionDuration')} ${cVar(
+        'transitionTimingFunction'
+      )},
+				color ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')},
+				opacity ${cVar('transitionDuration1')} ${cVar('transitionTimingFunction2')},
+				transform ${cVar('transitionDuration1')} ${cVar('transitionTimingFunction2')}`
     })
   ]
 )

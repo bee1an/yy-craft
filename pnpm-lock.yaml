@@ -17,6 +17,9 @@ importers:
       '@yy-ui/constants':
         specifier: workspace:*
         version: link:packages/constants
+      '@yy-ui/directives':
+        specifier: workspace:*
+        version: link:packages/directives
       '@yy-ui/theme-chalk':
         specifier: workspace:*
         version: link:packages/theme-chalk
@@ -79,9 +82,9 @@ importers:
 
   packages/constants: {}
 
-  packages/theme-chalk: {}
+  packages/directives: {}
 
-  packages/theme-chalk-deprecated: {}
+  packages/theme-chalk: {}
 
   packages/utils: {}
 

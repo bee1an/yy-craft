@@ -3,12 +3,16 @@ import {
   computed,
   defineComponent,
   ExtractPropTypes,
+  h,
   InjectionKey,
   PropType,
   provide,
   ref,
   Teleport,
-  useTemplateRef
+  Transition,
+  useTemplateRef,
+  watch,
+  withDirectives
 } from 'vue'
 import { usePlacement, useTheme, useThemeProps } from '@yy-ui/composables'
 import {
@@ -17,7 +21,8 @@ import {
   popoverLight,
   popoverStyle
 } from '@yy-ui/theme-chalk'
-import PopoverHijack from './popover-hijack'
+import PopoverHijack, { popoverHijackProps } from './popover-hijack'
+import { clickOutside } from '@yy-ui/directives'
 
 export type PopoverPlacement =
   | 'top'
@@ -36,10 +41,17 @@ export type PopoverPlacement =
 export const popoverProps = {
   ...useThemeProps<PopoverThemeVars>(),
 
+  ...popoverHijackProps,
+
   /** 位置 */
   placement: {
     type: String as PropType<PopoverPlacement>,
     default: 'bottom'
+  },
+
+  /** 手动控制显隐 */
+  showPopover: {
+    type: Boolean
   }
 }
 
@@ -67,10 +79,27 @@ export default defineComponent({
 
     const { styleVars } = useTheme(theme, 'popover', popoverStyle, props)
 
-    const visible = ref(false)
+    watch(
+      () => props.showPopover,
+      () => {
+        visible.value = !!props.showPopover
+      }
+    )
+    const visible = ref(!!props.showPopover)
+    const entireVisible = ref(false)
+    const afterEnterHandler = () => {
+      entireVisible.value = true
+    }
+    const afterLeaveHandler = () => {
+      entireVisible.value = false
+    }
 
-    const triggerHandler = () => {
-      visible.value = !visible.value
+    const show = () => {
+      if (entireVisible.value) return
+      visible.value = true
+    }
+    const hide = () => {
+      visible.value = false
     }
 
     const triggerRef = ref<HTMLElement | null>(null)
@@ -89,7 +118,8 @@ export default defineComponent({
       triggerRight,
       triggerBottom,
       contentWidth,
-      contentHeight
+      contentHeight,
+      getOppositeDirection
     } = usePlacement(
       triggerRef,
       contentRef,
@@ -97,6 +127,10 @@ export default defineComponent({
         placement: props.placement,
         visibleAreaThreshold: 10
       }))
+    )
+
+    const oppositeDirection = computed(() =>
+      getOppositeDirection(placementDirection.value)
     )
 
     const arrowPosition = computed(() => {
@@ -122,10 +156,14 @@ export default defineComponent({
       bem,
       styleVars,
       visible,
-      triggerHandler,
+      afterEnterHandler,
+      afterLeaveHandler,
+      show,
+      hide,
       top,
       left,
       placementDirection,
+      oppositeDirection,
       arrowPosition
     }
   },
@@ -134,35 +172,63 @@ export default defineComponent({
       bem,
       styleVars,
       visible,
-      triggerHandler,
+      afterEnterHandler,
+      afterLeaveHandler,
+      show,
+      hide,
       top,
       left,
       placementDirection,
+      oppositeDirection,
       arrowPosition,
-      $slots: { trigger, default: defaultSlot }
+      $props: { trigger },
+      $slots: { trigger: triggerSlot, default: defaultSlot }
     } = this
 
-    const contentStyle = [styleVars, { top: px(top), left: px(left) }]
+    const contentStyle = [
+      styleVars,
+      {
+        top: px(top),
+        left: px(left),
+        transformOrigin: `${arrowPosition.left ?? oppositeDirection} ${
+          arrowPosition.top ?? oppositeDirection
+        }`
+      }
+    ]
 
     return (
       <>
-        <PopoverHijack onTrigger={triggerHandler}>{trigger}</PopoverHijack>
+        <PopoverHijack trigger={trigger} onShow={show} onHide={hide}>
+          {triggerSlot}
+        </PopoverHijack>
         <Teleport to="body">
-          {visible ? (
-            <div
-              class={[
-                bem.b().value,
-                bem.m('placement-' + placementDirection).value
-              ]}
-              style={contentStyle}
-              ref="contentRef"
-            >
-              <div class={bem.b('arrow').value} style={[arrowPosition]}></div>
-              <div class={bem.b('content').value}>{defaultSlot?.()}</div>
-            </div>
-          ) : (
-            <></>
-          )}
+          <Transition
+            name="popover-transition"
+            onAfterEnter={afterEnterHandler}
+            onAfterLeave={afterLeaveHandler}
+            appear
+          >
+            {visible &&
+              withDirectives(
+                h(
+                  <div
+                    class={[
+                      bem.b().value,
+                      bem.m('placement-' + placementDirection).value
+                    ]}
+                    style={contentStyle}
+                    ref="contentRef"
+                  >
+                    <div
+                      class={bem.b('arrow').value}
+                      style={[arrowPosition]}
+                    ></div>
+                    <div class={bem.b('content').value}>{defaultSlot?.()}</div>
+                  </div>
+                ),
+                [trigger === 'click' ? [clickOutside, hide] : [undefined]]
+              )}
+          </Transition>
         </Teleport>
       </>
     )

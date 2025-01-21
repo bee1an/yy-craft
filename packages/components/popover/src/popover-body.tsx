@@ -53,7 +53,7 @@ export default defineComponent({
   name: 'PopoverBody',
   props: popoverBodyProps,
   emits: popoverBodyEmits,
-  inheritAttrs: false,
+  // inheritAttrs: false,
   setup(props) {
     const { bem, styleVars, triggerRef } = inject(popoverInjectKey)!
 

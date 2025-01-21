@@ -101,6 +101,10 @@ const { message } = useMessage()
           </yy-card>
 
           <yy-card title="层级">
+            <yy-p
+              >popover有独立的层级计算, 你可以通过<yy-text code>z-index</yy-text
+              >修改它</yy-p
+            >
             <yy-popover :z-index="1">
               <template #trigger>
                 <yy-button>点击</yy-button>
@@ -113,6 +117,11 @@ const { message } = useMessage()
       <yy-gi>
         <yy-flex vertical>
           <yy-card title="触发方式">
+            <yy-p
+              ><yy-text code
+                >trigger=click | hover | focus | manual</yy-text
+              ></yy-p
+            >
             <yy-flex>
               <yy-popover :placement="plament">
                 <template #trigger>
@@ -165,13 +174,18 @@ const { message } = useMessage()
           </yy-card>
 
           <yy-card title="触发位置">
+            <yy-p>通过<yy-text code>placement</yy-text>修改</yy-p>
             <div style="width: 50%">
               <yy-grid cols="3" :gap="10">
-                <yy-gi v-for="item in allPlacement" :key="item">
+                <yy-gi
+                  v-for="item in allPlacement"
+                  :key="item"
+                  :style="{ display: 'flex', justifyContent: 'center' }"
+                >
                   <template v-if="item">
                     <yy-popover :placement="item" trigger="hover">
                       <template #trigger>
-                        <yy-button>聚焦</yy-button>
+                        <yy-button>{{ item }}</yy-button>
                       </template>
                       <div>{{ item }}</div>
                     </yy-popover>

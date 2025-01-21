@@ -233,14 +233,27 @@ export default defineComponent({
       triggerMouseleave,
       triggerClick,
       contentClickOutside,
-      $props,
+      $attrs,
+      $props: {
+        to,
+        trigger,
+        placement,
+        width,
+        showArrow,
+        row,
+        contentClass,
+        contentStyle,
+        arrowClass,
+        arrowStyle,
+        zIndex
+      },
       $slots: { trigger: triggerSlot, default: defaultSlot }
     } = this
 
     return (
       <>
         <PopoverHijack
-          trigger={$props.trigger}
+          trigger={trigger}
           onClick={triggerClick}
           onShow={show}
           onHide={hide}
@@ -249,7 +262,7 @@ export default defineComponent({
         >
           {triggerSlot}
         </PopoverHijack>
-        <Teleport to={'body'} disabled={!$props.to}>
+        <Teleport to={'body'} disabled={!to}>
           <Transition
             name="popover-transition"
             onAfterEnter={afterEnterHandler}
@@ -261,7 +274,15 @@ export default defineComponent({
                 h(
                   PopoverBody,
                   {
-                    ...$props,
+                    ...$attrs,
+                    placement,
+                    width,
+                    showArrow,
+                    row,
+                    contentClass,
+                    contentStyle,
+                    arrowClass,
+                    arrowStyle,
                     onMouseenter: contentMouseenter,
                     onMouseleave: contentMouseleave
                   },
@@ -269,9 +290,7 @@ export default defineComponent({
                 ),
                 [
                   [clickOutside, contentClickOutside],
-                  typeof $props.zIndex === 'undefined'
-                    ? [zindexable]
-                    : [undefined]
+                  typeof zIndex === 'undefined' ? [zindexable] : [undefined]
                 ]
               )}
           </Transition>

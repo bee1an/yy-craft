@@ -88,31 +88,19 @@ export const menuStyle = c(null, [
               overflow: 'hidden'
             },
             [
-              cE(
-                'content-icon',
-                {
-                  gridArea: 'icon',
-                  marginRight: '8px',
-                  fontSize: '20px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: `font-size ${cVar('transitionDuration')} ${cVar(
-                    'transitionTimingFunction'
-                  )},margin-right ${cVar('transitionDuration')} ${cVar(
-                    'transitionTimingFunction'
-                  )}`
-                }
-                // [
-                //   cB('icon', {
-                //     transition: `width ${cVar('transitionDuration')} ${cVar(
-                //       'transitionTimingFunction'
-                //     )},height ${cVar('transitionDuration')} ${cVar(
-                //       'transitionTimingFunction'
-                //     )}`
-                //   })
-                // ]
-              ),
+              cE('content-icon', {
+                gridArea: 'icon',
+                marginRight: '8px',
+                fontSize: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: `font-size ${cVar('transitionDuration')} ${cVar(
+                  'transitionTimingFunction'
+                )},margin-right ${cVar('transitionDuration')} ${cVar(
+                  'transitionTimingFunction'
+                )}`
+              }),
               cE(
                 'content-main',
                 {

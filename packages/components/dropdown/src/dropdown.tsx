@@ -1,6 +1,7 @@
 import { CreateNamespace } from '@yy-ui/utils'
 import {
   computed,
+  ComputedRef,
   defineComponent,
   ExtractPropTypes,
   PropType,
@@ -13,6 +14,10 @@ import {
   dropdownLight,
   dropdownStyle
 } from '@yy-ui/theme-chalk'
+import YPopover from '../../popover/src/popover'
+import YIcon from '../../icon/src/icon.vue'
+import { JSX } from 'vue/jsx-runtime'
+import { YBaseCollapsed2 } from '../../_internal'
 
 export type DropdownOption = {
   /** 显示内容: 可以传入render函数 */
@@ -34,11 +39,8 @@ export type DropdownItem = {
   selected: boolean
   key: string | number | symbol
   type: 'item' | 'group'
-  level: number
-  raw: DropdownOption
-  parent: DropdownItem | null
-  isLeaf: boolean
-  expanded?: boolean
+  /** 子集 */
+  children?: DropdownItem[]
 }
 
 export const dropdownProps = {
@@ -67,11 +69,104 @@ export default defineComponent({
 
     const { styleVars } = useTheme(theme, 'dropdown', dropdownStyle, props)
 
-    return { bem, styleVars }
+    const createItems = (option: DropdownOption): DropdownItem => {
+      const { label, icon, key, type = 'item', children } = option
+      let childrenRef = children
+      if (children) {
+        childrenRef = children.map(createItems)
+      }
+
+      return {
+        label,
+        icon,
+        active: false,
+        selected: false,
+        key,
+        type,
+        children: childrenRef as DropdownItem[]
+      }
+    }
+
+    const dropdownItems = computed(() => {
+      return props.options.map(createItems)
+    }) as ComputedRef<DropdownItem[]>
+
+    return { bem, styleVars, dropdownItems }
   },
   render() {
-    const { bem, styleVars } = this
+    const {
+      bem,
+      styleVars,
+      dropdownItems,
+      $slots: { default: defaultSlot }
+    } = this
 
-    return <div style={styleVars} class={bem.b().value}></div>
+    const renderItem = (item: DropdownItem) => {
+      return (
+        <div
+          class={[
+            bem.b('item').value,
+            bem.b('item').m(item.type === 'group' && 'group-title').value,
+            bem.b('item').m(item.selected && 'selected').value,
+            bem.b('item').m(item.active && 'active').value
+          ]}
+        >
+          {item.icon && (
+            <div class={bem.b('item').e('content-icon').value}>
+              <YIcon>{item.icon()}</YIcon>
+            </div>
+          )}
+
+          <div class={bem.b('item').e('content-main').value}>
+            {typeof item.label === 'string' ? item.label : item.label()}
+          </div>
+
+          {item.type === 'item' && item.children && (
+            <div class={[bem.b('item').e('content-expand').value]}>
+              <YIcon>
+                <YBaseCollapsed2 />
+              </YIcon>
+            </div>
+          )}
+        </div>
+      )
+    }
+
+    const createChild = (item: DropdownItem): JSX.Element | JSX.Element[] => {
+      if (!item.children) {
+        return renderItem(item)
+      }
+
+      if (item.type === 'group') {
+        return [
+          renderItem(item),
+          ...(item.children.map(createChild) as JSX.Element[])
+        ]
+      }
+
+      return (
+        <YPopover
+          trigger="hover"
+          placement="right-start"
+          to={false}
+          show-arrow={false}
+          row
+        >
+          {{
+            trigger: () => renderItem(item),
+            default: () => item.children!.map(createChild)
+          }}
+        </YPopover>
+      )
+    }
+
+    return (
+      <YPopover style={styleVars} class={bem.b().value} row>
+        {{
+          trigger: defaultSlot,
+          default: () => dropdownItems.map(createChild)
+        }}
+      </YPopover>
+    )
   }
 })

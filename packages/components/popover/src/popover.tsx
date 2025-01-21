@@ -1,20 +1,22 @@
-import { CreateNamespace, getIntersection, px } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils'
 import {
   computed,
+  ComputedRef,
   defineComponent,
   ExtractPropTypes,
   h,
   InjectionKey,
   PropType,
   provide,
+  Ref,
   ref,
+  RendererElement,
   Teleport,
   Transition,
-  useTemplateRef,
   watch,
   withDirectives
 } from 'vue'
-import { usePlacement, useTheme, useThemeProps } from '@yy-ui/composables'
+import { useTheme, useThemeProps } from '@yy-ui/composables'
 import {
   PopoverThemeVars,
   popoverDark,
@@ -22,7 +24,8 @@ import {
   popoverStyle
 } from '@yy-ui/theme-chalk'
 import PopoverHijack, { popoverHijackProps } from './popover-hijack'
-import { clickOutside } from '@yy-ui/directives'
+import PopoverBody, { popoverBodyProps } from './popover-body'
+import { clickOutside, zindexable } from '@yy-ui/directives'
 
 export type PopoverPlacement =
   | 'top'
@@ -43,28 +46,58 @@ export const popoverProps = {
 
   ...popoverHijackProps,
 
-  /** 位置 */
-  placement: {
-    type: String as PropType<PopoverPlacement>,
-    default: 'bottom'
-  },
+  ...popoverBodyProps,
 
   /** 手动控制显隐 */
-  showPopover: {
-    type: Boolean
+  showPopover: Boolean,
+
+  /** hover content 时不hide, 仅在trigger=hover时生效 */
+  keepAliveOnHover: { type: Boolean, default: true },
+
+  /** 延时触发, 仅在trigger=hover时生效 */
+  delay: { type: Number, default: 100 },
+
+  /** 延时隐藏, 仅在trigger=hover时生效 */
+  duration: { type: Number, default: 200 },
+
+  /** popover挂载位置 */
+  to: {
+    type: [String, Object, Boolean] as PropType<
+      string | RendererElement | boolean
+    >,
+    default: 'body'
   }
 }
 
 export type PopoverProps = ExtractPropTypes<typeof popoverProps>
 
+export const popoverEmits = {
+  /** 显示 */
+  show: () => true,
+  /** 显示动画结束 */
+  showed: () => true,
+  /** 隐藏 */
+  hide: () => true,
+  /** 隐藏动画结束 */
+  hid: () => true,
+  /** 点击内容区域外 */
+  clickoutside: () => true
+}
+
+export type PopoverEmits = typeof popoverEmits
+
 export const popoverInjectKey = Symbol('PopoverInjectKey') as InjectionKey<{
   setTargetRef: (target: HTMLElement | null) => void
+  bem: CreateNamespace
+  styleVars: ComputedRef<Record<string, string>>
+  triggerRef: Ref<HTMLElement | null>
 }>
 
 export default defineComponent({
   name: 'Popover',
   props: popoverProps,
-  setup(props) {
+  emits: popoverEmits,
+  setup(props, { emit }) {
     const bem = new CreateNamespace('popover')
 
     const lightVars = popoverLight.vars()
@@ -88,18 +121,25 @@ export default defineComponent({
     const visible = ref(!!props.showPopover)
     const entireVisible = ref(false)
     const afterEnterHandler = () => {
+      if (entireVisible.value) return
       entireVisible.value = true
+      emit('showed')
     }
     const afterLeaveHandler = () => {
+      if (!entireVisible.value) return
       entireVisible.value = false
+      emit('hid')
     }
 
     const show = () => {
-      if (entireVisible.value) return
+      if (visible.value) return
       visible.value = true
+      emit('show')
     }
     const hide = () => {
+      if (!visible.value) return
       visible.value = false
+      emit('hide')
     }
 
     const triggerRef = ref<HTMLElement | null>(null)
@@ -107,101 +147,109 @@ export default defineComponent({
       triggerRef.value = target
     }
 
-    const contentRef = useTemplateRef<HTMLElement | null>('contentRef')
+    const contentMouseenter = () => {
+      if (
+        props.trigger === 'hover' &&
+        props.keepAliveOnHover &&
+        visible.value // visible.value这个判断防止,在关闭动画时,hover到content,然后再次打开
+      ) {
+        triggerMouseenter()
+      }
+    }
+    const contentMouseleave = () => {
+      if (props.trigger === 'hover' && props.keepAliveOnHover) {
+        triggerMouseleave()
+      }
+    }
 
-    const {
-      top,
-      left,
-      placementDirection,
-      triggerTop,
-      triggerLeft,
-      triggerRight,
-      triggerBottom,
-      contentWidth,
-      contentHeight,
-      getOppositeDirection
-    } = usePlacement(
-      triggerRef,
-      contentRef,
-      computed(() => ({
-        placement: props.placement,
-        visibleAreaThreshold: 10
-      }))
-    )
+    let showTimerId: number | null = null
+    const clearShowTimer = () => {
+      showTimerId && clearTimeout(showTimerId)
+    }
+    const triggerMouseenter = () => {
+      if (props.trigger !== 'hover') return
 
-    const oppositeDirection = computed(() =>
-      getOppositeDirection(placementDirection.value)
-    )
+      clearHideTimer()
 
-    const arrowPosition = computed(() => {
-      if (['top', 'bottom'].includes(placementDirection.value)) {
-        const [min, max] = getIntersection(
-          [triggerLeft.value, triggerRight.value],
-          [left.value, left.value + contentWidth.value]
-        )!
-
-        return { left: (min + max) / 2 - left.value + 'px' }
+      if (props.delay === 0) {
+        show()
+        return
       }
 
-      const [min, max] = getIntersection(
-        [triggerTop.value, triggerBottom.value],
-        [top.value, top.value + contentHeight.value]
-      )!
+      showTimerId = window.setTimeout(show, props.delay)
+    }
+    let hideTimerId: number | null = null
+    const clearHideTimer = () => {
+      hideTimerId && clearTimeout(hideTimerId)
+    }
+    const triggerMouseleave = () => {
+      if (props.trigger !== 'hover') return
 
-      return { top: (min + max) / 2 - top.value + 'px' }
-    })
+      clearShowTimer()
 
-    provide(popoverInjectKey, { setTargetRef })
+      if (props.duration === 0) {
+        hide()
+        return
+      }
+
+      hideTimerId = window.setTimeout(hide, props.duration)
+    }
+
+    const triggerClick = () => {
+      if (props.trigger !== 'click' || entireVisible.value) return // hide动画未结束不能通过点击重新打开
+
+      show()
+    }
+    const contentClickOutside = () => {
+      props.trigger === 'click' && hide()
+      emit('clickoutside')
+    }
+
+    provide(popoverInjectKey, { setTargetRef, bem, styleVars, triggerRef })
     return {
-      bem,
-      styleVars,
       visible,
       afterEnterHandler,
       afterLeaveHandler,
       show,
       hide,
-      top,
-      left,
-      placementDirection,
-      oppositeDirection,
-      arrowPosition
+      contentMouseenter,
+      contentMouseleave,
+      triggerMouseenter,
+      triggerMouseleave,
+      triggerClick,
+      contentClickOutside
     }
   },
   render() {
     const {
-      bem,
-      styleVars,
       visible,
       afterEnterHandler,
       afterLeaveHandler,
       show,
       hide,
-      top,
-      left,
-      placementDirection,
-      oppositeDirection,
-      arrowPosition,
-      $props: { trigger },
+      contentMouseenter,
+      contentMouseleave,
+      triggerMouseenter,
+      triggerMouseleave,
+      triggerClick,
+      contentClickOutside,
+      $props,
       $slots: { trigger: triggerSlot, default: defaultSlot }
     } = this
 
-    const contentStyle = [
-      styleVars,
-      {
-        top: px(top),
-        left: px(left),
-        transformOrigin: `${arrowPosition.left ?? oppositeDirection} ${
-          arrowPosition.top ?? oppositeDirection
-        }`
-      }
-    ]
-
     return (
       <>
-        <PopoverHijack trigger={trigger} onShow={show} onHide={hide}>
+        <PopoverHijack
+          trigger={$props.trigger}
+          onClick={triggerClick}
+          onShow={show}
+          onHide={hide}
+          onMouseenter={triggerMouseenter}
+          onMouseleave={triggerMouseleave}
+        >
           {triggerSlot}
         </PopoverHijack>
-        <Teleport to="body">
+        <Teleport to={'body'} disabled={!$props.to}>
           <Transition
             name="popover-transition"
             onAfterEnter={afterEnterHandler}
@@ -211,22 +259,20 @@ export default defineComponent({
             {visible &&
               withDirectives(
                 h(
-                  <div
-                    class={[
-                      bem.b().value,
-                      bem.m('placement-' + placementDirection).value
-                    ]}
-                    style={contentStyle}
-                    ref="contentRef"
-                  >
-                    <div
-                      class={bem.b('arrow').value}
-                      style={[arrowPosition]}
-                    ></div>
-                    <div class={bem.b('content').value}>{defaultSlot?.()}</div>
-                  </div>
+                  PopoverBody,
+                  {
+                    ...$props,
+                    onMouseenter: contentMouseenter,
+                    onMouseleave: contentMouseleave
+                  },
+                  defaultSlot
                 ),
-                [trigger === 'click' ? [clickOutside, hide] : [undefined]]
+                [
+                  [clickOutside, contentClickOutside],
+                  typeof $props.zIndex === 'undefined'
+                    ? [zindexable]
+                    : [undefined]
+                ]
               )}
           </Transition>
         </Teleport>

@@ -23,9 +23,9 @@ export const layoutSiderProps = {
   ...useThemeProps<LayoutSiderThemeVars>(),
   bordered: Boolean,
   /** 内容类名 */
-  contentClass: [Object, Array, String] as PropType<any>,
+  contentClass: null as unknown as PropType<any>,
   /** 内容样式 */
-  contentStyle: [Object, Array, String] as PropType<StyleValue>,
+  contentStyle: null as unknown as PropType<StyleValue>,
   /** 宽度 */
   width: [String, Number] as PropType<string | number>,
   /** 默认收起状态 */

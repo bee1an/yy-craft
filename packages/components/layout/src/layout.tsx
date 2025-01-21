@@ -22,9 +22,9 @@ export const layoutProps = {
   /** 是否有侧边栏 */
   hasSider: Boolean,
   /** 内容类名 */
-  contentClass: [Object, Array, String] as PropType<any>,
+  contentClass: null as unknown as PropType<any>,
   /** 内容样式 */
-  contentStyle: [Object, Array, String] as PropType<StyleValue>
+  contentStyle: null as unknown as PropType<StyleValue>
 }
 
 export const layoutInjectKey = Symbol('layoutInjectKey') as InjectionKey<{

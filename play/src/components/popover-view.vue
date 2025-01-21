@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DefaultPlacement } from '@yy-ui/yy-ui'
+import { DefaultPlacement, useMessage } from '@yy-ui/yy-ui'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { randomText } from '../plugins'
@@ -8,7 +8,7 @@ const title = useRoute().meta.sider
 
 const plament = ref<DefaultPlacement>('bottom')
 
-const text = new Array(10).fill(0).map(() => randomText())
+const text = new Array(13).fill(0).map(() => randomText())
 
 const showPopover = ref(false)
 
@@ -29,6 +29,8 @@ const allPlacement = [
   'bottom',
   'bottom-end'
 ] as const
+
+const { message } = useMessage()
 </script>
 
 <template>
@@ -38,7 +40,7 @@ const allPlacement = [
       <yy-gi>
         <yy-flex vertical>
           <yy-card title="基础使用">
-            <yy-popover :placement="plament">
+            <yy-popover>
               <template #trigger>
                 <yy-button>点我</yy-button>
               </template>
@@ -46,21 +48,65 @@ const allPlacement = [
             </yy-popover>
           </yy-card>
 
-          <yy-card title="触发位置">
-            <div style="width: 50%">
-              <yy-grid cols="3" :gap="10">
-                <yy-gi v-for="item in allPlacement" :key="item">
-                  <template v-if="item">
-                    <yy-popover :placement="item" trigger="hover">
-                      <template #trigger>
-                        <yy-button>聚焦</yy-button>
-                      </template>
-                      <div>{{ item }}</div>
-                    </yy-popover>
-                  </template>
-                </yy-gi>
-              </yy-grid>
-            </div>
+          <yy-card title="延迟触发与延迟隐藏">
+            <yy-p>
+              设置<yy-text code>delay</yy-text>为延迟触发时间, 设置<yy-text code
+                >duration</yy-text
+              >为延迟隐藏时间
+            </yy-p>
+
+            <yy-popover trigger="hover" :delay="500" :duration="500">
+              <template #trigger
+                ><yy-button>延迟500ms触发, 延迟500ms隐藏</yy-button></template
+              >
+              <div>{{ text[6] }}</div>
+            </yy-popover>
+          </yy-card>
+
+          <yy-card title="不要箭头">
+            <yy-p>设置<yy-text code>show-arrow=false</yy-text>不显示箭头</yy-p>
+
+            <yy-popover :show-arrow="false" trigger="hover">
+              <template #trigger>
+                <yy-button>悬浮</yy-button>
+              </template>
+              <div>{{ text[8] }}</div>
+            </yy-popover>
+          </yy-card>
+
+          <yy-card title="不要基础样式">
+            <yy-p>设置<yy-text code>row=true</yy-text>不渲染基础样式</yy-p>
+
+            <yy-popover row :show-arrow="false">
+              <template #trigger>
+                <yy-button>点击</yy-button>
+              </template>
+              <div>{{ text[9] }}</div>
+            </yy-popover>
+          </yy-card>
+
+          <yy-card title="事件">
+            <yy-popover
+              @show="message.info('show')"
+              @showed="message.info('showed')"
+              @hide="message.info('hide')"
+              @hid="message.info('hid')"
+              @clickoutside="message.info('clickoutside')"
+            >
+              <template #trigger>
+                <yy-button>点击</yy-button>
+              </template>
+              <div>{{ text[11] }}</div>
+            </yy-popover>
+          </yy-card>
+
+          <yy-card title="层级">
+            <yy-popover :z-index="1">
+              <template #trigger>
+                <yy-button>点击</yy-button>
+              </template>
+              <div>{{ text[12] }}</div>
+            </yy-popover>
           </yy-card>
         </yy-flex>
       </yy-gi>
@@ -86,7 +132,6 @@ const allPlacement = [
                 </template>
                 <div>{{ text[3] }}</div>
               </yy-popover>
-
               <yy-popover
                 :placement="plament"
                 trigger="manual"
@@ -99,7 +144,69 @@ const allPlacement = [
                 </template>
                 <div>{{ text[4] }}</div>
               </yy-popover>
+              <yy-checkbox
+                label="点我手动打开"
+                v-model="showPopover"
+              ></yy-checkbox>
             </yy-flex>
+
+            <yy-divider></yy-divider>
+
+            <yy-p style="margin-top: 0"
+              >设置<yy-text code>keep-alive-on-hover=false</yy-text
+              >在hover内容元素时同样触发hide, 仅在<yy-text code
+                >trigger=hover</yy-text
+              >时生效</yy-p
+            >
+            <yy-popover trigger="hover" :keep-alive-on-hover="false">
+              <template #trigger><yy-button>悬浮</yy-button></template>
+              <div>{{ text[5] }}</div>
+            </yy-popover>
+          </yy-card>
+
+          <yy-card title="触发位置">
+            <div style="width: 50%">
+              <yy-grid cols="3" :gap="10">
+                <yy-gi v-for="item in allPlacement" :key="item">
+                  <template v-if="item">
+                    <yy-popover :placement="item" trigger="hover">
+                      <template #trigger>
+                        <yy-button>聚焦</yy-button>
+                      </template>
+                      <div>{{ item }}</div>
+                    </yy-popover>
+                  </template>
+                </yy-gi>
+              </yy-grid>
+            </div>
+          </yy-card>
+
+          <yy-card title="宽度">
+            <yy-p>
+              设置<yy-text code>width</yy-text>为宽度, 当<yy-text code
+                >width=trigger</yy-text
+              >时宽度等于触发器宽度</yy-p
+            >
+
+            <yy-popover trigger="hover" width="trigger">
+              <template #trigger
+                ><yy-button>多一点字把这个按钮撑开</yy-button></template
+              >
+              <div>{{ text[7] }}</div>
+            </yy-popover>
+          </yy-card>
+
+          <yy-card title="挂载位置">
+            <yy-p
+              >popover将默认挂载到body下,可以通过<yy-text code>to</yy-text
+              >挂载到任意位置, 传递<yy-text code>to=false</yy-text
+              >将挂载到原位置</yy-p
+            >
+
+            <yy-popover trigger="hover" :to="false">
+              <template #trigger><yy-button>悬浮</yy-button></template>
+              <div>{{ text[10] }}</div>
+            </yy-popover>
           </yy-card>
         </yy-flex>
       </yy-gi>

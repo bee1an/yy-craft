@@ -71,15 +71,19 @@ export const usePlacement = (
       | undefined
   })
 
-  function getPosition(placement: 'top' | 'bottom' | 'left' | 'right') {
+  function getPosition(placement: 'top' | 'bottom' | 'left' | 'right'): number {
     if (placement === 'top') {
-      return triggerTop.value - contentHeight.value - distanceFromTrigger.value
+      return contentHeight.value
+        ? triggerTop.value - contentHeight.value - distanceFromTrigger.value
+        : getPosition('bottom') // 内容元素未加载, 则先置于底部, 防止内容元素遮挡触发器
     }
     if (placement === 'bottom') {
       return triggerTop.value + triggerHeight.value + distanceFromTrigger.value
     }
     if (placement === 'left') {
-      return triggerLeft.value - contentWidth.value - distanceFromTrigger.value
+      return contentWidth.value
+        ? triggerLeft.value - contentWidth.value - distanceFromTrigger.value
+        : getPosition('right')
     }
     if (placement === 'right') {
       return triggerLeft.value + triggerWidth.value + distanceFromTrigger.value

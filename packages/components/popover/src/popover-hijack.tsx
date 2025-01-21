@@ -19,8 +19,11 @@ export const popoverHijackProps = {
 export type PopoverHijackProps = ExtractPropTypes<typeof popoverHijackProps>
 
 export const popoverHijackEmits = {
-  show: (() => true) as (event: MouseEvent | FocusEvent) => void,
-  hide: (() => true) as (event: MouseEvent | FocusEvent) => void
+  show: (() => true) as (event: FocusEvent) => void,
+  hide: (() => true) as (event: FocusEvent) => void,
+  click: (() => true) as (event: MouseEvent) => void,
+  mouseenter: (() => true) as (event: MouseEvent) => void,
+  mouseleave: (() => true) as (event: MouseEvent) => void
 }
 
 export type PopoverHijackEmits = typeof popoverHijackEmits
@@ -32,43 +35,17 @@ export default defineComponent({
   setup(props, { emit }) {
     const { setTargetRef } = inject(popoverInjectKey)!
 
-    const triggerClickHandler = (event: MouseEvent) => {
-      if (props.trigger === 'click') {
-        emit('show', event)
-      }
-    }
-
-    // TODO: hover会触发多次
-    const triggerHoverHandler = (
-      event: MouseEvent,
-      state: 'enter' | 'leave'
-    ) => {
-      if (props.trigger === 'hover') {
-        if (state === 'enter') {
-          emit('show', event)
-        } else {
-          emit('hide', event)
-        }
-      }
-    }
-
     const triggerFocusHandler = (
       event: FocusEvent,
       state: 'focus' | 'blur'
     ) => {
       if (props.trigger === 'focus') {
-        if (state === 'focus') {
-          emit('show', event)
-        } else {
-          emit('hide', event)
-        }
+        state === 'focus' ? emit('show', event) : emit('hide', event)
       }
     }
 
     return {
       setTargetRef,
-      triggerClickHandler,
-      triggerHoverHandler,
       triggerFocusHandler
     }
   },
@@ -76,9 +53,8 @@ export default defineComponent({
   render() {
     const {
       setTargetRef,
-      triggerClickHandler,
-      triggerHoverHandler,
       triggerFocusHandler,
+      $emit,
       $props: { trigger },
       $slots: { default: defaultSlot }
     } = this
@@ -89,11 +65,9 @@ export default defineComponent({
       }
 
       const childProps: any = {
-        onClick: triggerClickHandler,
-        onMouseenter: (event: MouseEvent) =>
-          triggerHoverHandler(event, 'enter'),
-        onMouseleave: (event: MouseEvent) =>
-          triggerHoverHandler(event, 'leave'),
+        onClick: (event: MouseEvent) => $emit('click', event),
+        onMouseenter: (event: MouseEvent) => $emit('mouseenter', event),
+        onMouseleave: (event: MouseEvent) => $emit('mouseleave', event),
         onFocus: (event: FocusEvent) => triggerFocusHandler(event, 'focus'),
         onBlur: (event: FocusEvent) => triggerFocusHandler(event, 'blur')
       }

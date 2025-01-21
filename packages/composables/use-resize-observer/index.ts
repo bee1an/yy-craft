@@ -1,6 +1,5 @@
 import { onScopeDispose, ShallowRef, watch } from 'vue'
 
-// TODO
 export type UseResizeObserverOptions = ResizeObserverOptions
 
 export type UseResizeObserverReturn = ReturnType<typeof useResizeObserver>

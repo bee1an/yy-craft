@@ -15,9 +15,9 @@ import { layoutInjectKey } from './layout'
 export const layoutContentProps = {
   ...useThemeProps<LayoutThemeVars>(),
   /** 内容类名 */
-  contentClass: [Object, Array, String] as PropType<any>,
+  contentClass: null as unknown as PropType<any>,
   /** 内容样式 */
-  contentStyle: [Object, Array, String] as PropType<StyleValue>
+  contentStyle: null as unknown as PropType<StyleValue>
 }
 
 export type LayoutContentProps = ExtractPropTypes<typeof layoutContentProps>

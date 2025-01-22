@@ -204,69 +204,73 @@ const options2: MenuOption[] = [
   <div class="container_padding">
     <yy-h1 prefix align-text>菜单</yy-h1>
 
-    <yy-grid cols="1" :gap="10">
-      <yy-card title="基本使用">
-        <yy-p>传入<yy-text code>options</yy-text>很简单的使用它吧</yy-p>
-        <yy-layout has-sider>
-          <yy-layout-sider width="200">
-            <yy-menu :options="basicMenuOptions"></yy-menu>
-          </yy-layout-sider>
-          <yy-layout-content></yy-layout-content>
-        </yy-layout>
-      </yy-card>
+    <yy-grid cols="2" :gap="10">
+      <yy-flex vertical>
+        <yy-card title="基本使用">
+          <yy-p>传入<yy-text code>options</yy-text>很简单的使用它吧</yy-p>
+          <yy-layout has-sider>
+            <yy-layout-sider width="200">
+              <yy-menu :options="basicMenuOptions"></yy-menu>
+            </yy-layout-sider>
+            <yy-layout-content></yy-layout-content>
+          </yy-layout>
+        </yy-card>
 
-      <yy-card title="收缩菜单">
-        <yy-p
-          >在你不想用时你可以收起它
-          <yy-text type="warning">强烈建议传入图标</yy-text></yy-p
-        >
-
-        <yy-layout has-sider>
-          <yy-layout-sider
-            width="200"
-            collapsed-width="50"
-            :collapsed="menuCollapsed"
-            @before-collapse="menuCollapsed = true"
-            @before-expand="menuCollapsed = false"
-          >
-            <yy-menu
-              :options="basicMenuOptions"
-              :collapsed="menuCollapsed"
+        <yy-card title="真菜单">
+          <yy-p>我确实有点无聊了</yy-p>
+          <yy-layout has-sider>
+            <yy-layout-sider
+              width="200"
               collapsed-width="50"
-              @collapsed="
-                message(() =>
-                  h('span', { style: { fontSize: '14px' } }, [
-                    h(Text, { delete: true, type: 'error' }, () => '菜刀'),
-                    '菜单收起了'
-                  ])
-                )
-              "
-              @expanded="message('菜单展开了')"
-            ></yy-menu>
-          </yy-layout-sider>
-          <yy-layout-content></yy-layout-content>
-        </yy-layout>
-      </yy-card>
-
-      <yy-card title="真菜单">
-        <yy-p>我确实有点无聊了</yy-p>
-        <yy-layout has-sider>
-          <yy-layout-sider
-            width="200"
-            collapsed-width="50"
-            :collapsed="menuCollapsed2"
-            @before-collapse="menuCollapsed2 = true"
-            @before-expand="menuCollapsed2 = false"
-          >
-            <yy-menu
-              :options="options2"
               :collapsed="menuCollapsed2"
+              @before-collapse="menuCollapsed2 = true"
+              @before-expand="menuCollapsed2 = false"
+            >
+              <yy-menu
+                :options="options2"
+                :collapsed="menuCollapsed2"
+                collapsed-width="50"
+              ></yy-menu>
+            </yy-layout-sider>
+            <yy-layout-content></yy-layout-content>
+          </yy-layout>
+        </yy-card>
+      </yy-flex>
+
+      <yy-flex vertical>
+        <yy-card title="收缩菜单">
+          <yy-p
+            >在你不想用时你可以收起它
+            <yy-text type="warning">强烈建议传入图标</yy-text></yy-p
+          >
+
+          <yy-layout has-sider>
+            <yy-layout-sider
+              width="200"
               collapsed-width="50"
-            ></yy-menu>
-          </yy-layout-sider>
-          <yy-layout-content></yy-layout-content>
-        </yy-layout>
-      </yy-card>
+              :collapsed="menuCollapsed"
+              @before-collapse="menuCollapsed = true"
+              @before-expand="menuCollapsed = false"
+            >
+              <yy-menu
+                :options="basicMenuOptions"
+                :collapsed="menuCollapsed"
+                collapsed-width="50"
+                @collapsed="
+                  message(() =>
+                    h('span', { style: { fontSize: '14px' } }, [
+                      h(Text, { delete: true, type: 'error' }, () => '菜刀'),
+                      '菜单收起了'
+                    ])
+                  )
+                "
+                @expanded="message('菜单展开了')"
+              ></yy-menu>
+            </yy-layout-sider>
+            <yy-layout-content></yy-layout-content>
+          </yy-layout>
+        </yy-card>
+      </yy-flex>
     </yy-grid>
   </div>
 </template>

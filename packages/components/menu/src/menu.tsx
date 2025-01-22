@@ -18,6 +18,7 @@ import {
 import { Icon } from '@yy-ui/components'
 import { YBaseCollapsed2, YFadeInExpandTransition } from '../../_internal'
 import { watch } from 'vue'
+import YDropdown from '../../dropdown/src/dropdown'
 
 export type MenuOption = {
   /** 显示内容: 可以传入render函数 */
@@ -44,6 +45,7 @@ export type MenuItem = {
   parent: MenuItem | null
   isLeaf: boolean
   expanded?: boolean
+  children?: MenuItem[]
 }
 
 export const menuProps = {
@@ -110,8 +112,11 @@ export default defineComponent({
       menuLight.exclude
     )
 
+    // 高亮项
     const activeKeys = reactive(new Set())
+    // 选中项
     const selectedKeys = reactive(new Set(props.defaultSelectedKeys))
+    // 执行选中会将所有父元素高亮
     const setChainActive = (item: MenuItem) => {
       activeKeys.add(item.key)
       item.parent && setChainActive(item.parent)
@@ -125,7 +130,19 @@ export default defineComponent({
       selectedKeys.clear()
     }
 
+    // 展开项
     const expandedKeys = reactive(new Set(props.defaultExpandedKeys))
+    const toggleExpandItem = (item: MenuItem) => {
+      expandedKeys.has(item.key) ? collapseItem(item) : expandItem(item)
+      createMenu()
+    }
+    const expandItem = (item: MenuItem) => {
+      expandedKeys.add(item.key)
+    }
+    const collapseItem = (item: MenuItem) => {
+      expandedKeys.delete(item.key)
+    }
+
     const menuItems = reactive([]) as MenuItem[]
     const createItems = (
       option: MenuOption,
@@ -133,7 +150,7 @@ export default defineComponent({
       parent: MenuItem | null,
       items: MenuItem[]
     ) => {
-      const item = {
+      const item: MenuItem = {
         key: option.key,
         label: option.label,
         icon: option.icon,
@@ -145,17 +162,30 @@ export default defineComponent({
         parent,
         isLeaf: !option.children,
         expanded: option.type === 'group' ? true : expandedKeys.has(option.key) // 默认收起
-      } satisfies MenuItem
+      }
 
       item.selected && selectItem(item)
 
       items.push(item)
 
-      !props.collapsed &&
+      if (props.collapsed) {
+        //
+        item.children = option.children?.map(child =>
+          createItems(child, level + 1, item, [])
+        )
+      } else {
         item.expanded &&
-        option.children?.forEach(child => {
-          createItems(child, level + 1, item, items)
-        })
+          option.children?.forEach(child => {
+            createItems(child, level + 1, item, items)
+          })
+      }
+
+      return item
+      // !props.collapsed &&
+      //   item.expanded &&
+      //   option.children?.forEach(child => {
+      //     createItems(child, level + 1, item, items)
+      //   })
     }
     const createMenu = () => {
       menuItems.length = 0
@@ -167,17 +197,6 @@ export default defineComponent({
     }
     createMenu()
     watch(() => props.collapsed, createMenu)
-
-    const toggleExpandItem = (item: MenuItem) => {
-      expandedKeys.has(item.key) ? collapseItem(item) : expandItem(item)
-      createMenu()
-    }
-    const expandItem = (item: MenuItem) => {
-      expandedKeys.add(item.key)
-    }
-    const collapseItem = (item: MenuItem) => {
-      expandedKeys.delete(item.key)
-    }
 
     const itemClickHandler = (item: MenuItem) => {
       if (item.isLeaf) {
@@ -194,6 +213,7 @@ export default defineComponent({
     })
 
     const iconSize = computed(() => {
+      // 根据menu收起后的宽度计算icon大小
       if (!props.collapsed) return undefined
 
       const collapsedWidthDepx = depx(props.collapsedWidth!)
@@ -208,6 +228,7 @@ export default defineComponent({
       return vars.value[createKey('iconSize', sizeKey)]
     })
     const iconMargin = computed(() => {
+      // 根据menu收起后的宽度计算icon margin
       if (!props.collapsed) return undefined
 
       return px((depx(props.collapsedWidth!) - depx(iconSize.value!)) / 2)
@@ -215,14 +236,9 @@ export default defineComponent({
 
     const menuContainer = useTemplateRef('menuContainer')
     const transitionendHandler = (e: TransitionEvent) => {
+      // 外层容器的width转场结束时, 触发收起或展开事件
       if (e.propertyName === 'width' && e.target === menuContainer.value) {
-        if (props.collapsed) {
-          // 收起
-          emit('collapsed')
-        } else {
-          // 展开
-          emit('expanded')
-        }
+        props.collapsed ? emit('collapsed') : emit('expanded')
       }
     }
 
@@ -250,6 +266,80 @@ export default defineComponent({
       $props: { collapsed }
     } = this
 
+    const getSharedItemEl = (item: MenuItem) => (
+      <div
+        key={item.key}
+        class={[
+          bem.b('item').value,
+          bem.b('item').m(item.type === 'group' && 'group-title').value,
+          bem.b('item').m(item.selected && 'selected').value,
+          bem.b('item').m(item.active && 'active').value
+        ]}
+        onClick={() => {
+          itemClickHandler(item)
+        }}
+      >
+        <div class={bem.b('item').e('indent').value}>
+          {Array.from({ length: item.level }).map(() => (
+            <div
+              class={bem.b('item').e('indent-box').value}
+              style={{ width: iconMargin }}
+            ></div>
+          ))}
+        </div>
+
+        <div class={bem.b('item').e('content').value}>
+          {item.icon && (
+            <div
+              class={bem.b('item').e('content-icon').value}
+              style={{
+                fontSize: iconSize,
+                marginRight: iconMargin
+              }}
+            >
+              <Icon>{item.icon()}</Icon>
+            </div>
+          )}
+          <div class={bem.b('item').e('content-main').value}>
+            {typeof item.label === 'string' ? item.label : item.label()}
+          </div>
+          {!item.isLeaf && item.type === 'item' && (
+            <div
+              class={[
+                bem.b('item').e('content-expand').value,
+                bem
+                  .b('item')
+                  .e('content-expand')
+                  .m(item.expanded && 'expanded').value
+              ]}
+            >
+              <Icon>
+                <YBaseCollapsed2 />
+              </Icon>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+
+    const sharedEl = menuItems.map(item => {
+      if (collapsed && item.children) {
+        return (
+          <YDropdown
+            key={item.key}
+            options={item.children}
+            placement="right-start"
+            show-arrow={false}
+            trigger="hover"
+          >
+            {getSharedItemEl(item)}
+          </YDropdown>
+        )
+      }
+
+      return getSharedItemEl(item)
+    })
+
     return (
       <div
         style={[styleVars, { width: wapperWidth }]}
@@ -257,65 +347,11 @@ export default defineComponent({
         onTransitionend={transitionendHandler}
         ref="menuContainer"
       >
-        <YFadeInExpandTransition group>
-          {menuItems.map(item => {
-            return (
-              <div
-                key={item.key}
-                class={[
-                  bem.b('item').value,
-                  bem.b('item').m(item.type === 'group' && 'group-title').value,
-                  bem.b('item').m(item.selected && 'selected').value,
-                  bem.b('item').m(item.active && 'active').value
-                ]}
-                onClick={() => {
-                  itemClickHandler(item)
-                }}
-              >
-                <div class={bem.b('item').e('indent').value}>
-                  {Array.from({ length: item.level }).map(() => (
-                    <div
-                      class={bem.b('item').e('indent-box').value}
-                      style={{ width: iconMargin }}
-                    ></div>
-                  ))}
-                </div>
-
-                <div class={bem.b('item').e('content').value}>
-                  {item.icon && (
-                    <div
-                      class={bem.b('item').e('content-icon').value}
-                      style={{
-                        fontSize: iconSize,
-                        marginRight: iconMargin
-                      }}
-                    >
-                      <Icon>{item.icon()}</Icon>
-                    </div>
-                  )}
-                  <div class={bem.b('item').e('content-main').value}>
-                    {typeof item.label === 'string' ? item.label : item.label()}
-                  </div>
-                  {!item.isLeaf && item.type === 'item' && (
-                    <div
-                      class={[
-                        bem.b('item').e('content-expand').value,
-                        bem
-                          .b('item')
-                          .e('content-expand')
-                          .m(item.expanded && 'expanded').value
-                      ]}
-                    >
-                      <Icon>
-                        <YBaseCollapsed2 />
-                      </Icon>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )
-          })}
-        </YFadeInExpandTransition>
+        {collapsed ? (
+          sharedEl
+        ) : (
+          <YFadeInExpandTransition group>{sharedEl}</YFadeInExpandTransition>
+        )}
       </div>
     )
   }

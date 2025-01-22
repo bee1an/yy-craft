@@ -4,7 +4,7 @@ import { commonDark } from '@yy-ui/theme-chalk'
 export const treeDark = {
   name: 'tree',
   vars: () => ({
-    treeWarpperPadding: '2px 0',
+    treeWrapperPadding: '2px 0',
     treePadding: '1px 0',
     treeBackgroundColorHover: '#f5f5f5',
     treeBorder: '2px solid ' + commonDark.primaryColor,

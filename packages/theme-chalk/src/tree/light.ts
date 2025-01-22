@@ -2,7 +2,7 @@ import { rgba } from '@yy-ui/utils'
 import { commonLight, ExtractThemeVars, ThemeConfig } from '@yy-ui/theme-chalk'
 
 const vars = {
-  treeWarpperPadding: '2px 0',
+  treeWrapperPadding: '2px 0',
   treePadding: '1px 0',
   treeBackgroundColorHover: '#f5f5f5',
   treeBorder: '2px solid ' + commonLight.primaryColor,

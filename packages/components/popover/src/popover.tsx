@@ -14,7 +14,9 @@ import {
   Teleport,
   Transition,
   watch,
-  withDirectives
+  withDirectives,
+  mergeProps,
+  StyleValue
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables'
 import {
@@ -26,20 +28,6 @@ import {
 import PopoverHijack, { popoverHijackProps } from './popover-hijack'
 import PopoverBody, { popoverBodyProps } from './popover-body'
 import { clickOutside, zindexable } from '@yy-ui/directives'
-
-export type PopoverPlacement =
-  | 'top'
-  | 'bottom'
-  | 'left'
-  | 'right'
-  | 'top-start'
-  | 'top-end'
-  | 'bottom-start'
-  | 'bottom-end'
-  | 'left-start'
-  | 'left-end'
-  | 'right-start'
-  | 'right-end'
 
 export const popoverProps = {
   ...useThemeProps<PopoverThemeVars>(),
@@ -66,7 +54,16 @@ export const popoverProps = {
       string | RendererElement | boolean
     >,
     default: 'body'
-  }
+  },
+
+  /** 是否使用包裹元素*/
+  wrapper: Boolean,
+
+  /** wrapper class */
+  wrapperClass: null,
+
+  /** wrapper style */
+  wrapperStyle: null as unknown as PropType<StyleValue>
 }
 
 export type PopoverProps = ExtractPropTypes<typeof popoverProps>
@@ -91,6 +88,7 @@ export const popoverInjectKey = Symbol('PopoverInjectKey') as InjectionKey<{
   bem: CreateNamespace
   styleVars: ComputedRef<Record<string, string>>
   triggerRef: Ref<HTMLElement | null>
+  wrapper: ComputedRef<boolean>
 }>
 
 export default defineComponent({
@@ -205,8 +203,15 @@ export default defineComponent({
       emit('clickoutside')
     }
 
-    provide(popoverInjectKey, { setTargetRef, bem, styleVars, triggerRef })
+    provide(popoverInjectKey, {
+      setTargetRef,
+      bem,
+      styleVars,
+      triggerRef,
+      wrapper: computed(() => props.wrapper)
+    })
     return {
+      bem,
       visible,
       afterEnterHandler,
       afterLeaveHandler,
@@ -222,6 +227,7 @@ export default defineComponent({
   },
   render() {
     const {
+      bem,
       visible,
       afterEnterHandler,
       afterLeaveHandler,
@@ -246,12 +252,15 @@ export default defineComponent({
         arrowClass,
         arrowStyle,
         zIndex,
-        distanceFromTrigger
+        distanceFromTrigger,
+        wrapper,
+        wrapperClass,
+        wrapperStyle
       },
       $slots: { trigger: triggerSlot, default: defaultSlot }
     } = this
 
-    return (
+    const shared = (
       <>
         <PopoverHijack
           trigger={trigger}
@@ -278,7 +287,10 @@ export default defineComponent({
                 h(
                   PopoverBody,
                   {
-                    ...$attrs,
+                    ...mergeProps(
+                      { style: { position: wrapper ? 'absolute' : 'fixed' } },
+                      $attrs
+                    ),
                     placement,
                     width,
                     showArrow,
@@ -289,6 +301,7 @@ export default defineComponent({
                     arrowStyle,
                     zIndex,
                     distanceFromTrigger,
+                    wrapper,
                     onMouseenter: contentMouseenter,
                     onMouseleave: contentMouseleave
                   },
@@ -302,6 +315,20 @@ export default defineComponent({
           </Transition>
         </Teleport>
       </>
+    )
+
+    return wrapper ? (
+      // 空标签防止attr直接渲染到这个div, 也可以使用 defineComponent的inheritAttrs实现
+      <>
+        <div
+          class={[bem.b('wrapper').value, wrapperClass]}
+          style={wrapperStyle}
+        >
+          {shared}
+        </div>
+      </>
+    ) : (
+      <>{shared}</>
     )
   }
 })

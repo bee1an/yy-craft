@@ -7,13 +7,13 @@ import {
   StyleValue,
   useTemplateRef
 } from 'vue'
-import { popoverInjectKey, PopoverPlacement } from './popover'
-import { usePlacement } from '@yy-ui/composables'
+import { popoverInjectKey } from './popover'
+import { DefaultPlacement, usePlacement } from '@yy-ui/composables'
 import { getIntersection, px } from '@yy-ui/utils'
 
 export const popoverBodyProps = {
   /** 位置 */
-  placement: { type: String as PropType<PopoverPlacement>, default: 'bottom' },
+  placement: { type: String as PropType<DefaultPlacement>, default: 'bottom' },
 
   /** 内容宽度, width=trigger时内容宽度与触发器宽度一致 */
   width: [Number, String] as PropType<number | 'trigger'>,
@@ -58,19 +58,20 @@ export default defineComponent({
   emits: popoverBodyEmits,
   // inheritAttrs: false,
   setup(props) {
-    const { bem, styleVars, triggerRef } = inject(popoverInjectKey)!
+    const { bem, styleVars, triggerRef, wrapper } = inject(popoverInjectKey)!
 
     const contentRef = useTemplateRef<HTMLElement | null>('contentRef')
 
     const {
-      top,
-      left,
+      top: uncoresedTop,
+      left: uncoredLeft,
       placementDirection,
       triggerTop,
       triggerLeft,
       triggerRight,
       triggerBottom,
       triggerWidth,
+      triggerHeight,
       contentWidth,
       contentHeight,
       getOppositeDirection
@@ -84,22 +85,29 @@ export default defineComponent({
       }))
     )
 
+    const top = computed(() => {
+      return uncoresedTop.value - (wrapper.value ? triggerTop.value : 0)
+    })
+    const left = computed(() => {
+      return uncoredLeft.value - (wrapper.value ? triggerLeft.value : 0)
+    })
+
     const arrowPosition = computed(() => {
       if (['top', 'bottom'].includes(placementDirection.value)) {
         const [min, max] = getIntersection(
           [triggerLeft.value, triggerRight.value],
-          [left.value, left.value + contentWidth.value]
+          [uncoredLeft.value, uncoredLeft.value + contentWidth.value]
         )!
 
-        return { left: (min + max) / 2 - left.value + 'px' }
+        return { left: (min + max) / 2 - uncoredLeft.value + 'px' }
       }
 
       const [min, max] = getIntersection(
         [triggerTop.value, triggerBottom.value],
-        [top.value, top.value + contentHeight.value]
+        [uncoresedTop.value, uncoresedTop.value + contentHeight.value]
       )!
 
-      return { top: (min + max) / 2 - top.value + 'px' }
+      return { top: (min + max) / 2 - uncoresedTop.value + 'px' }
     })
 
     const oppositeDirection = computed(() =>
@@ -114,6 +122,7 @@ export default defineComponent({
       arrowPosition,
       oppositeDirection,
       triggerWidth,
+      triggerHeight,
       placementDirection
     }
   },
@@ -145,7 +154,6 @@ export default defineComponent({
     const wapperStyle = [
       styleVars,
       {
-        position: 'fixed',
         zIndex: zIndex,
         top: px(top),
         left: px(left),

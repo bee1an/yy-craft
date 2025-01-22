@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { DefaultPlacement, useMessage } from '@yy-ui/yy-ui'
+import { useMessage } from '@yy-ui/yy-ui'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { randomText } from '../plugins'
 
 const title = useRoute().meta.sider
 
-const plament = ref<DefaultPlacement>('bottom')
-
-const text = new Array(13).fill(0).map(() => randomText())
+const text = new Array(14).fill(0).map(() => randomText())
 
 const showPopover = ref(false)
 
@@ -112,6 +110,33 @@ const { message } = useMessage()
               <div>{{ text[12] }}</div>
             </yy-popover>
           </yy-card>
+
+          <yy-card title="使用包裹元素">
+            <yy-p
+              >使用一个元素包裹触发器, 内容将会根据这个包裹元素定位,
+              <yy-text type="error">这会破坏原有的dom结构, </yy-text>
+              但当你的祖先元素是<yy-a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block"
+                >包含块</yy-a
+              >元素时这将很好用</yy-p
+            >
+            <yy-p
+              >你可能需要<yy-text code>wrapper-class</yy-text>和<yy-text code
+                >wrapper-style</yy-text
+              >来定义包裹元素的样式</yy-p
+            >
+
+            <yy-p
+              ><yy-text type="warning"
+                >不要在to不为false下使用, 这将没有任何意义</yy-text
+              ></yy-p
+            >
+
+            <yy-popover :to="false" wrapper placement="bottom-start">
+              <template #trigger><yy-button>点击</yy-button></template>
+              <div>{{ text[13] }}</div>
+            </yy-popover>
+          </yy-card>
         </yy-flex>
       </yy-gi>
       <yy-gi>
@@ -123,29 +148,25 @@ const { message } = useMessage()
               ></yy-p
             >
             <yy-flex>
-              <yy-popover :placement="plament">
+              <yy-popover>
                 <template #trigger>
                   <yy-button>点击</yy-button>
                 </template>
                 <div>{{ text[1] }}</div>
               </yy-popover>
-              <yy-popover :placement="plament" trigger="hover">
+              <yy-popover trigger="hover">
                 <template #trigger>
                   <yy-button>悬浮</yy-button>
                 </template>
                 <div>{{ text[2] }}</div>
               </yy-popover>
-              <yy-popover :placement="plament" trigger="focus">
+              <yy-popover trigger="focus">
                 <template #trigger>
                   <yy-button>聚焦</yy-button>
                 </template>
                 <div>{{ text[3] }}</div>
               </yy-popover>
-              <yy-popover
-                :placement="plament"
-                trigger="manual"
-                :show-popover="showPopover"
-              >
+              <yy-popover trigger="manual" :show-popover="showPopover">
                 <template #trigger>
                   <yy-button @click="showPopover = !showPopover"
                     >手动</yy-button

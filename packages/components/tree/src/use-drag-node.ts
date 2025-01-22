@@ -77,7 +77,7 @@ const useDragNode = (
     if (isAncestorNode(tree.value, dragNode!, node)) return
 
     const treeNodeWrapper = findTreeNodeWrapper(target as HTMLElement, e =>
-      e.classList.contains(nameSpace.b('node').b('warpper').value)
+      e.classList.contains(nameSpace.b('node').b('wrapper').value)
     )
 
     if (!treeNodeWrapper) return

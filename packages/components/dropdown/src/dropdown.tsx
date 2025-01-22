@@ -5,9 +5,12 @@ import {
   defineComponent,
   ExtractPropTypes,
   PropType,
+  reactive,
+  RendererElement,
+  StyleValue,
   VNodeChild
 } from 'vue'
-import { useTheme, useThemeProps } from '@yy-ui/composables'
+import { DefaultPlacement, useTheme, useThemeProps } from '@yy-ui/composables'
 import {
   DropdownThemeVars,
   dropdownDark,
@@ -43,12 +46,65 @@ export type DropdownItem = {
   children?: DropdownItem[]
   _iconHasWidth: boolean
   _expandHasWidth: boolean
+  parent: DropdownItem | null
 }
 
 export const dropdownProps = {
   ...useThemeProps<DropdownThemeVars>(),
 
-  options: { type: Array as PropType<DropdownOption[]>, default: () => [] }
+  options: { type: Array as PropType<DropdownOption[]>, default: () => [] },
+
+  /** 二级菜单触发位置 */
+  subPlacement: {
+    type: String as PropType<DefaultPlacement>,
+    default: 'right-start'
+  },
+
+  /** 是否可选中 */
+  selectable: Boolean,
+
+  /** 默认选中 */
+  defaultSelectedKeys: {
+    type: Array as PropType<DropdownOption['key'][]>,
+    default: () => []
+  },
+
+  /***************************以下为popover props**************************** */
+
+  /** 触发方式 */
+  trigger: {
+    type: String as PropType<'click' | 'hover' | 'focus' | 'manual'>,
+    default: 'click'
+  },
+
+  /** 手动控制显隐 */
+  showPopover: Boolean,
+
+  /** 不要箭头 */
+  showArrow: { type: Boolean, default: true },
+
+  /** zIndex */
+  zIndex: Number,
+
+  /** 位置 */
+  placement: { type: String as PropType<DefaultPlacement>, default: 'bottom' },
+
+  /** popover挂载位置 */
+  to: {
+    type: [String, Object, Boolean] as PropType<
+      string | RendererElement | boolean
+    >,
+    default: 'body'
+  },
+
+  /** 是否使用包裹元素*/
+  wrapper: Boolean,
+
+  /** wrapper class */
+  wrapperClass: null,
+
+  /** wrapper style */
+  wrapperStyle: null as unknown as PropType<StyleValue>
 }
 
 export type DropdownProps = ExtractPropTypes<typeof dropdownProps>
@@ -76,43 +132,77 @@ export default defineComponent({
       props
     )
 
+    const activeKeys = reactive(new Set())
+    const setChainActive = (item: DropdownItem) => {
+      activeKeys.add(item.key)
+      item.parent && setChainActive(item.parent)
+    }
+
+    const selectedKeys = reactive(new Set(props.defaultSelectedKeys))
+    const selectItem = (item: DropdownItem): void => {
+      selectedKeys.add(item.key)
+      setChainActive(item)
+    }
+    const clearSelect = () => {
+      activeKeys.clear()
+      selectedKeys.clear()
+    }
+
     const createItems = (
       option: DropdownOption,
       iconHasWidth: boolean,
-      expandHasWidth: boolean
+      expandHasWidth: boolean,
+      parent: DropdownItem | null
     ): DropdownItem => {
       const { label, icon, key, type = 'item', children } = option
-      let childrenRef = children
+
+      const item: DropdownItem = {
+        label,
+        icon,
+        active: activeKeys.has(option.key),
+        selected: selectedKeys.has(option.key),
+        key,
+        type,
+        // children: childrenRef as DropdownItem[],
+        _iconHasWidth: iconHasWidth,
+        _expandHasWidth: expandHasWidth,
+        parent
+      }
+
+      item.selected && selectItem(item)
+
+      // let childrenRef = children
       if (children) {
         const iconHasWidth = children.some(child => child.icon)
         const expandHasWidth = children.some(child => child.children)
-        childrenRef = children.map(child =>
-          createItems(child, iconHasWidth, expandHasWidth)
+        item.children = children.map(child =>
+          createItems(child, iconHasWidth, expandHasWidth, item)
         )
+
+        // item.childrenRef = childrenRef
       }
 
-      return {
-        label,
-        icon,
-        active: false,
-        selected: false,
-        key,
-        type,
-        children: childrenRef as DropdownItem[],
-        _iconHasWidth: iconHasWidth,
-        _expandHasWidth: expandHasWidth
-      }
+      return item
     }
 
     const dropdownItems = computed(() => {
       const iconHasWidth = props.options.some(option => option.icon)
       const expandHasWidth = props.options.some(option => option.children)
       return props.options.map(option =>
-        createItems(option, iconHasWidth, expandHasWidth)
+        createItems(option, iconHasWidth, expandHasWidth, null)
       )
     }) as ComputedRef<DropdownItem[]>
 
-    return { bem, styleVars, vars, dropdownItems }
+    const itemClickHandler = (item: DropdownItem) => {
+      if (!props.selectable) return
+
+      if (!item.children) {
+        clearSelect()
+        selectItem(item)
+      }
+    }
+
+    return { bem, styleVars, vars, dropdownItems, itemClickHandler }
   },
   render() {
     const {
@@ -120,6 +210,19 @@ export default defineComponent({
       styleVars,
       vars,
       dropdownItems,
+      itemClickHandler,
+      $props: {
+        trigger,
+        showPopover,
+        showArrow,
+        zIndex,
+        placement,
+        subPlacement,
+        to,
+        wrapper,
+        wrapperClass,
+        wrapperStyle
+      },
       $slots: { default: defaultSlot }
     } = this
 
@@ -132,6 +235,7 @@ export default defineComponent({
             bem.b('item').m(item.selected && 'selected').value,
             bem.b('item').m(item.active && 'active').value
           ]}
+          onClick={() => itemClickHandler(item)}
         >
           <div
             class={bem.b('item').e('content-icon').value}
@@ -179,12 +283,13 @@ export default defineComponent({
       return (
         <YPopover
           trigger="hover"
-          placement="right-start"
+          placement={subPlacement}
           to={false}
+          wrapper
           show-arrow={false}
           class={bem.b('submenu').value}
           row
-          distanceFromTrigger={5}
+          distance-from-trigger={5}
         >
           {{
             trigger: () => renderItem(item),
@@ -195,7 +300,20 @@ export default defineComponent({
     }
 
     return (
-      <YPopover style={styleVars} class={bem.b().value} row>
+      <YPopover
+        style={styleVars}
+        class={bem.b().value}
+        row
+        trigger={trigger}
+        show-popover={showPopover}
+        show-arrow={showArrow}
+        z-index={zIndex}
+        placement={placement}
+        to={to}
+        wrapper={wrapper}
+        wrapper-class={wrapperClass}
+        wrapper-style={wrapperStyle}
+      >
         {{
           trigger: defaultSlot,
           default: () => dropdownItems.map(createChild)

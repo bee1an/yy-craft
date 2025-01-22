@@ -9,8 +9,8 @@ export const treeStyle = c([
       transform: 'rotate(360deg)'
     }
   }),
-  cB('tree-node-warpper', {
-    padding: 'var(--y-tree-warpper-padding)'
+  cB('tree-node-wrapper', {
+    padding: 'var(--y-tree-wrapper-padding)'
   }),
   cB(
     'tree-node',

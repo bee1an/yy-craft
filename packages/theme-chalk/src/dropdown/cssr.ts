@@ -37,9 +37,7 @@ export const dropdownStyle = cB(
       cB(
         'dropdown-item',
         {
-          display: 'grid',
-          gridTemplateAreas: '"icon main expand"',
-          gridTemplateColumns: 'auto 1fr auto',
+          display: 'flex',
           alignItems: 'center',
           width: '100%',
           height: cVar('itemHeight'),
@@ -55,20 +53,27 @@ export const dropdownStyle = cB(
           cursor: 'pointer'
         },
         [
+          cNotM('group-title', [
+            c('&:hover', {
+              backgroundColor: cVar('backgroundColorHover')
+            }),
+
+            cM('selected', {
+              backgroundColor: cVar('backgroundColorSelected')
+            }),
+
+            cM('active', {
+              color: cVar('textColorSelected')
+            })
+          ]),
+
           cM('group-title', {
             fontSize: '.93em',
             color: cVar('groupTextColor'),
             cursor: 'default'
           }),
 
-          cNotM('group-title', [
-            c('&:hover', {
-              backgroundColor: cVar('backgroundColorHover')
-            })
-          ]),
-
           cE('content-icon', {
-            gridArea: 'icon',
             fontSize: cVar('iconSize'),
             padding: cVar('iconPadding'),
             display: 'flex',
@@ -83,7 +88,7 @@ export const dropdownStyle = cB(
           cE(
             'content-main',
             {
-              gridArea: 'main',
+              flex: '1',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
@@ -117,7 +122,6 @@ export const dropdownStyle = cB(
             ]
           ),
           cE('content-expand', {
-            gridArea: 'expand',
             transition: `transform ${cVar('transitionDuration')} ${cVar(
               'transitionTimingFunction'
             )},opacity ${cVar('transitionDuration')} ${cVar(

@@ -19,7 +19,7 @@ export interface ScrollTo {
 }
 
 export const useScrollTo = (
-  warpper: Ref<HTMLDivElement | null>,
+  wrapper: Ref<HTMLDivElement | null>,
   props: VirtualListProps,
   sizeGather: Ref<number[]>
 ) => {
@@ -28,14 +28,14 @@ export const useScrollTo = (
   // xCoord: number, yCoord: number
   overload.add((xCoord: number, yCoord: number) => {
     console.log('xCoord: number, yCoord: number')
-    warpper.value?.scrollTo(xCoord, yCoord)
+    wrapper.value?.scrollTo(xCoord, yCoord)
   })
 
   // options?: ScrollToOptions
   overload.add(
     (options?: ScrollToOptions) => {
       console.log('options?: ScrollToOptions')
-      warpper.value?.scrollTo(options)
+      wrapper.value?.scrollTo(options)
     },
     (options?: ScrollToOptions) => {
       if (typeof options !== 'object') return false
@@ -50,7 +50,7 @@ export const useScrollTo = (
   overload.add(
     (options: { distance: number } & ScrollToExtraOptions) => {
       console.log('options: { distance: number } & ScrollToExtraOptions')
-      warpper.value?.scrollTo({
+      wrapper.value?.scrollTo({
         ...options,
         [props.vertical ? 'top' : 'left']: options.distance
       })
@@ -80,15 +80,15 @@ export const useScrollTo = (
       size += sizeGather.value[i] || props.itemSize
     }
 
-    if (!warpper.value) return
+    if (!wrapper.value) return
 
-    const warpperVal = warpper.value
+    const wrapperVal = wrapper.value
 
     const scrollPosKey = props.vertical ? 'scrollTop' : 'scrollLeft'
 
-    if (warpperVal[scrollPosKey] === size) return
+    if (wrapperVal[scrollPosKey] === size) return
 
-    warpperVal.scrollTo({
+    wrapperVal.scrollTo({
       ...options,
       [props.vertical ? 'top' : 'left']: size
     })
@@ -96,7 +96,7 @@ export const useScrollTo = (
     const scrollSizeKey = props.vertical ? 'scrollHeight' : 'scrollWidth'
     const clientSizeKey = props.vertical ? 'clientHeight' : 'clientWidth'
     let minDistance =
-      warpper.value![scrollSizeKey] - warpper.value![clientSizeKey]
+      wrapper.value![scrollSizeKey] - wrapper.value![clientSizeKey]
     scrollListener = (event: VirtualListEvents['scroll'][0]) => {
       const { maxScrollSize, scrollSize } = event
       minDistance = Math.min(minDistance, maxScrollSize)
@@ -104,9 +104,9 @@ export const useScrollTo = (
       if (size === scrollSize || scrollSize >= minDistance) {
         emitter.once('renderComplete', () => {
           const newMaxScrollSize =
-            warpperVal[scrollSizeKey] - warpperVal[clientSizeKey]
+            wrapperVal[scrollSizeKey] - wrapperVal[clientSizeKey]
 
-          warpperVal[scrollPosKey] !== newMaxScrollSize && scrollToIndex(index)
+          wrapperVal[scrollPosKey] !== newMaxScrollSize && scrollToIndex(index)
         })
 
         emitter.off('scroll', scrollListener)

@@ -104,7 +104,7 @@ class VirtualListFactory<T = any> {
           props.vertical ? 'clientHeight' : 'clientWidth'
         )
 
-        const warpperSizeStyle = computed(() => {
+        const wrapperSizeStyle = computed(() => {
           return {
             [props.vertical
               ? 'max-height'
@@ -114,7 +114,7 @@ class VirtualListFactory<T = any> {
 
         const bem = new CreateNamespace('vl')
 
-        const warpper = ref<HTMLDivElement | null>(null)
+        const wrapper = ref<HTMLDivElement | null>(null)
         const visibleZone = ref<HTMLDivElement | null>(null)
         useResizeObserver(visibleZone, () => {
           updateItemSize() && render()
@@ -171,7 +171,7 @@ class VirtualListFactory<T = any> {
         const render = () => {
           updateItemSize()
 
-          const scrollDistance = warpper.value![scrollPosKey.value]
+          const scrollDistance = wrapper.value![scrollPosKey.value]
 
           let start = 0
           offset.value = 0
@@ -261,8 +261,8 @@ class VirtualListFactory<T = any> {
           () => props.data,
           () => {
             nextTick(() => {
-              const distance = warpper.value![scrollPosKey.value]
-              warpper.value![scrollPosKey.value] = 0
+              const distance = wrapper.value![scrollPosKey.value]
+              wrapper.value![scrollPosKey.value] = 0
               minSize.value = props.itemSize * props.data.length
               sizeGather.value = new Array(props.data.length)
               Object.assign(virtualOption, {
@@ -280,9 +280,9 @@ class VirtualListFactory<T = any> {
           }
         )
 
-        const { handler } = useScrollTo(warpper, props, sizeGather)
+        const { handler } = useScrollTo(wrapper, props, sizeGather)
         const scrollTo: ScrollTo = (...options: any[]) => {
-          if (!warpper.value) return
+          if (!wrapper.value) return
 
           handler(...options)
         }
@@ -291,17 +291,17 @@ class VirtualListFactory<T = any> {
 
         const scrollHandler = () => {
           emitter.emit('scroll', {
-            scrollSize: warpper.value![scrollPosKey.value],
+            scrollSize: wrapper.value![scrollPosKey.value],
             maxScrollSize:
-              warpper.value![scrollSizeKey.value] -
-              warpper.value![clientSizeKey.value]
+              wrapper.value![scrollSizeKey.value] -
+              wrapper.value![clientSizeKey.value]
           })
 
           render()
         }
 
         function getContainer() {
-          return warpper.value
+          return wrapper.value
         }
 
         useTheme('virtual-list', vlStyle)
@@ -310,10 +310,10 @@ class VirtualListFactory<T = any> {
           return (
             <YScrollbar
               container={getContainer}
-              style={warpperSizeStyle.value}
+              style={wrapperSizeStyle.value}
               {...props.scrollbarProps}
             >
-              <div class={bem.b().value} ref={warpper} onScroll={scrollHandler}>
+              <div class={bem.b().value} ref={wrapper} onScroll={scrollHandler}>
                 <div class={bem.e('view').value} style={minSizeStyle.value}>
                   <div
                     class={[

@@ -1,4 +1,4 @@
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace, px } from '@yy-ui/utils'
 import {
   computed,
   ComputedRef,
@@ -17,7 +17,7 @@ import {
 import YPopover from '../../popover/src/popover'
 import YIcon from '../../icon/src/icon.vue'
 import { JSX } from 'vue/jsx-runtime'
-import { YBaseCollapsed2 } from '../../_internal'
+import { YBaseCollapsed3 } from '../../_internal'
 
 export type DropdownOption = {
   /** 显示内容: 可以传入render函数 */
@@ -41,6 +41,8 @@ export type DropdownItem = {
   type: 'item' | 'group'
   /** 子集 */
   children?: DropdownItem[]
+  _iconHasWidth: boolean
+  _expandHasWidth: boolean
 }
 
 export const dropdownProps = {
@@ -67,13 +69,26 @@ export default defineComponent({
       }
     })
 
-    const { styleVars } = useTheme(theme, 'dropdown', dropdownStyle, props)
+    const { styleVars, vars } = useTheme(
+      theme,
+      'dropdown',
+      dropdownStyle,
+      props
+    )
 
-    const createItems = (option: DropdownOption): DropdownItem => {
+    const createItems = (
+      option: DropdownOption,
+      iconHasWidth: boolean,
+      expandHasWidth: boolean
+    ): DropdownItem => {
       const { label, icon, key, type = 'item', children } = option
       let childrenRef = children
       if (children) {
-        childrenRef = children.map(createItems)
+        const iconHasWidth = children.some(child => child.icon)
+        const expandHasWidth = children.some(child => child.children)
+        childrenRef = children.map(child =>
+          createItems(child, iconHasWidth, expandHasWidth)
+        )
       }
 
       return {
@@ -83,20 +98,27 @@ export default defineComponent({
         selected: false,
         key,
         type,
-        children: childrenRef as DropdownItem[]
+        children: childrenRef as DropdownItem[],
+        _iconHasWidth: iconHasWidth,
+        _expandHasWidth: expandHasWidth
       }
     }
 
     const dropdownItems = computed(() => {
-      return props.options.map(createItems)
+      const iconHasWidth = props.options.some(option => option.icon)
+      const expandHasWidth = props.options.some(option => option.children)
+      return props.options.map(option =>
+        createItems(option, iconHasWidth, expandHasWidth)
+      )
     }) as ComputedRef<DropdownItem[]>
 
-    return { bem, styleVars, dropdownItems }
+    return { bem, styleVars, vars, dropdownItems }
   },
   render() {
     const {
       bem,
       styleVars,
+      vars,
       dropdownItems,
       $slots: { default: defaultSlot }
     } = this
@@ -111,23 +133,33 @@ export default defineComponent({
             bem.b('item').m(item.active && 'active').value
           ]}
         >
-          {item.icon && (
-            <div class={bem.b('item').e('content-icon').value}>
-              <YIcon>{item.icon()}</YIcon>
-            </div>
-          )}
+          <div
+            class={bem.b('item').e('content-icon').value}
+            style={{
+              width: item._iconHasWidth ? px(vars.iconSize) : undefined,
+              height: px(vars.iconSize)
+            }}
+          >
+            {item.icon && <YIcon>{item.icon()}</YIcon>}
+          </div>
 
           <div class={bem.b('item').e('content-main').value}>
             {typeof item.label === 'string' ? item.label : item.label()}
           </div>
 
-          {item.type === 'item' && item.children && (
-            <div class={[bem.b('item').e('content-expand').value]}>
+          <div
+            class={[bem.b('item').e('content-expand').value]}
+            style={{
+              width: px(item._expandHasWidth ? vars.iconSize : 8),
+              height: px(vars.iconSize)
+            }}
+          >
+            {item.type === 'item' && item.children && (
               <YIcon>
-                <YBaseCollapsed2 />
+                <YBaseCollapsed3 />
               </YIcon>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )
     }
@@ -150,7 +182,9 @@ export default defineComponent({
           placement="right-start"
           to={false}
           show-arrow={false}
+          class={bem.b('submenu').value}
           row
+          distanceFromTrigger={5}
         >
           {{
             trigger: () => renderItem(item),

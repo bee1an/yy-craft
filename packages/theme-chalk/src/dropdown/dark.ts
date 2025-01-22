@@ -1,6 +1,15 @@
-import { ThemeConfig } from '../common'
+import { commonDark, ThemeConfig } from '../common'
+import { commonVars } from './_common'
 
-const vars = {}
+const vars = {
+  ...commonVars,
+  boxShadow:
+    '0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05)',
+  backgroundColor: commonDark.bodyColor,
+  backgroundColorHover: commonDark.hoverColor,
+  textColor: commonDark.textColor1,
+  groupTextColor: commonDark.textColor3
+}
 
 export const dropdownDark: ThemeConfig<typeof vars> = {
   name: 'dropdown',

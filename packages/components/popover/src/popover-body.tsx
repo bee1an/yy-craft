@@ -37,7 +37,10 @@ export const popoverBodyProps = {
   arrowStyle: null as unknown as PropType<StyleValue>,
 
   /** zIndex */
-  zIndex: Number
+  zIndex: Number,
+
+  /** 吸附元素距离触发器的距离 */
+  distanceFromTrigger: { type: Number, default: 10 }
 }
 
 export type PopoverBodyProps = ExtractPropTypes<typeof popoverBodyProps>
@@ -76,7 +79,8 @@ export default defineComponent({
       contentRef,
       computed(() => ({
         placement: props.placement,
-        visibleAreaThreshold: 10
+        visibleAreaThreshold: 10,
+        distanceFromTrigger: props.distanceFromTrigger
       }))
     )
 

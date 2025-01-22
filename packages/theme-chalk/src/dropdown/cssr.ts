@@ -1,21 +1,25 @@
-import { c, cB, cE, cM, cVar } from '@yy-ui/utils'
+import { c, cB, cE, cM, cNotM, cVar } from '@yy-ui/utils'
+
+const popoverWrapperStyle = {
+  boxShadow: cVar('boxShadow'),
+  borderRadius: cVar('borderRadius'),
+  fontSize: cVar('fontSize'),
+  color: cVar('textColor'),
+  transition: `
+	box-shadow ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')},
+	background-color ${cVar('transitionDuration')} ${cVar(
+    'transitionTimingFunction'
+  )},
+	color ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')}`
+}
 
 export const dropdownStyle = cB(
   'dropdown',
-  {
-    boxShadow: cVar('boxShadow'),
-    borderRadius: cVar('borderRadius'),
-    fontSize: cVar('fontSize'),
-    color: cVar('textColor'),
-    transition: `
-		box-shadow ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')},
-		background-color ${cVar('transitionDuration')} ${cVar(
-      'transitionTimingFunction'
-    )},
-		color ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')}`
-  },
+  { ...popoverWrapperStyle, position: 'relative' },
   [
     [
+      cB('dropdown-submenu', popoverWrapperStyle),
+
       cB('popover-arrow', {
         width: '10px',
         height: '10px',
@@ -47,7 +51,6 @@ export const dropdownStyle = cB(
             'transitionTimingFunction'
           )},
 					color ${cVar('transitionDuration')} ${cVar('transitionTimingFunction')}`,
-          padding: cVar('itemPadding'),
           boxSizing: 'border-box',
           cursor: 'pointer'
         },
@@ -58,14 +61,16 @@ export const dropdownStyle = cB(
             cursor: 'default'
           }),
 
-          c('&:hover', {
-            backgroundColor: cVar('backgroundColorHover')
-          }),
+          cNotM('group-title', [
+            c('&:hover', {
+              backgroundColor: cVar('backgroundColorHover')
+            })
+          ]),
 
           cE('content-icon', {
             gridArea: 'icon',
-            marginRight: '8px',
-            fontSize: '20px',
+            fontSize: cVar('iconSize'),
+            padding: cVar('iconPadding'),
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -118,7 +123,9 @@ export const dropdownStyle = cB(
             )},opacity ${cVar('transitionDuration')} ${cVar(
               'transitionTimingFunction'
             )}`,
-            fontSize: '20px',
+            fontSize: cVar('iconSize'),
+            padding: cVar('expandIconPadding'),
+            paddingRight: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'

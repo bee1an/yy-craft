@@ -105,8 +105,8 @@ export default defineComponent({
 
     const theme = computed(() => {
       return {
-        light: Object.assign({}, lightVars, {}),
-        dark: Object.assign({}, darkVars, {})
+        light: Object.assign({}, props.row ? {} : lightVars, {}),
+        dark: Object.assign({}, props.row ? {} : darkVars, {})
       }
     })
 
@@ -245,7 +245,8 @@ export default defineComponent({
         contentStyle,
         arrowClass,
         arrowStyle,
-        zIndex
+        zIndex,
+        distanceFromTrigger
       },
       $slots: { trigger: triggerSlot, default: defaultSlot }
     } = this
@@ -262,7 +263,10 @@ export default defineComponent({
         >
           {triggerSlot}
         </PopoverHijack>
-        <Teleport to={'body'} disabled={!to}>
+        <Teleport
+          to={to && typeof to !== 'boolean' ? to : 'body'}
+          disabled={!to}
+        >
           <Transition
             name="popover-transition"
             onAfterEnter={afterEnterHandler}
@@ -283,6 +287,8 @@ export default defineComponent({
                     contentStyle,
                     arrowClass,
                     arrowStyle,
+                    zIndex,
+                    distanceFromTrigger,
                     onMouseenter: contentMouseenter,
                     onMouseleave: contentMouseleave
                   },

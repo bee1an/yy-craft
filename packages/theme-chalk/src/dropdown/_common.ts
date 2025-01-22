@@ -10,5 +10,7 @@ export const commonVars = {
   transitionTimingFunction2: commonBase.cubicBezierEaseIn,
   itemHeight: '34px',
   padding: '5px',
-  itemPadding: '0 12px'
+  iconSize: '20px',
+  iconPadding: '0 8px',
+  expandIconPadding: '0 0 0 8px'
 }

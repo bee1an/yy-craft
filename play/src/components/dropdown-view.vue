@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { AlarmOutline } from '@vicons/ionicons5'
 import { DropdownOption } from '@yy-ui/yy-ui'
-import { h, ref } from 'vue'
+import { h, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 const title = useRoute().meta.sider
 
@@ -87,6 +87,7 @@ const allPlacement = [
   'bottom-end'
 ] as const
 
+const selectedKeys = reactive(['什么都没有1'])
 const showDropdown = ref(false)
 </script>
 
@@ -177,6 +178,35 @@ const showDropdown = ref(false)
       </yy-gi>
       <yy-gi>
         <yy-flex vertical>
+          <yy-card title="可选中">
+            <yy-p>设置<yy-text code>selectable</yy-text>配置为可选中</yy-p>
+            <yy-dropdown trigger="hover" selectable :options="basicMenuOptions">
+              <yy-button>悬浮</yy-button>
+            </yy-dropdown>
+          </yy-card>
+
+          <yy-card title="默认选中">
+            <yy-p
+              ><yy-text code>selectedKeys</yy-text>配置菜单选中的key,
+              它是一个v-model</yy-p
+            >
+
+            <yy-p
+              ><yy-text type="warning"
+                >需要设置<yy-text code>selectable=true</yy-text></yy-text
+              ></yy-p
+            >
+
+            <yy-dropdown
+              trigger="hover"
+              selectable
+              v-model:selectedKeys="selectedKeys"
+              :options="basicMenuOptions"
+            >
+              <yy-button>悬浮</yy-button>
+            </yy-dropdown>
+          </yy-card>
+
           <yy-card title="二级菜单触发位置">
             <yy-p>通过<yy-text code>sub-placement</yy-text>修改</yy-p>
             <yy-dropdown
@@ -184,13 +214,6 @@ const showDropdown = ref(false)
               sub-placement="bottom-start"
               :options="basicMenuOptions"
             >
-              <yy-button>悬浮</yy-button>
-            </yy-dropdown>
-          </yy-card>
-
-          <yy-card title="可选中">
-            <yy-p>设置<yy-text code>selectable</yy-text>配置为可选中</yy-p>
-            <yy-dropdown trigger="hover" selectable :options="basicMenuOptions">
               <yy-button>悬浮</yy-button>
             </yy-dropdown>
           </yy-card>

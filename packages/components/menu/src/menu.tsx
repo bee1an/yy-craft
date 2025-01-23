@@ -60,7 +60,7 @@ export const menuProps = {
   },
 
   /** 默认选中的key */
-  defaultSelectedKeys: {
+  selectedKeys: {
     type: Array as PropType<MenuOption['key'][]>,
     default: () => []
   },
@@ -82,7 +82,9 @@ export const menuEmits = {
   /** 菜单展开后 */
   expanded: () => true,
   /** 菜单收起后 */
-  collapsed: () => true
+  collapsed: () => true,
+  /** v-model */
+  'update:selected-keys': (() => true) as (newValue: MenuItem['key'][]) => void
 }
 
 export type MenuEmits = typeof menuEmits
@@ -115,19 +117,31 @@ export default defineComponent({
     // 高亮项
     const activeKeys = reactive(new Set())
     // 选中项
-    const selectedKeys = reactive(new Set(props.defaultSelectedKeys))
+    // FIXME: 找一下怎么不使用emit 触发v-model
+    const selectedKeys = computed({
+      get() {
+        return props.selectedKeys
+      },
+
+      set(newValue) {
+        emit('update:selected-keys', Array.from(new Set(newValue)))
+      }
+    })
+
     // 执行选中会将所有父元素高亮
     const setChainActive = (item: MenuItem) => {
       activeKeys.add(item.key)
+      item.active = true
       item.parent && setChainActive(item.parent)
     }
-    const selectItem = (item: MenuItem) => {
-      selectedKeys.add(item.key)
-      setChainActive(item)
-    }
+    // const selectItem = (item: MenuItem) => {
+    //   selectedKeys.value.add(item.key)
+    //   selectedKeys.value = new Set(selectedKeys.value)
+    //   setChainActive(item)
+    // }
     const clearSelect = () => {
       activeKeys.clear()
-      selectedKeys.clear()
+      selectedKeys.value.length = 0
     }
 
     // 展开项
@@ -154,8 +168,8 @@ export default defineComponent({
         key: option.key,
         label: option.label,
         icon: option.icon,
-        active: activeKeys.has(option.key),
-        selected: selectedKeys.has(option.key),
+        active: activeKeys.has(option.key), // FIXME: 这里应该去递归children是否有selected
+        selected: selectedKeys.value.includes(option.key),
         type: option.type ?? 'item',
         level,
         raw: option,
@@ -164,12 +178,15 @@ export default defineComponent({
         expanded: option.type === 'group' ? true : expandedKeys.has(option.key) // 默认收起
       }
 
-      item.selected && selectItem(item)
+      /* 
+				不应该在selected后再去反推active
+				TODO: 修复上面fixme后这行代码可以删除
+			*/
+      item.selected && setChainActive(item)
 
       items.push(item)
 
       if (props.collapsed) {
-        //
         item.children = option.children?.map(child =>
           createItems(child, level + 1, item, [])
         )
@@ -201,7 +218,7 @@ export default defineComponent({
     const itemClickHandler = (item: MenuItem) => {
       if (item.isLeaf) {
         clearSelect()
-        selectItem(item)
+        selectedKeys.value.push(item.key)
         createMenu()
       } else {
         toggleExpandItem(item)
@@ -237,9 +254,10 @@ export default defineComponent({
     const menuContainer = useTemplateRef('menuContainer')
     const transitionendHandler = (e: TransitionEvent) => {
       // 外层容器的width转场结束时, 触发收起或展开事件
-      if (e.propertyName === 'width' && e.target === menuContainer.value) {
-        props.collapsed ? emit('collapsed') : emit('expanded')
+      if (e.propertyName !== 'width' || e.target !== menuContainer.value) {
+        return
       }
+      props.collapsed ? emit('collapsed') : emit('expanded')
     }
 
     return {
@@ -247,6 +265,7 @@ export default defineComponent({
       styleVars,
       menuItems,
       itemClickHandler,
+      selectedKeys,
       wapperWidth,
       iconSize,
       iconMargin,
@@ -259,6 +278,7 @@ export default defineComponent({
       styleVars,
       menuItems,
       itemClickHandler,
+      selectedKeys,
       wapperWidth,
       iconSize,
       iconMargin,
@@ -326,11 +346,13 @@ export default defineComponent({
       if (collapsed && item.children) {
         return (
           <YDropdown
+            v-model:selectedKeys={selectedKeys}
             key={item.key}
             options={item.children}
             placement="right-start"
             show-arrow={false}
             trigger="hover"
+            selectable
           >
             {getSharedItemEl(item)}
           </YDropdown>

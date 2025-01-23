@@ -64,7 +64,7 @@ export const dropdownProps = {
   selectable: Boolean,
 
   /** 默认选中 */
-  defaultSelectedKeys: {
+  selectedKeys: {
     type: Array as PropType<DropdownOption['key'][]>,
     default: () => []
   },
@@ -109,10 +109,20 @@ export const dropdownProps = {
 
 export type DropdownProps = ExtractPropTypes<typeof dropdownProps>
 
+export const dropdownEmits = {
+  /** v-model */
+  'update:selected-keys': (() => true) as (
+    newValue: DropdownItem['key'][]
+  ) => void
+}
+
+export type DropdownEmits = typeof dropdownEmits
+
 export default defineComponent({
   name: 'Dropdown',
   props: dropdownProps,
-  setup(props) {
+  emits: dropdownEmits,
+  setup(props, { emit }) {
     const bem = new CreateNamespace('dropdown')
 
     const lightVars = dropdownLight.vars()
@@ -135,17 +145,28 @@ export default defineComponent({
     const activeKeys = reactive(new Set())
     const setChainActive = (item: DropdownItem) => {
       activeKeys.add(item.key)
+      item.active = true
       item.parent && setChainActive(item.parent)
     }
 
-    const selectedKeys = reactive(new Set(props.defaultSelectedKeys))
+    const selectedKeys = computed({
+      get() {
+        return new Set(props.selectedKeys)
+      },
+      set(newValue) {
+        emit('update:selected-keys', Array.from(newValue))
+      }
+    })
+
+    console.log('selectedKeys', selectedKeys.value)
+
     const selectItem = (item: DropdownItem): void => {
-      selectedKeys.add(item.key)
+      selectedKeys.value.add(item.key)
       setChainActive(item)
     }
     const clearSelect = () => {
       activeKeys.clear()
-      selectedKeys.clear()
+      selectedKeys.value.clear()
     }
 
     const createItems = (
@@ -160,7 +181,7 @@ export default defineComponent({
         label,
         icon,
         active: activeKeys.has(option.key),
-        selected: selectedKeys.has(option.key),
+        selected: selectedKeys.value.has(option.key),
         key,
         type,
         // children: childrenRef as DropdownItem[],

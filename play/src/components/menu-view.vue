@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { AlarmOutline } from '@vicons/ionicons5'
 import { MenuOption, useMessage, Text } from '@yy-ui/yy-ui'
-import { h, ref } from 'vue'
+import { computed, h, reactive, ref, watch } from 'vue'
 import { Meat, Vegetable, Soup, BigMeat, StapleFood } from './icons'
 
 const basicMenuOptions: MenuOption[] = [
@@ -198,6 +198,34 @@ const options2: MenuOption[] = [
     ]
   }
 ]
+
+const selectedKeys = reactive(['炒腊肉'])
+
+watch(
+  () => selectedKeys,
+  () => {
+    console.log('123123', selectedKeys)
+  },
+  { deep: true }
+)
+
+const sett = reactive(['2'])
+
+const settt = computed({
+  get() {
+    return sett
+  },
+  set() {
+    console.log('set')
+  }
+})
+
+setTimeout(() => {
+  console.log('setTimeout')
+  settt.value.length = 0
+  // TODO: ???这里居然不处罚setter
+  settt.value.push('1')
+}, 1000)
 </script>
 
 <template>
@@ -216,8 +244,11 @@ const options2: MenuOption[] = [
           </yy-layout>
         </yy-card>
 
-        <yy-card title="真菜单">
-          <yy-p>我确实有点无聊了</yy-p>
+        <yy-card title="选中状态">
+          <yy-p
+            ><yy-text code>selectedKeys</yy-text>配置菜单选中的key,
+            它是一个v-model</yy-p
+          >
           <yy-layout has-sider>
             <yy-layout-sider
               width="200"
@@ -229,6 +260,7 @@ const options2: MenuOption[] = [
               <yy-menu
                 :options="options2"
                 :collapsed="menuCollapsed2"
+                v-model:selectedKeys="selectedKeys"
                 collapsed-width="50"
               ></yy-menu>
             </yy-layout-sider>

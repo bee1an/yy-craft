@@ -117,16 +117,12 @@ export default defineComponent({
     // 高亮项
     const activeKeys = reactive(new Set())
     // 选中项
-    // FIXME: 找一下怎么不使用emit 触发v-model
-    const selectedKeys = computed({
-      get() {
-        return props.selectedKeys
-      },
-
-      set(newValue) {
-        emit('update:selected-keys', Array.from(new Set(newValue)))
-      }
-    })
+    const selectedKeys = reactive(Array.from(new Set(props.selectedKeys)))
+    const updateSelectedKeys = (newValue: MenuItem['key'][]) => {
+      clearSelect()
+      selectedKeys.splice(0, selectedKeys.length, ...newValue)
+      emit('update:selected-keys', selectedKeys)
+    }
 
     // 执行选中会将所有父元素高亮
     const setChainActive = (item: MenuItem) => {
@@ -134,14 +130,10 @@ export default defineComponent({
       item.active = true
       item.parent && setChainActive(item.parent)
     }
-    // const selectItem = (item: MenuItem) => {
-    //   selectedKeys.value.add(item.key)
-    //   selectedKeys.value = new Set(selectedKeys.value)
-    //   setChainActive(item)
-    // }
     const clearSelect = () => {
       activeKeys.clear()
-      selectedKeys.value.length = 0
+      selectedKeys.length = 0
+      emit('update:selected-keys', selectedKeys)
     }
 
     // 展开项
@@ -158,18 +150,38 @@ export default defineComponent({
     }
 
     const menuItems = reactive([]) as MenuItem[]
+
+    /**
+     * 检查当前项是否处于活动状态
+     * 依赖于是否有子元素处于选中状态
+     */
+    const checkActiveState = (item: MenuItem) => {
+      if (item.children) {
+        const finded = item.children.find(child => {
+          if (selectedKeys.includes(child.key)) {
+            return true
+          }
+        })
+
+        if (finded) {
+          setChainActive(item)
+        } else {
+          item.children.forEach(checkActiveState)
+        }
+      }
+    }
     const createItems = (
       option: MenuOption,
       level: number,
       parent: MenuItem | null,
-      items: MenuItem[]
+      visibleItems: MenuItem[] | null
     ) => {
       const item: MenuItem = {
         key: option.key,
         label: option.label,
         icon: option.icon,
-        active: activeKeys.has(option.key), // FIXME: 这里应该去递归children是否有selected
-        selected: selectedKeys.value.includes(option.key),
+        active: activeKeys.has(option.key),
+        selected: selectedKeys.includes(option.key),
         type: option.type ?? 'item',
         level,
         raw: option,
@@ -178,31 +190,30 @@ export default defineComponent({
         expanded: option.type === 'group' ? true : expandedKeys.has(option.key) // 默认收起
       }
 
-      /* 
-				不应该在selected后再去反推active
-				TODO: 修复上面fixme后这行代码可以删除
-			*/
-      item.selected && setChainActive(item)
+      visibleItems?.push(item)
 
-      items.push(item)
-
-      if (props.collapsed) {
-        item.children = option.children?.map(child =>
-          createItems(child, level + 1, item, [])
+      item.children = option.children?.map(child =>
+        createItems(
+          child,
+          level + 1,
+          item,
+          !props.collapsed && item.expanded ? visibleItems : null // 当菜单是展开状态并且菜单项是展开状态时，才继续渲染子菜单
         )
-      } else {
-        item.expanded &&
-          option.children?.forEach(child => {
-            createItems(child, level + 1, item, items)
-          })
-      }
+      )
+      !item.active && checkActiveState(item)
+
+      // if (props.collapsed) {
+      //   item.children = option.children?.map(child =>
+      //     createItems(child, level + 1, item, [])
+      //   )
+      // } else {
+      //   item.expanded &&
+      //     (item.children = option.children?.map(child =>
+      //       createItems(child, level + 1, item, items)
+      //     ))
+      // }
 
       return item
-      // !props.collapsed &&
-      //   item.expanded &&
-      //   option.children?.forEach(child => {
-      //     createItems(child, level + 1, item, items)
-      //   })
     }
     const createMenu = () => {
       menuItems.length = 0
@@ -218,7 +229,8 @@ export default defineComponent({
     const itemClickHandler = (item: MenuItem) => {
       if (item.isLeaf) {
         clearSelect()
-        selectedKeys.value.push(item.key)
+        selectedKeys.push(item.key)
+        emit('update:selected-keys', selectedKeys)
         createMenu()
       } else {
         toggleExpandItem(item)
@@ -266,6 +278,7 @@ export default defineComponent({
       menuItems,
       itemClickHandler,
       selectedKeys,
+      updateSelectedKeys,
       wapperWidth,
       iconSize,
       iconMargin,
@@ -279,6 +292,7 @@ export default defineComponent({
       menuItems,
       itemClickHandler,
       selectedKeys,
+      updateSelectedKeys,
       wapperWidth,
       iconSize,
       iconMargin,
@@ -346,7 +360,8 @@ export default defineComponent({
       if (collapsed && item.children) {
         return (
           <YDropdown
-            v-model:selectedKeys={selectedKeys}
+            selected-keys={selectedKeys}
+            onUpdate:selected-keys={updateSelectedKeys}
             key={item.key}
             options={item.children}
             placement="right-start"

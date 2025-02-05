@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { AlarmOutline } from '@vicons/ionicons5'
 import { MenuOption, useMessage, Text } from '@yy-ui/yy-ui'
-import { computed, h, reactive, ref, watch } from 'vue'
+import { h, reactive, ref } from 'vue'
 import { Meat, Vegetable, Soup, BigMeat, StapleFood } from './icons'
 
 const basicMenuOptions: MenuOption[] = [
@@ -200,32 +200,6 @@ const options2: MenuOption[] = [
 ]
 
 const selectedKeys = reactive(['炒腊肉'])
-
-watch(
-  () => selectedKeys,
-  () => {
-    console.log('123123', selectedKeys)
-  },
-  { deep: true }
-)
-
-const sett = reactive(['2'])
-
-const settt = computed({
-  get() {
-    return sett
-  },
-  set() {
-    console.log('set')
-  }
-})
-
-setTimeout(() => {
-  console.log('setTimeout')
-  settt.value.length = 0
-  // TODO: ???这里居然不处罚setter
-  settt.value.push('1')
-}, 1000)
 </script>
 
 <template>

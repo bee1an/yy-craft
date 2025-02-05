@@ -149,24 +149,45 @@ export default defineComponent({
       item.parent && setChainActive(item.parent)
     }
 
-    const selectedKeys = computed({
-      get() {
-        return new Set(props.selectedKeys)
-      },
-      set(newValue) {
-        emit('update:selected-keys', Array.from(newValue))
-      }
-    })
-
-    console.log('selectedKeys', selectedKeys.value)
+    // const selectedKeys = computed({
+    //   get() {
+    //     return new Set(props.selectedKeys)
+    //   },
+    //   set(newValue) {
+    //     emit('update:selected-keys', Array.from(newValue))
+    //   }
+    // })
+    const selectedKeys = reactive(Array.from(new Set(props.selectedKeys)))
 
     const selectItem = (item: DropdownItem): void => {
-      selectedKeys.value.add(item.key)
+      selectedKeys.push(item.key)
+      emit('update:selected-keys', selectedKeys)
       setChainActive(item)
     }
     const clearSelect = () => {
       activeKeys.clear()
-      selectedKeys.value.clear()
+      selectedKeys.length = 0
+      emit('update:selected-keys', selectedKeys)
+    }
+
+    /**
+     * 检查当前项是否处于活动状态
+     * 依赖于是否有子元素处于选中状态
+     */
+    const checkActiveState = (item: DropdownItem) => {
+      if (item.children) {
+        const finded = item.children.find(child => {
+          if (selectedKeys.includes(child.key)) {
+            return true
+          }
+        })
+
+        if (finded) {
+          setChainActive(item)
+        } else {
+          item.children.forEach(checkActiveState)
+        }
+      }
     }
 
     const createItems = (
@@ -181,27 +202,25 @@ export default defineComponent({
         label,
         icon,
         active: activeKeys.has(option.key),
-        selected: selectedKeys.value.has(option.key),
+        selected: props.selectable && selectedKeys.includes(option.key),
         key,
         type,
-        // children: childrenRef as DropdownItem[],
         _iconHasWidth: iconHasWidth,
         _expandHasWidth: expandHasWidth,
         parent
       }
 
-      item.selected && selectItem(item)
-
-      // let childrenRef = children
       if (children) {
+        // 判断是否需要给图标预留位置
         const iconHasWidth = children.some(child => child.icon)
         const expandHasWidth = children.some(child => child.children)
+
         item.children = children.map(child =>
           createItems(child, iconHasWidth, expandHasWidth, item)
         )
-
-        // item.childrenRef = childrenRef
       }
+
+      !item.active && checkActiveState(item)
 
       return item
     }

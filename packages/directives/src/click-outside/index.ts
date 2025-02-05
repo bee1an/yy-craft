@@ -8,3 +8,9 @@ const clickOutsideWithInstall = directiveWithInstall(
 
 export * from './click-outside'
 export { clickOutsideWithInstall, clickOutside }
+
+declare module 'vue' {
+  export interface GlobalDirectives {
+    vClickOutside: typeof clickOutside
+  }
+}

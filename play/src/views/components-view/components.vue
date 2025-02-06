@@ -2,16 +2,27 @@
 import { h } from 'vue'
 import { components } from '../../router'
 import { RouterLink, useRoute } from 'vue-router'
+import { MenuOption } from '@yy-ui/yy-ui'
 
 const renderRouterLink = (path: string, text: string) => {
   return () => h(RouterLink, { to: path }, () => text)
 }
-const options = components.map(item => {
+
+const children = components.map(item => {
   return {
     label: renderRouterLink(item.path, item.meta!.sider as string),
     key: item.name!
   }
 })
+
+const options: MenuOption[] = [
+  {
+    type: 'group',
+    label: `组件(${children.length})`,
+    key: 'components',
+    children
+  }
+]
 
 const route = useRoute()
 

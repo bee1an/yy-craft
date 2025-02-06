@@ -1,15 +1,20 @@
 {
   "name": "yy-ui",
   "version": "beta-0.0.1",
-  "description": "",
+  "packageManager": "pnpm@9.12.2",
+  "description": "A vue3 components store",
   "main": "index.js",
   "scripts": {
     "dev": "pnpm -C play dev",
     "doc:dev": "pnpm -C docs dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "yy-ui",
+    "component library",
+    "ui",
+    "vue"
+  ],
+  "license": "MIT",
   "dependencies": {
     "@yy-ui/components": "workspace:*",
     "@yy-ui/composables": "workspace:*",

@@ -1,4 +1,4 @@
-import { Directive } from 'vue'
+import type { Directive } from 'vue'
 
 let zIndex = 2000
 const getIndex = () => (zIndex++).toString()

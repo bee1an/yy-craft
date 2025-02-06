@@ -9,7 +9,7 @@
     "jsx": "preserve", // 保留jsx
     "noLib": false, // 不处理类库
     "target": "ES6", // 编译目标为ES6
-    "sourceMap": true, // 生成sourceMap
+    // "sourceMap": true, // 生成sourceMap
     "lib": ["ESNext", "DOM"], // 编译时使用的类库
     "allowSyntheticDefaultImports": true, // 允许默认导入
     "experimentalDecorators": true, // 启用装饰器

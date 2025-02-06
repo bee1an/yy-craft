@@ -82,7 +82,7 @@ export default defineComponent({
       const { duration } = props
       if (duration === 0) return
 
-      timerId = setTimeout(() => {
+      timerId = window.setTimeout(() => {
         visible.value = false
       }, duration)
     }

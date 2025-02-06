@@ -1,6 +1,6 @@
-import { useEventListener } from '@yy-ui/composables'
-import { AnyFn } from '@yy-ui/utils/src/types'
-import { Directive } from 'vue'
+import { useEventListener } from '@yy-ui/composables/use-event-listener'
+import type { AnyFn } from '@yy-ui/utils/src/types'
+import type { Directive } from 'vue'
 
 const nodeList = new Map<
   HTMLElement,

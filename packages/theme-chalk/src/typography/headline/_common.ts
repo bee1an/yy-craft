@@ -1,4 +1,4 @@
-import { commonBase } from '@yy-ui/theme-chalk'
+import { commonBase } from '../../common'
 
 export const commonVars = {
   fontWeight: commonBase.fontWeightStrong,

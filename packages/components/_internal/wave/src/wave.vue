@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useTheme } from '@yy-ui/composables'
-import { CreateNamespace } from '@yy-ui/utils'
+import { useTheme } from '@yy-ui/composables/use-theme'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { computed, ref, useTemplateRef, watchEffect } from 'vue'
 import { waveProps } from './wave'
-import { waveStyle, waveTheme } from '@yy-ui/theme-chalk'
+import { waveStyle, waveTheme } from '@yy-ui/theme-chalk/src/wave'
 
 defineOptions({ name: 'Wave' })
 
@@ -16,7 +16,7 @@ const active = ref(false)
 
 const start = () => {
   active.value = true
-  waveRef.value?.getAnimations().forEach(animation => {
+  waveRef.value?.getAnimations().forEach((animation) => {
     animation.currentTime = 0
   })
 }

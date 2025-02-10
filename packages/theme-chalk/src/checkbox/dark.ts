@@ -1,4 +1,4 @@
-import { commonLight } from '@yy-ui/theme-chalk'
+import { commonLight } from '../common'
 
 export const checkboxDark = {
   name: 'checkbox',

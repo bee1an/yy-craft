@@ -4,7 +4,7 @@ import {
   commonLight,
   ExtractThemeVars,
   ThemeConfig
-} from '@yy-ui/theme-chalk'
+} from '../common'
 
 const vars = {
   waveAnimationDuration: '0.6s',

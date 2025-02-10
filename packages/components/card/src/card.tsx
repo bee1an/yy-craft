@@ -1,14 +1,21 @@
-import { useTheme, useThemeProps } from '@yy-ui/composables'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
   cardDark,
   cardLight,
   cardStyle,
   CardThemeVars
-} from '@yy-ui/theme-chalk'
-import { createCSSVar, createKey, CreateNamespace } from '@yy-ui/utils'
-import { computed, defineComponent, PropType, SlotsType, VNodeChild } from 'vue'
-
-import { ExtractPropTypes } from 'vue'
+} from '@yy-ui/theme-chalk/src/card'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { createCSSVar } from '@yy-ui/utils/src/css'
+import { createKey } from '@yy-ui/utils/src/tools'
+import {
+  computed,
+  defineComponent,
+  ExtractPropTypes,
+  PropType,
+  SlotsType,
+  VNodeChild
+} from 'vue'
 
 export const cardProps = {
   ...useThemeProps<CardThemeVars>(),

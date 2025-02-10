@@ -1,5 +1,5 @@
-import { useThemeProps } from '@yy-ui/composables'
-import { ButtonThemeVars } from '@yy-ui/theme-chalk'
+import { useThemeProps } from '@yy-ui/composables/use-theme'
+// import { ButtonThemeVars } from '@yy-ui/theme-chalk/src/button/light'
 import { ExtractPropTypes, PropType } from 'vue'
 
 export type ButtonType =
@@ -12,7 +12,7 @@ export type ButtonType =
   | 'info'
 
 export const buttonProps = {
-  ...useThemeProps<ButtonThemeVars>(),
+  ...useThemeProps(),
   /** 按钮类型 */
   type: {
     type: String as PropType<ButtonType>,

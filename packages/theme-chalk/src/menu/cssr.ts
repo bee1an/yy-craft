@@ -1,5 +1,5 @@
 import { c, cB, cE, cM, cNotM, cVar } from '@yy-ui/utils'
-import { fadeInHeightExpandTransition } from '@yy-ui/theme-chalk'
+import { fadeInHeightExpandTransition } from '../transition'
 
 export const menuStyle = c(null, [
   cB(

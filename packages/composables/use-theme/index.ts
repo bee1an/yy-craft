@@ -1,9 +1,9 @@
-import { createCSSVar } from '@yy-ui/utils'
+import { createCSSVar } from '@yy-ui/utils/src/css'
 import {
   ThemeKey,
   ThemeVars,
   injectTheme as _injectTheme
-} from '@yy-ui/theme-chalk'
+} from '@yy-ui/theme-chalk/src/common'
 import { CNode } from 'css-render'
 import {
   computed,

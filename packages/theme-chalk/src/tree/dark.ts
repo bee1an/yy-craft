@@ -1,5 +1,5 @@
 import { rgba } from '@yy-ui/utils'
-import { commonDark } from '@yy-ui/theme-chalk'
+import { commonDark } from '../common'
 
 export const treeDark = {
   name: 'tree',

@@ -1,25 +1,17 @@
-// @ts-check
 import { defineConfig } from 'rollup'
-import typescript from '@rollup/plugin-typescript'
-import alias from '@rollup/plugin-alias'
-import vue from 'rollup-plugin-vue'
+import typescript from 'rollup-plugin-esbuild'
+import vue from '@vitejs/plugin-vue'
 import resolve from '@rollup/plugin-node-resolve'
-import path from 'node:path'
 
 export default defineConfig({
-  input: 'packages/components/button/index.ts',
+  input: 'packages/components/checkbox/index.ts', // TODO: 测试打包依赖
   output: {
     format: 'esm',
     dir: 'dist',
     sourcemap: false
   },
-  jsx: 'preserve',
-  plugins: [
-    vue({ target: 'browser' }),
-    resolve(),
-    typescript()
-    // alias({
-    //   entries: [{ find: '@yy-ui', replacement: './packages/' }]
-    // })
-  ]
+  external: ['vue'],
+  // jsx: 'preserve',
+  // treeshake: true,
+  plugins: [vue(), typescript(), resolve({ extensions: ['.ts'] })]
 })

@@ -1,5 +1,5 @@
 import { rgba } from '@yy-ui/utils'
-import { commonLight, ExtractThemeVars, ThemeConfig } from '@yy-ui/theme-chalk'
+import { commonLight, ExtractThemeVars, ThemeConfig } from '../common'
 
 const vars = {
   treeWrapperPadding: '2px 0',

@@ -1,5 +1,5 @@
-import { useThemeProps } from '@yy-ui/composables'
-import { WaveThemeVars } from '@yy-ui/theme-chalk'
+import { useThemeProps } from '@yy-ui/composables/use-theme'
+import { WaveThemeVars } from '@yy-ui/theme-chalk/src/wave'
 import { ExtractPropTypes } from 'vue'
 
 export const waveProps = {

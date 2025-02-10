@@ -1,5 +1,5 @@
 import commonVars from './_common'
-import { commonLight, ExtractThemeVars, ThemeConfig } from '@yy-ui/theme-chalk'
+import { commonLight, ExtractThemeVars, ThemeConfig } from '../../common'
 
 const vars = {
   ...commonVars,

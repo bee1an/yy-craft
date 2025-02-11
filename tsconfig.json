@@ -6,7 +6,6 @@
     "removeComments": true, // 移除注释
     "moduleResolution": "node", // 模块解析方式为node
     "esModuleInterop": true, // 支持ES模块和CommonJS模块
-    "jsx": "preserve", // 保留jsx
     "noLib": false, // 不处理类库
     "target": "ES6", // 编译目标为ES6
     // "sourceMap": true, // 生成sourceMap
@@ -17,6 +16,7 @@
     "resolveJsonModule": true, // 解析json模块
     "strict": true, // 严格模式
     "skipLibCheck": true, // 跳过类库检查
+    "jsx": "preserve", // 保留jsx
     "jsxImportSource": "vue"
   },
   "exclude": ["node_modules", "**/__tests__", "dist/**"] // 排除文件

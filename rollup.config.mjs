@@ -1,6 +1,7 @@
 import { defineConfig } from 'rollup'
-import typescript from 'rollup-plugin-esbuild'
+import esbuild from 'rollup-plugin-esbuild'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import resolve from '@rollup/plugin-node-resolve'
 
 export default defineConfig({
@@ -12,6 +13,8 @@ export default defineConfig({
   },
   external: ['vue'],
   // jsx: 'preserve',
-  // treeshake: true,
-  plugins: [vue(), typescript(), resolve({ extensions: ['.ts'] })]
+  plugins: [vue(), vueJsx(), esbuild(), resolve({ extensions: ['.ts'] })],
+  onwarn(a) {
+    console.log('123', a)
+  }
 })

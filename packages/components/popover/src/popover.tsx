@@ -1,14 +1,11 @@
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
   computed,
-  ComputedRef,
   defineComponent,
   ExtractPropTypes,
   h,
-  InjectionKey,
   PropType,
   provide,
-  Ref,
   ref,
   RendererElement,
   Teleport,
@@ -18,16 +15,18 @@ import {
   mergeProps,
   StyleValue
 } from 'vue'
-import { useTheme, useThemeProps } from '@yy-ui/composables'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
   PopoverThemeVars,
   popoverDark,
   popoverLight,
   popoverStyle
-} from '@yy-ui/theme-chalk'
+} from '@yy-ui/theme-chalk/src/popover'
 import PopoverHijack, { popoverHijackProps } from './popover-hijack'
 import PopoverBody, { popoverBodyProps } from './popover-body'
-import { clickOutside, zindexable } from '@yy-ui/directives'
+import { zindexable } from '@yy-ui/directives/src/_internal/zindexable'
+import { clickOutside } from '@yy-ui/directives/src/click-outside'
+import { popoverInjectKey } from './popover-inject-key'
 
 export const popoverProps = {
   ...useThemeProps<PopoverThemeVars>(),
@@ -82,14 +81,6 @@ export const popoverEmits = {
 }
 
 export type PopoverEmits = typeof popoverEmits
-
-export const popoverInjectKey = Symbol('PopoverInjectKey') as InjectionKey<{
-  setTargetRef: (target: HTMLElement | null) => void
-  bem: CreateNamespace
-  styleVars: ComputedRef<Record<string, string>>
-  triggerRef: Ref<HTMLElement | null>
-  wrapper: ComputedRef<boolean>
-}>
 
 export default defineComponent({
   name: 'Popover',

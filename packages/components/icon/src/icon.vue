@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { IconProps } from './icon'
-import { CreateNamespace } from '@yy-ui/utils'
-import { useTheme } from '@yy-ui/composables'
-import { iconStyle } from '@yy-ui/theme-chalk'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { useTheme } from '@yy-ui/composables/use-theme'
+import { iconStyle } from '@yy-ui/theme-chalk/src/icon'
 
 defineOptions({ name: 'Icon' })
 

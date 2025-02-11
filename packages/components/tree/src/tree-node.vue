@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 import { InjectBem } from './tree'
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import YyIcon from '@yy-ui/components/icon/src/icon.vue'
 import TSwitcher from './icons/Switcher'
 import TLoading from './icons/Loading'

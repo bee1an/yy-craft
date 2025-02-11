@@ -1,6 +1,6 @@
-import { omitObject } from '@yy-ui/utils'
+import { omitObject } from '@yy-ui/utils/src/object'
 import { ExtractPropTypes } from 'vue'
-import { scrollbarInternalProps } from '../../_internal'
+import { scrollbarInternalProps } from '../../_internal/scrollbar/src/scrollbar'
 
 export const scrollbarProps = omitObject(scrollbarInternalProps, ['container'])
 

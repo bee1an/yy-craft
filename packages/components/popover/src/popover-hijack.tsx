@@ -6,7 +6,7 @@ import {
   PropType,
   withDirectives
 } from 'vue'
-import { popoverInjectKey } from './popover'
+import { popoverInjectKey } from './popover-inject-key'
 
 export const popoverHijackProps = {
   /** 触发方式 */

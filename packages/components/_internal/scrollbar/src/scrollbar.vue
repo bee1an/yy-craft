@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { computed, nextTick, ref, useTemplateRef } from 'vue'
 import { ScrollbarExpose, scrollbarInternalProps } from './scrollbar'
-import {
-  useBaseDrag,
-  useEventListener,
-  useResizeObserver,
-  useTheme
-} from '@yy-ui/composables'
 import {
   scrollbarDark,
   scrollbarLight,
   scrollbarStyle
-} from '@yy-ui/theme-chalk'
+} from '@yy-ui/theme-chalk/src/scrollbar'
+import { useEventListener } from '@yy-ui/composables/use-event-listener'
+import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
+import { useBaseDrag } from '@yy-ui/composables/use-base-drag'
+import { useTheme } from '@yy-ui/composables/use-theme'
 
 defineOptions({ name: 'Scrollbar' })
 
@@ -84,7 +82,7 @@ const updateVerticalBar = async (
 ) => {
   verticalBar.value.visible = scrollHeight > clientHeight
   if (verticalBar.value.visible) {
-    if (!verticalRail.value) await new Promise<void>(r => nextTick(r))
+    if (!verticalRail.value) await new Promise<void>((r) => nextTick(r))
     const { clientHeight: verticalRailHeight } = verticalRail.value!
 
     verticalBar.value.height =
@@ -100,7 +98,7 @@ const updateHorizontalBar = async (
 ) => {
   horizontalBar.value.visible = scrollWidth > clientWidth
   if (horizontalBar.value.visible) {
-    if (!horizontalRail.value) await new Promise<void>(r => nextTick(r))
+    if (!horizontalRail.value) await new Promise<void>((r) => nextTick(r))
     const { clientWidth: horizontalRailWidth } = horizontalRail.value!
     horizontalBar.value.width =
       horizontalRailWidth * (clientWidth / scrollWidth)

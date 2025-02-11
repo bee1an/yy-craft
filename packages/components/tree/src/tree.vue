@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import TreeNode from './tree-node.vue'
 import { provide, ref, useSlots, VNode, watch } from 'vue'
 import {
@@ -13,9 +13,10 @@ import {
   TreeValue
 } from './tree'
 import useDragNode from './use-drag-node'
-import { GenericVirtualList } from '@yy-ui/components/virtual-list/src/virtual-list'
-import { useTheme } from '@yy-ui/composables'
-import { treeDark, treeLight, treeStyle } from '@yy-ui/theme-chalk'
+import { GenericVirtualList } from '@yy-ui/components/virtual-list'
+// import { GenericVirtualList } from '../../virtual-list/src/virtual-list'
+import { useTheme } from '@yy-ui/composables/use-theme'
+import { treeDark, treeLight, treeStyle } from '@yy-ui/theme-chalk/src/tree'
 
 const YyVirtualList = GenericVirtualList<TreeData>()
 
@@ -28,8 +29,8 @@ const emits = defineEmits<TreeEmitsType>()
 const expandedKeys = ref(new Set())
 watch(
   () => props.defaultExpandedKeys,
-  newVal => {
-    newVal?.forEach(key => expandedKeys.value.add(key))
+  (newVal) => {
+    newVal?.forEach((key) => expandedKeys.value.add(key))
   },
   { immediate: true }
 )
@@ -43,7 +44,7 @@ const createTree = (data: TreeOption[], level = 0) => {
   const flattenData: TreeData[] = []
   const treeData: TreeData[] = []
   const presentLevel = level + 1
-  data.forEach(item => {
+  data.forEach((item) => {
     const isLeaf = item.isLeaf ?? !item.children
     const key = item[props.keyField] as TreeKey
     const node: TreeData = {
@@ -114,7 +115,7 @@ const toggleExpand = (node: TreeData) => {
 // 选中的节点
 const selectedKeys = ref(new Set(props.selectedKeys))
 const clearSelected = () => {
-  tree.value.forEach(item => {
+  tree.value.forEach((item) => {
     item.isSelected = false
   })
   selectedKeys.value = new Set()

@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils'
+import { withInstall } from '@yy-ui/utils/src/with-install'
 import Scrollbar from './src/scrollbar.vue'
 
 const scrollbarWithInstall = withInstall(Scrollbar)

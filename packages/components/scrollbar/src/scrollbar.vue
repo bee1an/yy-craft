@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
-import { ScrollbarExpose, YScrollbar } from '../../_internal'
+import { ScrollbarExpose, YScrollbar } from '../../_internal/scrollbar'
 import { scrollbarProps } from './scrollbar'
 
 defineOptions({ name: 'Scrollbar' })

@@ -1,4 +1,3 @@
-import { CreateNamespace, depx, px } from '@yy-ui/utils'
 import {
   computed,
   defineComponent,
@@ -14,10 +13,12 @@ import {
   layoutSiderLight,
   layoutSiderStyle,
   LayoutSiderThemeVars
-} from '@yy-ui/theme-chalk'
-import { useTheme, useThemeProps } from '@yy-ui/composables'
+} from '@yy-ui/theme-chalk/src/layout'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import YyScrollbar from '../../scrollbar'
-import { YBaseCollapsed } from '../../_internal'
+import { YBaseCollapsed } from '../../_internal/icons'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { depx, px } from '@yy-ui/utils/src/css'
 
 export const layoutSiderProps = {
   ...useThemeProps<LayoutSiderThemeVars>(),
@@ -78,7 +79,7 @@ export default defineComponent({
     const collapsed = ref(props.collapsed ?? false)
     watch(
       () => props.collapsed,
-      val => {
+      (val) => {
         collapsed.value = val
       }
     )

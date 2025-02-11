@@ -1,4 +1,4 @@
-import { Overload } from '@yy-ui/utils'
+import { Overload } from '@yy-ui/utils/src/function-overload'
 import { Ref } from 'vue'
 import { VirtualListProps } from './virtual-list'
 import { emitter, VirtualListEvents } from './emitter-bus'
@@ -136,7 +136,7 @@ export const useScrollTo = (
       console.log('options: { key: string | number } & ScrollToExtraOptions')
 
       const index = props.data.findIndex(
-        item => item[props.keyField] === options.key
+        (item) => item[props.keyField] === options.key
       )
 
       if (index !== -1) {

@@ -1,4 +1,4 @@
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
   computed,
   ComputedRef,

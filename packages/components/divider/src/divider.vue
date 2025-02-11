@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { useTheme } from '@yy-ui/composables'
-import { CreateNamespace } from '@yy-ui/utils'
+import { useTheme } from '@yy-ui/composables/use-theme'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { dividerProps } from './divider'
-import { dividerDark, dividerLight, dividerStyle } from '@yy-ui/theme-chalk'
+import {
+  dividerDark,
+  dividerLight,
+  dividerStyle
+} from '@yy-ui/theme-chalk/src/divider'
 import { computed } from 'vue'
 
 defineOptions({ name: 'Divider' })

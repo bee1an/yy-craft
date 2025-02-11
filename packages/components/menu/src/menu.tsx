@@ -1,4 +1,3 @@
-import { createKey, CreateNamespace, depx, px } from '@yy-ui/utils'
 import {
   computed,
   defineComponent,
@@ -8,17 +7,21 @@ import {
   useTemplateRef,
   VNodeChild
 } from 'vue'
-import { useTheme, useThemeProps } from '@yy-ui/composables'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
   MenuThemeVars,
   menuDark,
   menuLight,
   menuStyle
-} from '@yy-ui/theme-chalk'
-import { Icon } from '@yy-ui/components'
-import { YBaseCollapsed2, YFadeInExpandTransition } from '../../_internal'
+} from '@yy-ui/theme-chalk/src/menu'
+import { Icon } from '@yy-ui/components/icon'
+import { YBaseCollapsed2 } from '../../_internal/icons'
+import { YFadeInExpandTransition } from '../../_internal/fade-in-expand-transition'
 import { watch } from 'vue'
 import YDropdown from '../../dropdown/src/dropdown'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { depx, px } from '@yy-ui/utils/src/css'
+import { createKey } from '@yy-ui/utils/src/tools'
 
 export type MenuOption = {
   /** 显示内容: 可以传入render函数 */
@@ -157,7 +160,7 @@ export default defineComponent({
      */
     const checkActiveState = (item: MenuItem) => {
       if (item.children) {
-        const finded = item.children.find(child => {
+        const finded = item.children.find((child) => {
           if (selectedKeys.includes(child.key)) {
             return true
           }
@@ -192,7 +195,7 @@ export default defineComponent({
 
       visibleItems?.push(item)
 
-      item.children = option.children?.map(child =>
+      item.children = option.children?.map((child) =>
         createItems(
           child,
           level + 1,
@@ -217,7 +220,7 @@ export default defineComponent({
     }
     const createMenu = () => {
       menuItems.length = 0
-      props.options.forEach(option => {
+      props.options.forEach((option) => {
         const items: MenuItem[] = []
         createItems(option, 1, null, items)
         menuItems.push(...items)
@@ -356,7 +359,7 @@ export default defineComponent({
       </div>
     )
 
-    const sharedEl = menuItems.map(item => {
+    const sharedEl = menuItems.map((item) => {
       if (collapsed && item.children) {
         return (
           <YDropdown

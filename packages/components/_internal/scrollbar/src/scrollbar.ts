@@ -1,6 +1,6 @@
 import { PropType, StyleValue } from 'vue'
-import { useThemeProps } from '@yy-ui/composables'
-import { ScrollbarThemeVars } from '@yy-ui/theme-chalk'
+import { useThemeProps } from '@yy-ui/composables/use-theme'
+import { ScrollbarThemeVars } from '@yy-ui/theme-chalk/src/scrollbar'
 
 export const scrollbarInternalProps = {
   ...useThemeProps<ScrollbarThemeVars>(),

@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils'
+import { withInstall } from '@yy-ui/utils/src/with-install'
 import Grid from './src/grid'
 import GridItem from './src/grid-item'
 

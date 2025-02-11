@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils'
+import { withInstall } from '@yy-ui/utils/src/with-install'
 import Layout from './src/layout'
 import LayoutSider from './src/layout-sider'
 import LayoutHeader from './src/layout-header'

@@ -1,4 +1,5 @@
-import { CreateNamespace, px } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { px } from '@yy-ui/utils/src/css'
 import {
   computed,
   ComputedRef,
@@ -10,17 +11,18 @@ import {
   StyleValue,
   VNodeChild
 } from 'vue'
-import { DefaultPlacement, useTheme, useThemeProps } from '@yy-ui/composables'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import { DefaultPlacement } from '@yy-ui/composables/use-placement'
 import {
   DropdownThemeVars,
   dropdownDark,
   dropdownLight,
   dropdownStyle
-} from '@yy-ui/theme-chalk'
+} from '@yy-ui/theme-chalk/src/dropdown'
 import YPopover from '../../popover/src/popover'
 import YIcon from '../../icon/src/icon.vue'
-import { JSX } from 'vue/jsx-runtime'
-import { YBaseCollapsed3 } from '../../_internal'
+import type { JSX } from 'vue/jsx-runtime'
+import { YBaseCollapsed3 } from '../../_internal/icons'
 
 export type DropdownOption = {
   /** 显示内容: 可以传入render函数 */
@@ -176,7 +178,7 @@ export default defineComponent({
      */
     const checkActiveState = (item: DropdownItem) => {
       if (item.children) {
-        const finded = item.children.find(child => {
+        const finded = item.children.find((child) => {
           if (selectedKeys.includes(child.key)) {
             return true
           }
@@ -212,10 +214,10 @@ export default defineComponent({
 
       if (children) {
         // 判断是否需要给图标预留位置
-        const iconHasWidth = children.some(child => child.icon)
-        const expandHasWidth = children.some(child => child.children)
+        const iconHasWidth = children.some((child) => child.icon)
+        const expandHasWidth = children.some((child) => child.children)
 
-        item.children = children.map(child =>
+        item.children = children.map((child) =>
           createItems(child, iconHasWidth, expandHasWidth, item)
         )
       }
@@ -226,9 +228,9 @@ export default defineComponent({
     }
 
     const dropdownItems = computed(() => {
-      const iconHasWidth = props.options.some(option => option.icon)
-      const expandHasWidth = props.options.some(option => option.children)
-      return props.options.map(option =>
+      const iconHasWidth = props.options.some((option) => option.icon)
+      const expandHasWidth = props.options.some((option) => option.children)
+      return props.options.map((option) =>
         createItems(option, iconHasWidth, expandHasWidth, null)
       )
     }) as ComputedRef<DropdownItem[]>

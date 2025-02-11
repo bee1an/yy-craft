@@ -1,5 +1,5 @@
-import { useThemeProps } from '@yy-ui/composables'
-import { FlexThemeVars } from '@yy-ui/theme-chalk'
+import { useThemeProps } from '@yy-ui/composables/use-theme'
+import { FlexThemeVars } from '@yy-ui/theme-chalk/src/flex'
 import { ExtractPropTypes, PropType } from 'vue'
 
 export const flexProps = {

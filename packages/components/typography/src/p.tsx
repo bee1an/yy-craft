@@ -1,6 +1,12 @@
-import { useTheme, useThemeProps } from '@yy-ui/composables'
-import { pDark, pLight, pStyle, PThemeVars } from '@yy-ui/theme-chalk'
-import { createKey, CreateNamespace } from '@yy-ui/utils'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import {
+  pDark,
+  pLight,
+  pStyle,
+  PThemeVars
+} from '@yy-ui/theme-chalk/src/typography'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { createKey } from '@yy-ui/utils/src/tools'
 import { computed, defineComponent, ExtractPropTypes, PropType } from 'vue'
 
 export const Pprops = {

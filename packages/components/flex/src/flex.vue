@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { createKey, CreateNamespace, depx, getGap } from '@yy-ui/utils'
 import { flexProps } from './flex'
 import { computed } from 'vue'
-import { useTheme } from '@yy-ui/composables'
-import { flexTheme } from '@yy-ui/theme-chalk'
+import { useTheme } from '@yy-ui/composables/use-theme'
+import { flexTheme } from '@yy-ui/theme-chalk/src/flex'
+import { createKey } from '@yy-ui/utils/src/tools'
+import { depx, getGap } from '@yy-ui/utils/src/css'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 
 defineOptions({ name: 'Flex' })
 

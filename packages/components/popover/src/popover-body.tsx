@@ -7,9 +7,13 @@ import {
   StyleValue,
   useTemplateRef
 } from 'vue'
-import { popoverInjectKey } from './popover'
-import { DefaultPlacement, usePlacement } from '@yy-ui/composables'
-import { getIntersection, px } from '@yy-ui/utils'
+import { popoverInjectKey } from './popover-inject-key'
+import {
+  DefaultPlacement,
+  usePlacement
+} from '@yy-ui/composables/use-placement'
+import { px } from '@yy-ui/utils/src/css'
+import { getIntersection } from '@yy-ui/utils/src/tools'
 
 export const popoverBodyProps = {
   /** 位置 */

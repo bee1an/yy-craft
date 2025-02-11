@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils'
+import { withInstall } from '@yy-ui/utils/src/with-install'
 import VirtualList from './src/virtual-list'
 
 const virtualListWithInstall = withInstall(VirtualList)

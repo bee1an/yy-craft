@@ -1,8 +1,9 @@
 import { AppContext, h } from 'vue'
 import Message, { MessageProps } from './message'
-import { createId, CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { createId } from '@yy-ui/utils/src/tools'
 import { useVNodeProvider, VNodeProviderInstance } from '@yy-ui/composables'
-import { YProvider } from '../../_internal'
+import { YProvider } from '../../_internal/provider'
 
 export type MessagePlacement =
   | 'top'
@@ -77,7 +78,7 @@ export const useMessage = (_context?: AppContext) => {
       if (!provider) return
       const children = provider.children
 
-      return children.find(item => item.props!.id === props.id)
+      return children.find((item) => item.props!.id === props.id)
     }
 
     return {

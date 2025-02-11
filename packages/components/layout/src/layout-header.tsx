@@ -1,11 +1,11 @@
-import { useTheme, useThemeProps } from '@yy-ui/composables'
-import { CreateNamespace } from '@yy-ui/utils'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
   layoutHeaderDark,
   layoutHeaderLight,
   layoutHeaderStyle,
   LayoutHeaderThemeVars
-} from '@yy-ui/theme-chalk'
+} from '@yy-ui/theme-chalk/src/layout'
 import { computed, defineComponent, ExtractPropTypes } from 'vue'
 
 export const layoutHeaderProps = {

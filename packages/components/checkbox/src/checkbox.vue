@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { CheckboxEmits, checkboxProps } from './checkbox'
-import { checkboxDark, checkboxLight, checkboxStyle } from '@yy-ui/theme-chalk'
-import { Icon as YIcon } from '@yy-ui/components'
+import {
+  checkboxDark,
+  checkboxLight,
+  checkboxStyle
+} from '@yy-ui/theme-chalk/src/checkbox'
+import { Icon as YIcon } from '@yy-ui/components/icon'
 import { useTheme } from '@yy-ui/composables/use-theme'
-import { YBaseChecked, YBaseIndeterminate } from '../../_internal'
+import { YBaseChecked, YBaseIndeterminate } from '../../_internal/icons'
 
 defineOptions({ name: 'Checkbox' })
 

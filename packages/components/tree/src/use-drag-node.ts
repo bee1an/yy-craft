@@ -1,4 +1,4 @@
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { TreeData, TreeEmitsType, TreeProps } from './tree'
 import {
   findParentNode,
@@ -76,7 +76,7 @@ const useDragNode = (
     // 如果drag节点是drop节点的祖先节点, 则不处理
     if (isAncestorNode(tree.value, dragNode!, node)) return
 
-    const treeNodeWrapper = findTreeNodeWrapper(target as HTMLElement, e =>
+    const treeNodeWrapper = findTreeNodeWrapper(target as HTMLElement, (e) =>
       e.classList.contains(nameSpace.b('node').b('wrapper').value)
     )
 
@@ -114,7 +114,7 @@ const useDragNode = (
       dropNode = presentParentNode
       position =
         getChildren(props.data, presentParentNode).findIndex(
-          item => item.key === presentNode?.key
+          (item) => item.key === presentNode?.key
         ) + 1
     }
 
@@ -210,7 +210,7 @@ const useDragNode = (
   const onDragend = () => clearDragBorder()
 
   const clearDragBorder = () => {
-    tree.value.forEach(item => {
+    tree.value.forEach((item) => {
       item.dragBorder = false
       item.dragBorderBottom = 0
     })

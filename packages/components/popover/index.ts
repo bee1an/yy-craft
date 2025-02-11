@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils'
+import { withInstall } from '@yy-ui/utils/src/with-install'
 import Popover from './src/popover'
 
 const popoverWithInstall = withInstall(Popover)

@@ -1,9 +1,11 @@
 import {
   useEventListener,
-  UseEventListenerReturn,
+  UseEventListenerReturn
+} from '@yy-ui/composables/use-event-listener'
+import {
   useResizeObserver,
   UseResizeObserverReturn
-} from '@yy-ui/composables'
+} from '@yy-ui/composables/use-resize-observer'
 import { defaultBreakpoints } from '@yy-ui/constants'
 import { computed, nextTick, ref, ShallowRef, watch } from 'vue'
 
@@ -35,7 +37,7 @@ export const useResponsiveObserver = <T extends string>(
 
   const cleanups: (UseResizeObserverReturn | UseEventListenerReturn)[] = []
   const cleanup = () => {
-    cleanups.splice(0, cleanups.length).forEach(callback => callback())
+    cleanups.splice(0, cleanups.length).forEach((callback) => callback())
   }
   const observerWidth = ref(0)
   // 切换监控的元素
@@ -91,7 +93,7 @@ export const useResponsiveObserver = <T extends string>(
   // 归一化尺寸映射
   const normalizedMap = () => {
     return Object.fromEntries(
-      Object.entries(responsiveConfig.value.responsiveMap).map(item => {
+      Object.entries(responsiveConfig.value.responsiveMap).map((item) => {
         const newMap = [...item]
         if (isScreenResponsive.value) {
           newMap[0] =
@@ -107,8 +109,8 @@ export const useResponsiveObserver = <T extends string>(
   const getReolveKey = (responsiveMap: Record<string, number>) => {
     const mapKeys = Object.keys(responsiveMap)
     const meets = mapKeys
-      .map(item => Number(item))
-      .filter(key => key <= observerWidth.value)
+      .map((item) => Number(item))
+      .filter((key) => key <= observerWidth.value)
 
     return Math.max(...meets)
   }

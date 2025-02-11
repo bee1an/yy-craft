@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils'
+import { withInstall } from '@yy-ui/utils/src/with-install'
 import Tree from './src/tree.vue'
 
 const treeWithInstall = withInstall(Tree)

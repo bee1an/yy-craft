@@ -1,7 +1,12 @@
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { computed, defineComponent, ExtractPropTypes } from 'vue'
-import { useTheme, useThemeProps } from '@yy-ui/composables'
-import { AThemeVars, aDark, aLight, aStyle } from '@yy-ui/theme-chalk'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import {
+  AThemeVars,
+  aDark,
+  aLight,
+  aStyle
+} from '@yy-ui/theme-chalk/src/typography'
 
 export const aProps = {
   ...useThemeProps<AThemeVars>()

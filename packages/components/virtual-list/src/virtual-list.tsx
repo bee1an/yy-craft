@@ -1,4 +1,4 @@
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
   computed,
   defineComponent,
@@ -13,10 +13,11 @@ import {
 } from 'vue'
 import { ScrollTo, useScrollTo } from './use-scroll-to'
 import { emitter } from './emitter-bus'
-import { useResizeObserver, useTheme } from '@yy-ui/composables'
-import { ScrollbarProps } from '@yy-ui/components'
-import { YScrollbar } from '../../_internal'
-import { vlStyle } from '@yy-ui/theme-chalk'
+import { useTheme } from '@yy-ui/composables/use-theme'
+import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
+import { ScrollbarProps } from '@yy-ui/components/scrollbar/src/scrollbar'
+import { YScrollbar } from '../../_internal/scrollbar'
+import { vlStyle } from '@yy-ui/theme-chalk/src/virtual-list'
 
 export const virtualListProps = {
   /** 滚动条配置 */
@@ -90,7 +91,7 @@ class VirtualListFactory<T = any> {
       setup(props, { slots, expose }) {
         if (!props.virtualScroll) {
           // 不使用虚拟滚动
-          return () => props.data.map(item => slots.default?.({ item }))
+          return () => props.data.map((item) => slots.default?.({ item }))
         }
 
         const scrollPosKey = computed(() =>
@@ -323,7 +324,7 @@ class VirtualListFactory<T = any> {
                     ref={visibleZone}
                     style={transformStyle.value}
                   >
-                    {currentData.value.map(item => slots.default?.({ item }))}
+                    {currentData.value.map((item) => slots.default?.({ item }))}
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils'
+import { withInstall } from '@yy-ui/utils/src/with-install'
 import Divider from './src/divider.vue'
 
 const dividerWithInstall = withInstall(Divider)

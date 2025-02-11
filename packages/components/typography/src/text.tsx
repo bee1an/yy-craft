@@ -1,12 +1,13 @@
-import { createKey, CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { createKey } from '@yy-ui/utils/src/tools'
 import { computed, defineComponent, ExtractPropTypes, h, PropType } from 'vue'
-import { useTheme, useThemeProps } from '@yy-ui/composables'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
   TextThemeVars,
   textDark,
   textLight,
   textStyle
-} from '@yy-ui/theme-chalk'
+} from '@yy-ui/theme-chalk/src/typography'
 
 export const textProps = {
   ...useThemeProps<TextThemeVars>(),

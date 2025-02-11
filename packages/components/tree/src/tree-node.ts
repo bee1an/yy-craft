@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { TreeData } from './tree'
+import type { TreeData } from './tree'
 
 export const treeNodeProps = {
   /** TreeData */

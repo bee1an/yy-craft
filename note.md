@@ -10,6 +10,7 @@
 - [`rollup-plugin-esbuild`](#2-typescript-编译方案)
 - [`@vitejs/plugin-vue`](#3-vue-组件编译方案)
 - [`@vitejs/plugin-vue-jsx`](#4-vue-tsx-编译方案)
+- [`rollup-plugin-visualizer`](#5-生成包结构)
 
 ##### 1. **第三方包解析**（基本必备）
 
@@ -78,5 +79,17 @@
 ##### 4. **Vue tsx 编译方案**
 
 - [`@vitejs/plugin-vue-jsx`](https://github.com/vitejs/vite-plugin-vue)
+
+##### 5. **生成包结构**
+
+- [`rollup-plugin-visualizer`](https://github.com/btd/rollup-plugin-visualizer?tab=readme-ov-file#usage)
+
+  ⚙️ 项目跟目录下生成`stats.html`文件，用于展示打包后的包结构
+
+## 🔧 关于 ts
+
+### 📄 tsconfig.json 关键配置
+
+- `verbatimModuleSyntax`: 导入类型不使用 **import type** 时报错
 
 ---

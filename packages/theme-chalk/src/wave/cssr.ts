@@ -2,8 +2,8 @@ import { c, cB, cM } from '@yy-ui/utils'
 import {
   commonBase,
   commonLight,
-  ExtractThemeVars,
-  ThemeConfig
+  type ExtractThemeVars,
+  type ThemeConfig
 } from '../common'
 
 const vars = {

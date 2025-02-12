@@ -12,6 +12,8 @@
 // import MessageTest from './components/message-test.vue'
 // import GridTest from './components/grid-test.vue'
 // import LayoutTest from './components/layout-test.vue'
+import { CheckboxEmits } from '@yy-ui/yy-ui'
+const emits = defineEmits<CheckboxEmits>()
 </script>
 
 <template>

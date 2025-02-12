@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "pnpm -C play dev",
-    "doc:dev": "pnpm -C docs dev"
+    "doc:dev": "pnpm -C docs dev",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [
     "yy-ui",
@@ -41,6 +42,7 @@
     "rollup": "4.34.4",
     "rollup-plugin-dts": "6.1.1",
     "rollup-plugin-esbuild": "6.2.0",
+    "rollup-plugin-visualizer": "5.14.0",
     "typescript": "5.7.2",
     "typescript-eslint": "8.17.0"
   }

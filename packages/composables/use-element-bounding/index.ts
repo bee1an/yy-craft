@@ -1,4 +1,4 @@
-import { ref, ShallowRef } from 'vue'
+import { ref, type ShallowRef } from 'vue'
 import { useResizeObserver } from '../use-resize-observer'
 import { useMutationObserver } from '../use-mutation-observer'
 import { useEventListener } from '../use-event-listener'

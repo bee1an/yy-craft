@@ -1,5 +1,5 @@
-import { InjectionKey, Ref } from 'vue'
-import { ThemeKey } from './type'
+import type { InjectionKey, Ref } from 'vue'
+import type { ThemeKey } from './type'
 
 export const injectTheme = Symbol('InjectTheme') as InjectionKey<{
   theme: Ref<ThemeKey>

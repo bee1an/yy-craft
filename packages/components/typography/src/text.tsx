@@ -1,9 +1,15 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { createKey } from '@yy-ui/utils/src/tools'
-import { computed, defineComponent, ExtractPropTypes, h, PropType } from 'vue'
+import {
+  computed,
+  defineComponent,
+  type ExtractPropTypes,
+  h,
+  type PropType
+} from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
-  TextThemeVars,
+  type TextThemeVars,
   textDark,
   textLight,
   textStyle

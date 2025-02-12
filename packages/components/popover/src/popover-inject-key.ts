@@ -1,5 +1,5 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { ComputedRef, InjectionKey, Ref } from 'vue'
+import type { ComputedRef, InjectionKey, Ref } from 'vue'
 
 export const popoverInjectKey = Symbol('PopoverInjectKey') as InjectionKey<{
   setTargetRef: (target: HTMLElement | null) => void

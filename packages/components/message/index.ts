@@ -1,4 +1,4 @@
-import { App } from 'vue'
+import type { App } from 'vue'
 import { useMessage } from './src/use-message'
 
 export * from './src/message'

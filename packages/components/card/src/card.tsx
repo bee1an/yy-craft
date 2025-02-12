@@ -3,7 +3,7 @@ import {
   cardDark,
   cardLight,
   cardStyle,
-  CardThemeVars
+  type CardThemeVars
 } from '@yy-ui/theme-chalk/src/card'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { createCSSVar } from '@yy-ui/utils/src/css'
@@ -11,10 +11,10 @@ import { createKey } from '@yy-ui/utils/src/tools'
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
-  PropType,
-  SlotsType,
-  VNodeChild
+  type ExtractPropTypes,
+  type PropType,
+  type SlotsType,
+  type VNodeChild
 } from 'vue'
 
 export const cardProps = {

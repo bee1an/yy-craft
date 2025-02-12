@@ -1,4 +1,4 @@
-import { onScopeDispose, ShallowRef, watch } from 'vue'
+import { onScopeDispose, type ShallowRef, watch } from 'vue'
 
 export const useMutationObserver = (
   /** 监听对象 */
@@ -17,11 +17,11 @@ export const useMutationObserver = (
 
   const cleanups: Function[] = []
   const cleanup = () => {
-    cleanups.forEach(fn => fn())
+    cleanups.forEach((fn) => fn())
     cleanups.length = 0
   }
 
-  const unwatch = watch(target, val => {
+  const unwatch = watch(target, (val) => {
     cleanup()
     val && cleanups.push(observe())
   })

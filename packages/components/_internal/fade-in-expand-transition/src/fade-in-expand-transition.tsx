@@ -1,10 +1,10 @@
 import {
   defineComponent,
   h,
-  PropType,
+  type PropType,
   Transition,
   TransitionGroup,
-  TransitionProps
+  type TransitionProps
 } from 'vue'
 
 /* 

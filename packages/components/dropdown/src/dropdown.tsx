@@ -2,19 +2,19 @@ import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { px } from '@yy-ui/utils/src/css'
 import {
   computed,
-  ComputedRef,
+  type ComputedRef,
   defineComponent,
-  ExtractPropTypes,
-  PropType,
+  type ExtractPropTypes,
+  type PropType,
   reactive,
-  RendererElement,
-  StyleValue,
-  VNodeChild
+  type RendererElement,
+  type StyleValue,
+  type VNodeChild
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import { DefaultPlacement } from '@yy-ui/composables/use-placement'
+import { type DefaultPlacement } from '@yy-ui/composables/use-placement'
 import {
-  DropdownThemeVars,
+  type DropdownThemeVars,
   dropdownDark,
   dropdownLight,
   dropdownStyle

@@ -4,9 +4,9 @@ import {
   layoutFooterDark,
   layoutFooterLight,
   layoutFooterStyle,
-  LayoutFooterThemeVars
+  type LayoutFooterThemeVars
 } from '@yy-ui/theme-chalk/src/layout'
-import { computed, defineComponent, ExtractPropTypes } from 'vue'
+import { computed, defineComponent, type ExtractPropTypes } from 'vue'
 
 export const layoutFooterProps = {
   ...useThemeProps<LayoutFooterThemeVars>(),

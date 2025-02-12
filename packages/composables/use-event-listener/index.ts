@@ -1,4 +1,4 @@
-import { onScopeDispose, ShallowRef, toValue, watch } from 'vue'
+import { onScopeDispose, type ShallowRef, toValue, watch } from 'vue'
 
 export type UseEventListenerReturn = ReturnType<typeof useEventListener>
 
@@ -24,7 +24,7 @@ export function useEventListener(
 ) {
   const cleanups: Function[] = []
   const cleanup = () => {
-    cleanups.forEach(fn => fn())
+    cleanups.forEach((fn) => fn())
     cleanups.length = 0
   }
 

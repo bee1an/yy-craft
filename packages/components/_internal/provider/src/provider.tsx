@@ -1,10 +1,10 @@
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
+  type ExtractPropTypes,
   h,
-  PropType,
-  VNode
+  type PropType,
+  type VNode
 } from 'vue'
 
 export const messageProviderProps = {
@@ -25,7 +25,7 @@ export default defineComponent({
   name: 'MessageProvider',
   props: messageProviderProps,
   setup(props, { expose }) {
-    const childrenCpt = computed(() => props.children.map(child => child()))
+    const childrenCpt = computed(() => props.children.map((child) => child()))
 
     expose({ childrenCpt })
 

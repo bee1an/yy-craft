@@ -1,10 +1,10 @@
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
-  PropType,
+  type ExtractPropTypes,
+  type PropType,
   ref,
-  StyleValue,
+  type StyleValue,
   useTemplateRef,
   watch
 } from 'vue'
@@ -12,7 +12,7 @@ import {
   layoutSiderDark,
   layoutSiderLight,
   layoutSiderStyle,
-  LayoutSiderThemeVars
+  type LayoutSiderThemeVars
 } from '@yy-ui/theme-chalk/src/layout'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import YyScrollbar from '../../scrollbar'

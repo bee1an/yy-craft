@@ -1,4 +1,4 @@
-import { onUnmounted, ShallowRef } from 'vue'
+import { onUnmounted, type ShallowRef } from 'vue'
 import { useEventListener } from '../use-event-listener'
 
 /**

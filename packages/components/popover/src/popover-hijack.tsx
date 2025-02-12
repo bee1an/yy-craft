@@ -1,9 +1,9 @@
 import {
   defineComponent,
-  ExtractPropTypes,
+  type ExtractPropTypes,
   h,
   inject,
-  PropType,
+  type PropType,
   withDirectives
 } from 'vue'
 import { popoverInjectKey } from './popover-inject-key'

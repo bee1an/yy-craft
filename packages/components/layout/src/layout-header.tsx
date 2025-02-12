@@ -4,9 +4,9 @@ import {
   layoutHeaderDark,
   layoutHeaderLight,
   layoutHeaderStyle,
-  LayoutHeaderThemeVars
+  type LayoutHeaderThemeVars
 } from '@yy-ui/theme-chalk/src/layout'
-import { computed, defineComponent, ExtractPropTypes } from 'vue'
+import { computed, defineComponent, type ExtractPropTypes } from 'vue'
 
 export const layoutHeaderProps = {
   ...useThemeProps<LayoutHeaderThemeVars>(),

@@ -3,7 +3,7 @@ import { gridProviderKey } from './grid'
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
+  type ExtractPropTypes,
   inject,
   useTemplateRef
 } from 'vue'

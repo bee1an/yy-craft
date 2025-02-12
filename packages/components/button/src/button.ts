@@ -1,6 +1,6 @@
 import { useThemeProps } from '@yy-ui/composables/use-theme'
 // import { ButtonThemeVars } from '@yy-ui/theme-chalk/src/button/light'
-import { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export type ButtonType =
   | 'default'

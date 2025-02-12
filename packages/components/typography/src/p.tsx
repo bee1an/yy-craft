@@ -3,11 +3,16 @@ import {
   pDark,
   pLight,
   pStyle,
-  PThemeVars
+  type PThemeVars
 } from '@yy-ui/theme-chalk/src/typography'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { createKey } from '@yy-ui/utils/src/tools'
-import { computed, defineComponent, ExtractPropTypes, PropType } from 'vue'
+import {
+  computed,
+  defineComponent,
+  type ExtractPropTypes,
+  type PropType
+} from 'vue'
 
 export const Pprops = {
   ...useThemeProps<PThemeVars>(),

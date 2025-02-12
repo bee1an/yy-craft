@@ -1,4 +1,4 @@
-import { TreeData } from './tree'
+import type { TreeData } from './tree'
 
 /** 查找TreeNodeWrapper */
 export const findTreeNodeWrapper = (
@@ -19,7 +19,7 @@ export const findParentNode = (
 ): TreeData | null => {
   if (!node) return null
 
-  return tree.find(item => item.children?.includes(node)) ?? null
+  return tree.find((item) => item.children?.includes(node)) ?? null
 }
 
 /** 判断是否是祖先元素 */

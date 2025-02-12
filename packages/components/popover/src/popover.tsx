@@ -2,22 +2,22 @@ import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
+  type ExtractPropTypes,
   h,
-  PropType,
+  type PropType,
   provide,
   ref,
-  RendererElement,
+  type RendererElement,
   Teleport,
   Transition,
   watch,
   withDirectives,
   mergeProps,
-  StyleValue
+  type StyleValue
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
-  PopoverThemeVars,
+  type PopoverThemeVars,
   popoverDark,
   popoverLight,
   popoverStyle

@@ -1,4 +1,4 @@
-import { onScopeDispose, ShallowRef, watch } from 'vue'
+import { onScopeDispose, type ShallowRef, watch } from 'vue'
 
 export type UseResizeObserverOptions = ResizeObserverOptions
 
@@ -19,7 +19,7 @@ export const useResizeObserver = (
 
   const cleanups: Function[] = []
   const cleanup = () => {
-    cleanups.forEach(fn => fn())
+    cleanups.forEach((fn) => fn())
     cleanups.length = 0
   }
 
@@ -30,7 +30,7 @@ export const useResizeObserver = (
 
   const unwatch = watch(
     target,
-    el => {
+    (el) => {
       cleanup()
       if (!el) return
       cleanups.push(observe())

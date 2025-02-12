@@ -1,4 +1,4 @@
-import { App, InjectionKey } from 'vue'
+import type { App, InjectionKey } from 'vue'
 
 export const t = Symbol() as InjectionKey<typeof textArr>
 

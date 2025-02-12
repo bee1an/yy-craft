@@ -1,4 +1,4 @@
-import { computed, Ref, ref, ShallowRef, toValue } from 'vue'
+import { computed, type Ref, ref, type ShallowRef, toValue } from 'vue'
 import { useElementBounding } from '../use-element-bounding'
 import { useWindowSize } from '../use-window-size'
 import { useElementSize } from '../use-element-size'

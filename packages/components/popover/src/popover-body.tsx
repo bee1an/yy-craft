@@ -1,15 +1,15 @@
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
+  type ExtractPropTypes,
   inject,
-  PropType,
-  StyleValue,
+  type PropType,
+  type StyleValue,
   useTemplateRef
 } from 'vue'
 import { popoverInjectKey } from './popover-inject-key'
 import {
-  DefaultPlacement,
+  type DefaultPlacement,
   usePlacement
 } from '@yy-ui/composables/use-placement'
 import { px } from '@yy-ui/utils/src/css'

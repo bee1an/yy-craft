@@ -1,4 +1,4 @@
-import { ThemeConfig } from '../../common'
+import { type ThemeConfig } from '../../common'
 
 export const layoutDark: ThemeConfig = {
   name: 'layout',

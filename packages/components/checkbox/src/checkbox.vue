@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { CheckboxEmits, checkboxProps } from './checkbox'
+import { type CheckboxEmits, checkboxProps } from './checkbox'
 import {
   checkboxDark,
   checkboxLight,

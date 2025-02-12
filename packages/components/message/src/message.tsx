@@ -2,15 +2,15 @@ import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
+  type ExtractPropTypes,
   onMounted,
-  PropType,
+  type PropType,
   ref,
-  VNodeChild
+  type VNodeChild
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
-  MessageThemeVars,
+  type MessageThemeVars,
   messageDark,
   messageLight,
   messageStyle

@@ -1,5 +1,5 @@
 import commonVars from './_common'
-import { commonLight, ExtractThemeVars, ThemeConfig } from '../common'
+import { commonLight, type ExtractThemeVars, type ThemeConfig } from '../common'
 
 const vars = {
   ...commonVars,

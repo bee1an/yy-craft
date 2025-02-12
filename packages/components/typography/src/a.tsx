@@ -1,8 +1,8 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { computed, defineComponent, ExtractPropTypes } from 'vue'
+import { computed, defineComponent, type ExtractPropTypes } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
-  AThemeVars,
+  type AThemeVars,
   aDark,
   aLight,
   aStyle

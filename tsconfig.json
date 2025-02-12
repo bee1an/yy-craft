@@ -17,7 +17,8 @@
     "strict": true, // 严格模式
     "skipLibCheck": true, // 跳过类库检查
     "jsx": "preserve", // 保留jsx
-    "jsxImportSource": "vue"
+    "jsxImportSource": "vue",
+    "verbatimModuleSyntax": true
   },
   "exclude": ["node_modules", "**/__tests__", "dist/**"] // 排除文件
 }

@@ -1,17 +1,17 @@
 import { createCSSVar } from '@yy-ui/utils/src/css'
 import {
-  ThemeKey,
-  ThemeVars,
+  type ThemeKey,
+  type ThemeVars,
   injectTheme as _injectTheme
 } from '@yy-ui/theme-chalk/src/common'
-import { CNode } from 'css-render'
+import type { CNode } from 'css-render'
 import {
   computed,
-  ComputedRef,
-  ExtractPropTypes,
+  type ComputedRef,
+  type ExtractPropTypes,
   inject,
   // isRef,
-  PropType,
+  type PropType,
   toValue
 } from 'vue'
 

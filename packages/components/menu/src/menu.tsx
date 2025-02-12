@@ -1,15 +1,15 @@
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
-  PropType,
+  type ExtractPropTypes,
+  type PropType,
   reactive,
   useTemplateRef,
-  VNodeChild
+  type VNodeChild
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
-  MenuThemeVars,
+  type MenuThemeVars,
   menuDark,
   menuLight,
   menuStyle

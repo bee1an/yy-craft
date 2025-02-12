@@ -1,4 +1,4 @@
-import { commonLight, ExtractThemeVars, ThemeConfig } from '../common'
+import { commonLight, type ExtractThemeVars, type ThemeConfig } from '../common'
 import { commonVars } from './_common'
 
 const vars = {

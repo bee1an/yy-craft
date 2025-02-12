@@ -1,4 +1,4 @@
-import { App } from 'vue'
+import type { App } from 'vue'
 
 function create({
   componentPrefix = 'Yy',
@@ -8,7 +8,7 @@ function create({
   pluginMakers?: any[]
 } = {}) {
   function install(app: App) {
-    pluginMakers.forEach(pluginMaker => {
+    pluginMakers.forEach((pluginMaker) => {
       if (typeof pluginMaker === 'function' && pluginMaker.useInstall) {
         const plugin = pluginMaker(componentPrefix)
 

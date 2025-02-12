@@ -4,10 +4,11 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import resolve from '@rollup/plugin-node-resolve'
 // import { dts } from 'rollup-plugin-dts'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig([
   {
-    input: 'packages/yy-ui/index.ts', // TODO: 测试打包依赖
+    input: 'packages/yy-ui/index.ts',
     output: {
       format: 'esm',
       // dir: 'dist',
@@ -16,7 +17,13 @@ export default defineConfig([
     },
     external: ['vue'],
     // jsx: 'preserve',
-    plugins: [vue(), vueJsx(), esbuild(), resolve({ extensions: ['.ts'] })]
+    plugins: [
+      vue(),
+      vueJsx(),
+      esbuild(),
+      resolve({ extensions: ['.ts'] }),
+      visualizer()
+    ]
   }
   // {
   //   input: 'packages/yy-ui/index.ts',

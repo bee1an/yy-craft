@@ -1,12 +1,12 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { TreeData, TreeEmitsType, TreeProps } from './tree'
+import type { TreeData, TreeEmitsType, TreeProps } from './tree'
 import {
   findParentNode,
   findTreeNodeWrapper,
   getChildren,
   isAncestorNode
 } from './utils'
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 
 /** 缩进到内容的距离, 用于判断是否drag到缩进 */
 const DISTANCE = 16

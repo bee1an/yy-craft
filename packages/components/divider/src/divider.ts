@@ -1,6 +1,6 @@
 import { useThemeProps } from '@yy-ui/composables'
-import { DividerThemeVars } from '@yy-ui/theme-chalk'
-import { ExtractPropTypes, PropType } from 'vue'
+import type { DividerThemeVars } from '@yy-ui/theme-chalk'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export const dividerProps = {
   ...useThemeProps<DividerThemeVars>(),

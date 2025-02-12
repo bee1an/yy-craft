@@ -1,7 +1,7 @@
 import { Overload } from '@yy-ui/utils/src/function-overload'
-import { Ref } from 'vue'
-import { VirtualListProps } from './virtual-list'
-import { emitter, VirtualListEvents } from './emitter-bus'
+import type { Ref } from 'vue'
+import type { VirtualListProps } from './virtual-list'
+import { emitter, type VirtualListEvents } from './emitter-bus'
 
 interface ScrollToExtraOptions extends ScrollOptions {}
 

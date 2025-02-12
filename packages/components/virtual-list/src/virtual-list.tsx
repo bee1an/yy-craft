@@ -2,20 +2,20 @@ import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
+  type ExtractPropTypes,
   nextTick,
   onMounted,
-  PropType,
+  type PropType,
   reactive,
   ref,
-  SlotsType,
+  type SlotsType,
   watch
 } from 'vue'
-import { ScrollTo, useScrollTo } from './use-scroll-to'
+import { type ScrollTo, useScrollTo } from './use-scroll-to'
 import { emitter } from './emitter-bus'
 import { useTheme } from '@yy-ui/composables/use-theme'
 import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
-import { ScrollbarProps } from '@yy-ui/components/scrollbar/src/scrollbar'
+import type { ScrollbarProps } from '@yy-ui/components/scrollbar/src/scrollbar'
 import { YScrollbar } from '../../_internal/scrollbar'
 import { vlStyle } from '@yy-ui/theme-chalk/src/virtual-list'
 

@@ -1,5 +1,5 @@
 import { rgba } from '@yy-ui/utils'
-import { commonLight, ExtractThemeVars, ThemeConfig } from '../common'
+import { commonLight, type ExtractThemeVars, type ThemeConfig } from '../common'
 
 const vars = {
   buttonHeight: commonLight.heightMedium,

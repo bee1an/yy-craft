@@ -1,8 +1,11 @@
-import { AppContext, h } from 'vue'
-import Message, { MessageProps } from './message'
+import { type AppContext, h } from 'vue'
+import Message, { type MessageProps } from './message'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { createId } from '@yy-ui/utils/src/tools'
-import { useVNodeProvider, VNodeProviderInstance } from '@yy-ui/composables'
+import {
+  useVNodeProvider,
+  type VNodeProviderInstance
+} from '@yy-ui/composables'
 import { YProvider } from '../../_internal/provider'
 
 export type MessagePlacement =

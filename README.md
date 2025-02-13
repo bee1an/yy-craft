@@ -1,11 +1,17 @@
-<h1 align="center" style="font-size: 80px">🧩</h1>
+<h1 align="center">🧩</h1>
 
 <!-- ![Vue3](https://img.shields.io/badge/Vue->=3.0.0-%2342b883) ![License](https://img.shields.io/badge/License-MIT-green) ![Version](https://img.shields.io/badge/Version-beta--0.0.1-blue) -->
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Vue->=3.0.0-%2342b883" alt="Vue3"/>
-  <img src="https://img.shields.io/badge/License-MIT-green" alt="License"/>
-  <img src="https://img.shields.io/badge/Version-beta--0.0.1-blue" alt="Version"/>
+  <a href="https://github.com/vuejs/core">
+    <img src="https://img.shields.io/badge/Vue->=3.0.0-%2342b883" alt="Vue3"/>
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-green" alt="License"/>
+  </a>
+  <a href="https://github.com/bee1an/yy-ui/tree/dev">
+    <img src="https://img.shields.io/badge/Version-beta--0.0.1-blue" alt="Version"/>
+  </a>
 </p>
 
 <p align="center">Yy UI - 一个基于 Vue3 的组件库</p>
@@ -18,13 +24,13 @@
 - [ ] 📂 **编写更多的组件**
 - [ ] 📄 **完善组件文档**  
        需包含 Props/Events/Slots 详细说明及用法示例
-- [ ] 📦 打包工具迁移  
-       → 评估 [`tsup`](https://github.com/egoist/tsup) 的适用性（基于 ESBuild）
-      → 对比现有 Rollup 配置的差异
+- [ ] 📦 打包工具迁移
+      评估 [`tsup`](https://github.com/egoist/tsup) 的适用性（基于 ESBuild）
+      对比现有 Rollup 配置的差异
 - [ ] 🧹 **优化打包结构**
-      → 优化打包后的目录结构
-      → 实现 ESM/CJS 双模式输出
-      → dts 文件生成
+      优化打包后的目录结构
+      实现 ESM/CJS 双模式输出
+      dts 文件生成
 
 ## ✨ **核心特性**
 
@@ -39,11 +45,11 @@
 
 [![CSS Render](https://img.shields.io/badge/css--render-0.15.14-blue)](https://github.com/07akioni/css-render)
 
-- 采用 `CSS-in-JS` 方案
+- 采用 `CSS-in-JS` 方案  
   ✓ 零样式文件导入  
   ✓ 按需加载样式逻辑  
   ✓ 组件级样式隔离
-- BEM 命名规范
+- BEM 命名规范  
   ✓ 降低样式冲突风险
 
 ### 构建方案

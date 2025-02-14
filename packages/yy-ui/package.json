@@ -1,12 +1,30 @@
 {
-  "name": "@yy-ui/yy-ui",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@yyui/yy-ui",
+  "type": "module",
+  "version": "1.0.0-beta.1",
+  "packageManager": "pnpm@9.12.2",
+  "description": "A vue3 components store",
   "main": "index.js",
+  "module": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rimraf dist && rollup -c",
+    "dev": "pnpm -C play dev",
+    "doc:dev": "pnpm -C docs dev",
+    "type-check": "tsc --noEmit",
+    "clean": "rimraf node_modules"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "yy-ui",
+    "component library",
+    "ui",
+    "vue"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "css-render": "0.15.14",
+    "@css-render/plugin-bem": "0.15.14"
+  },
+  "devDependencies": {
+    "vue": "3.5.13"
+  }
 }

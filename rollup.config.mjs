@@ -39,7 +39,12 @@ export default defineConfig([
       vueJsx(),
       esbuild(),
       resolve({ extensions: ['.ts'] }),
-      copy({ targets: [{ src: 'package.json', dest: 'dist/yy-ui' }] }),
+      copy({
+        targets: [
+          { src: 'packages/yy-ui/package.json', dest: 'dist/yy-ui' },
+          { src: 'README.md', dest: 'dist/yy-ui' }
+        ]
+      }),
       visualizer() // 打包分析, 置于最后
     ]
   }

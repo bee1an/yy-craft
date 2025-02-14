@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import yyUi from '@yy-ui/yy-ui'
+
 import plugin from './plugins'
 import router from './router'
 

@@ -1,25 +1,14 @@
 {
-  "name": "yy-ui",
-  "type": "module",
-  "version": "1.0.0-beta.0",
+  "private": true,
   "packageManager": "pnpm@9.12.2",
-  "description": "A vue3 components store",
-  "main": "index.js",
-  "module": "index.js",
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "dev": "pnpm -C play dev",
     "doc:dev": "pnpm -C docs dev",
     "type-check": "tsc --noEmit",
-    "clean": "rimraf node_modules"
+    "clean": "rimraf dist && rimraf node_modules",
+    "publish": "pnpm i --frozen-lockfile && pnpm build && cd dist/yy-ui && npm publish --provenance"
   },
-  "keywords": [
-    "yy-ui",
-    "component library",
-    "ui",
-    "vue"
-  ],
-  "license": "MIT",
   "dependencies": {
     "@css-render/plugin-bem": "0.15.14",
     "@yy-ui/components": "workspace:*",
@@ -28,7 +17,6 @@
     "@yy-ui/directives": "workspace:*",
     "@yy-ui/theme-chalk": "workspace:*",
     "@yy-ui/utils": "workspace:*",
-    "@yy-ui/yy-ui": "workspace:*",
     "css-render": "0.15.14"
   },
   "devDependencies": {
@@ -37,6 +25,7 @@
     "@vitejs/plugin-vue": "5.2.1",
     "@vitejs/plugin-vue-jsx": "4.1.1",
     "@vue/eslint-config-typescript": "14.1.4",
+    "commander": "^13.1.0",
     "eslint": "9.16.0",
     "eslint-plugin-vue": "9.32.0",
     "globals": "15.13.0",
@@ -46,6 +35,7 @@
     "rollup-plugin-dts": "6.1.1",
     "rollup-plugin-esbuild": "6.2.0",
     "rollup-plugin-visualizer": "5.14.0",
+    "shelljs": "0.8.5",
     "typescript": "5.7.2",
     "typescript-eslint": "8.17.0",
     "vue": "3.5.13"

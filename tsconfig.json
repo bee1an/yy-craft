@@ -17,6 +17,8 @@
     "strict": true, // 严格模式
     "skipLibCheck": true, // 跳过类库检查
     "jsx": "preserve", // 保留jsx
+    // "jsxFactory": "h",
+    // "jsxFragmentFactory": "Fragment",
     "jsxImportSource": "vue",
     "verbatimModuleSyntax": true
   },

@@ -6,8 +6,7 @@
     "dev": "pnpm -C play dev",
     "doc:dev": "pnpm -C docs dev",
     "type-check": "tsc --noEmit",
-    "clean": "rimraf dist && rimraf node_modules",
-    "publish": "pnpm i --frozen-lockfile && pnpm build && cd dist/yy-ui && npm publish --provenance"
+    "clean": "rimraf dist && rimraf node_modules"
   },
   "dependencies": {
     "@css-render/plugin-bem": "0.15.14",
@@ -21,13 +20,13 @@
   },
   "devDependencies": {
     "@eslint/js": "9.16.0",
+    "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-node-resolve": "16.0.0",
-    "@vitejs/plugin-vue": "5.2.1",
     "@vitejs/plugin-vue-jsx": "4.1.1",
+    "@vue/babel-preset-jsx": "1.4.0",
     "@vue/eslint-config-typescript": "14.1.4",
     "commander": "^13.1.0",
     "eslint": "9.16.0",
-    "eslint-plugin-vue": "9.32.0",
     "globals": "15.13.0",
     "rimraf": "6.0.1",
     "rollup": "4.34.4",
@@ -35,9 +34,10 @@
     "rollup-plugin-dts": "6.1.1",
     "rollup-plugin-esbuild": "6.2.0",
     "rollup-plugin-visualizer": "5.14.0",
+    "rollup-plugin-vue": "6.0.0",
     "shelljs": "0.8.5",
     "typescript": "5.7.2",
     "typescript-eslint": "8.17.0",
-    "vue": "3.5.13"
+    "vue": "3.2.0"
   }
 }

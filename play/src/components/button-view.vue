@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ButtonType } from '@yy-ui/components'
+import { type ButtonType } from '@yy-ui/components'
 import { ref } from 'vue'
 
 const type = ref<ButtonType>('primary')

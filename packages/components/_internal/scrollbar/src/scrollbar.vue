@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { computed, nextTick, ref, useTemplateRef } from 'vue'
-import { ScrollbarExpose, scrollbarInternalProps } from './scrollbar'
+import { type ScrollbarExpose, scrollbarInternalProps } from './scrollbar'
 import {
   scrollbarDark,
   scrollbarLight,

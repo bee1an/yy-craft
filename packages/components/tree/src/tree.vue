@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import TreeNode from './tree-node.vue'
-import { provide, ref, useSlots, VNode, watch } from 'vue'
+import { provide, ref, useSlots, type VNode, watch } from 'vue'
 import {
   InjectBem,
   InjectSlots,
-  TreeData,
-  TreeEmitsType,
-  TreeKey,
-  TreeOption,
+  type TreeData,
+  type TreeEmitsType,
+  type TreeKey,
+  type TreeOption,
   treeProps,
-  TreeValue
+  type TreeValue
 } from './tree'
 import useDragNode from './use-drag-node'
 import { GenericVirtualList } from '@yy-ui/components/virtual-list'

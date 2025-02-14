@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { inject, ref, useTemplateRef } from 'vue'
-import { VirtualListExposed } from '@yy-ui/components'
+import type { VirtualListExposed } from '@yy-ui/components'
 import { t } from '../plugins'
 
 const texts = inject(t)!

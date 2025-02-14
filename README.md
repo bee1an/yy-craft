@@ -18,19 +18,19 @@
 
 📋 Todo List
 
+- [ ] 🧹 **优化打包结构**
+  - 优化打包后的目录结构
+  - 实现 ESM/CJS 双模式输出
+  - dts 文件生成
 - [ ] 🌳 **Tree-shaking 测试**
 - [ ] ⬇️ **依赖降级(>=vue3.0.0)**
 - [ ] 🧪 **编写单元测试**
 - [ ] 📂 **编写更多的组件**
-- [ ] 📄 **完善组件文档**  
-       需包含 Props/Events/Slots 详细说明及用法示例
+- [ ] 📄 **完善组件文档**
+  - 需包含 Props/Events/Slots 详细说明及用法示例
 - [ ] 📦 打包工具迁移
-      评估 [`tsup`](https://github.com/egoist/tsup) 的适用性（基于 ESBuild）
-      对比现有 Rollup 配置的差异
-- [ ] 🧹 **优化打包结构**
-      优化打包后的目录结构
-      实现 ESM/CJS 双模式输出
-      dts 文件生成
+  - 评估 [`tsup`](https://github.com/egoist/tsup) 的适用性（基于 ESBuild）
+  - 对比现有 Rollup 配置的差异
 
 ## ✨ **核心特性**
 

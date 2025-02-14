@@ -6,7 +6,7 @@ import YyIcon from '@yy-ui/components/icon/src/icon.vue'
 import TSwitcher from './icons/Switcher'
 import TLoading from './icons/Loading'
 import TreeNodeContent from './tree-node-content'
-import { TreeNodeEmitsType, treeNodeProps } from './tree-node'
+import { type TreeNodeEmitsType, treeNodeProps } from './tree-node'
 
 defineProps(treeNodeProps)
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TreeOption } from '@yy-ui/components/tree/src/tree'
+import type { TreeOption } from '@yy-ui/components/tree/src/tree'
 import { getChildren } from '@yy-ui/components/tree/src/utils'
 import { inject, ref } from 'vue'
 import { t } from '../plugins'
@@ -52,7 +52,7 @@ data4.value.push({
   isLeaf: false
 })
 const onLoad = (treeNode: TreeOption) => {
-  return new Promise<void>(resolve => {
+  return new Promise<void>((resolve) => {
     setTimeout(() => {
       treeNode.children = [
         {
@@ -90,7 +90,7 @@ const onDrag = (value: {
 
   if (dropNodePool === dragNodePool) {
     // 同数组操作
-    const index = dragNodePool.findIndex(item => item.key === dragNode.key)
+    const index = dragNodePool.findIndex((item) => item.key === dragNode.key)
 
     if (position - 1 === index) return
 
@@ -99,7 +99,7 @@ const onDrag = (value: {
     dropNodePool.splice(position - 1 > index ? index : index + 1, 1)
   } else {
     dropNodePool.splice(position, 0, dragNode)
-    const index = dragNodePool.findIndex(item => item.key === dragNode.key)
+    const index = dragNodePool.findIndex((item) => item.key === dragNode.key)
     dragNodePool.splice(index, 1)
   }
 

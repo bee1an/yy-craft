@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { IconProps } from './icon'
+import type { IconProps } from './icon'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { useTheme } from '@yy-ui/composables/use-theme'
 import { iconStyle } from '@yy-ui/theme-chalk/src/icon'

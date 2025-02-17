@@ -7,7 +7,7 @@ import {
   type InjectionKey,
   type PropType,
   provide,
-  useTemplateRef
+  ref
 } from 'vue'
 import { useResponsiveObserver } from './use-responsive-observer'
 
@@ -51,7 +51,7 @@ export default defineComponent({
       }
     })
 
-    const gridContainer = useTemplateRef<HTMLDivElement>('gridContainer')
+    const gridContainer = ref<HTMLDivElement | null>(null)
 
     const { isResponsive, responsiveConfig, normalizedMap, getReolveKey } =
       useResponsiveObserver(gridContainer, props, 'cols')

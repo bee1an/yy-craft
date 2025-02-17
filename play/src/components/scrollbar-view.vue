@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject, reactive, useTemplateRef } from 'vue'
-import { Scrollbar as YyScrollbar } from '@yy-ui/yy-ui'
+import { Scrollbar as YyScrollbar } from '@yyui/yy-ui'
 import { t } from '../plugins'
 
 const scrollbarRef =

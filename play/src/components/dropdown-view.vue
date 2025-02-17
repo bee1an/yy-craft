@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { AlarmOutline } from '@vicons/ionicons5'
-import { type DropdownOption } from '@yy-ui/yy-ui'
+import { type DropdownOption } from '@yyui/yy-ui'
 import { h, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 const title = useRoute().meta.sider

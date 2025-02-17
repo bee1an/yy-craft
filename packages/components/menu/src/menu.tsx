@@ -4,7 +4,7 @@ import {
   type ExtractPropTypes,
   type PropType,
   reactive,
-  useTemplateRef,
+  ref,
   type VNodeChild
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
@@ -266,7 +266,7 @@ export default defineComponent({
       return px((depx(props.collapsedWidth!) - depx(iconSize.value!)) / 2)
     })
 
-    const menuContainer = useTemplateRef('menuContainer')
+    const menuContainer = ref<HTMLElement | null>(null)
     const transitionendHandler = (e: TransitionEvent) => {
       // 外层容器的width转场结束时, 触发收起或展开事件
       if (e.propertyName !== 'width' || e.target !== menuContainer.value) {

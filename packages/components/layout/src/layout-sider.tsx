@@ -5,7 +5,6 @@ import {
   type PropType,
   ref,
   type StyleValue,
-  useTemplateRef,
   watch
 } from 'vue'
 import {
@@ -101,7 +100,7 @@ export default defineComponent({
       return typeof props.collapsedWidth !== 'undefined'
     })
 
-    const layoutSiderContainer = useTemplateRef('layoutSiderContainer')
+    const layoutSiderContainer = ref<HTMLElement | null>(null)
     const transitionendHandler = (e: TransitionEvent) => {
       if (
         e.propertyName === 'width' &&

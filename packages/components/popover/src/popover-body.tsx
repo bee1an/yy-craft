@@ -4,8 +4,8 @@ import {
   type ExtractPropTypes,
   inject,
   type PropType,
-  type StyleValue,
-  useTemplateRef
+  ref,
+  type StyleValue
 } from 'vue'
 import { popoverInjectKey } from './popover-inject-key'
 import {
@@ -64,7 +64,7 @@ export default defineComponent({
   setup(props) {
     const { bem, styleVars, triggerRef, wrapper } = inject(popoverInjectKey)!
 
-    const contentRef = useTemplateRef<HTMLElement | null>('contentRef')
+    const contentRef = ref<HTMLElement | null>(null)
 
     const {
       top: uncoresedTop,

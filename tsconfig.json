@@ -19,7 +19,7 @@
     "jsx": "preserve", // 保留jsx
     // "jsxFactory": "h",
     // "jsxFragmentFactory": "Fragment",
-    "jsxImportSource": "vue",
+    // "jsxImportSource": "vue",
     "verbatimModuleSyntax": true
   },
   "exclude": ["node_modules", "**/__tests__", "dist/**"] // 排除文件

@@ -5,7 +5,7 @@ import {
   defineComponent,
   type ExtractPropTypes,
   inject,
-  useTemplateRef
+  ref
 } from 'vue'
 import { useResponsiveObserver } from './use-responsive-observer'
 
@@ -29,7 +29,7 @@ export default defineComponent({
 
     const { margin } = inject(gridProviderKey)!
 
-    const item = useTemplateRef<HTMLDivElement>('item')
+    const item = ref<HTMLDivElement | null>(null)
 
     const { isResponsive, responsiveConfig, normalizedMap, getReolveKey } =
       useResponsiveObserver(item, props, 'span')

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMessage } from '@yy-ui/yy-ui'
+import { useMessage } from '@yyui/yy-ui'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { randomText } from '../plugins'

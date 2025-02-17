@@ -57,9 +57,10 @@ export const virtualListProps = {
   /** 最大边界: 当元素最小位置小于最大边界时才会渲染 */
   maxBound: {
     type: Number,
-    default: (props: { wrapperMaxSize: number }) => props.wrapperMaxSize,
-    validator: (val: number, props: { wrapperMaxSize: number }) =>
-      val >= props.wrapperMaxSize // 最大边界必须大于等于wrapperMaxSize
+    default: (props: { wrapperMaxSize: number }) => props.wrapperMaxSize
+    // FIXME: 低版本vue不支持这种写法
+    // validator: (val: number, props: { wrapperMaxSize: number }) =>
+    //   val >= props.wrapperMaxSize // 最大边界必须大于等于wrapperMaxSize
   },
   /** 每一项的key字段别名 */
   keyField: {

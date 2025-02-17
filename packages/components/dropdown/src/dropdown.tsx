@@ -21,7 +21,6 @@ import {
 } from '@yy-ui/theme-chalk/src/dropdown'
 import YPopover from '../../popover/src/popover'
 import YIcon from '../../icon/src/icon.vue'
-import type { JSX } from 'vue/jsx-runtime'
 import { YBaseCollapsed3 } from '../../_internal/icons'
 
 export type DropdownOption = {

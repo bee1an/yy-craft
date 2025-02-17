@@ -2,7 +2,7 @@
 import { h } from 'vue'
 import { components } from '../../router'
 import { RouterLink, useRoute } from 'vue-router'
-import type { MenuOption } from '@yy-ui/yy-ui'
+import type { MenuOption } from '@yyui/yy-ui'
 
 const renderRouterLink = (path: string, text: string) => {
   return () => h(RouterLink, { to: path }, () => text)

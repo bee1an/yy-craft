@@ -19,19 +19,21 @@ export const treeNodeProps = {
   }
 } as const
 
-export type TreeNodeEmitsType = {
+export const treeNodeEmits = {
   /** 切换展开 */
-  (e: 'toggleExpand', node: TreeData): void
+  toggleExpand: (() => true) as (node: TreeData) => void,
   /** 切换选中 */
-  (e: 'toggleSelect', node: TreeData): void
+  toggleSelect: (() => true) as (node: TreeData) => void,
   /** dragstart */
-  (e: 'dragstart', event: DragEvent, node: TreeData): void
+  dragstart: (() => true) as (event: DragEvent, node: TreeData) => void,
   /** dragenter */
-  (e: 'dragenter', event: DragEvent, node: TreeData): void
+  dragenter: (() => true) as (event: DragEvent, node: TreeData) => void,
   /** dragover */
-  (e: 'dragover', event: DragEvent, node: TreeData): void
+  dragover: (() => true) as (event: DragEvent, node: TreeData) => void,
   /** drop */
-  (e: 'drop', event: DragEvent, node: TreeData): void
+  drop: (() => true) as (event: DragEvent, node: TreeData) => void,
   /** dragend */
-  (e: 'dragend', event: DragEvent, node: TreeData): void
+  dragend: (() => true) as (event: DragEvent, node: TreeData) => void
 }
+
+export type TreeNodeEmits = typeof treeNodeEmits

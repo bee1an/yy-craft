@@ -21,6 +21,8 @@ export const checkboxProps = {
 
 export type CheckboxProps = ExtractPropTypes<typeof checkboxProps>
 
-export type CheckboxEmits = {
-  'update:modelValue': [boolean]
+export const checkboxEmits = {
+  'update:modelValue': (() => true) as (value: boolean) => void
 }
+
+export type CheckboxEmits = typeof checkboxEmits

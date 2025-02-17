@@ -5,8 +5,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.resolve(fileURLToPath(import.meta.url))
 
-// TODO: 这里路径不知道为什么是../../dist
-const targetFile = path.resolve(__dirname, '../../dist/yy-ui/package.json')
+const targetFile = path.dirname(__dirname, '../dist/yy-ui/package.json')
 
 // 升级版本号
 const pkg = await import('../dist/yy-ui/version.js')

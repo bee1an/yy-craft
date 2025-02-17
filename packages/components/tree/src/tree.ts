@@ -110,20 +110,17 @@ export const treeProps = {
 } as const
 export type TreeProps = ExtractPropTypes<typeof treeProps>
 
-export type TreeEmitsType = {
-  /** v-model */
-  (e: 'update:selectedKeys', payload: TreeKey[]): void
-  /** drag */
-  (
-    e: 'drag',
-    payload: {
-      dragNode: TreeOption
-      dragNodeParent: TreeOption | null
-      dropNode: TreeOption | null
-      position: number
-    }
-  ): void
+export const treeEmits = {
+  'update:selectedKeys': (() => true) as (payload: TreeKey[]) => void,
+  drag: (() => true) as (payload: {
+    dragNode: TreeOption
+    dragNodeParent: TreeOption | null
+    dropNode: TreeOption | null
+    position: number
+  }) => void
 }
+
+export type TreeEmits = typeof treeEmits
 
 /** 传递插槽给后代组件 */
 export const InjectSlots = Symbol('InjectSlots') as InjectionKey<{

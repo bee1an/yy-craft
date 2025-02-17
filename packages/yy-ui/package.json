@@ -22,7 +22,6 @@
   "license": "MIT",
   "dependencies": {
     "css-render": "0.15.14",
-    "@css-render/plugin-bem": "0.15.14",
-    "vue": "3.5.13"
+    "@css-render/plugin-bem": "0.15.14"
   }
 }

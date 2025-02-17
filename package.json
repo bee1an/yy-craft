@@ -1,12 +1,13 @@
 {
   "private": true,
   "packageManager": "pnpm@9.12.2",
+  "type": "module",
   "scripts": {
-    "build": "rimraf dist && rollup -c",
+    "build": "node scripts/clean.js -d && rollup -c",
     "dev": "pnpm -C play dev",
     "doc:dev": "pnpm -C docs dev",
-    "type-check": "tsc --noEmit",
-    "clean": "rimraf dist && rimraf node_modules"
+    "typecheck": "tsc --noEmit",
+    "clean": "node scripts/clean.js -d -n"
   },
   "dependencies": {
     "@css-render/plugin-bem": "0.15.14",
@@ -23,12 +24,12 @@
     "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-node-resolve": "16.0.0",
     "@vitejs/plugin-vue-jsx": "4.1.1",
+    "@vue/babel-plugin-jsx": "^1.2.5",
     "@vue/babel-preset-jsx": "1.4.0",
     "@vue/eslint-config-typescript": "14.1.4",
     "commander": "^13.1.0",
     "eslint": "9.16.0",
     "globals": "15.13.0",
-    "rimraf": "6.0.1",
     "rollup": "4.34.4",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-dts": "6.1.1",
@@ -38,6 +39,6 @@
     "shelljs": "0.8.5",
     "typescript": "5.7.2",
     "typescript-eslint": "8.17.0",
-    "vue": "3.2.0"
+    "vue": "3.2.47"
   }
 }

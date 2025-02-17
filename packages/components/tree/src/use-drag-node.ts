@@ -1,5 +1,5 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
-import type { TreeData, TreeEmitsType, TreeProps } from './tree'
+import type { TreeData, TreeProps, TreeEmits } from './tree'
 import {
   findParentNode,
   findTreeNodeWrapper,
@@ -17,7 +17,8 @@ const useDragNode = (
   tree: Ref<TreeData[]>,
   nameSpace: CreateNamespace,
   props: TreeProps,
-  emits: TreeEmitsType
+  // FIXME: emits: TreeEmits
+  emits: any
 ) => {
   let dragNode: TreeData | null = null
   const onDragstart = (e: DragEvent, node: TreeData) => {

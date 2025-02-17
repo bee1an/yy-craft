@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { type CheckboxEmits, checkboxProps } from './checkbox'
+import { checkboxProps, checkboxEmits } from './checkbox'
 import {
   checkboxDark,
   checkboxLight,
@@ -14,7 +14,7 @@ defineOptions({ name: 'Checkbox' })
 
 const props = defineProps(checkboxProps)
 
-const emits = defineEmits<CheckboxEmits>()
+const emits = defineEmits(checkboxEmits)
 
 const toggleChecked = () => {
   emits('update:modelValue', !props.modelValue)

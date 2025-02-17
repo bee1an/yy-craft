@@ -5,8 +5,8 @@ import { provide, ref, useSlots, type VNode, watch } from 'vue'
 import {
   InjectBem,
   InjectSlots,
+  treeEmits,
   type TreeData,
-  type TreeEmitsType,
   type TreeKey,
   type TreeOption,
   treeProps,
@@ -23,7 +23,7 @@ const YyVirtualList = GenericVirtualList<TreeData>()
 defineOptions({ name: 'Tree' })
 
 const props = defineProps(treeProps)
-const emits = defineEmits<TreeEmitsType>()
+const emits = defineEmits(treeEmits)
 
 // 展开的节点
 const expandedKeys = ref(new Set())

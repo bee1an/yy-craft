@@ -9,7 +9,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 // import dts from 'rollup-plugin-dts'
 import fs from 'node:fs'
-import babel from '@rollup/plugin-babel'
+// import babel from '@rollup/plugin-babel'
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 const pkgDir = path.resolve(rootDir, 'packages')
@@ -34,10 +34,15 @@ export default defineConfig([
       preserveModules: true,
       preserveModulesRoot: path.resolve('packages')
     },
-    external: ['vue', '@css-render/plugin-bem', 'css-render'],
+    external: [
+      'vue',
+      '@css-render/plugin-bem',
+      'css-render',
+      /@babel\/runtime/
+    ],
     plugins: [
       vue(),
-      // vueJsx(),
+      vueJsx(),
       esbuild(),
       resolve({ extensions: ['.ts'] }),
       copy({
@@ -46,11 +51,13 @@ export default defineConfig([
           { src: 'README.md', dest: 'dist/yy-ui' }
         ]
       }),
-      babel({
-        exclude: 'node_modules/**',
-        extensions: ['.tsx'],
-        presets: ['@vue/babel-preset-jsx']
-      }),
+      // babel({
+      //   exclude: 'node_modules/**',
+      //   extensions: ['.tsx'],
+      //   presets: ['@vue/babel-preset-jsx'],
+      //   plugins: ['@babel/plugin-transform-runtime'],
+      //   babelHelpers: 'runtime'
+      // }),
       visualizer() // 打包分析, 置于最后
     ]
   }

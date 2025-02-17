@@ -6,11 +6,11 @@ import YyIcon from '@yy-ui/components/icon/src/icon.vue'
 import TSwitcher from './icons/Switcher'
 import TLoading from './icons/Loading'
 import TreeNodeContent from './tree-node-content'
-import { type TreeNodeEmitsType, treeNodeProps } from './tree-node'
+import { treeNodeEmits, treeNodeProps } from './tree-node'
 
 defineProps(treeNodeProps)
 
-const emits = defineEmits<TreeNodeEmitsType>()
+const emits = defineEmits(treeNodeEmits)
 
 const bemBase = inject(InjectBem) as CreateNamespace
 </script>

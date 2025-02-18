@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useTemplateRef } from 'vue'
+import { ref } from 'vue'
 import { type ScrollbarExpose, YScrollbar } from '../../_internal/scrollbar'
 import { scrollbarProps } from './scrollbar'
 
 defineOptions({ name: 'Scrollbar' })
-const props = defineProps(scrollbarProps)
 
-const scrollbarInstRef =
-  useTemplateRef<InstanceType<typeof YScrollbar>>('scrollbarInstRef')
+const props = defineProps({ ...scrollbarProps })
+
+const scrollbarInstRef = ref<InstanceType<typeof YScrollbar> | null>(null)
 
 function scrollTo(options?: ScrollToOptions): void
 function scrollTo(x?: number, y?: number): void

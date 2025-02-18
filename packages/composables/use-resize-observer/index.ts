@@ -1,4 +1,5 @@
-import { onScopeDispose, type ShallowRef, watch } from 'vue'
+import { tryOnScopeDispose } from '@yy-ui/utils/src/vue'
+import { type ShallowRef, watch } from 'vue'
 
 export type UseResizeObserverOptions = ResizeObserverOptions
 
@@ -45,7 +46,7 @@ export const useResizeObserver = (
     cleanup()
   }
 
-  onScopeDispose(stop, true)
+  tryOnScopeDispose(stop)
 
   return stop
 }

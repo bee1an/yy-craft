@@ -1,12 +1,13 @@
 import { defineConfig } from 'rollup'
 import esbuild from 'rollup-plugin-esbuild'
-import vue from 'rollup-plugin-vue'
+import vue from 'unplugin-vue/rollup'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import resolve from '@rollup/plugin-node-resolve'
 import { visualizer } from 'rollup-plugin-visualizer'
 import copy from 'rollup-plugin-copy'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import VueMacros from 'unplugin-vue-macros/rollup'
 // import dts from 'rollup-plugin-dts'
 import fs from 'node:fs'
 // import babel from '@rollup/plugin-babel'
@@ -34,15 +35,16 @@ export default defineConfig([
       preserveModules: true,
       preserveModulesRoot: path.resolve('packages')
     },
-    external: [
-      'vue',
-      '@css-render/plugin-bem',
-      'css-render',
-      /@babel\/runtime/
-    ],
+    external: ['vue', '@css-render/plugin-bem', 'css-render'],
     plugins: [
-      vue(),
-      vueJsx(),
+      VueMacros({
+        plugins: {
+          vue: vue(),
+          vueJsx: vueJsx()
+        }
+      }),
+      // vue(),
+      // vueJsx(),
       esbuild(),
       resolve({ extensions: ['.ts'] }),
       copy({

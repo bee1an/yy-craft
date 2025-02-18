@@ -8,7 +8,6 @@ import {
   type PropType,
   reactive,
   ref,
-  type SlotsType,
   watch
 } from 'vue'
 import { type ScrollTo, useScrollTo } from './use-scroll-to'
@@ -18,6 +17,7 @@ import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
 import type { ScrollbarProps } from '@yy-ui/components/scrollbar/src/scrollbar'
 import { YScrollbar } from '../../_internal/scrollbar'
 import { vlStyle } from '@yy-ui/theme-chalk/src/virtual-list'
+import type { SlotsType } from '@yy-ui/utils/src/types'
 
 export const virtualListProps = {
   /** 滚动条配置 */

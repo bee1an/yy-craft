@@ -1,4 +1,4 @@
-import { computed, type Ref, ref, type ShallowRef, toValue } from 'vue'
+import { computed, type Ref, ref, type ShallowRef, unref } from 'vue'
 import { useElementBounding } from '../use-element-bounding'
 import { useWindowSize } from '../use-window-size'
 import { useElementSize } from '../use-element-size'
@@ -49,7 +49,7 @@ export const usePlacement = (
   const { width: contentWidth, height: contentHeight } = useElementSize(content)
 
   const primePlacement = computed(() => {
-    return toValue(options).placement.split('-')[0] as
+    return unref(options).placement.split('-')[0] as
       | 'top'
       | 'bottom'
       | 'left'
@@ -58,17 +58,14 @@ export const usePlacement = (
   const placementDirection = ref(primePlacement.value)
 
   const distanceFromTrigger = computed(() => {
-    return toValue(options).distanceFromTrigger ?? 10
+    return unref(options).distanceFromTrigger ?? 10
   })
   const visibleAreaThreshold = computed(() => {
-    return toValue(options).visibleAreaThreshold ?? 0
+    return unref(options).visibleAreaThreshold ?? 0
   })
 
   const secondPlacement = computed(() => {
-    return toValue(options).placement.split('-')[1] as
-      | 'start'
-      | 'end'
-      | undefined
+    return unref(options).placement.split('-')[1] as 'start' | 'end' | undefined
   })
 
   function getPosition(placement: 'top' | 'bottom' | 'left' | 'right'): number {
@@ -209,6 +206,7 @@ export const usePlacement = (
 
       placementDirection.value = primePlacement.value
     } else {
+      console.log('unregulatedLeft.value', unregulatedLeft.value)
       const { overStart, overEnd } = overViewport(
         'horizontal',
         unregulatedLeft.value

@@ -1,4 +1,5 @@
-import { onScopeDispose, type ShallowRef, toValue, watch } from 'vue'
+import { tryOnScopeDispose } from '@yy-ui/utils/src/vue'
+import { type ShallowRef, unref, watch } from 'vue'
 
 export type UseEventListenerReturn = ReturnType<typeof useEventListener>
 
@@ -36,14 +37,14 @@ export function useEventListener(
   const watchCallback = () => {
     cleanup()
 
-    const element = toValue(target as any)
+    const element = unref(target as any)
 
     if (!element) return
 
     cleanups.push(register(element, type, listener, options))
   }
 
-  const stopWatcher = watch(() => toValue(target as any), watchCallback, {
+  const stopWatcher = watch(() => unref(target as any), watchCallback, {
     immediate: true,
     flush: 'post'
   })
@@ -53,7 +54,7 @@ export function useEventListener(
     cleanup()
   }
 
-  onScopeDispose(stop, true)
+  tryOnScopeDispose(stop)
 
   return stop
 }

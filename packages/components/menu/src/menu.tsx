@@ -285,6 +285,7 @@ export default defineComponent({
       wapperWidth,
       iconSize,
       iconMargin,
+      menuContainer,
       transitionendHandler
     }
   },

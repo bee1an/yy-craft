@@ -20,7 +20,8 @@
     // "jsxFactory": "h",
     // "jsxFragmentFactory": "Fragment",
     // "jsxImportSource": "vue",
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "types": ["unplugin-vue-macros/macros-global"]
   },
   "exclude": ["node_modules", "**/__tests__", "dist/**"] // 排除文件
 }

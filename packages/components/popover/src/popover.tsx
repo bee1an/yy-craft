@@ -208,6 +208,7 @@ export default defineComponent({
       afterLeaveHandler,
       show,
       hide,
+      triggerRef,
       contentMouseenter,
       contentMouseleave,
       triggerMouseenter,

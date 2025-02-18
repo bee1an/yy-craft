@@ -1,6 +1,6 @@
 export default {
-  fontWeight: '400',
-  fontWeightStrong: '500',
+  fontWeight: 400,
+  fontWeightStrong: 500,
 
   cubicBezierEaseInOut: 'cubic-bezier(.4, 0, .2, 1)',
   cubicBezierEaseOut: 'cubic-bezier(0, 0, .2, 1)',

@@ -1,8 +1,17 @@
-import { defineConfig, Plugin } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+// vite.config.ts
+import { defineConfig, type PluginOption } from 'vite'
+import Vue from '@vitejs/plugin-vue'
+import VueMacros from 'unplugin-vue-macros/vite'
+import VueJsx from '@vitejs/plugin-vue-jsx'
+// import VueRouter from 'unplugin-vue-router/vite'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx() as Plugin]
+  plugins: [
+    VueMacros({
+      plugins: {
+        vue: Vue(),
+        vueJsx: VueJsx()
+      }
+    }) as PluginOption
+  ]
 })

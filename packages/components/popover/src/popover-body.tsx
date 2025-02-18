@@ -121,6 +121,7 @@ export default defineComponent({
     return {
       bem,
       styleVars,
+      contentRef,
       top,
       left,
       arrowPosition,
@@ -183,7 +184,7 @@ export default defineComponent({
         {showArrow && (
           <div
             class={[bem.b('arrow').value, arrowClass]}
-            style={[arrowPosition, arrowStyle]}
+            style={[arrowPosition, arrowStyle!]}
           ></div>
         )}
         <div

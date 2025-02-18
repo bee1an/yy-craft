@@ -12,7 +12,7 @@ import {
   inject,
   // isRef,
   type PropType,
-  toValue
+  unref
 } from 'vue'
 
 /**
@@ -74,7 +74,7 @@ function useTheme<T extends ThemeVars>(
 
   const getTheme = (type: ThemeKey) => {
     // const themesVal = isRef(themes) ? themes.value : themes
-    const themesVal = toValue(themes) as T
+    const themesVal = unref(themes) as T
 
     if ('light' in themesVal || 'dark' in themesVal) {
       return themesVal[type]

@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { inject, reactive, useTemplateRef } from 'vue'
+import { inject, reactive, ref } from 'vue'
 import { Scrollbar as YyScrollbar } from '@yyui/yy-ui'
 import { t } from '../plugins'
 
-const scrollbarRef =
-  useTemplateRef<InstanceType<typeof YyScrollbar>>('scrollbarRef')
+const scrollbarRef = ref<InstanceType<typeof YyScrollbar>>()
 
 const scrollBy = () => {
   scrollbarRef.value!.scrollBy(0, 10)

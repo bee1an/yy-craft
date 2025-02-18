@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { computed, nextTick, ref, useTemplateRef } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { type ScrollbarExpose, scrollbarInternalProps } from './scrollbar'
 import {
   scrollbarDark,
@@ -16,7 +16,7 @@ defineOptions({ name: 'Scrollbar' })
 
 const props = defineProps(scrollbarInternalProps)
 
-const containerRef = useTemplateRef('containerRef')
+const containerRef = ref<HTMLElement | null>(null)
 const mergedContainerRef = computed(() => {
   const { container } = props
 
@@ -24,9 +24,9 @@ const mergedContainerRef = computed(() => {
 })
 useEventListener(mergedContainerRef, 'scroll', () => update())
 
-const verticalRail = useTemplateRef('verticalRail')
+const verticalRail = ref<HTMLElement | null>(null)
 
-const horizontalRail = useTemplateRef('horizontalRail')
+const horizontalRail = ref<HTMLElement | null>(null)
 
 const verticalBar = ref({ height: 0, top: 0, visible: true, active: false })
 const verticalBarStyle = computed(() => {
@@ -109,7 +109,7 @@ const updateHorizontalBar = async (
 
 useResizeObserver(mergedContainerRef, update)
 
-const verticalController = useTemplateRef('verticalController')
+const verticalController = ref<HTMLElement | null>(null)
 useBaseDrag(verticalController, {
   down: () => {
     verticalBar.value.active = true
@@ -127,7 +127,7 @@ useBaseDrag(verticalController, {
   }
 })
 
-const hoirzontalController = useTemplateRef('horizontalController')
+const hoirzontalController = ref<HTMLElement | null>(null)
 useBaseDrag(hoirzontalController, {
   down: () => {
     horizontalBar.value.active = true

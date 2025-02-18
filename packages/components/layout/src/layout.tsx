@@ -75,7 +75,7 @@ export default defineComponent({
         class={[bem.b().value, bem.m(hasSider && 'has-sider').value]}
       >
         <YyScrollbar
-          contentStyle={[hasSider && siderStyle, contentStyle]}
+          contentStyle={[hasSider ? siderStyle! : '', contentStyle!]}
           contentClass={contentClass}
         >
           {defaultSlot?.()}

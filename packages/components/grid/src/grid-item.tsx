@@ -48,7 +48,7 @@ export default defineComponent({
       return Number(span || props.span)
     })
 
-    return { bem, margin, resolveSpan }
+    return { bem, margin, item, resolveSpan }
   },
   render() {
     const {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { buttonProps } from './button'
-import { computed, useTemplateRef } from 'vue'
+import { buttonEmits, buttonProps } from './button'
+import { computed, ref } from 'vue'
 import { useTheme } from '@yy-ui/composables/use-theme'
 import YWave from '../../_internal/wave/src/wave.vue'
 import {
@@ -16,9 +16,7 @@ defineOptions({ name: 'Button' })
 
 const props = defineProps(buttonProps)
 
-const emits = defineEmits<{
-  click: [MouseEvent]
-}>()
+const emits = defineEmits(buttonEmits)
 
 const bem = new CreateNamespace('button')
 
@@ -26,7 +24,7 @@ const primary = computed(() => {
   return !props.secondary && !props.tertiary && !props.quaternary
 })
 
-const waveRef = useTemplateRef('waveRef')
+const waveRef = ref<InstanceType<typeof YWave> | null>(null)
 
 const clickHandler = (payload: MouseEvent) => {
   waveRef.value?.start()

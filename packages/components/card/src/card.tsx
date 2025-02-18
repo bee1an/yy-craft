@@ -8,12 +8,12 @@ import {
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { createCSSVar } from '@yy-ui/utils/src/css'
 import { createKey } from '@yy-ui/utils/src/tools'
+import type { SlotsType } from '@yy-ui/utils/src/types'
 import {
   computed,
   defineComponent,
   type ExtractPropTypes,
   type PropType,
-  type SlotsType,
   type VNodeChild
 } from 'vue'
 

@@ -41,3 +41,9 @@ export const buttonProps = {
 }
 
 export type ButtonProps = ExtractPropTypes<typeof buttonProps>
+
+export const buttonEmits = {
+  click: (() => true) as (event: MouseEvent) => void
+}
+
+export type ButtonEmits = typeof buttonEmits

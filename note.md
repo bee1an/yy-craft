@@ -8,7 +8,7 @@
 
 - [`@rollup/plugin-node-resolve`](#1-第三方包解析基本必备)
 - [`rollup-plugin-esbuild`](#2-typescript-编译方案)
-- [`@vitejs/plugin-vue`](#3-vue-组件编译方案)
+- [`unplugin-vue`](#3-vue-组件编译方案)
 - [`@vitejs/plugin-vue-jsx`](#4-vue-tsx-编译方案)
 - [`rollup-plugin-visualizer`](#5-生成包结构)
 - [`rollup-plugin-copy`](#6-保留指定文件)
@@ -30,29 +30,12 @@
   🌟 Vite 内部同款编译器，支持 Tree-Shaking
   🌟 **快!** 可以代替 `rollup-plugin-typescript2`, `@rollup/plugin-typescript` 和 `rollup-plugin-terser`的集合
 
-  ⚠️ 编译 tsx **未使用**该方案, rollup 在 Tree-Shaking vue 时会报警告
+  ⚠️ rollup 在 Tree-Shaking vue(>=3.3) 时会报警告
 
   > "Fragment" is imported from external module "vue" but never used in "node_modules/.pnpm/vue@3.5.13_typescript@5.7.2/node_modules/vue/jsx-runtime/index.mjs"
 
   📖 关于 tsx: esbuild 会自动拾取`tsconfig.json`配置或者[单独配置](https://github.com/egoist/rollup-plugin-esbuild?tab=readme-ov-file#usage)
-
-  ```json
-  // tsconfig.json
-  {
-    "compilerOptions": {
-      /*
-          tsx编译后创建元素的工厂函数, vue需要修改为h函数
-          detail: https://esbuild.github.io/api/#jsx-factory
-      */
-      "jsxFactory": "h",
-      /*
-          tsx片段(<>anything</>)转义后的元素
-          detail: https://esbuild.github.io/api/#jsx-fragment
-      */
-      "jsxFragmentFactory": "Fragment"
-    }
-  }
-  ```
+  ⚠️ 本项目编译 tsx **未使用**该方案
 
 ❌ **不推荐方案**：
 
@@ -64,16 +47,22 @@
 
 ##### 3. **Vue 组件编译方案**
 
+⚠️ 本项目采用 `unplugin-vue`
+
 ✅ **生产级方案**：
 
 - [`@vitejs/plugin-vue`](https://github.com/vitejs/vite-plugin-vue)  
-  ⏳ 暂未发现不妥
+  ⏳ 暂未发现不妥(用于 vite)
+
+- [`unplugin-vue`](https://github.com/unplugin/unplugin-vue)
+  🔄 定期从@vitejs/plugin-vue 同步代码（用于 rollup）
 
 🚫 **已废弃方案**：
 
 - ~~`rollup-plugin-vue`~~  
-  ⚠️ github 已经归档，不再维护，建议使用 `@vitejs/plugin-vue`
+  ⛔ github 已经归档，不再维护，代替方案 `unplugin-vue`
   ⚠️ 已知问题：[~~Vue 3.3 类型宏增强方案似乎未生效~~](https://blog.vuejs.org/posts/vue-3-3#imported-and-complex-types-support-in-macros)
+
   ```ts
   import { type Foo } from 'anywhere'
   defineProps<Foo>() // 当使用外部类型时编译报错
@@ -96,18 +85,18 @@
   - 将 `packages/yy-ui/package.json` 复制到 `dist/yy-ui/package.json`
   - 将 `README.md` 复制到 `dist/yy-ui/README.md`
 
-### ⚙️ 配置
+#### ⚙️ 打包配置
 
 **核心思想**
 
-根据 `packages/yy-ui` 的文件结构配置多入口, `packages/yy-ui` 下对应的文件引用对应的包
+根据 `packages/yy-ui` 的文件结构配置多模块, `packages/yy-ui` 下对应的文件引用对应的包
 
 **核心代码**
 
 ```js
 // rollup.config.js
 
-// 多入口配置
+// 多模块入口配置
 const inputs = Object.fromEntries(
   fs
     .readdirSync(uiDir)
@@ -125,9 +114,11 @@ const outputs = {
 }
 ```
 
-### ⚡ 优化
+## ⚡ 优化
 
-#### [`rimraf`](https://github.com/isaacs/rimraf)
+### [~~**rimraf**~~](https://github.com/isaacs/rimraf)
+
+⚠️ 本项目废弃改方案, 使用 [`shelljs`](https://github.com/shelljs/shelljs) 代替, 具体删除命令见 [`scripts/clean.js`](scripts/clean.js)
 
 `rimraf` 是一个用于删除文件和文件夹的 npm 包，它类似于 Unix 中的 `rm -rf` 命令。
 
@@ -143,11 +134,51 @@ const outputs = {
 "clean": "rimraf node_modules"
 ```
 
+### [**Vue Macros**](https://vue-macros.dev/zh-CN/)
+
+更多的 vue 编译宏, 项目 vue 版本为 3.2.47, 所以很需要这个包
+
+使用这个插件后, `unplugin-vue/rollup` 和 `@vitejs/plugin-vue-jsx` 插件配置方法有所改变
+
+```js
+// rollup.config.js
+import vue from 'unplugin-vue/rollup'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import VueMacros from 'unplugin-vue-macros/rollup'
+
+export default defineConfig(
+  // ...
+  {
+    plugins: [
+      VueMacros({
+        plugins: {
+          vue: vue(),
+          vueJsx: vueJsx()
+        }
+      })
+    ]
+  }
+  // ...
+)
+```
+
 ## 🔧 关于 ts
 
-### 📄 tsconfig.json 关键配置
+**tsconfig.json 关键配置**
 
 - `verbatimModuleSyntax`: 导入类型不使用 **import type** 时报错
+
+- `jsx`: 设置为 `preserve` 保留 jsx 语法, 后面通过 `vueJsx` 插件编译
+
+- `jsxImportSource`: 低版本 `vue` 隐式注册全局 JSX 命名空间, 所以不需要配置, [高版本(>=3.4)需要配置有以下内容](https://cn.vuejs.org/guide/extras/render-function.html#jsx-type-inference)
+
+```json
+"compilerOptions": {
+  "jsx": "preserve",
+  "jsxImportSource": "vue"
+  // ...
+}
+```
 
 ## 🚀 关于发布
 
@@ -156,6 +187,8 @@ const outputs = {
 - `dist/yy-ui`
 
 **发布命令**
+
+⚠️ 后续需要优化发布的版本信息
 
 ```bash
 node scripts/publish.mjs [-v <string>]
@@ -170,7 +203,15 @@ node scripts/publish.mjs [-v <string>]
 4. cd `dist/yy-ui`
 5. 执行`npm publish`
 
-### 🖥️ 常用发布命令(公用)
+## ✍️ 随手记
+
+在使用 tsx `defineComponent` 的 render 时, 模板引用不使用 `useTemplateRefs` 时, 需要将 ref 变量在 setup 函数中 **return** 出去
+
+> 应该是因为 `defineComponent` 的 render 函数中无法访问到 setup 函数中的变量, 只有 return 出去才能访问 ref 并赋值
+
+> 顺手一题: 模板中的 ref 原理是在渲染的某个阶段将对应的 dom 或者组件实例赋值给 ref 变量, 所以在 setup 函数中**无法访问**到模板中的 ref 变量, 只有 return 出去才能访问
+
+---
 
 **登录到 npm**
 

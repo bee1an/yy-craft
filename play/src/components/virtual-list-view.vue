@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { inject, ref, useTemplateRef } from 'vue'
+import { inject, ref } from 'vue'
 import type { VirtualListExposed } from '@yy-ui/components'
 import { t } from '../plugins'
 
@@ -24,7 +24,7 @@ const data = ref(
 // data.unshift({ id: 0, size: 1500, sizesIndex: 0 })
 // data.push({ id: data.length + 1, size: 500, sizesIndex: 0 })
 
-const vlInstance = useTemplateRef<VirtualListExposed>('vlInstance')
+const vlInstance = ref<VirtualListExposed>()
 
 const scrollTo: VirtualListExposed['scrollTo'] = (...options: any[]) => {
   vlInstance.value!.scrollTo(...options)

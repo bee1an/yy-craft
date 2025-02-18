@@ -101,6 +101,7 @@ export default defineComponent({
     })
 
     const layoutSiderContainer = ref<HTMLElement | null>(null)
+
     const transitionendHandler = (e: TransitionEvent) => {
       if (
         e.propertyName === 'width' &&
@@ -123,6 +124,7 @@ export default defineComponent({
       resolveWidth,
       toggleHandler,
       showCollapsedTrigger,
+      layoutSiderContainer,
       transitionendHandler
     }
   },

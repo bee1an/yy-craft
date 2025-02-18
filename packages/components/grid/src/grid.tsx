@@ -72,7 +72,7 @@ export default defineComponent({
 
     provide(gridProviderKey, { margin })
 
-    return { bem, margin, resolveCols }
+    return { bem, margin, gridContainer, resolveCols }
   },
   render() {
     const {

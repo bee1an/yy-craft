@@ -1,4 +1,5 @@
-import { onScopeDispose, type ShallowRef, watch } from 'vue'
+import { tryOnScopeDispose } from '@yy-ui/utils/src/vue'
+import { type ShallowRef, watch } from 'vue'
 
 export const useMutationObserver = (
   /** 监听对象 */
@@ -31,7 +32,7 @@ export const useMutationObserver = (
     cleanup()
   }
 
-  onScopeDispose(stop, true)
+  tryOnScopeDispose(stop)
 
   return stop
 }

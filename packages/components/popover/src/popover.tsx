@@ -301,7 +301,7 @@ export default defineComponent({
                 ),
                 [
                   [clickOutside, contentClickOutside],
-                  typeof zIndex === 'undefined' ? [zindexable] : [undefined]
+                  typeof zIndex === 'undefined' ? [zindexable] : [{}]
                 ]
               )}
           </Transition>

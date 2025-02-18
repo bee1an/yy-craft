@@ -21,7 +21,8 @@
     // "jsxFragmentFactory": "Fragment",
     // "jsxImportSource": "vue",
     "verbatimModuleSyntax": true,
-    "types": ["unplugin-vue-macros/macros-global"]
+    "types": ["unplugin-vue-macros/macros-global"],
+    "preserveSymlinks": true
   },
   "exclude": ["node_modules", "**/__tests__", "dist/**"] // 排除文件
 }

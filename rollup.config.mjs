@@ -8,9 +8,8 @@ import copy from 'rollup-plugin-copy'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import VueMacros from 'unplugin-vue-macros/rollup'
-// import dts from 'rollup-plugin-dts'
+// import dts from 'vite-plugin-dts'
 import fs from 'node:fs'
-// import babel from '@rollup/plugin-babel'
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 const pkgDir = path.resolve(rootDir, 'packages')
@@ -29,12 +28,21 @@ const inputs = Object.fromEntries(
 export default defineConfig([
   {
     input: inputs,
-    output: {
-      format: 'es',
-      dir: 'dist/yy-ui',
-      preserveModules: true,
-      preserveModulesRoot: path.resolve('packages')
-    },
+    output: [
+      {
+        format: 'es',
+        dir: 'dist/yy-ui/es',
+        preserveModules: true,
+        preserveModulesRoot: path.resolve('packages')
+      },
+      {
+        format: 'cjs',
+        dir: 'dist/yy-ui/lib',
+        preserveModules: true,
+        preserveModulesRoot: path.resolve('packages'),
+        exports: 'named'
+      }
+    ],
     external: ['vue', '@css-render/plugin-bem', 'css-render'],
     plugins: [
       VueMacros({
@@ -43,8 +51,6 @@ export default defineConfig([
           vueJsx: vueJsx()
         }
       }),
-      // vue(),
-      // vueJsx(),
       esbuild(),
       resolve({ extensions: ['.ts'] }),
       copy({
@@ -53,22 +59,17 @@ export default defineConfig([
           { src: 'README.md', dest: 'dist/yy-ui' }
         ]
       }),
-      // babel({
-      //   exclude: 'node_modules/**',
-      //   extensions: ['.tsx'],
-      //   presets: ['@vue/babel-preset-jsx'],
-      //   plugins: ['@babel/plugin-transform-runtime'],
-      //   babelHelpers: 'runtime'
-      // }),
+      // dts({ entryRoot: 'packages/yy-ui/index.ts' }),
       visualizer() // 打包分析, 置于最后
     ]
   }
   // {
-  //   input: 'packages/yy-ui/index.ts',
+  //   input: inputs,
   //   output: {
-  //     file: 'dist/yy-ui/index.d.ts',
-  //     format: 'es'
+  //     dir: 'dist/yy-ui/es'
+  //     // preserveModules: true,
+  //     // preserveModulesRoot: path.resolve('packages')
   //   },
-  //   plugins: [dts()]
+  //   plugins: [dts({})]
   // }
 ])

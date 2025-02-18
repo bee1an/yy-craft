@@ -3,7 +3,7 @@
   "packageManager": "pnpm@9.12.2",
   "type": "module",
   "scripts": {
-    "build": "node scripts/clean.js -d && rollup -c",
+    "build": "node scripts/clean.js -d && rollup -c && npx vue-tsc -p tsconfig.json --declaration --emitDeclarationOnly --declarationDir dist/types",
     "dev": "pnpm -C play dev",
     "doc:dev": "pnpm -C docs dev",
     "typecheck": "vue-tsc -p tsconfig.json --noEmit",
@@ -37,7 +37,8 @@
     "typescript-eslint": "8.17.0",
     "unplugin-vue": "6.0.0",
     "unplugin-vue-macros": "2.14.2",
-    "vue": "3.2.47",
+    "vite-plugin-dts": "4.5.0",
+    "vue": "3.2.25",
     "vue-tsc": "2.1.10"
   }
 }

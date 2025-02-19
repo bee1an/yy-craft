@@ -3,9 +3,9 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import glob from 'fast-glob'
 
-const __dirname = path.resolve(fileURLToPath(import.meta.url))
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const buildOutput = path.resolve(__dirname, '../../dist')
+const buildOutput = path.resolve(__dirname, '../dist')
 
 export const generateTypesDefinitions = async () => {
   shelljs.exec(

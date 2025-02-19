@@ -13,7 +13,8 @@ import {
   watch,
   withDirectives,
   mergeProps,
-  type StyleValue
+  type StyleValue,
+  shallowRef
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
@@ -131,7 +132,7 @@ export default defineComponent({
       emit('hide')
     }
 
-    const triggerRef = ref<HTMLElement | null>(null)
+    const triggerRef = shallowRef<HTMLElement | null>(null)
     const setTargetRef = (target: HTMLElement | null) => {
       triggerRef.value = target
     }

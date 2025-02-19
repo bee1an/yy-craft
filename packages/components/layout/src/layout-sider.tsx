@@ -4,6 +4,7 @@ import {
   type ExtractPropTypes,
   type PropType,
   ref,
+  shallowRef,
   type StyleValue,
   watch
 } from 'vue'
@@ -100,7 +101,7 @@ export default defineComponent({
       return typeof props.collapsedWidth !== 'undefined'
     })
 
-    const layoutSiderContainer = ref<HTMLElement | null>(null)
+    const layoutSiderContainer = shallowRef<HTMLElement | null>(null)
 
     const transitionendHandler = (e: TransitionEvent) => {
       if (

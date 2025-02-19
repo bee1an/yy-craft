@@ -85,6 +85,23 @@
   - 将 `packages/yy-ui/package.json` 复制到 `dist/yy-ui/package.json`
   - 将 `README.md` 复制到 `dist/yy-ui/README.md`
 
+##### 7. **dts 生成方案**
+
+❌ **不推荐方案**：
+
+- [`rollup-plugin-dts`](https://github.com/Swatinem/rollup-plugin-dts)
+  - 无法生成 vue 文件的 dts
+
+✅ **推荐方案**：
+
+- [`vite-plugin-dts`](https://github.com/qmhc/vite-plugin-dts)
+
+  **常见问题**
+
+  > The inferred type of this node exceeds the maximum length the compiler will serialize. An explicit type annotation is needed.
+
+  - 在 tsx 文件中模板引用使用了 `ref`，需要使用 `shallowRef`
+
 #### ⚙️ 打包配置
 
 **核心思想**
@@ -205,6 +222,20 @@ node scripts/publish.mjs [-v <string>]
 
 ## ✍️ 随手记
 
+在 `nodejs` 中, `__dirname` 是一个全局变量, 表示当前执行脚本所在的**目录**
+
+如果使用 es module
+
+```js
+// es module
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+```
+
+---
+
 在使用 tsx `defineComponent` 的 render 时, 模板引用不使用 `useTemplateRefs` 时, 需要将 ref 变量在 setup 函数中 **return** 出去
 
 > 应该是因为 `defineComponent` 的 render 函数中无法访问到 setup 函数中的变量, 只有 return 出去才能访问 ref 并赋值
@@ -250,3 +281,15 @@ npm unpublish <package-name> --force
 `--force` 参数表示强制模式
 
 ---
+
+## ❓ Q&A
+
+**Q: rollup 为什么构建开发环境产物和生成环境产物要用两套方案?**
+
+开发环境使用 `esbuild` 构建, `esbuild`, go 编写, 优点就是快, 但是在产物构建方面不如 `rollup` 全面
+
+生成环境使用 `rollup` 构建, `rollup`, nodejs 编写, 生态比较完整
+
+**Q: 为什么需要 rolldown**
+
+rust 编写, 统一了 `rollup` 和 `esbuild` 可能存在的差异, 集成两者的优点, `vite` 底层会重构为 `rolldown` 编译和打包

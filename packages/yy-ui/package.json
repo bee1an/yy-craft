@@ -1,11 +1,12 @@
 {
   "name": "@yyui/yy-ui",
   "type": "module",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "packageManager": "pnpm@9.12.2",
   "description": "A vue3 components store",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "types": "es/index.d.ts",
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "dev": "pnpm -C play dev",

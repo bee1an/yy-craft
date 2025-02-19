@@ -8,7 +8,7 @@ import copy from 'rollup-plugin-copy'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import VueMacros from 'unplugin-vue-macros/rollup'
-// import dts from 'vite-plugin-dts'
+import dts from 'vite-plugin-dts'
 import fs from 'node:fs'
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
@@ -19,6 +19,7 @@ const inputs = Object.fromEntries(
   fs
     .readdirSync(uiDir)
     .filter((file) => file.endsWith('.ts'))
+    // .filter((file) => file === 'components.ts')
     .map((file) => [
       file.substring(0, file.lastIndexOf('.')),
       path.resolve(uiDir, file)
@@ -32,8 +33,8 @@ export default defineConfig([
       {
         format: 'es',
         dir: 'dist/yy-ui/es',
-        preserveModules: true,
-        preserveModulesRoot: path.resolve('packages')
+        preserveModules: true
+        // preserveModulesRoot: path.resolve('packages')
       },
       {
         format: 'cjs',
@@ -43,6 +44,7 @@ export default defineConfig([
         exports: 'named'
       }
     ],
+    treeshake: false,
     external: ['vue', '@css-render/plugin-bem', 'css-render'],
     plugins: [
       VueMacros({
@@ -51,7 +53,9 @@ export default defineConfig([
           vueJsx: vueJsx()
         }
       }),
-      esbuild(),
+      esbuild({
+        treeShaking: false
+      }),
       resolve({ extensions: ['.ts'] }),
       copy({
         targets: [
@@ -59,17 +63,19 @@ export default defineConfig([
           { src: 'README.md', dest: 'dist/yy-ui' }
         ]
       }),
-      // dts({ entryRoot: 'packages/yy-ui/index.ts' }),
+      dts({
+        outDir: ['dist/yy-ui/es', 'dist/yy-ui/lib', 'dist/types'],
+        include: ['packages'],
+        compilerOptions: {
+          sourceMap: false,
+          paths: {
+            '@yy-ui/*': ['packages/*'],
+            csstype: ['node_modules/csstype']
+          }
+        },
+        insertTypesEntry: true
+      }),
       visualizer() // 打包分析, 置于最后
     ]
   }
-  // {
-  //   input: inputs,
-  //   output: {
-  //     dir: 'dist/yy-ui/es'
-  //     // preserveModules: true,
-  //     // preserveModulesRoot: path.resolve('packages')
-  //   },
-  //   plugins: [dts({})]
-  // }
 ])

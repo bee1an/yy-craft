@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "vue": "3.2.25",
-    "vue-router": "4",
-    "@yyui/yy-ui": "workspace:*"
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vicons/ionicons5": "^0.12.0",

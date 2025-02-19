@@ -4,8 +4,9 @@ import {
   type ExtractPropTypes,
   type PropType,
   reactive,
-  ref,
-  type VNodeChild
+  shallowRef,
+  type VNodeChild,
+  watch
 } from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
@@ -17,7 +18,6 @@ import {
 import { Icon } from '@yy-ui/components/icon'
 import { YBaseCollapsed2 } from '../../_internal/icons'
 import { YFadeInExpandTransition } from '../../_internal/fade-in-expand-transition'
-import { watch } from 'vue'
 import YDropdown from '../../dropdown/src/dropdown'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { depx, px } from '@yy-ui/utils/src/css'
@@ -266,7 +266,7 @@ export default defineComponent({
       return px((depx(props.collapsedWidth!) - depx(iconSize.value!)) / 2)
     })
 
-    const menuContainer = ref<HTMLElement | null>(null)
+    const menuContainer = shallowRef<HTMLElement | null>(null)
     const transitionendHandler = (e: TransitionEvent) => {
       // 外层容器的width转场结束时, 触发收起或展开事件
       if (e.propertyName !== 'width' || e.target !== menuContainer.value) {

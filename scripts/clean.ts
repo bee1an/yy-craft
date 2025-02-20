@@ -15,7 +15,6 @@ function removeDist() {
 }
 
 function removeNodeModules() {
-  shelljs.rm('-rf', 'node_modules')
   shelljs.rm('-rf', 'play/node_modules')
 
   fs.readdirSync(pkgsDir).forEach((file) => {

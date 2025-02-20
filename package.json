@@ -3,11 +3,11 @@
   "packageManager": "pnpm@9.12.2",
   "type": "module",
   "scripts": {
-    "build": "node scripts/clean.js -d && rollup -c && tsx scripts/replace-dts.ts",
+    "build": "tsx scripts/clean.ts -d && rollup -c && tsx scripts/replace-dts.ts",
     "dev": "pnpm -C play dev",
     "doc:dev": "pnpm -C docs dev",
     "typecheck": "vue-tsc -p tsconfig.json --noEmit",
-    "clean": "node scripts/clean.js -d -n",
+    "clean": "tsx scripts/clean.ts -d -n && node scripts/clean-n.js",
     "publish": "tsx scripts/publish.ts"
   },
   "dependencies": {

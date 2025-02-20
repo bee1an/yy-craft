@@ -1,12 +1,6 @@
-/**
- * @deprecated
- */
-
 import shelljs from 'shelljs' // 命令执行器
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import { rootDir } from './utils/paths'
 
 // 升级版本号
 // const currentVersion = version
@@ -18,9 +12,10 @@ async function publish() {
   shelljs.exec('pnpm i --frozen-lockfile') // 该命令强制基于现有 lockfile 安装依赖（不更新 lockfile），用于确保依赖树绝对一致
   shelljs.exec('pnpm build')
 
+  // @ts-expect-error 打包后会有这个路径
   const { default: version } = await import('../dist/yy-ui/es/version.js')
 
-  const pkgFile = path.resolve(__dirname, '../dist/yy-ui/package.json')
+  const pkgFile = path.resolve(rootDir, './dist/yy-ui/package.json')
 
   shelljs.sed(
     '-i',
@@ -29,10 +24,8 @@ async function publish() {
     pkgFile
   ) // 替换版本号
 
-  console.log('version', version)
-
-  // shelljs.cd('dist/yy-ui')
-  // shelljs.exec(`npm publish --tag bata`)
+  shelljs.cd('dist/yy-ui')
+  shelljs.exec(`npm publish --tag bata`)
 }
 
 publish()

@@ -3,12 +3,12 @@
   "packageManager": "pnpm@9.12.2",
   "type": "module",
   "scripts": {
-    "build": "node scripts/clean.js -d && rollup -c && node scripts/replace-dts.js",
-    "build:type": "node scripts/clean.js -d && npx vue-tsc -p tsconfig.json --declaration --emitDeclarationOnly --declarationDir dist/types",
+    "build": "node scripts/clean.js -d && rollup -c && tsx scripts/replace-dts.ts",
     "dev": "pnpm -C play dev",
     "doc:dev": "pnpm -C docs dev",
     "typecheck": "vue-tsc -p tsconfig.json --noEmit",
-    "clean": "node scripts/clean.js -d -n"
+    "clean": "node scripts/clean.js -d -n",
+    "publish": "tsx scripts/publish.ts"
   },
   "dependencies": {
     "@css-render/plugin-bem": "0.15.14",
@@ -23,18 +23,20 @@
   "devDependencies": {
     "@eslint/js": "9.16.0",
     "@rollup/plugin-node-resolve": "16.0.0",
+    "@types/shelljs": "0.8.15",
     "@vitejs/plugin-vue-jsx": "4.1.1",
     "@vue/eslint-config-typescript": "14.1.4",
     "commander": "13.1.0",
     "eslint": "9.16.0",
     "fast-glob": "3.3.3",
-    "fs-extra": "^11.3.0",
+    "fs-extra": "11.3.0",
     "globals": "15.13.0",
     "rollup": "4.34.4",
     "rollup-plugin-copy": "3.5.0",
     "rollup-plugin-esbuild": "6.2.0",
     "rollup-plugin-visualizer": "5.14.0",
     "shelljs": "0.8.5",
+    "tsx": "4.19.3",
     "typescript": "5.7.3",
     "typescript-eslint": "8.17.0",
     "unplugin-vue": "6.0.0",

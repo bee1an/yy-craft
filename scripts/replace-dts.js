@@ -1,3 +1,7 @@
+/**
+ * @deprecated
+ */
+
 // import shelljs from 'shelljs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'

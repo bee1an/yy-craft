@@ -7,13 +7,6 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
-  "scripts": {
-    "build": "rimraf dist && rollup -c",
-    "dev": "pnpm -C play dev",
-    "doc:dev": "pnpm -C docs dev",
-    "type-check": "tsc --noEmit",
-    "clean": "rimraf node_modules"
-  },
   "keywords": [
     "yy-ui",
     "component library",

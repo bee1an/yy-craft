@@ -96,6 +96,20 @@
 
 - [`vite-plugin-dts`](https://github.com/qmhc/vite-plugin-dts)
 
+  **核心配置**
+
+  ```js
+  {
+    outDir: ['dist/yy-ui/es', 'dist/yy-ui/lib', 'dist/types'], // 多出口
+    include: ['packages'], // 仅生成 packages
+    insertTypesEntry: true, // 根据rollup入口生成dts入口
+  }
+  ```
+
+  **完成后重写**
+
+  [重写 dts 入口文件](./scripts/replace-dts.ts)
+
   **常见问题**
 
   > The inferred type of this node exceeds the maximum length the compiler will serialize. An explicit type annotation is needed.
@@ -135,7 +149,7 @@ const outputs = {
 
 ### [~~**rimraf**~~](https://github.com/isaacs/rimraf)
 
-⚠️ 本项目废弃改方案, 使用 [`shelljs`](https://github.com/shelljs/shelljs) 代替, 具体删除命令见 [`scripts/clean.js`](scripts/clean.js)
+⚠️ 本项目废弃改方案, 使用 [`shelljs`](https://github.com/shelljs/shelljs) 代替, 具体删除命令见 [`scripts/clean.js`](scripts/clean.ts)
 
 `rimraf` 是一个用于删除文件和文件夹的 npm 包，它类似于 Unix 中的 `rm -rf` 命令。
 

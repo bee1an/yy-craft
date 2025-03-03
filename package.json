@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "tsx scripts/clean.ts -d && rollup -c && tsx scripts/replace-dts.ts",
+    "build:dev": "cross-env NODE_ENV=development pnpm build",
+    "build:prod": "cross-env NODE_ENV=production pnpm build",
     "dev": "pnpm -C play dev",
     "doc:dev": "pnpm -C docs dev",
     "typecheck": "vue-tsc -p tsconfig.json --noEmit",
@@ -27,8 +29,8 @@
     "@vitejs/plugin-vue-jsx": "4.1.1",
     "@vue/eslint-config-typescript": "14.1.4",
     "commander": "13.1.0",
+    "cross-env": "7.0.3",
     "eslint": "9.16.0",
-    "fast-glob": "3.3.3",
     "fs-extra": "11.3.0",
     "globals": "15.13.0",
     "rollup": "4.34.4",

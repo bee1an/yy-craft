@@ -1,0 +1,7 @@
+root = true
+
+[*]
+charset = utf-8 # 文件字符集
+indent_style = tab # 缩进风格，tab | space
+indent_size = 2 # 缩进大小
+end_of_line = lf # 换行符，lf | crlf

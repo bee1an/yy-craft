@@ -1,4 +1,4 @@
 node_modules
 dist
 docs/.vitepress/cache
-stats.html
+internal/stats.html

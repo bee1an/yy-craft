@@ -75,7 +75,9 @@ export default defineConfig([
         },
         insertTypesEntry: true
       }),
-      visualizer() // 打包分析, 置于最后
+      visualizer({
+        filename: './internal/stats.html'
+      }) // 打包分析, 置于最后
     ]
   }
 ])

@@ -1,0 +1,5 @@
+export { default as Meat } from './meat.vue'
+export { default as Vegetable } from './vegetable.vue'
+export { default as Soup } from './soup.vue'
+export { default as BigMeat } from './big-meat.vue'
+export { default as StapleFood } from './staple-food.vue'

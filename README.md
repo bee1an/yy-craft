@@ -4,13 +4,13 @@
 
 <p align="center">
   <a href="https://github.com/vuejs/core">
-    <img src="https://img.shields.io/badge/Vue->=3.0.0-%2342b883" alt="Vue3"/>
+    <img src="https://img.shields.io/badge/Vue->=3.2.25-%2342b883" alt="Vue3"/>
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-green" alt="License"/>
   </a>
   <a href="https://github.com/bee1an/yy-ui/tree/dev">
-    <img src="https://img.shields.io/badge/Version-beta--0.0.1-blue" alt="Version"/>
+    <img src="https://img.shields.io/badge/Version-1.0.0--beta.2-blue" alt="Version"/>
   </a>
 </p>
 
@@ -18,12 +18,13 @@
 
 📋 Todo List
 
-- [ ] 🧹 **优化打包结构**
+- [x] 🧹 **优化打包结构**
   - 优化打包后的目录结构
   - 实现 ESM/CJS 双模式输出
   - dts 文件生成
+- [x] ⬇️ **依赖降级(>=vue3.0.0)**
+  - 实际降级到 3.2.25
 - [ ] 🌳 **Tree-shaking 测试**
-- [ ] ⬇️ **依赖降级(>=vue3.0.0)**
 - [ ] 🧪 **编写单元测试**
 - [ ] 📂 **编写更多的组件**
 - [ ] 📄 **完善组件文档**

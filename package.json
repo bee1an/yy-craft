@@ -3,13 +3,13 @@
 	"packageManager": "pnpm@9.12.2",
 	"type": "module",
 	"scripts": {
-		"build": "tsx scripts/clean.ts -d && rollup -c && tsx scripts/replace-dts.ts",
+		"build": "tsx scripts/cleanup.ts -d && rollup -c && tsx scripts/replace-dts.ts",
 		"build:dev": "cross-env NODE_ENV=development pnpm build",
 		"build:prod": "cross-env NODE_ENV=production pnpm build",
 		"dev": "pnpm -C play dev",
 		"doc:dev": "pnpm -C docs dev",
 		"typecheck": "vue-tsc -p tsconfig.json --noEmit",
-		"clean": "tsx scripts/clean.ts -d -n && node scripts/clean-n.js",
+		"cleanup": "tsx scripts/cleanup.ts -d -n && node -e \"fs.rmSync('node_modules', { recursive: true, force: true })\"",
 		"publish": "tsx scripts/publish.ts",
 		"prepare": "husky",
 		"prettier": "prettier --write ."

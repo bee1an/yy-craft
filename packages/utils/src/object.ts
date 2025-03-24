@@ -5,8 +5,8 @@
  * @returns { boolean }
  */
 export const isObject = (value: any): boolean => {
-  const type = typeof value
-  return value != null && (type === 'object' || type === 'function')
+	const type = typeof value
+	return value != null && (type === 'object' || type === 'function')
 }
 
 /**
@@ -16,18 +16,15 @@ export const isObject = (value: any): boolean => {
  * @param {string[]} keys 需要删除的key
  * @returns {Record<string | symbol, any>}
  */
-export const omitObject = <
-  T extends Record<string | symbol, any>,
-  K extends keyof T
->(
-  obj: T,
-  keys: K[]
+export const omitObject = <T extends Record<string | symbol, any>, K extends keyof T>(
+	obj: T,
+	keys: K[]
 ): Omit<T, K> => {
-  const result = { ...obj }
-  keys.forEach(key => {
-    delete result[key]
-  })
-  return result
+	const result = { ...obj }
+	keys.forEach((key) => {
+		delete result[key]
+	})
+	return result
 }
 
 /**
@@ -37,18 +34,15 @@ export const omitObject = <
  * @param {string[]} keys 需要保留的key
  * @returns {Record<string | symbol, any>}
  */
-export const pickObject = <
-  T extends Record<string | symbol, any>,
-  K extends keyof T
->(
-  obj: T,
-  keys: K[]
+export const pickObject = <T extends Record<string | symbol, any>, K extends keyof T>(
+	obj: T,
+	keys: K[]
 ): Pick<T, K> => {
-  const result: Partial<Pick<T, K>> = {}
-  keys.forEach(key => {
-    result[key] = obj[key]
-  })
-  return result as Pick<T, K>
+	const result: Partial<Pick<T, K>> = {}
+	keys.forEach((key) => {
+		result[key] = obj[key]
+	})
+	return result as Pick<T, K>
 }
 
 /**
@@ -57,14 +51,14 @@ export const pickObject = <
  * @returns {Record<string | symbol, any>}
  */
 export const mergeObject = <T extends Record<string | symbol, any> | undefined>(
-  ...objs: T[]
+	...objs: T[]
 ): T => {
-  const result: any = {}
-  objs.forEach(obj => {
-    if (!obj) return
-    Object.keys(obj).forEach(key => {
-      result[key] = obj[key]
-    })
-  })
-  return result as T
+	const result: any = {}
+	objs.forEach((obj) => {
+		if (!obj) return
+		Object.keys(obj).forEach((key) => {
+			result[key] = obj[key]
+		})
+	})
+	return result as T
 }

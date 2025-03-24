@@ -4,7 +4,7 @@ import { texts } from './texts'
 export * from './texts'
 
 export default {
-  install(app: App) {
-    app.use(texts)
-  }
+	install(app: App) {
+		app.use(texts)
+	}
 }

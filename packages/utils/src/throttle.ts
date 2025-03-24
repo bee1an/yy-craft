@@ -12,26 +12,26 @@ import { isObject } from './object'
  * @returns
  */
 export function throttle(
-  func: Function,
-  wait: number = 0,
-  options: { leading: boolean; trailing: boolean; maxWait?: number } = {
-    leading: false,
-    trailing: true
-  }
+	func: Function,
+	wait: number = 0,
+	options: { leading: boolean; trailing: boolean; maxWait?: number } = {
+		leading: false,
+		trailing: true
+	}
 ) {
-  let leading = true
-  let trailing = true
+	let leading = true
+	let trailing = true
 
-  if (typeof func !== 'function') {
-    throw new TypeError('Expected a function')
-  }
-  if (isObject(options)) {
-    leading = 'leading' in options ? !!options.leading : leading
-    trailing = 'trailing' in options ? !!options.trailing : trailing
-  }
-  return debounce(func, wait, {
-    leading,
-    trailing,
-    maxWait: wait
-  })
+	if (typeof func !== 'function') {
+		throw new TypeError('Expected a function')
+	}
+	if (isObject(options)) {
+		leading = 'leading' in options ? !!options.leading : leading
+		trailing = 'trailing' in options ? !!options.trailing : trailing
+	}
+	return debounce(func, wait, {
+		leading,
+		trailing,
+		maxWait: wait
+	})
 }

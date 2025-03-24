@@ -1,6 +1,6 @@
 export interface Gap {
-  row: string
-  col: string
+	row: string
+	col: string
 }
 
 function getGap(value: string): Gap
@@ -12,13 +12,13 @@ function getGap(value: string, orient: 'row' | 'col'): string
  * @param {'row' | 'col'} [orient] 方向
  */
 function getGap(value: string, orient?: 'row' | 'col'): string | Gap {
-  const [rowGap, colGap] = value.split(' ')
-  if (!orient)
-    return {
-      row: rowGap,
-      col: colGap || rowGap
-    }
-  return orient === 'row' ? rowGap : colGap
+	const [rowGap, colGap] = value.split(' ')
+	if (!orient)
+		return {
+			row: rowGap,
+			col: colGap || rowGap
+		}
+	return orient === 'row' ? rowGap : colGap
 }
 
 export { getGap }
@@ -30,11 +30,11 @@ export { getGap }
  * @returns {string}
  */
 export function px(value: number | string | undefined): string | undefined {
-  if (typeof value === 'undefined') {
-    return value
-  }
+	if (typeof value === 'undefined') {
+		return value
+	}
 
-  return `${depx(value)}px`
+	return `${depx(value)}px`
 }
 
 /**
@@ -44,13 +44,13 @@ export function px(value: number | string | undefined): string | undefined {
  * @returns {number}
  */
 export function depx(value: string | number): number {
-  if (typeof value === 'string') {
-    if (value.endsWith('px')) {
-      return Number(value.slice(0, value.length - 2))
-    }
-    return Number(value)
-  }
-  return value
+	if (typeof value === 'string') {
+		if (value.endsWith('px')) {
+			return Number(value.slice(0, value.length - 2))
+		}
+		return Number(value)
+	}
+	return value
 }
 
 /**
@@ -61,15 +61,15 @@ export function depx(value: string | number): number {
  * @returns {string}
  */
 export function createCSSVar(name: string, prefix: string = 'y'): string {
-  let newName = '--' + prefix + '-'
+	let newName = '--' + prefix + '-'
 
-  for (let index = 0; index < name.length; index++) {
-    const char = name[index]
+	for (let index = 0; index < name.length; index++) {
+		const char = name[index]
 
-    newName += char === char.toUpperCase() ? '-' + char.toLowerCase() : char
-  }
+		newName += char === char.toUpperCase() ? '-' + char.toLowerCase() : char
+	}
 
-  return newName
+	return newName
 }
 
 /**
@@ -79,5 +79,5 @@ export function createCSSVar(name: string, prefix: string = 'y'): string {
  * @returns {'var(同createCSSVar函数返回值)'}
  */
 export function cVar(...args: Parameters<typeof createCSSVar>): string {
-  return `var(${createCSSVar(...args)})`
+	return `var(${createCSSVar(...args)})`
 }

@@ -9,7 +9,7 @@ export { treeWithInstall, Tree }
 export default Tree
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyTree: typeof Tree
-  }
+	export interface GlobalComponents {
+		YyTree: typeof Tree
+	}
 }

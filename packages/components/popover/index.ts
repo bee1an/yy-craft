@@ -7,7 +7,7 @@ export { popoverWithInstall, Popover }
 export default Popover
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyPopover: typeof Popover
-  }
+	export interface GlobalComponents {
+		YyPopover: typeof Popover
+	}
 }

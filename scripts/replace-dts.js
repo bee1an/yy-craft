@@ -18,16 +18,16 @@ const uiEsDir = path.resolve(__dirname, '../dist/yy-ui/es')
 const uiLibDir = path.resolve(__dirname, '../dist/yy-ui/lib')
 
 fs.readdirSync(typesDir)
-  .filter((file) => file.endsWith('.d.ts'))
-  .forEach((file) => {
-    const content = fs
-      .readFileSync(path.join(typesDir, 'yy-ui', file), 'utf8')
-      .replaceAll('../', './')
+	.filter((file) => file.endsWith('.d.ts'))
+	.forEach((file) => {
+		const content = fs
+			.readFileSync(path.join(typesDir, 'yy-ui', file), 'utf8')
+			.replaceAll('../', './')
 
-    fs.writeFileSync(path.join(typesDir, file), content, 'utf8')
-    fs.writeFileSync(path.join(uiEsDir, file), content, 'utf8')
-    fs.writeFileSync(path.join(uiLibDir, file), content, 'utf8')
-  })
+		fs.writeFileSync(path.join(typesDir, file), content, 'utf8')
+		fs.writeFileSync(path.join(uiEsDir, file), content, 'utf8')
+		fs.writeFileSync(path.join(uiLibDir, file), content, 'utf8')
+	})
 
 removeSync(path.join(typesDir, 'yy-ui'))
 removeSync(path.join(uiEsDir, 'yy-ui'))

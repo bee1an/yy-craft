@@ -7,7 +7,7 @@ export { dropdownWithInstall, Dropdown }
 export default Dropdown
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyDropdown: typeof Dropdown
-  }
+	export interface GlobalComponents {
+		YyDropdown: typeof Dropdown
+	}
 }

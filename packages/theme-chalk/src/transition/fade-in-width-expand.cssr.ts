@@ -5,32 +5,29 @@ import { commonBase } from '../common'
 const { cubicBezierEaseInOut } = commonBase
 
 interface FadeInWidthExpandTransition {
-  duration?: string
-  delay?: string
+	duration?: string
+	delay?: string
 }
 
 export function fadeInWidthExpandTransition({
-  duration = '.2s',
-  delay = '.1s'
+	duration = '.2s',
+	delay = '.1s'
 }: FadeInWidthExpandTransition = {}): CNode[] {
-  return [
-    c(
-      '&.fade-in-width-expand-transition-leave-from, &.fade-in-width-expand-transition-enter-to',
-      {
-        opacity: 1
-      }
-    ),
-    c(
-      '&.fade-in-width-expand-transition-leave-to, &.fade-in-width-expand-transition-enter-from',
-      `
+	return [
+		c('&.fade-in-width-expand-transition-leave-from, &.fade-in-width-expand-transition-enter-to', {
+			opacity: 1
+		}),
+		c(
+			'&.fade-in-width-expand-transition-leave-to, &.fade-in-width-expand-transition-enter-from',
+			`
       opacity: 0!important;
       margin-left: 0!important;
       margin-right: 0!important;
     `
-    ),
-    c(
-      '&.fade-in-width-expand-transition-leave-active',
-      `
+		),
+		c(
+			'&.fade-in-width-expand-transition-leave-active',
+			`
       overflow: hidden;
       transition:
         opacity ${duration} ${cubicBezierEaseInOut},
@@ -38,10 +35,10 @@ export function fadeInWidthExpandTransition({
         margin-left ${duration} ${cubicBezierEaseInOut} ${delay},
         margin-right ${duration} ${cubicBezierEaseInOut} ${delay};
     `
-    ),
-    c(
-      '&.fade-in-width-expand-transition-enter-active',
-      `
+		),
+		c(
+			'&.fade-in-width-expand-transition-enter-active',
+			`
       overflow: hidden;
       transition:
         opacity ${duration} ${cubicBezierEaseInOut} ${delay},
@@ -49,6 +46,6 @@ export function fadeInWidthExpandTransition({
         margin-left ${duration} ${cubicBezierEaseInOut},
         margin-right ${duration} ${cubicBezierEaseInOut};
     `
-    )
-  ]
+		)
+	]
 }

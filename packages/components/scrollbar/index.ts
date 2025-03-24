@@ -8,7 +8,7 @@ export { scrollbarWithInstall, Scrollbar }
 export default Scrollbar
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyScrollbar: typeof Scrollbar
-  }
+	export interface GlobalComponents {
+		YyScrollbar: typeof Scrollbar
+	}
 }

@@ -2,11 +2,7 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { computed, nextTick, ref } from 'vue'
 import { type ScrollbarExpose, scrollbarInternalProps } from './scrollbar'
-import {
-  scrollbarDark,
-  scrollbarLight,
-  scrollbarStyle
-} from '@yy-ui/theme-chalk/src/scrollbar'
+import { scrollbarDark, scrollbarLight, scrollbarStyle } from '@yy-ui/theme-chalk/src/scrollbar'
 import { useEventListener } from '@yy-ui/composables/use-event-listener'
 import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
 import { useBaseDrag } from '@yy-ui/composables/use-base-drag'
@@ -18,9 +14,9 @@ const props = defineProps(scrollbarInternalProps)
 
 const containerRef = ref<HTMLElement | null>(null)
 const mergedContainerRef = computed(() => {
-  const { container } = props
+	const { container } = props
 
-  return container ? container() : containerRef.value
+	return container ? container() : containerRef.value
 })
 useEventListener(mergedContainerRef, 'scroll', () => update())
 
@@ -30,127 +26,115 @@ const horizontalRail = ref<HTMLElement | null>(null)
 
 const verticalBar = ref({ height: 0, top: 0, visible: true, active: false })
 const verticalBarStyle = computed(() => {
-  return {
-    height: `${verticalBar.value.height}px`,
-    top: `${verticalBar.value.top}px`
-  }
+	return {
+		height: `${verticalBar.value.height}px`,
+		top: `${verticalBar.value.top}px`
+	}
 })
 
 const horizontalBar = ref({ width: 0, left: 0, visible: true, active: false })
 const horizontalBarStyle = computed(() => {
-  return {
-    width: `${horizontalBar.value.width}px`,
-    left: `${horizontalBar.value.left}px`
-  }
+	return {
+		width: `${horizontalBar.value.width}px`,
+		left: `${horizontalBar.value.left}px`
+	}
 })
 
 const update = () => {
-  const {
-    scrollHeight,
-    clientHeight,
-    scrollWidth,
-    clientWidth,
-    scrollTop,
-    scrollLeft
-  } = mergedContainerRef.value!
+	const { scrollHeight, clientHeight, scrollWidth, clientWidth, scrollTop, scrollLeft } =
+		mergedContainerRef.value!
 
-  // verticalBar.value.visible = scrollHeight > clientHeight
-  // if (verticalBar.value.visible) {
-  //   const { clientHeight: verticalRailHeight } = verticalRail.value!
+	// verticalBar.value.visible = scrollHeight > clientHeight
+	// if (verticalBar.value.visible) {
+	//   const { clientHeight: verticalRailHeight } = verticalRail.value!
 
-  //   verticalBar.value.height =
-  //     verticalRailHeight * (clientHeight / scrollHeight)
+	//   verticalBar.value.height =
+	//     verticalRailHeight * (clientHeight / scrollHeight)
 
-  //   verticalBar.value.top = (scrollTop / scrollHeight) * verticalRailHeight
-  // }
+	//   verticalBar.value.top = (scrollTop / scrollHeight) * verticalRailHeight
+	// }
 
-  // horizontalBar.value.visible = scrollWidth > clientWidth
-  // if (horizontalBar.value.visible) {
-  //   const { clientWidth: horizontalRailWidth } = horizontalRail.value!
-  //   horizontalBar.value.width =
-  //     horizontalRailWidth * (clientWidth / scrollWidth)
+	// horizontalBar.value.visible = scrollWidth > clientWidth
+	// if (horizontalBar.value.visible) {
+	//   const { clientWidth: horizontalRailWidth } = horizontalRail.value!
+	//   horizontalBar.value.width =
+	//     horizontalRailWidth * (clientWidth / scrollWidth)
 
-  //   horizontalBar.value.left = (scrollLeft / scrollWidth) * horizontalRailWidth
-  // }
-  updateVerticalBar(scrollHeight, clientHeight, scrollTop)
-  updateHorizontalBar(scrollWidth, clientWidth, scrollLeft)
+	//   horizontalBar.value.left = (scrollLeft / scrollWidth) * horizontalRailWidth
+	// }
+	updateVerticalBar(scrollHeight, clientHeight, scrollTop)
+	updateHorizontalBar(scrollWidth, clientWidth, scrollLeft)
 }
-const updateVerticalBar = async (
-  scrollHeight: number,
-  clientHeight: number,
-  scrollTop: number
-) => {
-  verticalBar.value.visible = scrollHeight > clientHeight
-  if (verticalBar.value.visible) {
-    if (!verticalRail.value) await new Promise<void>((r) => nextTick(r))
-    const { clientHeight: verticalRailHeight } = verticalRail.value!
+const updateVerticalBar = async (scrollHeight: number, clientHeight: number, scrollTop: number) => {
+	verticalBar.value.visible = scrollHeight > clientHeight
+	if (verticalBar.value.visible) {
+		if (!verticalRail.value) await new Promise<void>((r) => nextTick(r))
+		const { clientHeight: verticalRailHeight } = verticalRail.value!
 
-    verticalBar.value.height =
-      verticalRailHeight * (clientHeight / scrollHeight)
+		verticalBar.value.height = verticalRailHeight * (clientHeight / scrollHeight)
 
-    verticalBar.value.top = (scrollTop / scrollHeight) * verticalRailHeight
-  }
+		verticalBar.value.top = (scrollTop / scrollHeight) * verticalRailHeight
+	}
 }
 const updateHorizontalBar = async (
-  scrollWidth: number,
-  clientWidth: number,
-  scrollLeft: number
+	scrollWidth: number,
+	clientWidth: number,
+	scrollLeft: number
 ) => {
-  horizontalBar.value.visible = scrollWidth > clientWidth
-  if (horizontalBar.value.visible) {
-    if (!horizontalRail.value) await new Promise<void>((r) => nextTick(r))
-    const { clientWidth: horizontalRailWidth } = horizontalRail.value!
-    horizontalBar.value.width =
-      horizontalRailWidth * (clientWidth / scrollWidth)
+	horizontalBar.value.visible = scrollWidth > clientWidth
+	if (horizontalBar.value.visible) {
+		if (!horizontalRail.value) await new Promise<void>((r) => nextTick(r))
+		const { clientWidth: horizontalRailWidth } = horizontalRail.value!
+		horizontalBar.value.width = horizontalRailWidth * (clientWidth / scrollWidth)
 
-    horizontalBar.value.left = (scrollLeft / scrollWidth) * horizontalRailWidth
-  }
+		horizontalBar.value.left = (scrollLeft / scrollWidth) * horizontalRailWidth
+	}
 }
 
 useResizeObserver(mergedContainerRef, update)
 
 const verticalController = ref<HTMLElement | null>(null)
 useBaseDrag(verticalController, {
-  down: () => {
-    verticalBar.value.active = true
-    return mergedContainerRef.value!.scrollTop
-  },
-  move: ({ moveY, downReturnVal }) => {
-    const { clientHeight: verticalRailHeight } = verticalRail.value!
-    const { scrollHeight } = mergedContainerRef.value!
+	down: () => {
+		verticalBar.value.active = true
+		return mergedContainerRef.value!.scrollTop
+	},
+	move: ({ moveY, downReturnVal }) => {
+		const { clientHeight: verticalRailHeight } = verticalRail.value!
+		const { scrollHeight } = mergedContainerRef.value!
 
-    mergedContainerRef.value!.scrollTop =
-      scrollHeight * (moveY / verticalRailHeight) + downReturnVal
-  },
-  up: () => {
-    verticalBar.value.active = false
-  }
+		mergedContainerRef.value!.scrollTop =
+			scrollHeight * (moveY / verticalRailHeight) + downReturnVal
+	},
+	up: () => {
+		verticalBar.value.active = false
+	}
 })
 
 const hoirzontalController = ref<HTMLElement | null>(null)
 useBaseDrag(hoirzontalController, {
-  down: () => {
-    horizontalBar.value.active = true
-    return mergedContainerRef.value!.scrollLeft
-  },
-  move: ({ moveX, downReturnVal }) => {
-    const { clientWidth: horizontalRailWidth } = horizontalRail.value!
-    const { scrollWidth } = mergedContainerRef.value!
+	down: () => {
+		horizontalBar.value.active = true
+		return mergedContainerRef.value!.scrollLeft
+	},
+	move: ({ moveX, downReturnVal }) => {
+		const { clientWidth: horizontalRailWidth } = horizontalRail.value!
+		const { scrollWidth } = mergedContainerRef.value!
 
-    mergedContainerRef.value!.scrollLeft =
-      scrollWidth * (moveX / horizontalRailWidth) + downReturnVal
-  },
-  up: () => {
-    horizontalBar.value.active = false
-  }
+		mergedContainerRef.value!.scrollLeft =
+			scrollWidth * (moveX / horizontalRailWidth) + downReturnVal
+	},
+	up: () => {
+		horizontalBar.value.active = false
+	}
 })
 
 function scrollTo(...args: any[]) {
-  return mergedContainerRef.value?.scrollTo(...args)
+	return mergedContainerRef.value?.scrollTo(...args)
 }
 
 function scrollBy(...args: any[]) {
-  return mergedContainerRef.value?.scrollBy(...args)
+	return mergedContainerRef.value?.scrollBy(...args)
 }
 
 defineExpose({ scrollTo, scrollBy } as ScrollbarExpose)
@@ -158,65 +142,59 @@ defineExpose({ scrollTo, scrollBy } as ScrollbarExpose)
 const bem = new CreateNamespace('scrollbar')
 
 const { styleVars } = useTheme(
-  { light: scrollbarLight.vars(), dark: scrollbarDark.vars() },
-  'scrollbar',
-  scrollbarStyle,
-  props
+	{ light: scrollbarLight.vars(), dark: scrollbarDark.vars() },
+	'scrollbar',
+	scrollbarStyle,
+	props
 )
 </script>
 
 <template>
-  <div
-    :style="styleVars"
-    :class="[
-      bem.b().value,
-      bem.m(props.trigger === 'none' && 'display_controller').value
-    ]"
-  >
-    <slot v-if="props.container"></slot>
-    <div v-else :class="bem.b('container').value" ref="containerRef">
-      <div
-        :class="[bem.b('content').value, contentClass]"
-        :style="contentStyle"
-      >
-        <slot></slot>
-      </div>
-    </div>
+	<div
+		:style="styleVars"
+		:class="[bem.b().value, bem.m(props.trigger === 'none' && 'display_controller').value]"
+	>
+		<slot v-if="props.container"></slot>
+		<div v-else :class="bem.b('container').value" ref="containerRef">
+			<div :class="[bem.b('content').value, contentClass]" :style="contentStyle">
+				<slot></slot>
+			</div>
+		</div>
 
-    <div
-      v-if="verticalBar.visible"
-      :class="[bem.b('rail').value, bem.b('rail').m('vertical').value]"
-      ref="verticalRail"
-    >
-      <div
-        :class="[
-          bem.b('rail').e('controller').value,
-          bem
-            .b('rail')
-            .e('controller')
-            .m(verticalBar.active && 'active').value
-        ]"
-        :style="verticalBarStyle"
-        ref="verticalController"
-      ></div>
-    </div>
+		<div
+			v-if="verticalBar.visible"
+			:class="[bem.b('rail').value, bem.b('rail').m('vertical').value]"
+			ref="verticalRail"
+		>
+			<div
+				:class="[
+					bem.b('rail').e('controller').value,
+					bem
+						.b('rail')
+						.e('controller')
+						.m(verticalBar.active && 'active').value
+				]"
+				:style="verticalBarStyle"
+				ref="verticalController"
+			></div>
+		</div>
 
-    <div
-      v-if="horizontalBar.visible"
-      :class="[bem.b('rail').value, bem.b('rail').m('horizontal').value]"
-      ref="horizontalRail"
-    >
-      <div
-        :class="[
-          bem.b('rail').e('controller').value,
-          bem
-            .b('rail')
-            .e('controller')
-            .m(horizontalBar.active && 'active').value
-        ]"
-        :style="horizontalBarStyle"
-        ref="horizontalController"
-      ></div>
-    </div>
-  </div>
+		<div
+			v-if="horizontalBar.visible"
+			:class="[bem.b('rail').value, bem.b('rail').m('horizontal').value]"
+			ref="horizontalRail"
+		>
+			<div
+				:class="[
+					bem.b('rail').e('controller').value,
+					bem
+						.b('rail')
+						.e('controller')
+						.m(horizontalBar.active && 'active').value
+				]"
+				:style="horizontalBarStyle"
+				ref="horizontalController"
+			></div>
+		</div>
+	</div>
 </template>

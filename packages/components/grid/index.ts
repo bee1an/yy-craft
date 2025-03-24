@@ -10,9 +10,9 @@ export { gridWithInstall, Grid, gridItemWithInstall, GridItem }
 export default Grid
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyGrid: typeof Grid
-    YyGridItem: typeof GridItem
-    YyGi: typeof GridItem
-  }
+	export interface GlobalComponents {
+		YyGrid: typeof Grid
+		YyGridItem: typeof GridItem
+		YyGi: typeof GridItem
+	}
 }

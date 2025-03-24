@@ -7,7 +7,7 @@ export { cardWithInstall, Card }
 export default Card
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyCard: typeof Card
-  }
+	export interface GlobalComponents {
+		YyCard: typeof Card
+	}
 }

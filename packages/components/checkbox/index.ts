@@ -8,7 +8,7 @@ export { checkboxWithInstall, Checkbox }
 export default Checkbox
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyCheckbox: typeof Checkbox
-  }
+	export interface GlobalComponents {
+		YyCheckbox: typeof Checkbox
+	}
 }

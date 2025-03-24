@@ -1,74 +1,75 @@
 {
-  "private": true,
-  "packageManager": "pnpm@9.12.2",
-  "type": "module",
-  "scripts": {
-    "build": "tsx scripts/clean.ts -d && rollup -c && tsx scripts/replace-dts.ts",
-    "build:dev": "cross-env NODE_ENV=development pnpm build",
-    "build:prod": "cross-env NODE_ENV=production pnpm build",
-    "dev": "pnpm -C play dev",
-    "doc:dev": "pnpm -C docs dev",
-    "typecheck": "vue-tsc -p tsconfig.json --noEmit",
-    "clean": "tsx scripts/clean.ts -d -n && node scripts/clean-n.js",
-    "publish": "tsx scripts/publish.ts",
-    "prepare": "husky"
-  },
-  "dependencies": {
-    "@css-render/plugin-bem": "0.15.14",
-    "@yy-ui/components": "workspace:*",
-    "@yy-ui/composables": "workspace:*",
-    "@yy-ui/constants": "workspace:*",
-    "@yy-ui/directives": "workspace:*",
-    "@yy-ui/theme-chalk": "workspace:*",
-    "@yy-ui/utils": "workspace:*",
-    "css-render": "0.15.14"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "19.8.0",
-    "@commitlint/config-conventional": "19.8.0",
-    "@eslint/js": "9.16.0",
-    "@rollup/plugin-node-resolve": "16.0.0",
-    "@types/shelljs": "0.8.15",
-    "@vitejs/plugin-vue-jsx": "4.1.1",
-    "@vue/eslint-config-typescript": "14.1.4",
-    "commander": "13.1.0",
-    "cross-env": "7.0.3",
-    "cz-git": "1.11.1",
-    "eslint": "9.16.0",
-    "fs-extra": "11.3.0",
-    "globals": "15.13.0",
-    "husky": "9.1.7",
-    "lint-staged": "15.5.0",
-    "prettier": "3.5.3",
-    "rollup": "4.34.4",
-    "rollup-plugin-copy": "3.5.0",
-    "rollup-plugin-esbuild": "6.2.0",
-    "rollup-plugin-visualizer": "5.14.0",
-    "shelljs": "0.8.5",
-    "tsx": "4.19.3",
-    "typescript": "5.7.3",
-    "typescript-eslint": "8.17.0",
-    "unplugin-vue": "6.0.0",
-    "unplugin-vue-macros": "2.14.2",
-    "vite-plugin-dts": "4.5.0",
-    "vue": "3.2.25",
-    "vue-tsc": "2.1.10"
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.vue": [
-      "eslint --fix",
-      "prettier --parser=vue --write"
-    ],
-    "*.css": [
-      "prettier --write"
-    ],
-    "*.md": [
-      "eslint --fix",
-      "prettier --write --parser markdown --prose-wrap never"
-    ]
-  }
+	"private": true,
+	"packageManager": "pnpm@9.12.2",
+	"type": "module",
+	"scripts": {
+		"build": "tsx scripts/clean.ts -d && rollup -c && tsx scripts/replace-dts.ts",
+		"build:dev": "cross-env NODE_ENV=development pnpm build",
+		"build:prod": "cross-env NODE_ENV=production pnpm build",
+		"dev": "pnpm -C play dev",
+		"doc:dev": "pnpm -C docs dev",
+		"typecheck": "vue-tsc -p tsconfig.json --noEmit",
+		"clean": "tsx scripts/clean.ts -d -n && node scripts/clean-n.js",
+		"publish": "tsx scripts/publish.ts",
+		"prepare": "husky",
+		"prettier": "prettier --write ."
+	},
+	"dependencies": {
+		"@css-render/plugin-bem": "0.15.14",
+		"@yy-ui/components": "workspace:*",
+		"@yy-ui/composables": "workspace:*",
+		"@yy-ui/constants": "workspace:*",
+		"@yy-ui/directives": "workspace:*",
+		"@yy-ui/theme-chalk": "workspace:*",
+		"@yy-ui/utils": "workspace:*",
+		"css-render": "0.15.14"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "19.8.0",
+		"@commitlint/config-conventional": "19.8.0",
+		"@eslint/js": "9.16.0",
+		"@rollup/plugin-node-resolve": "16.0.0",
+		"@types/shelljs": "0.8.15",
+		"@vitejs/plugin-vue-jsx": "4.1.1",
+		"@vue/eslint-config-typescript": "14.1.4",
+		"commander": "13.1.0",
+		"cross-env": "7.0.3",
+		"cz-git": "1.11.1",
+		"eslint": "9.16.0",
+		"fs-extra": "11.3.0",
+		"globals": "15.13.0",
+		"husky": "9.1.7",
+		"lint-staged": "15.5.0",
+		"prettier": "3.5.3",
+		"rollup": "4.34.4",
+		"rollup-plugin-copy": "3.5.0",
+		"rollup-plugin-esbuild": "6.2.0",
+		"rollup-plugin-visualizer": "5.14.0",
+		"shelljs": "0.8.5",
+		"tsx": "4.19.3",
+		"typescript": "5.7.3",
+		"typescript-eslint": "8.17.0",
+		"unplugin-vue": "6.0.0",
+		"unplugin-vue-macros": "2.14.2",
+		"vite-plugin-dts": "4.5.0",
+		"vue": "3.2.25",
+		"vue-tsc": "2.1.10"
+	},
+	"lint-staged": {
+		"*.{js,ts,tsx}": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.vue": [
+			"eslint --fix",
+			"prettier --parser=vue --write"
+		],
+		"*.css": [
+			"prettier --write"
+		],
+		"*.md": [
+			"eslint --fix",
+			"prettier --write --parser markdown --prose-wrap never"
+		]
+	}
 }

@@ -8,7 +8,7 @@ export { virtualListWithInstall, VirtualList }
 export default VirtualList
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyVirtualList: typeof VirtualList
-  }
+	export interface GlobalComponents {
+		YyVirtualList: typeof VirtualList
+	}
 }

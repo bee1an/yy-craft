@@ -10,17 +10,17 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  plugins: [
-    VueMacros({
-      plugins: {
-        vue: Vue(),
-        vueJsx: VueJsx()
-      }
-    }) as PluginOption
-  ],
-  resolve: {
-    alias: {
-      '@yyui/yy-ui': path.resolve(__dirname, '../packages/yy-ui/index.ts')
-    }
-  }
+	plugins: [
+		VueMacros({
+			plugins: {
+				vue: Vue(),
+				vueJsx: VueJsx()
+			}
+		}) as PluginOption
+	],
+	resolve: {
+		alias: {
+			'@yyui/yy-ui': path.resolve(__dirname, '../packages/yy-ui/index.ts')
+		}
+	}
 })

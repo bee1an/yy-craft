@@ -12,25 +12,25 @@ const layoutContentWithInstall = withInstall(LayoutContent)
 const layoutFooterWithInstall = withInstall(LayoutFooter)
 export * from './src/layout'
 export {
-  layoutWithInstall,
-  Layout,
-  layoutSiderWithInstall,
-  LayoutSider,
-  layoutHeaderWithInstall,
-  LayoutHeader,
-  layoutContentWithInstall,
-  LayoutContent,
-  layoutFooterWithInstall,
-  LayoutFooter
+	layoutWithInstall,
+	Layout,
+	layoutSiderWithInstall,
+	LayoutSider,
+	layoutHeaderWithInstall,
+	LayoutHeader,
+	layoutContentWithInstall,
+	LayoutContent,
+	layoutFooterWithInstall,
+	LayoutFooter
 }
 export default Layout
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyLayout: typeof Layout
-    YyLayoutSider: typeof LayoutSider
-    YyLayoutHeader: typeof LayoutHeader
-    YyLayoutContent: typeof LayoutContent
-    YyLayoutFooter: typeof LayoutFooter
-  }
+	export interface GlobalComponents {
+		YyLayout: typeof Layout
+		YyLayoutSider: typeof LayoutSider
+		YyLayoutHeader: typeof LayoutHeader
+		YyLayoutContent: typeof LayoutContent
+		YyLayoutFooter: typeof LayoutFooter
+	}
 }

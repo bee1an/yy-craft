@@ -8,7 +8,7 @@ export { buttonWithInstall, Button }
 export default Button
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyButton: typeof Button
-  }
+	export interface GlobalComponents {
+		YyButton: typeof Button
+	}
 }

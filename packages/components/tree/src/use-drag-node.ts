@@ -1,11 +1,6 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import type { TreeData, TreeProps, TreeEmits } from './tree'
-import {
-  findParentNode,
-  findTreeNodeWrapper,
-  getChildren,
-  isAncestorNode
-} from './utils'
+import { findParentNode, findTreeNodeWrapper, getChildren, isAncestorNode } from './utils'
 import type { Ref } from 'vue'
 
 /** 缩进到内容的距离, 用于判断是否drag到缩进 */
@@ -14,27 +9,27 @@ const DISTANCE = 16
 const MAINZONERANGE = 0.7
 
 const useDragNode = (
-  tree: Ref<TreeData[]>,
-  nameSpace: CreateNamespace,
-  props: TreeProps,
-  // FIXME: emits: TreeEmits
-  emits: any
+	tree: Ref<TreeData[]>,
+	nameSpace: CreateNamespace,
+	props: TreeProps,
+	// FIXME: emits: TreeEmits
+	emits: any
 ) => {
-  let dragNode: TreeData | null = null
-  const onDragstart = (e: DragEvent, node: TreeData) => {
-    dragNode = node
-  }
+	let dragNode: TreeData | null = null
+	const onDragstart = (e: DragEvent, node: TreeData) => {
+		dragNode = node
+	}
 
-  let presentNode: TreeData | null = null
-  const onDragenter = (e: DragEvent, node: TreeData) => {
-    if (presentNode === node) return
+	let presentNode: TreeData | null = null
+	const onDragenter = (e: DragEvent, node: TreeData) => {
+		if (presentNode === node) return
 
-    clearDragBorder()
+		clearDragBorder()
 
-    presentNode = node
-  }
+		presentNode = node
+	}
 
-  /* 
+	/* 
 		拖到节点上的判断
 			# drag节点: 被拖动的节点
 			# drop节点: 被拖放的节点
@@ -66,164 +61,161 @@ const useDragNode = (
 								# 拖动到drop节点所有区域都相当于 -> drop位置在drop节点底部边缘
 				4. 不能drop到自己的子节点
 	*/
-  let dropNode: TreeData | null = null
-  let position: number = -1
+	let dropNode: TreeData | null = null
+	let position: number = -1
 
-  function onDragover(e: DragEvent, node: TreeData) {
-    const target = e.target as HTMLElement
+	function onDragover(e: DragEvent, node: TreeData) {
+		const target = e.target as HTMLElement
 
-    clearDragBorder()
+		clearDragBorder()
 
-    // 如果drag节点是drop节点的祖先节点, 则不处理
-    if (isAncestorNode(tree.value, dragNode!, node)) return
+		// 如果drag节点是drop节点的祖先节点, 则不处理
+		if (isAncestorNode(tree.value, dragNode!, node)) return
 
-    const treeNodeWrapper = findTreeNodeWrapper(target as HTMLElement, (e) =>
-      e.classList.contains(nameSpace.b('node').b('wrapper').value)
-    )
+		const treeNodeWrapper = findTreeNodeWrapper(target as HTMLElement, (e) =>
+			e.classList.contains(nameSpace.b('node').b('wrapper').value)
+		)
 
-    if (!treeNodeWrapper) return
+		if (!treeNodeWrapper) return
 
-    const { top, left, height, width } = treeNodeWrapper.getBoundingClientRect()
+		const { top, left, height, width } = treeNodeWrapper.getBoundingClientRect()
 
-    const preSentIndentWidth = props.indentWidth * (node.level - 1)
+		const preSentIndentWidth = props.indentWidth * (node.level - 1)
 
-    const offsetInWrapperX = e.clientX - left,
-      offsetInWrapperY = e.clientY - top
+		const offsetInWrapperX = e.clientX - left,
+			offsetInWrapperY = e.clientY - top
 
-    // 主要区域
-    const mainZone = height * MAINZONERANGE
+		// 主要区域
+		const mainZone = height * MAINZONERANGE
 
-    const parentNode = findParentNode(tree.value, node)
+		const parentNode = findParentNode(tree.value, node)
 
-    // 可以拖放进节点内部的条件
-    const canAdd2Children =
-      offsetInWrapperY <= mainZone && // 在节点主要区域
-      !node.isLeaf && // 不是叶子节点
-      dragNode !== node // 不是拖拽节点本身
+		// 可以拖放进节点内部的条件
+		const canAdd2Children =
+			offsetInWrapperY <= mainZone && // 在节点主要区域
+			!node.isLeaf && // 不是叶子节点
+			dragNode !== node // 不是拖拽节点本身
 
-    // 添加到子节点开头
-    const add2ChildrenBeginning = () => {
-      dropNode = node
-      position = 0
-    }
+		// 添加到子节点开头
+		const add2ChildrenBeginning = () => {
+			dropNode = node
+			position = 0
+		}
 
-    // 添加到指定节点之后
-    const add2NodeAfter = (
-      presentParentNode: TreeData | null,
-      presentNode: TreeData | null
-    ) => {
-      dropNode = presentParentNode
-      position =
-        getChildren(props.data, presentParentNode).findIndex(
-          (item) => item.key === presentNode?.key
-        ) + 1
-    }
+		// 添加到指定节点之后
+		const add2NodeAfter = (presentParentNode: TreeData | null, presentNode: TreeData | null) => {
+			dropNode = presentParentNode
+			position =
+				getChildren(props.data, presentParentNode).findIndex(
+					(item) => item.key === presentNode?.key
+				) + 1
+		}
 
-    // flat节点
-    const isFlat = !node.isExpanded || !node.children?.length
-    // drag节点为drop节点
-    const dragIsDrop = dragNode === node
+		// flat节点
+		const isFlat = !node.isExpanded || !node.children?.length
+		// drag节点为drop节点
+		const dragIsDrop = dragNode === node
 
-    const doNothing = dragIsDrop && !isFlat
+		const doNothing = dragIsDrop && !isFlat
 
-    if (canAdd2Children || doNothing) {
-      node.dragBorder = true
+		if (canAdd2Children || doNothing) {
+			node.dragBorder = true
 
-      if (!doNothing) {
-        // 将drag节点添加到drop节点的children开头
-        // console.log('canAdd2Children')
-        // dropNode = node
-        // position = 0
-        add2ChildrenBeginning()
-      } else {
-        // console.log('doNothing')
-        dropNode = null
-        position = -1
-      }
-    } else {
-      node.dragBorderBottom = width - preSentIndentWidth - DISTANCE
+			if (!doNothing) {
+				// 将drag节点添加到drop节点的children开头
+				// console.log('canAdd2Children')
+				// dropNode = node
+				// position = 0
+				add2ChildrenBeginning()
+			} else {
+				// console.log('doNothing')
+				dropNode = null
+				position = -1
+			}
+		} else {
+			node.dragBorderBottom = width - preSentIndentWidth - DISTANCE
 
-      if (!dragIsDrop && !isFlat) {
-        // drag节点不是drop节点并且不是单层节点, 则选中当前节点
-        // leaf节点不能展开，所以不需要判断
-        node.dragBorder = true
+			if (!dragIsDrop && !isFlat) {
+				// drag节点不是drop节点并且不是单层节点, 则选中当前节点
+				// leaf节点不能展开，所以不需要判断
+				node.dragBorder = true
 
-        // 将drag节点添加到drop节点的children开头
-        // console.log('canAdd2Children with dragBorderBottom')
-        // dropNode = node
-        // position = 0
-        add2ChildrenBeginning()
-      } else {
-        const children = parentNode?.children ?? []
+				// 将drag节点添加到drop节点的children开头
+				// console.log('canAdd2Children with dragBorderBottom')
+				// dropNode = node
+				// position = 0
+				add2ChildrenBeginning()
+			} else {
+				const children = parentNode?.children ?? []
 
-        const add2ParentAfter =
-          children[children.length - 1] === node && // 当前drop节点为最后一个节点
-          offsetInWrapperX < width - node.dragBorderBottom - DISTANCE // 当前拖动位置在缩进上
-        if (add2ParentAfter) {
-          node.dragBorderBottom += DISTANCE
-          const ancestorNode = findParentNode(tree.value, parentNode)
-          if (ancestorNode) {
-            ancestorNode.dragBorder = true
-          }
+				const add2ParentAfter =
+					children[children.length - 1] === node && // 当前drop节点为最后一个节点
+					offsetInWrapperX < width - node.dragBorderBottom - DISTANCE // 当前拖动位置在缩进上
+				if (add2ParentAfter) {
+					node.dragBorderBottom += DISTANCE
+					const ancestorNode = findParentNode(tree.value, parentNode)
+					if (ancestorNode) {
+						ancestorNode.dragBorder = true
+					}
 
-          // 将drag节点添加到drop节点的父节点的后面
-          // console.log('canAdd2AncestorNode')
-          // dropNode = ancestorNode
-          // position =
-          //   getChildren(props.data, ancestorNode).findIndex(
-          //     item => item.key === parentNode?.key
-          //   ) + 1
-          add2NodeAfter(ancestorNode, parentNode)
-        } else {
-          if (parentNode) {
-            parentNode.dragBorder = true
-          }
+					// 将drag节点添加到drop节点的父节点的后面
+					// console.log('canAdd2AncestorNode')
+					// dropNode = ancestorNode
+					// position =
+					//   getChildren(props.data, ancestorNode).findIndex(
+					//     item => item.key === parentNode?.key
+					//   ) + 1
+					add2NodeAfter(ancestorNode, parentNode)
+				} else {
+					if (parentNode) {
+						parentNode.dragBorder = true
+					}
 
-          // 将drag节点添加到drop节点的后面
-          // console.log('canAdd2AfterDrop')
-          // dropNode = parentNode
-          // position =
-          //   getChildren(props.data, parentNode).findIndex(
-          //     item => item.key === node.key
-          //   ) + 1
-          add2NodeAfter(parentNode, node)
-        }
-      }
-    }
-  }
+					// 将drag节点添加到drop节点的后面
+					// console.log('canAdd2AfterDrop')
+					// dropNode = parentNode
+					// position =
+					//   getChildren(props.data, parentNode).findIndex(
+					//     item => item.key === node.key
+					//   ) + 1
+					add2NodeAfter(parentNode, node)
+				}
+			}
+		}
+	}
 
-  const onDrop = () => {
-    if (dropNode === null && position === -1) {
-      // do nothing
-      return
-    }
+	const onDrop = () => {
+		if (dropNode === null && position === -1) {
+			// do nothing
+			return
+		}
 
-    const dragNodeParent = findParentNode(tree.value, dragNode)
+		const dragNodeParent = findParentNode(tree.value, dragNode)
 
-    emits('drag', {
-      dragNode: dragNode!.rawData,
-      dragNodeParent: dragNodeParent?.rawData ?? null,
-      dropNode: dropNode?.rawData ?? null,
-      position
-    })
-  }
+		emits('drag', {
+			dragNode: dragNode!.rawData,
+			dragNodeParent: dragNodeParent?.rawData ?? null,
+			dropNode: dropNode?.rawData ?? null,
+			position
+		})
+	}
 
-  const onDragend = () => clearDragBorder()
+	const onDragend = () => clearDragBorder()
 
-  const clearDragBorder = () => {
-    tree.value.forEach((item) => {
-      item.dragBorder = false
-      item.dragBorderBottom = 0
-    })
-  }
+	const clearDragBorder = () => {
+		tree.value.forEach((item) => {
+			item.dragBorder = false
+			item.dragBorderBottom = 0
+		})
+	}
 
-  return {
-    onDragstart,
-    onDragenter,
-    onDragover,
-    onDrop,
-    onDragend
-  }
+	return {
+		onDragstart,
+		onDragenter,
+		onDragover,
+		onDrop,
+		onDragend
+	}
 }
 
 export default useDragNode

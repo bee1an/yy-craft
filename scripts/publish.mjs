@@ -15,24 +15,19 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // let newVersion = versionArr.join('.')
 
 async function publish() {
-  shelljs.exec('pnpm i --frozen-lockfile') // 该命令强制基于现有 lockfile 安装依赖（不更新 lockfile），用于确保依赖树绝对一致
-  shelljs.exec('pnpm build')
+	shelljs.exec('pnpm i --frozen-lockfile') // 该命令强制基于现有 lockfile 安装依赖（不更新 lockfile），用于确保依赖树绝对一致
+	shelljs.exec('pnpm build')
 
-  const { default: version } = await import('../dist/yy-ui/es/version.js')
+	const { default: version } = await import('../dist/yy-ui/es/version.js')
 
-  const pkgFile = path.resolve(__dirname, '../dist/yy-ui/package.json')
+	const pkgFile = path.resolve(__dirname, '../dist/yy-ui/package.json')
 
-  shelljs.sed(
-    '-i',
-    /"version"\s*:\s*"([^"]*)"/,
-    `"version": "${version}"`,
-    pkgFile
-  ) // 替换版本号
+	shelljs.sed('-i', /"version"\s*:\s*"([^"]*)"/, `"version": "${version}"`, pkgFile) // 替换版本号
 
-  console.log('version', version)
+	console.log('version', version)
 
-  // shelljs.cd('dist/yy-ui')
-  // shelljs.exec(`npm publish --tag bata`)
+	// shelljs.cd('dist/yy-ui')
+	// shelljs.exec(`npm publish --tag bata`)
 }
 
 publish()

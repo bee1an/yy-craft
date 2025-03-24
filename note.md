@@ -17,19 +17,16 @@
 
 // 多模块入口配置
 const inputs = Object.fromEntries(
-  fs
-    .readdirSync(uiDir)
-    .filter((file) => file.endsWith('.ts')) // 找到所有ts文件, 根据ts文件生成入口
-    .map((file) => [
-      file.substring(0, file.lastIndexOf('.')),
-      path.resolve(uiDir, file)
-    ])
+	fs
+		.readdirSync(uiDir)
+		.filter((file) => file.endsWith('.ts')) // 找到所有ts文件, 根据ts文件生成入口
+		.map((file) => [file.substring(0, file.lastIndexOf('.')), path.resolve(uiDir, file)])
 )
 
 // 出口核心配置
 const outputs = {
-  preserveModules: true, // 保留模块结构
-  preserveModulesRoot: path.resolve('packages') // 指定模块入口目录
+	preserveModules: true, // 保留模块结构
+	preserveModulesRoot: path.resolve('packages') // 指定模块入口目录
 }
 ```
 
@@ -72,8 +69,7 @@ const outputs = {
 
 **发布流程**
 
-1. 执行`pnpm i --frozen-lockfile`
-   该命令强制基于现有 lockfile 安装依赖（不更新 lockfile），用于确保依赖树绝对一致
+1. 执行`pnpm i --frozen-lockfile` 该命令强制基于现有 lockfile 安装依赖（不更新 lockfile），用于确保依赖树绝对一致
 2. 执行`pnpm build`
 3. 修改 `package.json` 的版本号, 自动读取 dist/yy-ui/es/version.json 中的版本号
 4. cd `dist/yy-ui`

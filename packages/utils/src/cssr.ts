@@ -8,9 +8,9 @@ const modifierPrefix = '--'
 
 const cssr = CssRender()
 const plugin = BemPlugin({
-  blockPrefix: prefix,
-  elementPrefix,
-  modifierPrefix
+	blockPrefix: prefix,
+	elementPrefix,
+	modifierPrefix
 })
 cssr.use(plugin)
 const { c, find } = cssr

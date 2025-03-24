@@ -3,55 +3,54 @@ import { type CNode } from 'css-render'
 import { commonBase } from '../common'
 
 interface FadeInHeightExpandTransitionOption {
-  overflow?: string
-  duration?: string
-  originalTransition?: string
-  leavingDelay?: string
-  foldPadding?: boolean
-  enterToProps?: Record<string, string | number> | undefined
-  leaveToProps?: Record<string, string | number> | undefined
-  reverse?: boolean
+	overflow?: string
+	duration?: string
+	originalTransition?: string
+	leavingDelay?: string
+	foldPadding?: boolean
+	enterToProps?: Record<string, string | number> | undefined
+	leaveToProps?: Record<string, string | number> | undefined
+	reverse?: boolean
 }
 
 export function fadeInHeightExpandTransition({
-  overflow = 'hidden',
-  duration = '.3s',
-  originalTransition = '',
-  leavingDelay = '0s',
-  foldPadding = false,
-  enterToProps = undefined,
-  leaveToProps = undefined,
-  reverse = false
+	overflow = 'hidden',
+	duration = '.3s',
+	originalTransition = '',
+	leavingDelay = '0s',
+	foldPadding = false,
+	enterToProps = undefined,
+	leaveToProps = undefined,
+	reverse = false
 }: FadeInHeightExpandTransitionOption = {}): CNode[] {
-  const { cubicBezierEaseInOut, cubicBezierEaseOut, cubicBezierEaseIn } =
-    commonBase
+	const { cubicBezierEaseInOut, cubicBezierEaseOut, cubicBezierEaseIn } = commonBase
 
-  const enterClass = reverse ? 'leave' : 'enter'
-  const leaveClass = reverse ? 'enter' : 'leave'
-  return [
-    c(
-      `&.fade-in-height-expand-transition-${leaveClass}-from,
+	const enterClass = reverse ? 'leave' : 'enter'
+	const leaveClass = reverse ? 'enter' : 'leave'
+	return [
+		c(
+			`&.fade-in-height-expand-transition-${leaveClass}-from,
       &.fade-in-height-expand-transition-${enterClass}-to`,
-      {
-        ...enterToProps,
-        opacity: 1
-      }
-    ),
-    c(
-      `&.fade-in-height-expand-transition-${leaveClass}-to,
+			{
+				...enterToProps,
+				opacity: 1
+			}
+		),
+		c(
+			`&.fade-in-height-expand-transition-${leaveClass}-to,
       &.fade-in-height-expand-transition-${enterClass}-from`,
-      {
-        ...leaveToProps,
-        opacity: 0,
-        marginTop: '0 !important',
-        marginBottom: '0 !important',
-        paddingTop: foldPadding ? '0 !important' : undefined,
-        paddingBottom: foldPadding ? '0 !important' : undefined
-      }
-    ),
-    c(
-      `&.fade-in-height-expand-transition-${leaveClass}-active`,
-      `
+			{
+				...leaveToProps,
+				opacity: 0,
+				marginTop: '0 !important',
+				marginBottom: '0 !important',
+				paddingTop: foldPadding ? '0 !important' : undefined,
+				paddingBottom: foldPadding ? '0 !important' : undefined
+			}
+		),
+		c(
+			`&.fade-in-height-expand-transition-${leaveClass}-active`,
+			`
       overflow: ${overflow};
       transition:
         max-height ${duration} ${cubicBezierEaseInOut} ${leavingDelay},
@@ -62,10 +61,10 @@ export function fadeInHeightExpandTransition({
         padding-bottom ${duration} ${cubicBezierEaseInOut} ${leavingDelay}
         ${originalTransition ? `,${originalTransition}` : ''}
     `
-    ),
-    c(
-      `&.fade-in-height-expand-transition-${enterClass}-active`,
-      `
+		),
+		c(
+			`&.fade-in-height-expand-transition-${enterClass}-active`,
+			`
       overflow: ${overflow};
       transition:
         max-height ${duration} ${cubicBezierEaseInOut},
@@ -76,6 +75,6 @@ export function fadeInHeightExpandTransition({
         padding-bottom ${duration} ${cubicBezierEaseInOut}
         ${originalTransition ? `,${originalTransition}` : ''}
     `
-    )
-  ]
+		)
+	]
 }

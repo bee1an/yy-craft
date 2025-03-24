@@ -1,99 +1,102 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
-  computed,
-  type ComputedRef,
-  defineComponent,
-  type ExtractPropTypes,
-  type InjectionKey,
-  type PropType,
-  provide,
-  shallowRef
+	computed,
+	type ComputedRef,
+	defineComponent,
+	type ExtractPropTypes,
+	type InjectionKey,
+	type PropType,
+	provide,
+	shallowRef
 } from 'vue'
 import { useResponsiveObserver } from './use-responsive-observer'
 
 export const gridProps = {
-  /** 间隔 */
-  gap: {
-    type: [Number, Array] as PropType<number | [number, number]>,
-    default: 0
-  },
-  /** 栅格数量 */
-  cols: {
-    type: [String, Number],
-    default: 12
-  }
+	/** 间隔 */
+	gap: {
+		type: [Number, Array] as PropType<number | [number, number]>,
+		default: 0
+	},
+	/** 栅格数量 */
+	cols: {
+		type: [String, Number],
+		default: 12
+	}
 }
 
 export type GridProps = ExtractPropTypes<typeof gridProps>
 
 export const gridProviderKey = Symbol('GridProviderKey') as InjectionKey<{
-  margin: ComputedRef<{ horizontal: number; vertical: number }>
+	margin: ComputedRef<{ horizontal: number; vertical: number }>
 }>
 
 export default defineComponent({
-  name: 'Grid',
-  props: gridProps,
-  setup(props) {
-    const bem = new CreateNamespace('grid')
+	name: 'Grid',
+	props: gridProps,
+	setup(props) {
+		const bem = new CreateNamespace('grid')
 
-    const margin = computed<{ horizontal: number; vertical: number }>(() => {
-      const { gap } = props
+		const margin = computed<{ horizontal: number; vertical: number }>(() => {
+			const { gap } = props
 
-      if (Array.isArray(gap)) {
-        return {
-          horizontal: gap[0],
-          vertical: gap[1]
-        }
-      }
-      return {
-        horizontal: gap,
-        vertical: gap
-      }
-    })
+			if (Array.isArray(gap)) {
+				return {
+					horizontal: gap[0],
+					vertical: gap[1]
+				}
+			}
+			return {
+				horizontal: gap,
+				vertical: gap
+			}
+		})
 
-    const gridContainer = shallowRef<HTMLDivElement | null>(null)
+		const gridContainer = shallowRef<HTMLDivElement | null>(null)
 
-    const { isResponsive, responsiveConfig, normalizedMap, getReolveKey } =
-      useResponsiveObserver(gridContainer, props, 'cols')
+		const { isResponsive, responsiveConfig, normalizedMap, getReolveKey } = useResponsiveObserver(
+			gridContainer,
+			props,
+			'cols'
+		)
 
-    const resolveCols = computed(() => {
-      let cols = responsiveConfig.value.defaultValue
+		const resolveCols = computed(() => {
+			let cols = responsiveConfig.value.defaultValue
 
-      if (isResponsive.value) {
-        const colsMap = normalizedMap()
+			if (isResponsive.value) {
+				const colsMap = normalizedMap()
 
-        const resolveColsKey = getReolveKey(normalizedMap())
+				const resolveColsKey = getReolveKey(normalizedMap())
 
-        cols = colsMap[resolveColsKey] ?? cols
-      }
+				cols = colsMap[resolveColsKey] ?? cols
+			}
 
-      return cols || props.cols
-    })
+			return cols || props.cols
+		})
 
-    provide(gridProviderKey, { margin })
+		provide(gridProviderKey, { margin })
 
-    return { bem, margin, gridContainer, resolveCols }
-  },
-  render() {
-    const {
-      bem,
-      margin,
-      resolveCols,
-      $slots: { default: defaultSlot }
-    } = this
+		return { bem, margin, gridContainer, resolveCols }
+	},
+	render() {
+		const {
+			bem,
+			margin,
+			resolveCols,
+			$slots: { default: defaultSlot }
+		} = this
 
-    return (
-      <div
-        style={{
-          display: 'grid',
-          gap: `${margin.vertical}px ${margin.horizontal}px`,
-          gridTemplateColumns: `repeat(${resolveCols}, minmax(0, 1fr))`
-        }}
-        class={bem.b().value}
-        ref="gridContainer"
-      >
-        {defaultSlot?.()}
-      </div>
-    )
-  }
+		return (
+			<div
+				style={{
+					display: 'grid',
+					gap: `${margin.vertical}px ${margin.horizontal}px`,
+					gridTemplateColumns: `repeat(${resolveCols}, minmax(0, 1fr))`
+				}}
+				class={bem.b().value}
+				ref="gridContainer"
+			>
+				{defaultSlot?.()}
+			</div>
+		)
+	}
 })

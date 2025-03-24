@@ -7,7 +7,7 @@ export { Divider, dividerWithInstall }
 export default Divider
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyDivider: typeof Divider
-  }
+	export interface GlobalComponents {
+		YyDivider: typeof Divider
+	}
 }

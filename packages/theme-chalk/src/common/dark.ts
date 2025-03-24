@@ -30,8 +30,8 @@ import lightDerived from './light'
 // }
 
 const derived = {
-  ...commonVar,
-  ...lightDerived // 没有dark样式,暂时全部使用light的
+	...commonVar,
+	...lightDerived // 没有dark样式,暂时全部使用light的
 }
 
 export default derived

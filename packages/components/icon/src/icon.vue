@@ -9,19 +9,19 @@ defineOptions({ name: 'Icon' })
 
 const props = defineProps(iconProps)
 const propsStyle = computed(() => {
-  const style: Record<string, any> = {}
+	const style: Record<string, any> = {}
 
-  if (typeof props.color !== 'undefined') {
-    style['--y-icon-color'] = props.color
-  }
+	if (typeof props.color !== 'undefined') {
+		style['--y-icon-color'] = props.color
+	}
 
-  if (typeof props.size === 'number') {
-    style['--y-icon-size'] = `${props.size}px`
-  } else if (typeof props.size === 'string') {
-    style['--y-icon-size'] = props.size
-  }
+	if (typeof props.size === 'number') {
+		style['--y-icon-size'] = `${props.size}px`
+	} else if (typeof props.size === 'string') {
+		style['--y-icon-size'] = props.size
+	}
 
-  return style
+	return style
 })
 
 useTheme('icon', iconStyle)
@@ -30,7 +30,7 @@ const bem = new CreateNamespace('icon')
 </script>
 
 <template>
-  <i :style="propsStyle" :class="bem.value">
-    <slot></slot>
-  </i>
+	<i :style="propsStyle" :class="bem.value">
+		<slot></slot>
+	</i>
 </template>

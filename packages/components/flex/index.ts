@@ -8,7 +8,7 @@ export { flexWithInstall, Flex }
 export default Flex
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyFlex: typeof Flex
-  }
+	export interface GlobalComponents {
+		YyFlex: typeof Flex
+	}
 }

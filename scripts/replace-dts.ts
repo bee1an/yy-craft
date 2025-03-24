@@ -8,20 +8,20 @@ const { removeSync } = pkg
 const dirs = [dTypesDir, dUiEsDir, dUiLibDir]
 
 fs.readdirSync(dTypesDir).forEach((file) => {
-  if (!file.endsWith('.d.ts')) return
+	if (!file.endsWith('.d.ts')) return
 
-  const content = fs
-    .readFileSync(path.join(dTypesDir, 'yy-ui', file), 'utf8')
-    .replaceAll('../', './') // 重新路径
+	const content = fs
+		.readFileSync(path.join(dTypesDir, 'yy-ui', file), 'utf8')
+		.replaceAll('../', './') // 重新路径
 
-  // 重写 dts 入口文件
-  rewriteFile(dirs, file, content)
+	// 重写 dts 入口文件
+	rewriteFile(dirs, file, content)
 })
 
 dirs.forEach((dir) => removeSync(path.join(dir, 'yy-ui')))
 
 function rewriteFile(dirs: string[], file: string, content: string) {
-  dirs.forEach((dir) => {
-    fs.writeFileSync(path.join(dir, file), content, 'utf8')
-  })
+	dirs.forEach((dir) => {
+		fs.writeFileSync(path.join(dir, file), content, 'utf8')
+	})
 }

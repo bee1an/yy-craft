@@ -8,7 +8,7 @@ export { iconWithInstall, Icon }
 export default Icon
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyIcon: typeof Icon
-  }
+	export interface GlobalComponents {
+		YyIcon: typeof Icon
+	}
 }

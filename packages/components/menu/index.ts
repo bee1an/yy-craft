@@ -7,7 +7,7 @@ export { menuWithInstall, Menu }
 export default Menu
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    YyMenu: typeof Menu
-  }
+	export interface GlobalComponents {
+		YyMenu: typeof Menu
+	}
 }

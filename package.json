@@ -10,7 +10,8 @@
     "doc:dev": "pnpm -C docs dev",
     "typecheck": "vue-tsc -p tsconfig.json --noEmit",
     "clean": "tsx scripts/clean.ts -d -n && node scripts/clean-n.js",
-    "publish": "tsx scripts/publish.ts"
+    "publish": "tsx scripts/publish.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "@css-render/plugin-bem": "0.15.14",
@@ -23,6 +24,8 @@
     "css-render": "0.15.14"
   },
   "devDependencies": {
+    "@commitlint/cli": "19.8.0",
+    "@commitlint/config-conventional": "19.8.0",
     "@eslint/js": "9.16.0",
     "@rollup/plugin-node-resolve": "16.0.0",
     "@types/shelljs": "0.8.15",
@@ -30,9 +33,12 @@
     "@vue/eslint-config-typescript": "14.1.4",
     "commander": "13.1.0",
     "cross-env": "7.0.3",
+    "cz-git": "1.11.1",
     "eslint": "9.16.0",
     "fs-extra": "11.3.0",
     "globals": "15.13.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.5.0",
     "prettier": "3.5.3",
     "rollup": "4.34.4",
     "rollup-plugin-copy": "3.5.0",
@@ -47,5 +53,22 @@
     "vite-plugin-dts": "4.5.0",
     "vue": "3.2.25",
     "vue-tsc": "2.1.10"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.vue": [
+      "eslint --fix",
+      "prettier --parser=vue --write"
+    ],
+    "*.css": [
+      "prettier --write"
+    ],
+    "*.md": [
+      "eslint --fix",
+      "prettier --write --parser markdown --prose-wrap never"
+    ]
   }
 }

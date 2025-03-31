@@ -25,7 +25,8 @@
 		"@yy-ui/directives": "workspace:*",
 		"@yy-ui/theme-chalk": "workspace:*",
 		"@yy-ui/utils": "workspace:*",
-		"css-render": "0.15.14"
+		"css-render": "0.15.14",
+		"unplugin-vue-jsx": "0.6.1"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "19.8.0",

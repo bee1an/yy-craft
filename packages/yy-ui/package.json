@@ -14,6 +14,9 @@
 		"vue"
 	],
 	"license": "MIT",
+	"peerDependencies": {
+		"vue": "3.2.25"
+	},
 	"dependencies": {
 		"css-render": "0.15.14",
 		"@css-render/plugin-bem": "0.15.14"

@@ -27,5 +27,17 @@ export default [
 			'vue/multi-word-component-names': 0,
 			'vue/no-reserved-component-names': 0
 		}
+	},
+	{
+		ignores: [
+			'**/node_modules/**',
+			'**/dist/**',
+			'**/*.css',
+			'**/*.jpg',
+			'**/*.jpeg',
+			'**/*.png',
+			'**/*.gif',
+			'**/*.d.ts'
+		]
 	}
 ]

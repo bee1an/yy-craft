@@ -1,6 +1,7 @@
 import shelljs from 'shelljs' // 命令执行器
 import path from 'node:path'
 import { rootDir } from './utils/paths'
+import prompts from 'prompts'
 
 async function publish() {
 	shelljs.exec('pnpm i --frozen-lockfile') // 该命令强制基于现有 lockfile 安装依赖（不更新 lockfile），用于确保依赖树绝对一致
@@ -15,7 +16,14 @@ async function publish() {
 	shelljs.sed('-i', /"version"\s*:\s*"([^"]*)"/, `"version": "${version}"`, pkgFile) // 替换版本号
 
 	shelljs.cd('dist/yy-ui')
-	shelljs.exec(`npm publish --tag bata`)
+
+	const { otp } = await prompts({
+		type: 'text',
+		name: 'otp',
+		message: 'please input your one-time password'
+	})
+
+	shelljs.exec(`npm publish --otp ${otp}`)
 }
 
 publish()

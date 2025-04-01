@@ -5,7 +5,13 @@ const scopeComplete = execSync('git status --porcelain || true')
 	.toString()
 	.trim()
 	.split('\n')
-	.find((r) => ~r.indexOf('M  packages/components') || ~r.indexOf('M packages/components'))
+	.find(
+		(r) =>
+			~r.indexOf('M  packages/components') ||
+			~r.indexOf('M packages/components') ||
+			~r.indexOf('A  packages/components') ||
+			~r.indexOf('A packages/components')
+	)
 	?.replace(/(\/components\/)/g, '%%')
 	?.match(/packages%%((\w|-)*)/)?.[1]
 

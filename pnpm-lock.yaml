@@ -32,9 +32,6 @@ importers:
       css-render:
         specifier: 0.15.14
         version: 0.15.14
-      unplugin-vue-jsx:
-        specifier: 0.6.1
-        version: 0.6.1(vue@3.2.25)
     devDependencies:
       '@commitlint/cli':
         specifier: 19.8.0
@@ -55,7 +52,7 @@ importers:
         specifier: 0.8.15
         version: 0.8.15
       '@vitejs/plugin-vue':
-        specifier: ^5.2.1
+        specifier: 5.2.1
         version: 5.2.1(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.2)(sass@1.82.0)(tsx@4.19.3)(yaml@2.7.0))(vue@3.2.25)
       '@vitejs/plugin-vue-jsx':
         specifier: 4.1.2
@@ -97,7 +94,7 @@ importers:
         specifier: 3.5.3
         version: 3.5.3
       prompts:
-        specifier: ^2.4.2
+        specifier: 2.4.2
         version: 2.4.2
       rollup:
         specifier: 4.34.4
@@ -126,6 +123,9 @@ importers:
       unplugin-vue:
         specifier: 6.0.0
         version: 6.0.0(@types/node@22.13.1)(jiti@2.4.2)(sass@1.82.0)(tsx@4.19.3)(vue@3.2.25)(yaml@2.7.0)
+      unplugin-vue-jsx:
+        specifier: 0.6.1
+        version: 0.6.1(vue@3.2.25)
       unplugin-vue-macros:
         specifier: 2.14.2
         version: 2.14.2(@vueuse/core@11.3.0(vue@3.2.25))(esbuild@0.24.2)(rollup@4.34.4)(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.2)(sass@1.82.0)(tsx@4.19.3)(yaml@2.7.0))(vue-tsc@2.1.10(typescript@5.7.3))(vue@3.2.25)

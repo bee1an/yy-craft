@@ -82,7 +82,9 @@ export const menuEmits = {
 	/** 菜单收起后 */
 	collapsed: () => true,
 	/** v-model */
-	'update:selected-keys': (() => true) as (newValue: MenuItem['key'][]) => void
+	'update:selected-keys': (() => true) as (newValue: MenuItem['key'][]) => void,
+	/** 菜单项被点击后 */
+	'item-click': (() => true) as (item: MenuItem) => void
 }
 
 export type MenuEmits = typeof menuEmits
@@ -216,7 +218,7 @@ export default defineComponent({
 			})
 		}
 		createMenu()
-		watch(() => props.collapsed, createMenu)
+		watch([() => props.collapsed, () => props.options], createMenu)
 
 		const itemClickHandler = (item: MenuItem) => {
 			if (item.isLeaf) {
@@ -224,6 +226,7 @@ export default defineComponent({
 				selectedKeys.push(item.key)
 				emit('update:selected-keys', selectedKeys)
 				createMenu()
+				emit('item-click', item)
 			} else {
 				toggleExpandItem(item)
 			}

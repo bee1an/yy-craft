@@ -13,3 +13,5 @@ export { default as version } from './version'
 export * from './constants'
 
 export * from './style'
+
+export * from './utils'

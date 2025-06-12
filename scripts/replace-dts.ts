@@ -12,7 +12,7 @@ fs.readdirSync(dTypesDir).forEach((file) => {
 
 	const content = fs
 		.readFileSync(path.join(dTypesDir, 'yy-ui', file), 'utf8')
-		.replaceAll('../', './') // 重新路径
+		.replaceAll(/\.\.\/(.*)'/g, "./$1/index'")
 
 	// 重写 dts 入口文件
 	rewriteFile(dirs, file, content)

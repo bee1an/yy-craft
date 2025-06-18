@@ -18,6 +18,7 @@ import ScrollbarView from '../components/scrollbar-view.vue'
 import TreeView from '../components/tree-view.vue'
 import TypographyView from '../components/typography-view.vue'
 import VirtualListView from '../components/virtual-list-view.vue'
+import playGround from '../views/play-ground.vue'
 
 export const components: RouteRecordRaw[] = [
 	{
@@ -165,6 +166,10 @@ const routes: Readonly<RouteRecordRaw[]> = [
 				children: components
 			}
 		]
+	},
+	{
+		path: '/playground',
+		component: playGround
 	}
 ]
 

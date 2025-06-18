@@ -30,19 +30,45 @@ export type PlacementOptions = {
 	visibleAreaThreshold?: number
 }
 
+/**
+ * @param trigger 支持传递一个dom或者一个带有位置和宽高信息的对象
+ *
+ * 如果只有位置信息, 则会trigger会被当作是一个宽高为1的矩形, 再根据一个矩形算出其他配置
+ */
+
 export const usePlacement = (
-	trigger: Readonly<ShallowRef<HTMLElement | null>>,
+	trigger: Readonly<
+		ShallowRef<HTMLElement | null | { x: number; y: number; w?: number; h?: number }>
+	>,
 	content: Readonly<ShallowRef<HTMLElement | null>>,
 	options: PlacementOptions | Ref<PlacementOptions>
 ) => {
-	const {
-		width: triggerWidth,
-		height: triggerHeight,
-		top: triggerTop,
-		left: triggerLeft,
-		right: triggerRight,
-		bottom: triggerBottom
-	} = useElementBounding(trigger)
+	let triggerWidth: Ref<number>,
+		triggerHeight: Ref<number>,
+		triggerTop: Ref<number>,
+		triggerLeft: Ref<number>,
+		triggerRight: Ref<number>,
+		triggerBottom: Ref<number>
+
+	if (trigger.value && 'x' in trigger.value && 'y' in trigger.value) {
+		const t = trigger as any
+
+		triggerWidth = computed(() => t.value.w ?? 1)
+		triggerHeight = computed(() => t.value.h ?? 1)
+		triggerTop = computed(() => t.value.y - triggerHeight.value / 2)
+		triggerLeft = computed(() => t.value.x - triggerWidth.value / 2)
+		triggerRight = computed(() => triggerLeft.value + triggerWidth.value)
+		triggerBottom = computed(() => triggerTop.value + triggerHeight.value)
+	} else {
+		;({
+			width: triggerWidth,
+			height: triggerHeight,
+			top: triggerTop,
+			left: triggerLeft,
+			right: triggerRight,
+			bottom: triggerBottom
+		} = useElementBounding(trigger as Readonly<ShallowRef<HTMLElement | null>>))
+	}
 
 	const { width: windowWidth, height: windowHeight } = useWindowSize()
 
@@ -192,7 +218,6 @@ export const usePlacement = (
 
 			placementDirection.value = primePlacement.value
 		} else {
-			console.log('unregulatedLeft.value', unregulatedLeft.value)
 			const { overStart, overEnd } = overViewport('horizontal', unregulatedLeft.value)
 			if (overStart && !overEnd) {
 				const triggerVisible = triggerLeft.value + triggerWidth.value > visibleAreaThreshold.value
@@ -212,13 +237,6 @@ export const usePlacement = (
 		return unregulatedLeft.value
 	})
 
-	const getOppositeDirection = (direction: 'top' | 'bottom' | 'left' | 'right') => {
-		if (direction === 'top') return 'bottom'
-		if (direction === 'bottom') return 'top'
-		if (direction === 'left') return 'right'
-		if (direction === 'right') return 'left'
-	}
-
 	return {
 		top: resolveTop,
 		left: resolveLeft,
@@ -232,7 +250,13 @@ export const usePlacement = (
 		windowWidth,
 		windowHeight,
 		contentWidth,
-		contentHeight,
-		getOppositeDirection
+		contentHeight
 	}
+}
+
+export const getOppositeDirection = (direction: 'top' | 'bottom' | 'left' | 'right') => {
+	if (direction === 'top') return 'bottom'
+	if (direction === 'bottom') return 'top'
+	if (direction === 'left') return 'right'
+	if (direction === 'right') return 'left'
 }

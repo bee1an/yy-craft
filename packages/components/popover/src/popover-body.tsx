@@ -8,11 +8,21 @@ import {
 	type StyleValue
 } from 'vue'
 import { popoverInjectKey } from './popover-inject-key'
-import { type DefaultPlacement, usePlacement } from '@yy-ui/composables/use-placement'
+import {
+	type DefaultPlacement,
+	getOppositeDirection,
+	usePlacement
+} from '@yy-ui/composables/use-placement'
 import { px } from '@yy-ui/utils/src/css'
 import { getIntersection } from '@yy-ui/utils/src/tools'
 
 export const popoverBodyProps = {
+	/** 触发方式 */
+	trigger: {
+		type: String as PropType<'click' | 'hover' | 'focus' | 'manual'>,
+		default: 'click'
+	},
+
 	/** 位置 */
 	placement: { type: String as PropType<DefaultPlacement>, default: 'bottom' },
 
@@ -41,10 +51,25 @@ export const popoverBodyProps = {
 	zIndex: Number,
 
 	/** 吸附元素距离触发器的距离 */
-	distanceFromTrigger: { type: Number, default: 10 }
+	distanceFromTrigger: { type: Number, default: 10 },
+
+	/**
+	 * 手动控制位置x
+	 *
+	 * 手动控制位置时会根据点击位置为中心获取一个矩形对象的位置和宽高信息, 再根据这个矩形的信息返回其他所需的配置
+	 */
+	x: Number,
+
+	/**	手动控制位置y */
+	y: Number
 }
 
 export type PopoverBodyProps = ExtractPropTypes<typeof popoverBodyProps>
+
+// 箭头的宽高
+const ARROWRECTLENGTH = 10
+// 箭头旋转后包围盒的宽度
+const ARROWWRAPPERRECTLENGTH = Math.sqrt(ARROWRECTLENGTH ** 2 + ARROWRECTLENGTH ** 2)
 
 export const popoverBodyEmits = {
 	mouseenter: (() => true) as (event: MouseEvent) => void,
@@ -63,9 +88,31 @@ export default defineComponent({
 
 		const contentRef = shallowRef<HTMLElement | null>(null)
 
+		const manualSite = computed(() => {
+			let w = 0,
+				h = 0
+
+			// 根据placement模拟一个矩形
+			if (props.placement.split('-').length > 0) {
+				if (props.placement.includes('top') || props.placement.includes('bottom')) {
+					w = ARROWWRAPPERRECTLENGTH + 4
+				}
+
+				if (props.placement.includes('left') || props.placement.includes('right')) {
+					h = ARROWWRAPPERRECTLENGTH + 4
+				}
+			}
+
+			return { x: props.x!, y: props.y!, w, h }
+		})
+
+		const triggerRefOrManual = computed(() => {
+			return props.trigger === 'manual' ? manualSite.value : triggerRef.value
+		})
+
 		const {
-			top: uncoresedTop,
-			left: uncoredLeft,
+			top: uncorrectedTop,
+			left: uncorrectedLeft,
 			placementDirection,
 			triggerTop,
 			triggerLeft,
@@ -74,10 +121,9 @@ export default defineComponent({
 			triggerWidth,
 			triggerHeight,
 			contentWidth,
-			contentHeight,
-			getOppositeDirection
+			contentHeight
 		} = usePlacement(
-			triggerRef,
+			triggerRefOrManual,
 			contentRef,
 			computed(() => ({
 				placement: props.placement,
@@ -87,28 +133,28 @@ export default defineComponent({
 		)
 
 		const top = computed(() => {
-			return uncoresedTop.value - (wrapper.value ? triggerTop.value : 0)
+			return uncorrectedTop.value - (wrapper.value ? triggerTop.value : 0)
 		})
 		const left = computed(() => {
-			return uncoredLeft.value - (wrapper.value ? triggerLeft.value : 0)
+			return uncorrectedLeft.value - (wrapper.value ? triggerLeft.value : 0)
 		})
 
 		const arrowPosition = computed(() => {
 			if (['top', 'bottom'].includes(placementDirection.value)) {
 				const [min, max] = getIntersection(
 					[triggerLeft.value, triggerRight.value],
-					[uncoredLeft.value, uncoredLeft.value + contentWidth.value]
+					[uncorrectedLeft.value, uncorrectedLeft.value + contentWidth.value]
 				)!
 
-				return { left: (min + max) / 2 - uncoredLeft.value + 'px' }
+				return { left: (min + max) / 2 - uncorrectedLeft.value + 'px' }
 			}
 
 			const [min, max] = getIntersection(
 				[triggerTop.value, triggerBottom.value],
-				[uncoresedTop.value, uncoresedTop.value + contentHeight.value]
+				[uncorrectedTop.value, uncorrectedTop.value + contentHeight.value]
 			)!
 
-			return { top: (min + max) / 2 - uncoresedTop.value + 'px' }
+			return { top: (min + max) / 2 - uncorrectedTop.value + 'px' }
 		})
 
 		const oppositeDirection = computed(() => getOppositeDirection(placementDirection.value))

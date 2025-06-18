@@ -246,7 +246,9 @@ export default defineComponent({
 				distanceFromTrigger,
 				wrapper,
 				wrapperClass,
-				wrapperStyle
+				wrapperStyle,
+				x,
+				y
 			},
 			$slots: { trigger: triggerSlot, default: defaultSlot }
 		} = this
@@ -276,6 +278,7 @@ export default defineComponent({
 									PopoverBody,
 									{
 										...mergeProps({ style: { position: wrapper ? 'absolute' : 'fixed' } }, $attrs),
+										trigger,
 										placement,
 										width,
 										showArrow,
@@ -287,6 +290,8 @@ export default defineComponent({
 										zIndex,
 										distanceFromTrigger,
 										wrapper,
+										x,
+										y,
 										onMouseenter: contentMouseenter,
 										onMouseleave: contentMouseleave
 									},

@@ -1,48 +1,25 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-const showPopover = ref(false)
-const x = ref(0)
-const y = ref(0)
-const placement = ref()
-
-const placements = [
-	'top',
-	'bottom',
-	'left',
-	'right',
-	'top-start',
-	'top-end',
-	'bottom-start',
-	'bottom-end',
-	'left-start',
-	'left-end',
-	'right-start',
-	'right-end'
-]
-
-let timerId: number
-const clickHandle = (event: MouseEvent) => {
-	const { pageX, pageY } = event
-	x.value = pageX
-	y.value = pageY
-	showPopover.value = true
-
-	placement.value = placements[Math.floor(Math.random() * placements.length)]
-
-	clearTimeout(timerId)
-	timerId = window.setTimeout(() => {
-		showPopover.value = false
-	}, 3000)
-}
-</script>
+<script setup lang="ts"></script>
 
 <template>
 	<div class="playground">
-		<yy-popover :showPopover="showPopover" trigger="manual" :x="x" :y="y" :placement="placement"
-			>有用</yy-popover
-		>
-
-		<div class="bg" @click="clickHandle"></div>
+		<yy-icon :style="{ 'background-color': 'yellow' }">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-image-icon lucide-image"
+			>
+				<rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+				<circle cx="9" cy="9" r="2" />
+				<path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+			</svg>
+		</yy-icon>
 	</div>
 </template>
 
@@ -50,15 +27,6 @@ const clickHandle = (event: MouseEvent) => {
 .playground {
 	width: 100vw;
 	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.bg {
-	width: 200px;
-	height: 200px;
-	background: wheat;
 	display: flex;
 	justify-content: center;
 	align-items: center;

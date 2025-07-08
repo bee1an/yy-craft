@@ -154,13 +154,17 @@ export const components: RouteRecordRaw[] = [
 const routes: Readonly<RouteRecordRaw[]> = [
 	{
 		path: '/',
-		name: 'Home',
+		name: 'home',
+		redirect: '/playground'
+	},
+	{
+		path: '/components',
 		redirect: '/components/button',
 		component: HomeView,
 		children: [
 			{
-				path: 'components',
-				name: 'components',
+				path: '',
+				name: '',
 				redirect: '/components/button',
 				component: ComponentsView,
 				children: components

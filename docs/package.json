@@ -1,10 +1,12 @@
 {
 	"name": "docs",
+	"type": "module",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "vitepress dev ."
+		"dev": "vitepress dev .",
+		"build": "vitepress build ."
 	},
 	"keywords": [],
 	"author": "",

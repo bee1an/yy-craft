@@ -8,6 +8,7 @@
 		"build:prod": "cross-env NODE_ENV=production pnpm build",
 		"dev": "pnpm -C play dev",
 		"doc:dev": "pnpm -C docs dev",
+		"doc:build": "pnpm -C docs build",
 		"typecheck": "vue-tsc -p tsconfig.json --noEmit",
 		"cleanup": "tsx scripts/cleanup.ts -d -n && node -e \"fs.rmSync('node_modules', { recursive: true, force: true })\"",
 		"auto:publish": "tsx scripts/publish.ts",

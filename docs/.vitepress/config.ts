@@ -15,6 +15,16 @@ export default defineConfig({
 					}
 				]
 			}
-		]
+		],
+		socialLinks: [{ icon: 'github', link: 'https://github.com/bee1an/yy-ui' }],
+		outline: {
+			label: '页面导航'
+		},
+		langMenuLabel: '多语言',
+		returnToTopLabel: '回到顶部',
+		sidebarMenuLabel: '菜单',
+		darkModeSwitchLabel: '主题',
+		lightModeSwitchTitle: '切换到浅色模式',
+		darkModeSwitchTitle: '切换到深色模式'
 	}
 })

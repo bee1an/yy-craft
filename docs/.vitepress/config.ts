@@ -4,6 +4,7 @@ export default defineConfig({
 	title: 'Yy Ui',
 	description: 'vue3组件库',
 	themeConfig: {
+		logo: { src: '/yy-ui-logo.svg', width: 24, height: 24 },
 		nav: [{ text: '组件', link: '/components/icon', activeMatch: '/components/' }],
 		sidebar: [
 			{
@@ -26,5 +27,10 @@ export default defineConfig({
 		darkModeSwitchLabel: '主题',
 		lightModeSwitchTitle: '切换到浅色模式',
 		darkModeSwitchTitle: '切换到深色模式'
-	}
+	},
+	head: [
+		['link', { rel: 'icon', type: 'image/svg+xml', href: '/yy-ui-logo.svg' }],
+		['meta', { name: 'theme-color', content: '#5f67ee' }],
+		['meta', { property: 'og:site_name', content: 'VitePress' }]
+	]
 })

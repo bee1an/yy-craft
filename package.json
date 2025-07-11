@@ -21,6 +21,7 @@
 	},
 	"dependencies": {
 		"@css-render/plugin-bem": "0.15.14",
+		"@vicons/ionicons5": "0.12.0",
 		"@yy-ui/components": "workspace:*",
 		"@yy-ui/composables": "workspace:*",
 		"@yy-ui/constants": "workspace:*",

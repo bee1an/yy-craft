@@ -1,4 +1,4 @@
-import { computed, defineComponent, type ExtractPropTypes, h, type PropType, type VNode } from 'vue'
+import { type ExtractPropTypes, type PropType, type VNode, computed, defineComponent, h } from 'vue'
 
 export const messageProviderProps = {
 	tag: {

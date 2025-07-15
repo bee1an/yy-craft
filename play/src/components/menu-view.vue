@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { AlarmOutline } from '@vicons/ionicons5'
-import { type MenuOption, useMessage, Text } from '@yyui/yy-ui'
+import { type MenuOption, Text, useMessage } from '@yyui/yy-ui'
 import { h, reactive, ref } from 'vue'
-import { Meat, Vegetable, Soup, BigMeat, StapleFood } from './icons'
+import { BigMeat, Meat, Soup, StapleFood, Vegetable } from './icons'
 
 const basicMenuOptions: MenuOption[] = [
 	{

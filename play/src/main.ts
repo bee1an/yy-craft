@@ -1,7 +1,7 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-
 import yyUi from '@yyui/yy-ui'
+import { createApp } from 'vue'
+
+import App from './App.vue'
 
 import plugin from './plugins'
 import router from './router'

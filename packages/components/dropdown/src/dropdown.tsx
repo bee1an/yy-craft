@@ -1,27 +1,27 @@
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { px } from '@yy-ui/utils/src/css'
-import {
-	computed,
-	type ComputedRef,
-	defineComponent,
-	type ExtractPropTypes,
-	type PropType,
-	reactive,
-	type RendererElement,
-	type StyleValue,
-	type VNodeChild
-} from 'vue'
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import { type DefaultPlacement } from '@yy-ui/composables/use-placement'
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
 	type DropdownThemeVars,
 	dropdownDark,
 	dropdownLight,
 	dropdownStyle
 } from '@yy-ui/theme-chalk/src/dropdown'
-import YPopover from '../../popover/src/popover'
-import YIcon from '../../icon/src/icon.vue'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { px } from '@yy-ui/utils/src/css'
+import {
+	type ComputedRef,
+	type ExtractPropTypes,
+	type PropType,
+	type RendererElement,
+	type StyleValue,
+	type VNodeChild,
+	computed,
+	defineComponent,
+	reactive
+} from 'vue'
 import { YBaseCollapsed3 } from '../../_internal/icons'
+import YIcon from '../../icon/src/icon.vue'
+import YPopover from '../../popover/src/popover'
 
 export type DropdownOption = {
 	/** 显示内容: 可以传入render函数 */

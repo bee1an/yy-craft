@@ -1,15 +1,15 @@
+import type { SlotsType } from '@yy-ui/utils/src/types'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import { cardDark, cardLight, cardStyle, type CardThemeVars } from '@yy-ui/theme-chalk/src/card'
+import { type CardThemeVars, cardDark, cardLight, cardStyle } from '@yy-ui/theme-chalk/src/card'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { createCSSVar } from '@yy-ui/utils/src/css'
 import { createKey } from '@yy-ui/utils/src/tools'
-import type { SlotsType } from '@yy-ui/utils/src/types'
 import {
-	computed,
-	defineComponent,
 	type ExtractPropTypes,
 	type PropType,
-	type VNodeChild
+	type VNodeChild,
+	computed,
+	defineComponent
 } from 'vue'
 
 export const cardProps = {

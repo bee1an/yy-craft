@@ -1,9 +1,9 @@
-import { writeFileSync, mkdirSync } from 'node:fs'
-import { resolve, join } from 'node:path'
+import { mkdirSync, writeFileSync } from 'node:fs'
+import { join, resolve } from 'node:path'
 import { capitalize } from 'vue'
-import { getEntryContent } from './common'
 import { cmpDir } from '../utils/paths'
 import { camelcase, kebabCase } from '../utils/tools'
+import { getEntryContent } from './common'
 
 export const createSfc = (
 	name: string,

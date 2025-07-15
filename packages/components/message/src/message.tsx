@@ -1,13 +1,4 @@
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import {
-	computed,
-	defineComponent,
-	type ExtractPropTypes,
-	onMounted,
-	type PropType,
-	ref,
-	type VNodeChild
-} from 'vue'
+import YyIcon from '@yy-ui/components/icon'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
 	type MessageThemeVars,
@@ -15,7 +6,18 @@ import {
 	messageLight,
 	messageStyle
 } from '@yy-ui/theme-chalk/src/message'
-import YyIcon from '@yy-ui/components/icon'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import {
+	type ExtractPropTypes,
+	type PropType,
+	type VNodeChild,
+	computed,
+	defineComponent,
+	onMounted,
+	ref
+} from 'vue'
+import { YFadeInExpandTransition } from '../../_internal/fade-in-expand-transition'
+import { YIconSwitchTransition } from '../../_internal/icon-switch-transition'
 import {
 	YBaseError,
 	YBaseInfo,
@@ -23,8 +25,6 @@ import {
 	YBaseSuccess,
 	YBaseWarning
 } from '../../_internal/icons'
-import { YFadeInExpandTransition } from '../../_internal/fade-in-expand-transition'
-import { YIconSwitchTransition } from '../../_internal/icon-switch-transition'
 
 export const messageProps = {
 	...useThemeProps<MessageThemeVars>(),

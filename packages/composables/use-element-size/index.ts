@@ -1,6 +1,6 @@
 import type { ElRef } from '@yy-ui/utils/src/types'
-import { useResizeObserver, type UseResizeObserverOptions } from '../use-resize-observer'
 import { ref } from 'vue'
+import { type UseResizeObserverOptions, useResizeObserver } from '../use-resize-observer'
 
 export const useElementSize = (target: ElRef, options: UseResizeObserverOptions = {}) => {
 	const width = ref(0),

@@ -1,11 +1,11 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
-	computed,
 	type ComputedRef,
-	defineComponent,
 	type ExtractPropTypes,
 	type InjectionKey,
 	type PropType,
+	computed,
+	defineComponent,
 	provide,
 	shallowRef
 } from 'vue'

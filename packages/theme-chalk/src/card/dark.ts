@@ -1,5 +1,5 @@
-import commonVars from './_common'
 import { commonDark } from '../common'
+import commonVars from './_common'
 
 export const cardDark = {
 	name: 'card',

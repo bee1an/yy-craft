@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import { describe, it } from 'vitest'
-import Checkbox from '..'
-import { expect } from 'vitest'
 import { CreateNamespace } from '@yy-ui/utils'
+import { describe, it } from 'vitest'
+import { expect } from 'vitest'
+import Checkbox from '..'
 
 describe('Checkbox.vue', () => {
 	it('create', () => {

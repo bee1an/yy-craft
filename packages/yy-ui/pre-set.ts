@@ -1,7 +1,7 @@
 import * as components from './components'
-import * as directives from './directives'
-
 import create from './create'
+
+import * as directives from './directives'
 
 export default create({
 	pluginMakers: [

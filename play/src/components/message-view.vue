@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type MessageReturn, useMessage, A as YyA } from '@yyui/yy-ui'
+import { type MessageReturn, A as YyA, useMessage } from '@yyui/yy-ui'
 import { h, ref } from 'vue'
 import { randomText } from '../plugins'
 

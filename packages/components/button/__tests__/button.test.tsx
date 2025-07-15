@@ -1,8 +1,8 @@
-import { describe, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Button from '../src/button.vue'
-import wave from '../../_internal/wave/src/wave.vue'
+import { describe, it } from 'vitest'
 import { expect } from 'vitest'
+import wave from '../../_internal/wave/src/wave.vue'
+import Button from '../src/button.vue'
 
 describe('Button.vue', () => {
 	it('create', () => {

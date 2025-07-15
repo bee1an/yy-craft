@@ -1,5 +1,5 @@
 import { c, cB, cM } from '@yy-ui/utils'
-import { commonBase, commonLight, type ExtractThemeVars, type ThemeConfig } from '../common'
+import { type ExtractThemeVars, type ThemeConfig, commonBase, commonLight } from '../common'
 
 const vars = {
 	waveAnimationDuration: '0.6s',

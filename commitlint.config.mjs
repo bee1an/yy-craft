@@ -1,5 +1,5 @@
-import { defineConfig } from 'cz-git'
 import { execSync } from 'node:child_process'
+import { defineConfig } from 'cz-git'
 
 const scopeComplete = execSync('git status --porcelain || true')
 	.toString()

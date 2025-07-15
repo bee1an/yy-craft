@@ -1,22 +1,22 @@
-import {
-	computed,
-	defineComponent,
-	type ExtractPropTypes,
-	type PropType,
-	reactive,
-	shallowRef,
-	type VNodeChild,
-	watch
-} from 'vue'
+import { Icon } from '@yy-ui/components/icon'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import { type MenuThemeVars, menuDark, menuLight, menuStyle } from '@yy-ui/theme-chalk/src/menu'
-import { Icon } from '@yy-ui/components/icon'
-import { YBaseCollapsed2 } from '../../_internal/icons'
-import { YFadeInExpandTransition } from '../../_internal/fade-in-expand-transition'
-import YDropdown from '../../dropdown/src/dropdown'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { depx, px } from '@yy-ui/utils/src/css'
 import { createKey } from '@yy-ui/utils/src/tools'
+import {
+	type ExtractPropTypes,
+	type PropType,
+	type VNodeChild,
+	computed,
+	defineComponent,
+	reactive,
+	shallowRef,
+	watch
+} from 'vue'
+import { YFadeInExpandTransition } from '../../_internal/fade-in-expand-transition'
+import { YBaseCollapsed2 } from '../../_internal/icons'
+import YDropdown from '../../dropdown/src/dropdown'
 
 export type MenuOption = {
 	/** 显示内容: 可以传入render函数 */

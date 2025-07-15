@@ -1,23 +1,23 @@
+import type { ScrollbarProps } from '@yy-ui/components/scrollbar/src/scrollbar'
+import type { SlotsType } from '@yy-ui/utils/src/types'
+import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
+import { useTheme } from '@yy-ui/composables/use-theme'
+import { vlStyle } from '@yy-ui/theme-chalk/src/virtual-list'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
+	type ExtractPropTypes,
+	type PropType,
 	computed,
 	defineComponent,
-	type ExtractPropTypes,
 	nextTick,
 	onMounted,
-	type PropType,
 	reactive,
 	ref,
 	watch
 } from 'vue'
-import { type ScrollTo, useScrollTo } from './use-scroll-to'
-import { emitter } from './emitter-bus'
-import { useTheme } from '@yy-ui/composables/use-theme'
-import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
-import type { ScrollbarProps } from '@yy-ui/components/scrollbar/src/scrollbar'
 import { YScrollbar } from '../../_internal/scrollbar'
-import { vlStyle } from '@yy-ui/theme-chalk/src/virtual-list'
-import type { SlotsType } from '@yy-ui/utils/src/types'
+import { emitter } from './emitter-bus'
+import { type ScrollTo, useScrollTo } from './use-scroll-to'
 
 export const virtualListProps = {
 	/** 滚动条配置 */

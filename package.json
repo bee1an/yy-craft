@@ -15,7 +15,8 @@
 		"prepare": "husky",
 		"prettier": "prettier --write .",
 		"test": "vitest",
-		"create": "tsx scripts/create/create.ts"
+		"create": "tsx scripts/create/create.ts",
+		"lint": "eslint . --fix"
 	},
 	"peerDependencies": {
 		"vue": "3.2.25"
@@ -46,6 +47,7 @@
 		"cross-env": "7.0.3",
 		"cz-git": "1.11.1",
 		"eslint": "9.16.0",
+		"eslint-plugin-perfectionist": "^4.15.0",
 		"fs-extra": "11.3.0",
 		"globals": "15.13.0",
 		"husky": "9.1.7",

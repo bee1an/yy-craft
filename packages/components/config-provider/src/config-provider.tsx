@@ -1,11 +1,11 @@
 import { providerKey } from '@yy-ui/constants/src/providerKey'
 import {
+	type ExtractPropTypes,
+	type PropType,
+	computed,
 	defineComponent,
 	provide,
-	type ExtractPropTypes,
-	computed,
-	reactive,
-	type PropType
+	reactive
 } from 'vue'
 
 export const configProviderProps = {

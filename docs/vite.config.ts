@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
 import path from 'node:path'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig } from 'vite'
 // import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // https://vite.dev/config/

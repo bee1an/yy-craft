@@ -1,5 +1,5 @@
-import path from 'node:path'
 import fs from 'node:fs'
+import path from 'node:path'
 import pkg from 'fs-extra'
 import { dTypesDir, dUiEsDir, dUiLibDir } from './utils/paths'
 

@@ -1,8 +1,8 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { cmpDir } from '../utils/paths'
-import { getEntryContent } from './common'
 import { camelcase, capitalize, kebabCase } from '../utils/tools'
+import { getEntryContent } from './common'
 
 export const createTsx = (
 	name: string,

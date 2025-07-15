@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { h } from 'vue'
-import { components } from '../../router'
-import { RouterLink, useRoute } from 'vue-router'
 import type { MenuOption } from '@yyui/yy-ui'
+import { h } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+import { components } from '../../router'
 
 const renderRouterLink = (path: string, text: string) => {
 	return () => h(RouterLink, { to: path }, () => text)

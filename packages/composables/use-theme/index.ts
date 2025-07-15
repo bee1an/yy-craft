@@ -1,10 +1,10 @@
-import { createCSSVar } from '@yy-ui/utils/src/css'
+import type { CNode } from 'css-render'
 import {
 	type ThemeKey,
 	type ThemeVars,
 	injectTheme as _injectTheme
 } from '@yy-ui/theme-chalk/src/common'
-import type { CNode } from 'css-render'
+import { createCSSVar } from '@yy-ui/utils/src/css'
 import {
 	computed,
 	type ComputedRef,

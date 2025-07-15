@@ -1,9 +1,9 @@
 import { withInstall } from '@yy-ui/utils/src/with-install'
 import Layout from './src/layout'
-import LayoutSider from './src/layout-sider'
-import LayoutHeader from './src/layout-header'
 import LayoutContent from './src/layout-content'
 import LayoutFooter from './src/layout-footer'
+import LayoutHeader from './src/layout-header'
+import LayoutSider from './src/layout-sider'
 
 const layoutWithInstall = withInstall(Layout)
 const layoutSiderWithInstall = withInstall(LayoutSider)

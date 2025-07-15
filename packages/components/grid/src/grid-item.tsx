@@ -1,6 +1,6 @@
 import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { type ExtractPropTypes, computed, defineComponent, inject, shallowRef } from 'vue'
 import { gridProviderKey } from './grid'
-import { computed, defineComponent, type ExtractPropTypes, inject, shallowRef } from 'vue'
 import { useResponsiveObserver } from './use-responsive-observer'
 
 export const gridItemProps = {

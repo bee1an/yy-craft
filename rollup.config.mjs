@@ -1,16 +1,16 @@
-// @ts-check
-import { defineConfig } from 'rollup'
-import esbuild from 'rollup-plugin-esbuild'
-import vue from 'unplugin-vue/rollup'
-import vueJsx from 'unplugin-vue-jsx/rollup'
-import resolve from '@rollup/plugin-node-resolve'
-import { visualizer } from 'rollup-plugin-visualizer'
-import copy from 'rollup-plugin-copy'
+import fs from 'node:fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import resolve from '@rollup/plugin-node-resolve'
+// @ts-check
+import { defineConfig } from 'rollup'
+import copy from 'rollup-plugin-copy'
+import esbuild from 'rollup-plugin-esbuild'
+import { visualizer } from 'rollup-plugin-visualizer'
+import vueJsx from 'unplugin-vue-jsx/rollup'
 import VueMacros from 'unplugin-vue-macros/rollup'
+import vue from 'unplugin-vue/rollup'
 import dts from 'vite-plugin-dts'
-import fs from 'node:fs'
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 const pkgDir = path.resolve(rootDir, 'packages')

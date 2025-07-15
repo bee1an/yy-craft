@@ -1,4 +1,4 @@
-import { type AppContext, type Component, h, reactive, render, type VNode } from 'vue'
+import { type AppContext, type Component, type VNode, h, reactive, render } from 'vue'
 
 export type VNodeProviderInstance = ReturnType<typeof useVNodeProvider>
 

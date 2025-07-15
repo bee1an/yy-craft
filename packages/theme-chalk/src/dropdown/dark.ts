@@ -1,5 +1,5 @@
 import { rgba } from '@yy-ui/utils'
-import { commonDark, type ThemeConfig } from '../common'
+import { type ThemeConfig, commonDark } from '../common'
 import { commonVars } from './_common'
 
 const vars = {

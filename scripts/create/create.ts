@@ -1,10 +1,10 @@
-import prompts from 'prompts'
-import { createSfc } from './createSfc'
-import { createTsx } from './createTsx'
-import { createStyle } from './createStyle'
 import { appendFileSync } from 'node:fs'
 import path from 'node:path'
+import prompts from 'prompts'
 import { cmpDir, themeDir } from '../utils/paths'
+import { createSfc } from './createSfc'
+import { createStyle } from './createStyle'
+import { createTsx } from './createTsx'
 
 function exitWhenNullable(value: any) {
 	if (typeof value === 'undefined') {

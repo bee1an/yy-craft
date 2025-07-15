@@ -1,6 +1,6 @@
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { themeDir } from '../utils/paths'
-import { mkdirSync, writeFileSync } from 'node:fs'
 import { camelcase, capitalize } from '../utils/tools'
 
 const targetDir = resolve(themeDir, 'src')

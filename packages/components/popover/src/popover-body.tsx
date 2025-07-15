@@ -1,20 +1,20 @@
 import {
-	computed,
-	defineComponent,
-	type ExtractPropTypes,
-	inject,
-	type PropType,
-	shallowRef,
-	type StyleValue
-} from 'vue'
-import { popoverInjectKey } from './popover-inject-key'
-import {
 	type DefaultPlacement,
 	getOppositeDirection,
 	usePlacement
 } from '@yy-ui/composables/use-placement'
 import { px } from '@yy-ui/utils/src/css'
 import { getIntersection } from '@yy-ui/utils/src/tools'
+import {
+	type ExtractPropTypes,
+	type PropType,
+	type StyleValue,
+	computed,
+	defineComponent,
+	inject,
+	shallowRef
+} from 'vue'
+import { popoverInjectKey } from './popover-inject-key'
 
 export const popoverBodyProps = {
 	/** 触发方式 */

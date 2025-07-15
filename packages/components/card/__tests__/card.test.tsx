@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect } from 'vitest'
-import Card from '..'
-import { h } from 'vue'
 import { createCSSVar } from '@yy-ui/utils'
+import { describe, expect, it } from 'vitest'
+import { h } from 'vue'
+import Card from '..'
 
 describe('Card.tsx', () => {
 	it('create', () => {

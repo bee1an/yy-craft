@@ -14,7 +14,8 @@
 		"auto:publish": "tsx scripts/publish.ts",
 		"prepare": "husky",
 		"prettier": "prettier --write .",
-		"test": "vitest"
+		"test": "vitest",
+		"create": "tsx scripts/create/create.ts"
 	},
 	"peerDependencies": {
 		"vue": "3.2.25"

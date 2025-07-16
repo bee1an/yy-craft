@@ -1,7 +1,7 @@
-import shelljs from 'shelljs' // 命令执行器
 import path from 'node:path'
-import { rootDir } from './utils/paths'
 import prompts from 'prompts'
+import shelljs from 'shelljs' // 命令执行器
+import { rootDir } from './utils/paths'
 
 async function publish() {
 	shelljs.exec('pnpm i --frozen-lockfile') // 该命令强制基于现有 lockfile 安装依赖（不更新 lockfile），用于确保依赖树绝对一致

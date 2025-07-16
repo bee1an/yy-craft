@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import TreeNode from './tree-node.vue'
-import { provide, ref, useSlots, type VNode, watch } from 'vue'
-import {
-	InjectBem,
-	InjectSlots,
-	treeEmits,
-	type TreeData,
-	type TreeKey,
-	type TreeOption,
-	treeProps,
-	type TreeValue
-} from './tree'
-import useDragNode from './use-drag-node'
 import { GenericVirtualList } from '@yy-ui/components/virtual-list'
 // import { GenericVirtualList } from '../../virtual-list/src/virtual-list'
 import { useTheme } from '@yy-ui/composables/use-theme'
 import { treeDark, treeLight, treeStyle } from '@yy-ui/theme-chalk/src/tree'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { type VNode, provide, ref, useSlots, watch } from 'vue'
+import {
+	InjectBem,
+	InjectSlots,
+	type TreeData,
+	type TreeKey,
+	type TreeOption,
+	type TreeValue,
+	treeEmits,
+	treeProps
+} from './tree'
+import TreeNode from './tree-node.vue'
+import useDragNode from './use-drag-node'
 
 const YyVirtualList = GenericVirtualList<TreeData>()
 

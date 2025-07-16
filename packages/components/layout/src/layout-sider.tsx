@@ -1,24 +1,24 @@
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
-	computed,
-	defineComponent,
-	type ExtractPropTypes,
-	type PropType,
-	ref,
-	shallowRef,
-	type StyleValue,
-	watch
-} from 'vue'
-import {
+	type LayoutSiderThemeVars,
 	layoutSiderDark,
 	layoutSiderLight,
-	layoutSiderStyle,
-	type LayoutSiderThemeVars
+	layoutSiderStyle
 } from '@yy-ui/theme-chalk/src/layout'
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import YyScrollbar from '../../scrollbar'
-import { YBaseCollapsed } from '../../_internal/icons'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { depx, px } from '@yy-ui/utils/src/css'
+import {
+	type ExtractPropTypes,
+	type PropType,
+	type StyleValue,
+	computed,
+	defineComponent,
+	ref,
+	shallowRef,
+	watch
+} from 'vue'
+import { YBaseCollapsed } from '../../_internal/icons'
+import YyScrollbar from '../../scrollbar'
 
 export const layoutSiderProps = {
 	...useThemeProps<LayoutSiderThemeVars>(),

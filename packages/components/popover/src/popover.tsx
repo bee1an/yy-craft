@@ -1,32 +1,32 @@
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import {
-	computed,
-	defineComponent,
-	type ExtractPropTypes,
-	h,
-	type PropType,
-	provide,
-	ref,
-	type RendererElement,
-	Teleport,
-	Transition,
-	watch,
-	withDirectives,
-	mergeProps,
-	type StyleValue,
-	shallowRef
-} from 'vue'
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import { zindexable } from '@yy-ui/directives/src/_internal/zindexable'
+import { clickOutside } from '@yy-ui/directives/src/click-outside'
 import {
 	type PopoverThemeVars,
 	popoverDark,
 	popoverLight,
 	popoverStyle
 } from '@yy-ui/theme-chalk/src/popover'
-import PopoverHijack, { popoverHijackProps } from './popover-hijack'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import {
+	type ExtractPropTypes,
+	type PropType,
+	type RendererElement,
+	type StyleValue,
+	Teleport,
+	Transition,
+	computed,
+	defineComponent,
+	h,
+	mergeProps,
+	provide,
+	ref,
+	shallowRef,
+	watch,
+	withDirectives
+} from 'vue'
 import PopoverBody, { popoverBodyProps } from './popover-body'
-import { zindexable } from '@yy-ui/directives/src/_internal/zindexable'
-import { clickOutside } from '@yy-ui/directives/src/click-outside'
+import PopoverHijack, { popoverHijackProps } from './popover-hijack'
 import { popoverInjectKey } from './popover-inject-key'
 
 export const popoverProps = {

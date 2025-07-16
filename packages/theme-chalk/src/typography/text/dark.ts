@@ -1,5 +1,5 @@
+import { type ThemeConfig, commonDark } from '../../common'
 import commonVars from './_common'
-import { commonDark, type ThemeConfig } from '../../common'
 
 export const textDark: ThemeConfig = {
 	name: 'text',
@@ -13,7 +13,7 @@ export const textDark: ThemeConfig = {
 		textColor1: commonDark.textColor1,
 		textColor2: commonDark.textColor2,
 		textColor3: commonDark.textColor3,
-		codeTextColor: commonDark.textColor2,
+		codeTextColor: commonDark.codeTextColor,
 		codeBackgroundColor: commonDark.codeBackgroundColor
 	})
 }

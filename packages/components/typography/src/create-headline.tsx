@@ -1,13 +1,13 @@
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
 import {
+	type HeadlineThemeVars,
 	headlineDark,
 	headlineLight,
-	headlineStyle,
-	type HeadlineThemeVars
+	headlineStyle
 } from '@yy-ui/theme-chalk/src/typography'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { createKey } from '@yy-ui/utils/src/tools'
-import { computed, defineComponent, type ExtractPropTypes, h, type PropType } from 'vue'
+import { type ExtractPropTypes, type PropType, computed, defineComponent, h } from 'vue'
 
 export const headlineProps = {
 	...useThemeProps<HeadlineThemeVars>(),

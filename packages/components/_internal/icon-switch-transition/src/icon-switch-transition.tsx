@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, ref, Transition } from 'vue'
+import { Transition, defineComponent, onMounted, ref } from 'vue'
 
 export default defineComponent({
 	name: 'BaseIconSwitchTransition',

@@ -1,7 +1,7 @@
-import { ref, type ShallowRef } from 'vue'
-import { useResizeObserver } from '../use-resize-observer'
-import { useMutationObserver } from '../use-mutation-observer'
+import { type ShallowRef, ref } from 'vue'
 import { useEventListener } from '../use-event-listener'
+import { useMutationObserver } from '../use-mutation-observer'
+import { useResizeObserver } from '../use-resize-observer'
 
 /** 参考: https://github.com/vueuse/vueuse/blob/main/packages/core/useElementBounding/index.ts */
 

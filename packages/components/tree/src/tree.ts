@@ -1,10 +1,10 @@
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import type { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
-import { treeNodeProps } from './tree-node'
-import { useThemeProps } from '@yy-ui/composables'
-import type { TreeThemeVars } from '@yy-ui/theme-chalk'
-import type { VirtualListProps } from '@yy-ui/components/virtual-list/src/virtual-list'
 import type { ScrollbarProps } from '@yy-ui/components/scrollbar/src/scrollbar'
+import type { VirtualListProps } from '@yy-ui/components/virtual-list/src/virtual-list'
+import type { TreeThemeVars } from '@yy-ui/theme-chalk'
+import type { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
+import { useThemeProps } from '@yy-ui/composables'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { treeNodeProps } from './tree-node'
 
 /** inject Bem */
 export const InjectBem = Symbol('InjectBem') as InjectionKey<CreateNamespace>

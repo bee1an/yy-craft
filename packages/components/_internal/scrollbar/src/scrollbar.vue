@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { useBaseDrag } from '@yy-ui/composables/use-base-drag'
+import { useEventListener } from '@yy-ui/composables/use-event-listener'
+import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
+import { useTheme } from '@yy-ui/composables/use-theme'
+import { scrollbarDark, scrollbarLight, scrollbarStyle } from '@yy-ui/theme-chalk/src/scrollbar'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import { computed, nextTick, ref } from 'vue'
 import { type ScrollbarExpose, scrollbarInternalProps } from './scrollbar'
-import { scrollbarDark, scrollbarLight, scrollbarStyle } from '@yy-ui/theme-chalk/src/scrollbar'
-import { useEventListener } from '@yy-ui/composables/use-event-listener'
-import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
-import { useBaseDrag } from '@yy-ui/composables/use-base-drag'
-import { useTheme } from '@yy-ui/composables/use-theme'
 
 defineOptions({ name: 'Scrollbar' })
 

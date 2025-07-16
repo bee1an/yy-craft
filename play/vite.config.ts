@@ -1,11 +1,9 @@
-// vite.config.ts
-import { defineConfig, type PluginOption } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import VueMacros from 'vue-macros/vite'
-import VueJsx from '@vitejs/plugin-vue-jsx'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-// import VueRouter from 'unplugin-vue-router/vite'
+import Vue from '@vitejs/plugin-vue'
+import VueJsx from '@vitejs/plugin-vue-jsx'
+import { type PluginOption, defineConfig } from 'vite'
+import VueMacros from 'vue-macros/vite'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 

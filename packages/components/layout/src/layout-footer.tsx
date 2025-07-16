@@ -1,12 +1,12 @@
 import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
+	type LayoutFooterThemeVars,
 	layoutFooterDark,
 	layoutFooterLight,
-	layoutFooterStyle,
-	type LayoutFooterThemeVars
+	layoutFooterStyle
 } from '@yy-ui/theme-chalk/src/layout'
-import { computed, defineComponent, type ExtractPropTypes } from 'vue'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { type ExtractPropTypes, computed, defineComponent } from 'vue'
 
 export const layoutFooterProps = {
 	...useThemeProps<LayoutFooterThemeVars>(),

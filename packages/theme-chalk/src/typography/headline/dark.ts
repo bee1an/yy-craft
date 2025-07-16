@@ -1,4 +1,4 @@
-import { commonDark, type ThemeConfig } from '../../common'
+import { type ThemeConfig, commonDark } from '../../common'
 import _common, { commonVars } from './_common'
 
 export const headlineDark: ThemeConfig = {

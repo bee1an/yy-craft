@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { buttonEmits, buttonProps } from './button'
-import { computed, ref } from 'vue'
 import { useTheme } from '@yy-ui/composables/use-theme'
-import YWave from '../../_internal/wave/src/wave.vue'
 import {
 	buttonDark,
 	buttonDarkColors,
@@ -11,6 +7,10 @@ import {
 	buttonLightColors,
 	buttonStyle
 } from '@yy-ui/theme-chalk/src/button'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { computed, ref } from 'vue'
+import YWave from '../../_internal/wave/src/wave.vue'
+import { buttonEmits, buttonProps } from './button'
 
 defineOptions({ name: 'Button' })
 

@@ -1,21 +1,22 @@
-# Icon 图标
-
-yy-ui 使用 xicons 图标库
-
-```
-$ pnpn install @vicons/ionicons5
-```
-
-## 使用
-
-- 该用例使用了全局注册组件，所以不需要引入
-
 <script setup lang="ts">
 	import { LogoVue } from '@vicons/ionicons5'
 </script>
 
-<yy-icon color="red" :size="20"><LogoVue /></yy-icon>
-<yy-icon color="blue" :size="30"><LogoVue /></yy-icon>
+# Icon 图标
+
+<yy-p>yy-ui 使用 xicons 图标库, <yy-text type="error">并非内置</yy-text></yy-p>
+
+```zsh
+pnpn install @vicons/ionicons5
+```
+
+## 使用
+
+<yy-p>
+	你可选择修改他的尺寸或者颜色分别使用<yy-text code>size</yy-text>和<yy-text code>color</yy-text>
+</yy-p>
+
+<yy-icon color="red" size="20"><LogoVue /></yy-icon> <yy-icon color="blue" :size="30"><LogoVue /></yy-icon>
 
 ```vue
 <script setup lang="ts">
@@ -23,14 +24,12 @@ $ pnpn install @vicons/ionicons5
 </script>
 
 <template>
-	<yy-icon color="red" size="50" /><LogoVue /></yy-icon>
+	<yy-icon color="red" size="20"/><LogoVue /></yy-icon>
 	<yy-icon color="blue" :size="30"><LogoVue /></yy-icon>
 </template>
 ```
 
-## API
-
-### Props
+## Props
 
 | 参数  | 说明 | 类型           | 默认值 |
 | ----- | ---- | -------------- | ------ |

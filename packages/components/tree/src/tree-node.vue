@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { inject } from 'vue'
-import { InjectBem } from './tree'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
 import YyIcon from '@yy-ui/components/icon/src/icon.vue'
-import TSwitcher from './icons/Switcher'
+import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { inject } from 'vue'
 import TLoading from './icons/Loading'
-import TreeNodeContent from './tree-node-content'
+import TSwitcher from './icons/Switcher'
+import { InjectBem } from './tree'
 import { treeNodeEmits, treeNodeProps } from './tree-node'
+import TreeNodeContent from './tree-node-content'
 
 defineProps(treeNodeProps)
 

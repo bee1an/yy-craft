@@ -1,12 +1,12 @@
-import { defineConfig } from 'rolldown'
-import vue from 'unplugin-vue/rolldown'
-import vueJsx from 'unplugin-vue-jsx/rolldown'
-import copy from 'rollup-plugin-copy'
+import fs from 'node:fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import VueMacros from 'vue-macros/rolldown'
+import { defineConfig } from 'rolldown'
+import copy from 'rollup-plugin-copy'
+import vueJsx from 'unplugin-vue-jsx/rolldown'
+import vue from 'unplugin-vue/rolldown'
 import dts from 'vite-plugin-dts'
-import fs from 'node:fs'
+import VueMacros from 'vue-macros/rolldown'
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 const pkgDir = path.resolve(rootDir, 'packages')

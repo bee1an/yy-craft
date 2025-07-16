@@ -1,7 +1,7 @@
-import shelljs from 'shelljs'
-import { program } from 'commander'
-import path from 'node:path'
 import fs from 'node:fs'
+import path from 'node:path'
+import { program } from 'commander'
+import shelljs from 'shelljs'
 import { pkgsDir } from './utils/paths'
 
 program

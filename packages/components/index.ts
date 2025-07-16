@@ -1,6 +1,7 @@
 export * from './button'
 export * from './card'
 export * from './checkbox'
+export * from './config-provider'
 export * from './divider'
 export * from './dropdown'
 export * from './flex'

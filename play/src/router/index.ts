@@ -1,7 +1,5 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { type RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 
-import HomeView from '../views/home-view/home-view.vue'
-import ComponentsView from '../views/components-view/components.vue'
 import ButtonView from '../components/button-view.vue'
 import CardView from '../components/card-view.vue'
 import CheckboxView from '../components/checkbox-view.vue'
@@ -18,6 +16,8 @@ import ScrollbarView from '../components/scrollbar-view.vue'
 import TreeView from '../components/tree-view.vue'
 import TypographyView from '../components/typography-view.vue'
 import VirtualListView from '../components/virtual-list-view.vue'
+import ComponentsView from '../views/components-view/components.vue'
+import HomeView from '../views/home-view/home-view.vue'
 import playGround from '../views/play-ground.vue'
 
 export const components: RouteRecordRaw[] = [

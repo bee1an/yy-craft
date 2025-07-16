@@ -1,16 +1,12 @@
-import { createCSSVar } from '@yy-ui/utils/src/css'
-import {
-	type ThemeKey,
-	type ThemeVars,
-	injectTheme as _injectTheme
-} from '@yy-ui/theme-chalk/src/common'
 import type { CNode } from 'css-render'
+import { providerKey } from '@yy-ui/constants'
+import { type ThemeKey, type ThemeVars } from '@yy-ui/theme-chalk/src/common'
+import { createCSSVar } from '@yy-ui/utils/src/css'
 import {
 	computed,
 	type ComputedRef,
 	type ExtractPropTypes,
 	inject,
-	// isRef,
 	type PropType,
 	unref
 } from 'vue'
@@ -68,7 +64,6 @@ function useTheme<T extends ThemeVars>(
 	style?.mount({ id: prefix + '-' + mountId })
 
 	const getTheme = (type: ThemeKey) => {
-		// const themesVal = isRef(themes) ? themes.value : themes
 		const themesVal = unref(themes) as T
 
 		if ('light' in themesVal || 'dark' in themesVal) {
@@ -77,10 +72,10 @@ function useTheme<T extends ThemeVars>(
 		return themesVal
 	}
 
-	const injectTheme = inject(_injectTheme, null)
+	const injectTheme = inject(providerKey, null)
 
 	const theme = computed(() => {
-		const themeStr = props?.theme ?? injectTheme?.theme.value ?? 'light' // props优先
+		const themeStr = props?.theme ?? injectTheme?.theme ?? 'light' // props优先
 
 		return themeStr === 'light' ? getTheme('light') : getTheme('dark')
 	})

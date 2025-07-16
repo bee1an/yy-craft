@@ -1,7 +1,7 @@
-import { computed, type Ref, ref, type ShallowRef, unref } from 'vue'
+import { type Ref, type ShallowRef, computed, ref, unref } from 'vue'
 import { useElementBounding } from '../use-element-bounding'
-import { useWindowSize } from '../use-window-size'
 import { useElementSize } from '../use-element-size'
+import { useWindowSize } from '../use-window-size'
 
 export type DefaultPlacement =
 	| 'top'

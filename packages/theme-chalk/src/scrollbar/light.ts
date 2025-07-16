@@ -1,4 +1,4 @@
-import { commonLight, type ExtractThemeVars, type ThemeConfig } from '../common'
+import { type ExtractThemeVars, type ThemeConfig, commonLight } from '../common'
 
 const vars = {
 	scrollbarBackgroundColor: 'rgba(0, 0, 0, 0.25)',

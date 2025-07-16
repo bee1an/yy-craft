@@ -1,15 +1,15 @@
+import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import { type LayoutThemeVars, layoutDark, layoutLight } from '@yy-ui/theme-chalk/src/layout'
 import { CreateNamespace } from '@yy-ui/utils/src/create'
 import {
+	type ExtractPropTypes,
+	type PropType,
+	type StyleValue,
 	computed,
 	defineComponent,
-	type ExtractPropTypes,
-	inject,
-	type PropType,
-	type StyleValue
+	inject
 } from 'vue'
 import YyScrollbar from '../../scrollbar'
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import { layoutDark, layoutLight, type LayoutThemeVars } from '@yy-ui/theme-chalk/src/layout'
 import { layoutInjectKey } from './layout'
 
 export const layoutContentProps = {

@@ -61,9 +61,5 @@ export default defineConfig({
 		lightModeSwitchTitle: '切换到浅色模式',
 		darkModeSwitchTitle: '切换到深色模式'
 	},
-	head: [
-		['link', { rel: 'icon', type: 'image/svg+xml', href: '/yy-ui-logo.svg' }],
-		['meta', { name: 'theme-color', content: '#5f67ee' }],
-		['meta', { property: 'og:site_name', content: 'VitePress' }]
-	]
+	head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/yy-ui-logo.svg' }]]
 })

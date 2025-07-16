@@ -148,13 +148,13 @@ export const buttonDarkColors = {
 	},
 	primary: {
 		default: {
-			buttonColor: '#ffffff',
+			buttonColor: '#000000',
 			buttonBorderColor: commonDark.primaryColor,
 			buttonBackgroundColor: commonDark.primaryColor,
-			buttonColorHover: '#ffffff',
+			buttonColorHover: '#000000',
 			buttonBorderColorHover: commonDark.transparent,
 			buttonBackgroundColorHover: commonDark.primaryColorHover,
-			buttonColorActive: '#ffffff',
+			buttonColorActive: '#000000',
 			buttonBorderColorActive: commonDark.primaryColorPressed,
 			buttonBackgroundColorActive: commonDark.primaryColorPressed
 		},
@@ -206,13 +206,13 @@ export const buttonDarkColors = {
 	},
 	success: {
 		default: {
-			buttonColor: '#ffffff',
+			buttonColor: '#000000',
 			buttonBorderColor: commonDark.successColor,
 			buttonBackgroundColor: commonDark.successColor,
-			buttonColorHover: '#ffffff',
+			buttonColorHover: '#000000',
 			buttonBorderColorHover: commonDark.transparent,
 			buttonBackgroundColorHover: commonDark.successColorHover,
-			buttonColorActive: '#ffffff',
+			buttonColorActive: '#000000',
 			buttonBorderColorActive: commonDark.transparent,
 			buttonBackgroundColorActive: commonDark.successColorPressed
 		},
@@ -264,13 +264,13 @@ export const buttonDarkColors = {
 	},
 	warning: {
 		default: {
-			buttonColor: '#ffffff',
+			buttonColor: '#000000',
 			buttonBorderColor: commonDark.warningColor,
 			buttonBackgroundColor: commonDark.warningColor,
-			buttonColorHover: '#ffffff',
+			buttonColorHover: '#000000',
 			buttonBorderColorHover: commonDark.transparent,
 			buttonBackgroundColorHover: commonDark.warningColorHover,
-			buttonColorActive: '#ffffff',
+			buttonColorActive: '#000000',
 			buttonBorderColorActive: commonDark.transparent,
 			buttonBackgroundColorActive: commonDark.warningColorPressed
 		},
@@ -322,13 +322,13 @@ export const buttonDarkColors = {
 	},
 	error: {
 		default: {
-			buttonColor: '#ffffff',
+			buttonColor: '#000000',
 			buttonBorderColor: commonDark.errorColor,
 			buttonBackgroundColor: commonDark.errorColor,
-			buttonColorHover: '#ffffff',
+			buttonColorHover: '#000000',
 			buttonBorderColorHover: commonDark.transparent,
 			buttonBackgroundColorHover: commonDark.errorColorHover,
-			buttonColorActive: '#ffffff',
+			buttonColorActive: '#000000',
 			buttonBorderColorActive: commonDark.transparent,
 			buttonBackgroundColorActive: commonDark.errorColorPressed
 		},
@@ -380,13 +380,13 @@ export const buttonDarkColors = {
 	},
 	info: {
 		default: {
-			buttonColor: '#ffffff',
+			buttonColor: '#000000',
 			buttonBorderColor: commonDark.infoColor,
 			buttonBackgroundColor: commonDark.infoColor,
-			buttonColorHover: '#ffffff',
+			buttonColorHover: '#000000',
 			buttonBorderColorHover: commonDark.transparent,
 			buttonBackgroundColorHover: commonDark.infoColorHover,
-			buttonColorActive: '#ffffff',
+			buttonColorActive: '#000000',
 			buttonBorderColorActive: commonDark.transparent,
 			buttonBackgroundColorActive: commonDark.infoColorPressed
 		},

@@ -1,22 +1,55 @@
+import path from 'node:path'
+import fg from 'fast-glob'
 import { defineConfig } from 'vitepress'
+import { capitalize } from 'vue'
+
+const targetDirs = ['components']
+
+const docsPath = new URL('..', import.meta.url).pathname
+
+const targetPaths = targetDirs.map((dir) => ({ [`/${dir}`]: path.resolve(docsPath, dir) }))
+
+const sidebar = targetPaths.reduce(
+	(acc, cur) => {
+		for (const key in cur) {
+			const sidebarItem: { text: string; link: string }[] = []
+
+			const components = fg.sync('*', { cwd: cur[key], onlyFiles: false })
+
+			components.forEach((component) => {
+				const isFile = component.endsWith('.md')
+
+				if (isFile)
+					sidebarItem.push({
+						text: capitalize(component.replace('.md', '')),
+						link: `${key}/${component}`
+					})
+				else sidebarItem.push({ text: capitalize(component), link: `${key}/${component}/index.md` })
+			})
+
+			acc[key] = sidebarItem
+		}
+
+		return acc
+	},
+	{} as {
+		[x: string]: { text: string; link: string }[]
+	}
+)
+
+const nav = targetDirs.map((dir) => ({
+	text: capitalize(dir),
+	link: sidebar[`/${dir}`][0].link,
+	activeMatch: `/${dir}/`
+}))
 
 export default defineConfig({
 	title: 'Yy Ui',
 	description: 'vue3组件库',
 	themeConfig: {
 		logo: { src: '/yy-ui-logo.svg', width: 24, height: 24 },
-		nav: [{ text: '组件', link: '/components/icon', activeMatch: '/components/' }],
-		sidebar: [
-			{
-				text: '基础组件',
-				items: [
-					{
-						text: 'Icon',
-						link: '/components/icon'
-					}
-				]
-			}
-		],
+		nav: nav,
+		sidebar,
 		socialLinks: [{ icon: 'github', link: 'https://github.com/bee1an/yy-ui' }],
 		outline: {
 			label: '页面导航'

@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 开始使用
-      link: /components/icon
+      link: /components/button
     - theme: alt
       text: GitHub
       link: https://github.com/bee1an/yy-ui

@@ -19,8 +19,8 @@ export default [
 	},
 	{
 		plugins: {
-      perfectionist,
-    },
+			perfectionist
+		},
 		rules: {
 			'@typescript-eslint/no-explicit-any': 0,
 			'@typescript-eslint/no-unused-expressions': 0,
@@ -30,31 +30,25 @@ export default [
 			'@typescript-eslint/no-empty-object-type': 0,
 			'vue/multi-word-component-names': 0,
 			'vue/no-reserved-component-names': 0,
-			"perfectionist/sort-imports": ["error", {
-				groups: [
-					"type",
-					[
-						"parent-type",
-						"sibling-type",
-						"index-type",
-						"internal-type"
+			'perfectionist/sort-imports': [
+				'error',
+				{
+					groups: [
+						'type',
+						['parent-type', 'sibling-type', 'index-type', 'internal-type'],
+						'builtin',
+						'external',
+						'internal',
+						['parent', 'sibling', 'index'],
+						'side-effect',
+						'object',
+						'unknown'
 					],
-					"builtin",
-					"external",
-					"internal",
-					[
-						"parent",
-						"sibling",
-						"index"
-					],
-					"side-effect",
-					"object",
-					"unknown"
-				],
-				newlinesBetween: "ignore",
-				order: "asc",
-				type: "natural"
-			}],
+					newlinesBetween: 'ignore',
+					order: 'asc',
+					type: 'natural'
+				}
+			]
 		}
 	},
 	{

@@ -48,7 +48,7 @@ export default defineConfig({
 	description: 'vue3组件库',
 	themeConfig: {
 		logo: { src: '/yy-ui-logo.svg', width: 24, height: 24 },
-		nav: nav,
+		nav,
 		sidebar,
 		socialLinks: [{ icon: 'github', link: 'https://github.com/bee1an/yy-ui' }],
 		outline: {

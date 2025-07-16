@@ -19,6 +19,6 @@ export default {
 	...DefaultTheme,
 	Layout: CustomLayout,
 	enhanceApp({ app }) {
-		app.use(YyUi)
+		if (!(import.meta as any).env.SSR) app.use(YyUi)
 	}
 }

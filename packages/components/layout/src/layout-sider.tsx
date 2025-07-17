@@ -1,12 +1,12 @@
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import { useTheme, useThemeProps } from '@yy-craft/composables/use-theme'
 import {
 	type LayoutSiderThemeVars,
 	layoutSiderDark,
 	layoutSiderLight,
 	layoutSiderStyle
-} from '@yy-ui/theme-chalk/src/layout'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { depx, px } from '@yy-ui/utils/src/css'
+} from '@yy-craft/theme-chalk/src/layout'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
+import { depx, px } from '@yy-craft/utils/src/css'
 import {
 	type ExtractPropTypes,
 	type PropType,

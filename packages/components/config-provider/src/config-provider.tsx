@@ -1,5 +1,5 @@
-import type { ThemeKey } from '@yy-ui/theme-chalk'
-import { providerKey } from '@yy-ui/constants/src/providerKey'
+import type { ThemeKey } from '@yy-craft/theme-chalk'
+import { providerKey } from '@yy-craft/constants/src/providerKey'
 import {
 	type ExtractPropTypes,
 	type PropType,

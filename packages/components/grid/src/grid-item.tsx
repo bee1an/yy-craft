@@ -1,4 +1,4 @@
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { type ExtractPropTypes, computed, defineComponent, inject, shallowRef } from 'vue'
 import { gridProviderKey } from './grid'
 import { useResponsiveObserver } from './use-responsive-observer'

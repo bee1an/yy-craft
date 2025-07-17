@@ -1,5 +1,5 @@
 import type { CNode } from 'css-render'
-import { c } from '@yy-ui/utils'
+import { c } from '@yy-craft/utils'
 import { commonBase } from '../common'
 
 const { cubicBezierEaseInOut } = commonBase

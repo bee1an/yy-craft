@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils/src/with-install'
+import { withInstall } from '@yy-craft/utils/src/with-install'
 import ConfigProvider from './src/config-provider'
 
 const configProviderWithInstall = withInstall(ConfigProvider)

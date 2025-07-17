@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Icon as YIcon } from '@yy-ui/components/icon'
-import { useTheme } from '@yy-ui/composables/use-theme'
-import { checkboxDark, checkboxLight, checkboxStyle } from '@yy-ui/theme-chalk/src/checkbox'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { Icon as YIcon } from '@yy-craft/components/icon'
+import { useTheme } from '@yy-craft/composables/use-theme'
+import { checkboxDark, checkboxLight, checkboxStyle } from '@yy-craft/theme-chalk/src/checkbox'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { YBaseChecked, YBaseIndeterminate } from '../../_internal/icons'
 import { checkboxEmits, checkboxProps } from './checkbox'
 

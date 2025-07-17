@@ -1,4 +1,4 @@
-import { cB, cM, cVar } from '@yy-ui/utils'
+import { cB, cM, cVar } from '@yy-craft/utils'
 
 export const textStyle = cB(
 	'text',

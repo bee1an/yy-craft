@@ -1,7 +1,7 @@
 import type { CNode } from 'css-render'
-import { providerKey } from '@yy-ui/constants'
-import { type ThemeKey, type ThemeVars } from '@yy-ui/theme-chalk/src/common'
-import { createCSSVar } from '@yy-ui/utils/src/css'
+import { providerKey } from '@yy-craft/constants'
+import { type ThemeKey, type ThemeVars } from '@yy-craft/theme-chalk/src/common'
+import { createCSSVar } from '@yy-craft/utils/src/css'
 import {
 	computed,
 	type ComputedRef,

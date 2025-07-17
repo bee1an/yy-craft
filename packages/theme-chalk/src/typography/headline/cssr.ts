@@ -1,4 +1,4 @@
-import { c, cB, cM, cVar } from '@yy-ui/utils'
+import { c, cB, cM, cVar } from '@yy-craft/utils'
 
 export const headlineStyle = cB(
 	'h',

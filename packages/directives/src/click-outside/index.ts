@@ -1,4 +1,4 @@
-import { directiveWithInstall } from '@yy-ui/utils/src/with-install'
+import { directiveWithInstall } from '@yy-craft/utils/src/with-install'
 import { clickOutside } from './click-outside'
 
 const clickOutsideWithInstall = directiveWithInstall(clickOutside, 'clickOutside')

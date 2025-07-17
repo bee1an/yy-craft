@@ -1,4 +1,4 @@
-import { c, cB, cVar } from '@yy-ui/utils'
+import { c, cB, cVar } from '@yy-craft/utils'
 
 export const layoutStyle = c(null, [
 	cB('layout', {

@@ -1,4 +1,4 @@
-import { c, cB, cE, cM, cNotM, cVar } from '@yy-ui/utils'
+import { c, cB, cE, cM, cNotM, cVar } from '@yy-craft/utils'
 
 const popoverWrapperStyle = {
 	boxShadow: cVar('boxShadow'),

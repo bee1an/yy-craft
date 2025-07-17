@@ -1,13 +1,13 @@
 {
-	"name": "@yyui/yy-ui",
-	"version": "1.0.0-beta.2",
+	"name": "yy-craft",
+	"version": "0.0.0",
 	"packageManager": "pnpm@9.12.2",
 	"description": "A vue3 components store",
 	"main": "lib/index.js",
 	"module": "es/index.js",
 	"types": "es/index.d.ts",
 	"keywords": [
-		"yy-ui",
+		"yy-craft",
 		"component library",
 		"ui",
 		"vue"

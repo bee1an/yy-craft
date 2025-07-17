@@ -13,6 +13,6 @@ export const themeDir = path.resolve(pkgsDir, 'theme-chalk')
 
 export const dTypesDir = path.resolve(rootDir, './dist/types')
 
-export const dUiEsDir = path.resolve(rootDir, './dist/yy-ui/es')
+export const dUiEsDir = path.resolve(rootDir, './dist/yy-craft/es')
 
-export const dUiLibDir = path.resolve(rootDir, './dist/yy-ui/lib')
+export const dUiLibDir = path.resolve(rootDir, './dist/yy-craft/lib')

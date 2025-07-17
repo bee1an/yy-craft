@@ -11,14 +11,14 @@ fs.readdirSync(dTypesDir).forEach((file) => {
 	if (!file.endsWith('.d.ts')) return
 
 	const content = fs
-		.readFileSync(path.join(dTypesDir, 'yy-ui', file), 'utf8')
+		.readFileSync(path.join(dTypesDir, 'yy-craft', file), 'utf8')
 		.replaceAll(/\.\.\/(.*)'/g, "./$1/index'")
 
 	// 重写 dts 入口文件
 	rewriteFile(dirs, file, content)
 })
 
-dirs.forEach((dir) => removeSync(path.join(dir, 'yy-ui')))
+dirs.forEach((dir) => removeSync(path.join(dir, 'yy-craft')))
 
 function rewriteFile(dirs: string[], file: string, content: string) {
 	dirs.forEach((dir) => {

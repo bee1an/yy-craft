@@ -1,7 +1,7 @@
-import YyUi, { ConfigProvider } from '@yyui/yy-ui'
 import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { computed, defineComponent, h, toValue } from 'vue'
+import Craft, { ConfigProvider } from 'yy-craft'
 import './styles.css'
 
 const CustomLayout = defineComponent({
@@ -19,6 +19,6 @@ export default {
 	...DefaultTheme,
 	Layout: CustomLayout,
 	enhanceApp({ app }) {
-		if (!(import.meta as any).env.SSR) app.use(YyUi)
+		if (!(import.meta as any).env.SSR) app.use(Craft)
 	}
 }

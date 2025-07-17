@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useTheme } from '@yy-ui/composables/use-theme'
-import { dividerDark, dividerLight, dividerStyle } from '@yy-ui/theme-chalk/src/divider'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { useTheme } from '@yy-craft/composables/use-theme'
+import { dividerDark, dividerLight, dividerStyle } from '@yy-craft/theme-chalk/src/divider'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { computed } from 'vue'
 import { dividerProps } from './divider'
 

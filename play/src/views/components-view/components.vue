@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MenuOption } from '@yyui/yy-ui'
+import type { MenuOption } from 'yy-craft'
 import { h } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { components } from '../../router'
@@ -44,7 +44,7 @@ const defaultSelectedKeys = [route.name as string]
 				prefix
 				align-text
 				:theme-overrides="{ fontWeight: 600 }"
-				>Yy UI</yy-h2
+				>Yy Craft</yy-h2
 			>
 		</yy-layout-header>
 		<yy-layout has-sider :style="{ overflow: 'hidden' }" content-style="height: 100%">

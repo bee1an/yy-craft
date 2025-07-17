@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import YyIcon from '@yy-ui/components/icon/src/icon.vue'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import YyIcon from '@yy-craft/components/icon/src/icon.vue'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { inject } from 'vue'
 import TLoading from './icons/Loading'
 import TSwitcher from './icons/Switcher'

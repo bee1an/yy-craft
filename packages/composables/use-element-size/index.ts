@@ -1,4 +1,4 @@
-import type { ElRef } from '@yy-ui/utils/src/types'
+import type { ElRef } from '@yy-craft/utils/src/types'
 import { ref } from 'vue'
 import { type UseResizeObserverOptions, useResizeObserver } from '../use-resize-observer'
 

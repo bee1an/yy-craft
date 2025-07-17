@@ -1,4 +1,4 @@
-import { c, cB, cE, cM, cVar } from '@yy-ui/utils'
+import { c, cB, cE, cM, cVar } from '@yy-craft/utils'
 import { fadeInHeightExpandTransition } from '../transition'
 import { iconSwitchTransition } from '../transition/icon-switch.cssr'
 

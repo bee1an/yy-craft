@@ -1,4 +1,4 @@
-import { cB, cE, cM, cNotM } from '@yy-ui/utils'
+import { cB, cE, cM, cNotM } from '@yy-craft/utils'
 
 export const dividerStyle = cB(
 	'divider',

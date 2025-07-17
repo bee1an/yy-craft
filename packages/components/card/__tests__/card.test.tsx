@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { createCSSVar } from '@yy-ui/utils'
+import { createCSSVar } from '@yy-craft/utils'
 import { describe, expect, it } from 'vitest'
 import { h } from 'vue'
 import Card from '..'

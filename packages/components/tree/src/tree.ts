@@ -1,9 +1,9 @@
-import type { ScrollbarProps } from '@yy-ui/components/scrollbar/src/scrollbar'
-import type { VirtualListProps } from '@yy-ui/components/virtual-list/src/virtual-list'
-import type { TreeThemeVars } from '@yy-ui/theme-chalk'
+import type { ScrollbarProps } from '@yy-craft/components/scrollbar/src/scrollbar'
+import type { VirtualListProps } from '@yy-craft/components/virtual-list/src/virtual-list'
+import type { TreeThemeVars } from '@yy-craft/theme-chalk'
 import type { ExtractPropTypes, InjectionKey, PropType, SetupContext } from 'vue'
-import { useThemeProps } from '@yy-ui/composables'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { useThemeProps } from '@yy-craft/composables'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { treeNodeProps } from './tree-node'
 
 /** inject Bem */

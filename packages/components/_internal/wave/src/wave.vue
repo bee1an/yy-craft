@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useTheme } from '@yy-ui/composables/use-theme'
-import { waveStyle, waveTheme } from '@yy-ui/theme-chalk/src/wave'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { useTheme } from '@yy-craft/composables/use-theme'
+import { waveStyle, waveTheme } from '@yy-craft/theme-chalk/src/wave'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { computed, ref, watchEffect } from 'vue'
 import { waveProps } from './wave'
 

@@ -50,9 +50,9 @@ function getContent(name: string, withStyle: boolean, withTheme: boolean) {
 			str += 'import { computed } from "vue"\n'
 		}
 
-		str += `import { useTheme } from '@yy-ui/composables/use-theme'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { ${importsVariable} } from '@yy-ui/theme-chalk/src/${kebabCase(name)}'\n`
+		str += `import { useTheme } from '@yy-craft/composables/use-theme'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
+import { ${importsVariable} } from '@yy-craft/theme-chalk/src/${kebabCase(name)}'\n`
 
 		return str
 	}
@@ -99,8 +99,8 @@ function getConfigContent(name: string, withTheme: boolean) {
 	return `import type { ExtractPropTypes } from 'vue'
 ${
 	withTheme
-		? `import { useThemeProps } from '@yy-ui/composables/use-theme'
-import { type ${capitalize(name)}ThemeVars } from '@yy-ui/theme-chalk/src/${kebabCase(name)}'
+		? `import { useThemeProps } from '@yy-craft/composables/use-theme'
+import { type ${capitalize(name)}ThemeVars } from '@yy-craft/theme-chalk/src/${kebabCase(name)}'
 `
 		: ''
 }

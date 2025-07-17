@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils/src/with-install'
+import { withInstall } from '@yy-craft/utils/src/with-install'
 import Button from './src/button.vue'
 
 const buttonWithInstall = withInstall(Button)

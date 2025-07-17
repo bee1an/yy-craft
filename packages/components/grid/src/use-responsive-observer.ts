@@ -1,12 +1,12 @@
 import {
 	type UseEventListenerReturn,
 	useEventListener
-} from '@yy-ui/composables/use-event-listener'
+} from '@yy-craft/composables/use-event-listener'
 import {
 	type UseResizeObserverReturn,
 	useResizeObserver
-} from '@yy-ui/composables/use-resize-observer'
-import { defaultBreakpoints } from '@yy-ui/constants'
+} from '@yy-craft/composables/use-resize-observer'
+import { defaultBreakpoints } from '@yy-craft/constants'
 import { type ShallowRef, computed, nextTick, ref, watch } from 'vue'
 
 /**

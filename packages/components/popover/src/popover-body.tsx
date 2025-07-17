@@ -2,9 +2,9 @@ import {
 	type DefaultPlacement,
 	getOppositeDirection,
 	usePlacement
-} from '@yy-ui/composables/use-placement'
-import { px } from '@yy-ui/utils/src/css'
-import { getIntersection } from '@yy-ui/utils/src/tools'
+} from '@yy-craft/composables/use-placement'
+import { px } from '@yy-craft/utils/src/css'
+import { getIntersection } from '@yy-craft/utils/src/tools'
 import {
 	type ExtractPropTypes,
 	type PropType,

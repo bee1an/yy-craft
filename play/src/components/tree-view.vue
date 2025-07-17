@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { TreeOption } from '@yy-ui/components/tree/src/tree'
-import { getChildren } from '@yy-ui/components/tree/src/utils'
+import type { TreeOption } from '@yy-craft/components/tree/src/tree'
+import { getChildren } from '@yy-craft/components/tree/src/utils'
 import { inject, ref } from 'vue'
 import { t } from '../plugins'
 

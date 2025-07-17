@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMessage } from '@yy-ui/components'
+import { useMessage } from '@yy-craft/components'
 
 const { message } = useMessage()
 </script>

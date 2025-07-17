@@ -1,4 +1,4 @@
-import type { ThemeKey } from '@yy-ui/theme-chalk'
+import type { ThemeKey } from '@yy-craft/theme-chalk'
 import type { InjectionKey } from 'vue'
 
 export const providerKey = Symbol('providerKey') as InjectionKey<{

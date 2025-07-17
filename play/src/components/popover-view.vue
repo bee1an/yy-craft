@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useMessage } from '@yyui/yy-ui'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useMessage } from 'yy-craft'
 import { randomText } from '../plugins'
 
 const title = useRoute().meta.sider

@@ -1,7 +1,7 @@
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import { type PThemeVars, pDark, pLight, pStyle } from '@yy-ui/theme-chalk/src/typography'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { createKey } from '@yy-ui/utils/src/tools'
+import { useTheme, useThemeProps } from '@yy-craft/composables/use-theme'
+import { type PThemeVars, pDark, pLight, pStyle } from '@yy-craft/theme-chalk/src/typography'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
+import { createKey } from '@yy-craft/utils/src/tools'
 import { type ExtractPropTypes, type PropType, computed, defineComponent } from 'vue'
 
 export const Pprops = {

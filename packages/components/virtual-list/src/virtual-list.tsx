@@ -1,9 +1,9 @@
-import type { ScrollbarProps } from '@yy-ui/components/scrollbar/src/scrollbar'
-import type { SlotsType } from '@yy-ui/utils/src/types'
-import { useResizeObserver } from '@yy-ui/composables/use-resize-observer'
-import { useTheme } from '@yy-ui/composables/use-theme'
-import { vlStyle } from '@yy-ui/theme-chalk/src/virtual-list'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import type { ScrollbarProps } from '@yy-craft/components/scrollbar/src/scrollbar'
+import type { SlotsType } from '@yy-craft/utils/src/types'
+import { useResizeObserver } from '@yy-craft/composables/use-resize-observer'
+import { useTheme } from '@yy-craft/composables/use-theme'
+import { vlStyle } from '@yy-craft/theme-chalk/src/virtual-list'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import {
 	type ExtractPropTypes,
 	type PropType,

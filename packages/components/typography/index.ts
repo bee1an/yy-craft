@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils/src/with-install'
+import { withInstall } from '@yy-craft/utils/src/with-install'
 import A from './src/a'
 import { H1, H2, H3, H4, H5, H6 } from './src/headlines'
 import P from './src/p'

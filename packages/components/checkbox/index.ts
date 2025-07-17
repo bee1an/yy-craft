@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils/src/with-install'
+import { withInstall } from '@yy-craft/utils/src/with-install'
 import Checkbox from './src/checkbox.vue'
 
 const checkboxWithInstall = withInstall(Checkbox)

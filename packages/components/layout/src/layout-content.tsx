@@ -1,6 +1,6 @@
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import { type LayoutThemeVars, layoutDark, layoutLight } from '@yy-ui/theme-chalk/src/layout'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { useTheme, useThemeProps } from '@yy-craft/composables/use-theme'
+import { type LayoutThemeVars, layoutDark, layoutLight } from '@yy-craft/theme-chalk/src/layout'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import {
 	type ExtractPropTypes,
 	type PropType,

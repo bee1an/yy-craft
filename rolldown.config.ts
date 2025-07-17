@@ -10,7 +10,7 @@ import VueMacros from 'vue-macros/rolldown'
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 const pkgDir = path.resolve(rootDir, 'packages')
-const uiDir = path.resolve(pkgDir, 'yy-ui')
+const uiDir = path.resolve(pkgDir, 'yy-craft')
 
 const inputs = Object.fromEntries(
 	fs
@@ -30,17 +30,17 @@ const plugins = [
 	}),
 	copy({
 		targets: [
-			{ src: 'packages/yy-ui/package.json', dest: 'dist/yy-ui' },
-			{ src: 'README.md', dest: 'dist/yy-ui' }
+			{ src: 'packages/yy-craft/package.json', dest: 'dist/yy-craft' },
+			{ src: 'README.md', dest: 'dist/yy-craft' }
 		]
 	}),
 	dts({
-		outDir: ['dist/yy-ui/es', 'dist/yy-ui/lib', 'dist/types'],
+		outDir: ['dist/yy-craft/es', 'dist/yy-craft/lib', 'dist/types'],
 		include: ['packages'],
 		compilerOptions: {
 			sourceMap: false,
 			paths: {
-				'@yy-ui/*': ['packages/*'],
+				'@yy-craft/*': ['packages/*'],
 				csstype: ['node_modules/csstype']
 			}
 		},
@@ -58,13 +58,13 @@ export default defineConfig([
 		output: [
 			{
 				format: 'es',
-				dir: 'dist/yy-ui/es',
+				dir: 'dist/yy-craft/es',
 				preserveModules: true,
 				preserveModulesRoot: path.resolve('packages')
 			},
 			{
 				format: 'cjs',
-				dir: 'dist/yy-ui/lib',
+				dir: 'dist/yy-craft/lib',
 				preserveModules: true,
 				preserveModulesRoot: path.resolve('packages'),
 				exports: 'named'

@@ -1,13 +1,13 @@
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import { zindexable } from '@yy-ui/directives/src/_internal/zindexable'
-import { clickOutside } from '@yy-ui/directives/src/click-outside'
+import { useTheme, useThemeProps } from '@yy-craft/composables/use-theme'
+import { zindexable } from '@yy-craft/directives/src/_internal/zindexable'
+import { clickOutside } from '@yy-craft/directives/src/click-outside'
 import {
 	type PopoverThemeVars,
 	popoverDark,
 	popoverLight,
 	popoverStyle
-} from '@yy-ui/theme-chalk/src/popover'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+} from '@yy-craft/theme-chalk/src/popover'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import {
 	type ExtractPropTypes,
 	type PropType,

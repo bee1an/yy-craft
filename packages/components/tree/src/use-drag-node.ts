@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 import type { TreeData, TreeEmits, TreeProps } from './tree'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { findParentNode, findTreeNodeWrapper, getChildren, isAncestorNode } from './utils'
 
 /** 缩进到内容的距离, 用于判断是否drag到缩进 */

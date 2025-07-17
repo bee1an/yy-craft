@@ -1,4 +1,4 @@
-import { cB } from '@yy-ui/utils/src/cssr'
+import { cB } from '@yy-craft/utils/src/cssr'
 
 export const iconStyle = cB('icon', () => {
 	return {

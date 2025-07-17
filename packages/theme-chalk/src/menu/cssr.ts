@@ -1,4 +1,4 @@
-import { c, cB, cE, cM, cNotM, cVar } from '@yy-ui/utils'
+import { c, cB, cE, cM, cNotM, cVar } from '@yy-craft/utils'
 import { fadeInHeightExpandTransition } from '../transition'
 
 export const menuStyle = c(null, [

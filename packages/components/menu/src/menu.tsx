@@ -1,9 +1,9 @@
-import { Icon } from '@yy-ui/components/icon'
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import { type MenuThemeVars, menuDark, menuLight, menuStyle } from '@yy-ui/theme-chalk/src/menu'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { depx, px } from '@yy-ui/utils/src/css'
-import { createKey } from '@yy-ui/utils/src/tools'
+import { Icon } from '@yy-craft/components/icon'
+import { useTheme, useThemeProps } from '@yy-craft/composables/use-theme'
+import { type MenuThemeVars, menuDark, menuLight, menuStyle } from '@yy-craft/theme-chalk/src/menu'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
+import { depx, px } from '@yy-craft/utils/src/css'
+import { createKey } from '@yy-craft/utils/src/tools'
 import {
 	type ExtractPropTypes,
 	type PropType,

@@ -9,12 +9,12 @@
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-green" alt="License"/>
   </a>
-  <a href="https://github.com/bee1an/yy-ui/tree/dev">
+  <a href="https://github.com/bee1an/yy-craft/tree/dev">
     <img src="https://img.shields.io/badge/Version-1.0.0--beta.2-blue" alt="Version"/>
   </a>
 </p>
 
-<p align="center">Yy UI - 一个基于 Vue3 的组件库</p>
+<p align="center">Yy Craft - 一个基于 Vue3 的组件库</p>
 
 📋 Todo List
 
@@ -35,10 +35,10 @@
 
 ## ✨ **核心特性**
 
-| 特性                   | 描述                                                                       |
-| ---------------------- | -------------------------------------------------------------------------- |
-| 🔵 **TypeScript 支持** | 所有组件源码使用 TS 开发，类型完整                                         |
-| 🎨 **主题系统**        | 支持特性：<br>• CSS 变量动态热更新<br>• 内置亮暗双主题切换（`light/dark`） |
+| 特性 | 描述 |
+| --- | --- |
+| 🔵 **TypeScript 支持** | 所有组件源码使用 TS 开发，类型完整 |
+| 🎨 **主题系统** | 支持特性：<br>• CSS 变量动态热更新<br>• 内置亮暗双主题切换（`light/dark`） |
 
 ## 🏗️ **技术架构**
 

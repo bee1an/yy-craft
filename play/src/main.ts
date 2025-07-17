@@ -1,5 +1,5 @@
-import yyUi from '@yyui/yy-ui'
 import { createApp } from 'vue'
+import YyCraft from 'yy-craft'
 
 import App from './App.vue'
 
@@ -8,6 +8,4 @@ import router from './router'
 
 const app = createApp(App)
 
-app.use(yyUi).use(plugin).use(router)
-
-app.mount('#app')
+app.use(YyCraft).use(plugin).use(router).mount('#app')

@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: Yy Ui
+  name: Yy Craft
   text: 基于 Vue 3
   tagline: 快速开发组件库
   actions:
@@ -11,10 +11,10 @@ hero:
       link: /components/button
     - theme: alt
       text: GitHub
-      link: https://github.com/bee1an/yy-ui
+      link: https://github.com/bee1an/yy-craft
   image:
-    src: /yy-ui-logo.svg
-    alt: YyUi
+    src: /yy-craft-logo.svg
+    alt: YyCraft
 
 features:
   - icon: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#56c878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-icon lucide-shield"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>

@@ -1,4 +1,4 @@
-import { commonBase } from '@yy-ui/theme-chalk'
+import { commonBase } from '@yy-craft/theme-chalk'
 
 export const commonVars = {
 	transitionDuration: commonBase.transitionDuration,

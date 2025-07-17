@@ -1,4 +1,4 @@
-import { c, cB, cE, cM } from '@yy-ui/utils'
+import { c, cB, cE, cM } from '@yy-craft/utils'
 
 export const checkboxStyle = cB(
 	'checkbox',

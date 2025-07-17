@@ -44,13 +44,13 @@ const nav = targetDirs.map((dir) => ({
 }))
 
 export default defineConfig({
-	title: 'Yy Ui',
+	title: 'Yy Craft',
 	description: 'vue3组件库',
 	themeConfig: {
-		logo: { src: '/yy-ui-logo.svg', width: 24, height: 24 },
+		logo: { src: '/yy-craft-logo.svg', width: 24, height: 24 },
 		nav,
 		sidebar,
-		socialLinks: [{ icon: 'github', link: 'https://github.com/bee1an/yy-ui' }],
+		socialLinks: [{ icon: 'github', link: 'https://github.com/bee1an/yy-craft' }],
 		outline: {
 			label: '页面导航'
 		},
@@ -61,5 +61,5 @@ export default defineConfig({
 		lightModeSwitchTitle: '切换到浅色模式',
 		darkModeSwitchTitle: '切换到深色模式'
 	},
-	head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/yy-ui-logo.svg' }]]
+	head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/yy-craft-logo.svg' }]]
 })

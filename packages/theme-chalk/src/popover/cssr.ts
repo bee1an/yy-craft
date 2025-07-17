@@ -1,4 +1,4 @@
-import { c, cB, cM, cNotM, cVar } from '@yy-ui/utils'
+import { c, cB, cM, cNotM, cVar } from '@yy-craft/utils'
 
 export const popoverStyle = c([
 	cB('popover-wrapper', {

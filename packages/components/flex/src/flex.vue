@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useTheme } from '@yy-ui/composables/use-theme'
-import { flexTheme } from '@yy-ui/theme-chalk/src/flex'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { depx, getGap } from '@yy-ui/utils/src/css'
-import { createKey } from '@yy-ui/utils/src/tools'
+import { useTheme } from '@yy-craft/composables/use-theme'
+import { flexTheme } from '@yy-craft/theme-chalk/src/flex'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
+import { depx, getGap } from '@yy-craft/utils/src/css'
+import { createKey } from '@yy-craft/utils/src/tools'
 import { computed } from 'vue'
 import { flexProps } from './flex'
 

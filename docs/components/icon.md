@@ -4,7 +4,7 @@
 
 # Icon 图标
 
-<yy-p>yy-ui 使用 xicons 图标库, <yy-text type="error">并非内置</yy-text></yy-p>
+<yy-p>yy-craft 使用 xicons 图标库, <yy-text type="error">并非内置</yy-text></yy-p>
 
 ```zsh
 pnpn install @vicons/ionicons5

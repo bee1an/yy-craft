@@ -1,11 +1,11 @@
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import { useTheme, useThemeProps } from '@yy-craft/composables/use-theme'
 import {
 	type LayoutHeaderThemeVars,
 	layoutHeaderDark,
 	layoutHeaderLight,
 	layoutHeaderStyle
-} from '@yy-ui/theme-chalk/src/layout'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+} from '@yy-craft/theme-chalk/src/layout'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { type ExtractPropTypes, computed, defineComponent } from 'vue'
 
 export const layoutHeaderProps = {

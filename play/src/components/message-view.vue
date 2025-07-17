@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { type MessageReturn, A as YyA, useMessage } from '@yyui/yy-ui'
 import { h, ref } from 'vue'
+import { type MessageReturn, A as YyA, useMessage } from 'yy-craft'
 import { randomText } from '../plugins'
 
 const { message } = useMessage()

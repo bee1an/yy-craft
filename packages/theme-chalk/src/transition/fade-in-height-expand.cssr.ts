@@ -1,4 +1,4 @@
-import { c } from '@yy-ui/utils'
+import { c } from '@yy-craft/utils'
 import { type CNode } from 'css-render'
 import { commonBase } from '../common'
 

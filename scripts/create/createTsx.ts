@@ -42,9 +42,9 @@ function getContent(name: string, withStyle: boolean, withTheme: boolean) {
 			themeVariable += `, ${name}Dark, ${name}Light, type ${capitalize(name)}ThemeVars`
 		}
 
-		str += `import { CreateNamespace } from '@yy-ui/utils'
-import { ${themeComposableVar} } from '@yy-ui/composables/use-theme'
-import { ${themeVariable} } from '@yy-ui/theme-chalk/src/${kebabCase(name)}'
+		str += `import { CreateNamespace } from '@yy-craft/utils'
+import { ${themeComposableVar} } from '@yy-craft/composables/use-theme'
+import { ${themeVariable} } from '@yy-craft/theme-chalk/src/${kebabCase(name)}'
 `
 
 		return str

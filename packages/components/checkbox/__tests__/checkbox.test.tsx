@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { CreateNamespace } from '@yy-ui/utils'
+import { CreateNamespace } from '@yy-craft/utils'
 import { describe, it } from 'vitest'
 import { expect } from 'vitest'
 import Checkbox from '..'

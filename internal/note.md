@@ -8,7 +8,7 @@
 
 **核心思想**
 
-根据 `packages/yy-ui` 的文件结构配置多模块, `packages/yy-ui` 下对应的文件引用对应的包
+根据 `packages/yy-craft` 的文件结构配置多模块, `packages/yy-craft` 下对应的文件引用对应的包
 
 **核心代码**
 
@@ -34,8 +34,8 @@ const outputs = {
 
 - [`rollup-plugin-copy`](https://github.com/vladshcherbin/rollup-plugin-copy)
 
-  - 将 `packages/yy-ui/package.json` 复制到 `dist/yy-ui/package.json`
-  - 将 `README.md` 复制到 `dist/yy-ui/README.md`
+  - 将 `packages/yy-craft/package.json` 复制到 `dist/yy-craft/package.json`
+  - 将 `README.md` 复制到 `dist/yy-craft/README.md`
 
 ##### 3. dts 生成
 
@@ -43,7 +43,7 @@ const outputs = {
 
 ```js
 {
-  outDir: ['dist/yy-ui/es', 'dist/yy-ui/lib', 'dist/types'], // 多出口
+  outDir: ['dist/yy-craft/es', 'dist/yy-craft/lib', 'dist/types'], // 多出口
   include: ['packages'], // 仅生成 packages
   insertTypesEntry: true, // 根据rollup入口生成dts入口
 }
@@ -71,6 +71,6 @@ const outputs = {
 
 1. 执行`pnpm i --frozen-lockfile` 该命令强制基于现有 lockfile 安装依赖（不更新 lockfile），用于确保依赖树绝对一致
 2. 执行`pnpm build`
-3. 修改 `package.json` 的版本号, 自动读取 dist/yy-ui/es/version.json 中的版本号
-4. cd `dist/yy-ui`
+3. 修改 `package.json` 的版本号, 自动读取 dist/yy-craft/es/version.json 中的版本号
+4. cd `dist/yy-craft`
 5. 执行`npm publish`

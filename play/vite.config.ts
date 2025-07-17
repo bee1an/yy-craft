@@ -18,7 +18,7 @@ export default defineConfig({
 	],
 	resolve: {
 		alias: {
-			'@yyui/yy-ui': path.resolve(__dirname, '../packages/yy-ui/index.ts')
+			'yy-craft': path.resolve(__dirname, '../packages/yy-craft/index.ts')
 		}
 	}
 })

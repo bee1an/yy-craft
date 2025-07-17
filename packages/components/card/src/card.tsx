@@ -1,9 +1,9 @@
-import type { SlotsType } from '@yy-ui/utils/src/types'
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
-import { type CardThemeVars, cardDark, cardLight, cardStyle } from '@yy-ui/theme-chalk/src/card'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { createCSSVar } from '@yy-ui/utils/src/css'
-import { createKey } from '@yy-ui/utils/src/tools'
+import type { SlotsType } from '@yy-craft/utils/src/types'
+import { useTheme, useThemeProps } from '@yy-craft/composables/use-theme'
+import { type CardThemeVars, cardDark, cardLight, cardStyle } from '@yy-craft/theme-chalk/src/card'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
+import { createCSSVar } from '@yy-craft/utils/src/css'
+import { createKey } from '@yy-craft/utils/src/tools'
 import {
 	type ExtractPropTypes,
 	type PropType,

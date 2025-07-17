@@ -1,13 +1,13 @@
-import { type DefaultPlacement } from '@yy-ui/composables/use-placement'
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import { type DefaultPlacement } from '@yy-craft/composables/use-placement'
+import { useTheme, useThemeProps } from '@yy-craft/composables/use-theme'
 import {
 	type DropdownThemeVars,
 	dropdownDark,
 	dropdownLight,
 	dropdownStyle
-} from '@yy-ui/theme-chalk/src/dropdown'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
-import { px } from '@yy-ui/utils/src/css'
+} from '@yy-craft/theme-chalk/src/dropdown'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
+import { px } from '@yy-craft/utils/src/css'
 import {
 	type ComputedRef,
 	type ExtractPropTypes,

@@ -1,12 +1,12 @@
-import YyIcon from '@yy-ui/components/icon'
-import { useTheme, useThemeProps } from '@yy-ui/composables/use-theme'
+import YyIcon from '@yy-craft/components/icon'
+import { useTheme, useThemeProps } from '@yy-craft/composables/use-theme'
 import {
 	type MessageThemeVars,
 	messageDark,
 	messageLight,
 	messageStyle
-} from '@yy-ui/theme-chalk/src/message'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+} from '@yy-craft/theme-chalk/src/message'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import {
 	type ExtractPropTypes,
 	type PropType,

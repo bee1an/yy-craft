@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useTheme } from '@yy-ui/composables/use-theme'
+import { useTheme } from '@yy-craft/composables/use-theme'
 import {
 	buttonDark,
 	buttonDarkColors,
 	buttonLight,
 	buttonLightColors,
 	buttonStyle
-} from '@yy-ui/theme-chalk/src/button'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+} from '@yy-craft/theme-chalk/src/button'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { computed, ref } from 'vue'
 import YWave from '../../_internal/wave/src/wave.vue'
 import { buttonEmits, buttonProps } from './button'

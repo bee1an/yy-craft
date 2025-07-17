@@ -1,4 +1,4 @@
-import { tryOnScopeDispose } from '@yy-ui/utils/src/vue'
+import { tryOnScopeDispose } from '@yy-craft/utils/src/vue'
 import { type ShallowRef, unref, watch } from 'vue'
 
 export type UseEventListenerReturn = ReturnType<typeof useEventListener>

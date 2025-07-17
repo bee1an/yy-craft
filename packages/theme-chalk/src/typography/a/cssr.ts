@@ -1,4 +1,4 @@
-import { cB, cVar } from '@yy-ui/utils'
+import { cB, cVar } from '@yy-craft/utils'
 
 export const aStyle = cB('a', {
 	cursor: 'pointer',

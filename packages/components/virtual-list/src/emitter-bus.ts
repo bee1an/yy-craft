@@ -1,4 +1,4 @@
-import { EventEmitter } from '@yy-ui/utils/src/eventEmitter'
+import { EventEmitter } from '@yy-craft/utils/src/eventEmitter'
 
 export type VirtualListEvents = {
 	/** 渲染完成 */

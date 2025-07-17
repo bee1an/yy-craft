@@ -9,7 +9,7 @@ export function getEntryContent(name: string, extension: 'vue' | 'tsx' = 'vue') 
 
 	const installVariable = `${name}WithInstall`
 
-	return `import { withInstall } from '@yy-ui/utils/src/with-install'
+	return `import { withInstall } from '@yy-craft/utils/src/with-install'
 import ${name} from './src/${kebabCase(name)}${_extension}'
 
 const ${installVariable} = withInstall(${name})

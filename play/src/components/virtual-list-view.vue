@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { VirtualListExposed } from '@yy-ui/components'
+import type { VirtualListExposed } from '@yy-craft/components'
 import { inject, ref } from 'vue'
 import { t } from '../plugins'
 

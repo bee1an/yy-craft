@@ -1,4 +1,4 @@
-import { c, cB, cM } from '@yy-ui/utils'
+import { c, cB, cM } from '@yy-craft/utils'
 import { type ExtractThemeVars, type ThemeConfig, commonBase, commonLight } from '../common'
 
 const vars = {

@@ -1,4 +1,4 @@
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import {
 	type ComputedRef,
 	type ExtractPropTypes,

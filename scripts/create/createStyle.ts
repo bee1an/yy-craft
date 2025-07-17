@@ -37,7 +37,7 @@ export * from './light'
 }
 
 function createCssrContent(name: string) {
-	return `import { cB } from '@yy-ui/utils'
+	return `import { cB } from '@yy-craft/utils'
   
 export const ${name}Style = cB('${name}', [])
 `

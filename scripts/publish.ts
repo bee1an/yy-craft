@@ -9,13 +9,13 @@ async function publish() {
 
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
-	const { default: version } = await import('../dist/yy-ui/es/version.js')
+	const { default: version } = await import('../dist/yy-craft/es/version.js')
 
-	const pkgFile = path.resolve(rootDir, './dist/yy-ui/package.json')
+	const pkgFile = path.resolve(rootDir, './dist/yy-craft/package.json')
 
 	shelljs.sed('-i', /"version"\s*:\s*"([^"]*)"/, `"version": "${version}"`, pkgFile) // 替换版本号
 
-	shelljs.cd('dist/yy-ui')
+	shelljs.cd('dist/yy-craft')
 
 	const { otp } = await prompts({
 		type: 'text',

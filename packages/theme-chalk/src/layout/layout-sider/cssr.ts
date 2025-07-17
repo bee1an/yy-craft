@@ -1,4 +1,4 @@
-import { cB, cE, cM, cVar } from '@yy-ui/utils'
+import { cB, cE, cM, cVar } from '@yy-craft/utils'
 
 export const layoutSiderStyle = cB(
 	'layout-sider',

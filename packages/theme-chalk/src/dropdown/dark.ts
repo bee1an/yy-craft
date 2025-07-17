@@ -1,4 +1,4 @@
-import { rgba } from '@yy-ui/utils'
+import { rgba } from '@yy-craft/utils'
 import { type ThemeConfig, commonDark } from '../common'
 import { commonVars } from './_common'
 

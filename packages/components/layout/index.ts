@@ -1,4 +1,4 @@
-import { withInstall } from '@yy-ui/utils/src/with-install'
+import { withInstall } from '@yy-craft/utils/src/with-install'
 import Layout from './src/layout'
 import LayoutContent from './src/layout-content'
 import LayoutFooter from './src/layout-footer'

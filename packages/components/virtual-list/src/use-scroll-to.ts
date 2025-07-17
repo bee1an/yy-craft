@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 import type { VirtualListProps } from './virtual-list'
-import { Overload } from '@yy-ui/utils/src/function-overload'
+import { Overload } from '@yy-craft/utils/src/function-overload'
 import { type VirtualListEvents, emitter } from './emitter-bus'
 
 interface ScrollToExtraOptions extends ScrollOptions {}

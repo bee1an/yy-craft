@@ -1,4 +1,4 @@
-import { cB, cE, cM } from '@yy-ui/utils'
+import { cB, cE, cM } from '@yy-craft/utils'
 
 export const vlStyle = cB(
 	'vl',

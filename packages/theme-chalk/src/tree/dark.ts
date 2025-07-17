@@ -1,4 +1,4 @@
-import { rgba } from '@yy-ui/utils'
+import { rgba } from '@yy-craft/utils'
 import { commonDark } from '../common'
 
 export const treeDark = {

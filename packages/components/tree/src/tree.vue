@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { GenericVirtualList } from '@yy-ui/components/virtual-list'
+import { GenericVirtualList } from '@yy-craft/components/virtual-list'
 // import { GenericVirtualList } from '../../virtual-list/src/virtual-list'
-import { useTheme } from '@yy-ui/composables/use-theme'
-import { treeDark, treeLight, treeStyle } from '@yy-ui/theme-chalk/src/tree'
-import { CreateNamespace } from '@yy-ui/utils/src/create'
+import { useTheme } from '@yy-craft/composables/use-theme'
+import { treeDark, treeLight, treeStyle } from '@yy-craft/theme-chalk/src/tree'
+import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { type VNode, provide, ref, useSlots, watch } from 'vue'
 import {
 	InjectBem,

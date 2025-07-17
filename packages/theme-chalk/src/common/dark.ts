@@ -69,7 +69,10 @@ const derived = {
 
 	buttonColor2: 'rgba(230, 235, 240, 0.08)',
 	buttonColor2Hover: 'rgba(230, 235, 240, 0.12)',
-	buttonColor2Pressed: 'rgba(230, 235, 240, 0.16)'
+	buttonColor2Pressed: 'rgba(230, 235, 240, 0.16)',
+
+	borderColor: '#2d2d33',
+	cardActionBg: '#2a2a2c'
 }
 
 export default derived

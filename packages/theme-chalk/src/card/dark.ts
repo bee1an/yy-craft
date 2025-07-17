@@ -13,7 +13,7 @@ export const cardDark = {
 		borderRadius: commonDark.borderRadius,
 		cardFontSize: commonDark.fontSize,
 		titleFontWeight: commonDark.fontWeightStrong,
-		actionBackgroundColor: '#fafafc'
+		actionBackgroundColor: commonDark.cardActionBg
 	}),
 	exclude: Object.keys(commonVars)
 }

@@ -11,7 +11,7 @@ const vars = {
 	borderRadius: commonLight.borderRadius,
 	cardFontSize: commonLight.fontSize,
 	titleFontWeight: commonLight.fontWeightStrong,
-	actionBackgroundColor: '#fafafc'
+	actionBackgroundColor: commonLight.cardActionBg
 }
 
 export const cardLight: ThemeConfig<typeof vars> = {

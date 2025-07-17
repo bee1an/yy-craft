@@ -1,4 +1,4 @@
-import { c, cB, cE, cM } from '@yy-craft/utils'
+import { c, cB, cE, cM, flexCenter } from '@yy-craft/utils'
 
 export const checkboxStyle = cB(
 	'checkbox',
@@ -50,6 +50,8 @@ export const checkboxStyle = cB(
 		}),
 
 		cB('checkbox-box', {
+			...flexCenter(),
+			overflow: 'hidden',
 			width: 'var(--y-checkbox-size)',
 			height: 'var(--y-checkbox-size)',
 			border: 'var(--y-checkbox-border)',

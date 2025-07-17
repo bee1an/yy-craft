@@ -2,15 +2,15 @@ import { type ExtractThemeVars, type ThemeConfig, commonLight } from '../common'
 
 const vars = {
 	checkboxBorderColorHover: commonLight.primaryColor,
-	checkboxBoxShadow: '0 0 0 2px rgb(255, 165, 0, 0.3)',
+	checkboxBoxShadow: '0 0 0 2px ' + commonLight.checkboxShadowColor,
 	checkboxSize: '14px',
 	checkboxFontSize: '14px',
 	checkboxLabelPadding: '0 5px',
 	checkboxLabelFontSize: '14px',
-	checkboxBorder: '1px solid #dcdfe6',
+	checkboxBorder: '1px solid ' + commonLight.checkboxBorderColor,
 	checkboxBorderRadius: commonLight.borderRadius,
 	checkboxIconBgColor: commonLight.primaryColor,
-	checkboxIconColor: '#ffffff',
+	checkboxIconColor: commonLight.textColor4,
 	checkboxIconTransitionTime: '0.3s',
 	transparent: commonLight.transparent,
 	checkboxShadowTransitionTime: '0.3s',

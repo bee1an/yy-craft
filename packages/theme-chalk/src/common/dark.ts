@@ -53,12 +53,13 @@ const derived = {
 	errorColor: base.errorDefault,
 	errorColorHover: base.errorHover,
 	errorColorPressed: base.errorActive,
+
 	// text color
 	textColorBase: base.neutralTextBase,
-
 	textColor1: '#D1D4D7',
 	textColor2: '#767C82',
 	textColor3: '#B9BFC4',
+	textColor4: '#000000',
 
 	bodyColor: base.neutralBody,
 	hoverColor: '#0c0c0e',
@@ -72,7 +73,10 @@ const derived = {
 	buttonColor2Pressed: 'rgba(230, 235, 240, 0.16)',
 
 	borderColor: '#2d2d33',
-	cardActionBg: '#2a2a2c'
+
+	cardActionBg: '#2a2a2c',
+	checkboxBorderColor: '#3a3d44',
+	checkboxShadowColor: 'rgba(255, 200, 100, 0.25)'
 }
 
 export default derived

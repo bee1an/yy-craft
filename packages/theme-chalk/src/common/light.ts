@@ -58,6 +58,7 @@ const derived = {
 	textColor1: '#1F2225', // 31,34,37
 	textColor2: '#333639', // 51,54,57
 	textColor3: '#767C82', // 118,124,130
+	textColor4: '#ffffff',
 
 	bodyColor: base.neutralBody,
 	hoverColor: '#f3f3f5',
@@ -79,7 +80,9 @@ const derived = {
 	boxShadow3:
 		'0 6px 16px -9px rgba(0, 0, 0, .08), 0 9px 28px 0 rgba(0, 0, 0, .05), 0 12px 48px 16px rgba(0, 0, 0, .03)',
 
-	cardActionBg: '#fafafc'
+	cardActionBg: '#fafafc',
+	checkboxBorderColor: '#dcdfe6',
+	checkboxShadowColor: 'rgb(255, 165, 0, 0.3)'
 }
 
 export default derived

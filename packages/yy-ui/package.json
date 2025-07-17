@@ -19,5 +19,6 @@
 	"dependencies": {
 		"css-render": "0.15.14",
 		"@css-render/plugin-bem": "0.15.14"
-	}
+	},
+	"sideEffects": false
 }

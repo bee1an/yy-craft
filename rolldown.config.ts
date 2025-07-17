@@ -1,16 +1,12 @@
 import fs from 'node:fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import resolve from '@rollup/plugin-node-resolve'
-// @ts-check
-import { defineConfig } from 'rollup'
+import { defineConfig } from 'rolldown'
 import copy from 'rollup-plugin-copy'
-import esbuild from 'rollup-plugin-esbuild'
-import { visualizer } from 'rollup-plugin-visualizer'
-import vueJsx from 'unplugin-vue-jsx/rollup'
-import VueMacros from 'unplugin-vue-macros/rollup'
-import vue from 'unplugin-vue/rollup'
+import vueJsx from 'unplugin-vue-jsx/rolldown'
+import vue from 'unplugin-vue/rolldown'
 import dts from 'vite-plugin-dts'
+import VueMacros from 'vue-macros/rolldown'
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 const pkgDir = path.resolve(rootDir, 'packages')
@@ -24,17 +20,14 @@ const inputs = Object.fromEntries(
 )
 
 const plugins = [
+	// TODO 不知道为什么会出现这个提示
+	// (unplugin-vue-short-bind plugin) Cannot find Vue plugin (@vitejs/plugin-vue or unplugin-vue). Please make sure to add it before using Vue Macros.
 	VueMacros({
 		plugins: {
 			vue: vue(),
 			vueJsx: vueJsx()
 		}
 	}),
-	esbuild({
-		treeShaking: false,
-		minify: process.env.NODE_ENV === 'production'
-	}),
-	resolve({ extensions: ['.ts'] }),
 	copy({
 		targets: [
 			{ src: 'packages/yy-ui/package.json', dest: 'dist/yy-ui' },
@@ -56,12 +49,7 @@ const plugins = [
 ]
 
 if (process.env.NODE_ENV === 'development') {
-	plugins.push(
-		visualizer({
-			filename: './internal/stats.html',
-			open: true
-		}) // 打包分析, 置于最后
-	)
+	// TODO 打包分析
 }
 
 export default defineConfig([

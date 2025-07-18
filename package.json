@@ -49,7 +49,7 @@
 		"lint-staged": "15.5.0",
 		"prettier": "3.5.3",
 		"prompts": "2.4.2",
-		"rolldown": "1.0.0-beta.24",
+		"rolldown": "1.0.0-beta.28",
 		"rollup-plugin-copy": "3.5.0",
 		"shelljs": "0.8.5",
 		"tsx": "4.19.3",
@@ -60,7 +60,7 @@
 		"vite-plugin-dts": "4.5.0",
 		"vitest": "3.0.9",
 		"vue": "3.2.25",
-		"vue-macros": "3.0.0-beta.15",
+		"vue-macros": "3.0.0-beta.17",
 		"vue-tsc": "2.1.10"
 	},
 	"lint-staged": {

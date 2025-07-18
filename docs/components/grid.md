@@ -18,7 +18,7 @@
 
   const { width: itemWidth } = useElementSize(itemEl)
   
-  const windowWidth = ref(window.innerWidth)
+  const windowWidth = ref(0)
 
   useEventListener(window, 'resize', () => {
     windowWidth.value = window.innerWidth

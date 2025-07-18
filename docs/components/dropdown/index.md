@@ -235,7 +235,7 @@ dropdown根据包含块元素进行位置修正很困难, 所以需要提供一�
 | wrapperClass | 包裹元素类名       | any                                       | -             |
 | wrapperStyle | 包裹元素样式       | StyleValue                                | -             |
 
-## 插槽
+## Slots
 
 | 插槽名  | 说明           |
 | ------- | -------------- |

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DropdownOption } from 'yy-craft'
 import { AlarmOutline } from '@vicons/ionicons5'
-import { h, reactive } from 'vue'
+import { h, ref } from 'vue'
 
 const basicMenuOptions: DropdownOption[] = [
 	{
@@ -67,7 +67,7 @@ const basicMenuOptions: DropdownOption[] = [
 	}
 ]
 
-const selectedKeys = reactive(['什么都没有1'])
+const selectedKeys = ref(['什么都没有1'])
 </script>
 
 <template>

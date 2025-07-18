@@ -29,6 +29,7 @@ export const popoverStyle = c([
 				cB('popover-content', {
 					position: 'relative',
 					padding: cVar('padding'),
+					boxSizing: 'border-box',
 					backgroundColor: cVar('backgroundColor'),
 					borderRadius: cVar('borderRadius')
 				})

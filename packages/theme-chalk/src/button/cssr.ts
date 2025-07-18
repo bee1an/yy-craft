@@ -12,6 +12,7 @@ export const buttonStyle = c([
 			height: 'var(--y-button-height)',
 			padding: 'var(--y-button-padding)',
 			border: 'var(--y-button-border)',
+			boxSizing: 'border-box',
 			borderRadius: 'var(--y-button-border-radius)',
 			fontSize: 'var(--y-button-font-size)',
 			cursor: 'pointer',

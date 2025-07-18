@@ -46,7 +46,8 @@ export const checkboxStyle = cB(
 
 		cE('label', {
 			padding: 'var(--y-checkbox-label-padding)',
-			fontSize: 'var(--y-checkbox-label-font-size)'
+			fontSize: 'var(--y-checkbox-label-font-size)',
+			boxSizing: 'border-box'
 		}),
 
 		cB('checkbox-box', {
@@ -55,6 +56,7 @@ export const checkboxStyle = cB(
 			width: 'var(--y-checkbox-size)',
 			height: 'var(--y-checkbox-size)',
 			border: 'var(--y-checkbox-border)',
+			boxSizing: 'border-box',
 			borderRadius: 'var(--y-checkbox-border-radius)',
 			transition:
 				'box-shadow var(--y-checkbox-shadow-transition-time) var(--y-cubic-bezier-ease-in-out), border-color var(--y-checkbox-shadow-transition-time) var(--y-cubic-bezier-ease-in-out)'

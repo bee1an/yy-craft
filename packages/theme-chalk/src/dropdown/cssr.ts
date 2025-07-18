@@ -25,6 +25,7 @@ export const dropdownStyle = cB('dropdown', { ...popoverWrapperStyle, position: 
 		cB('popover-content', {
 			position: 'relative',
 			padding: cVar('padding'),
+			boxSizing: 'border-box',
 			backgroundColor: cVar('backgroundColor'),
 			borderRadius: cVar('borderRadius')
 		}),
@@ -69,6 +70,7 @@ export const dropdownStyle = cB('dropdown', { ...popoverWrapperStyle, position: 
 				cE('content-icon', {
 					fontSize: cVar('iconSize'),
 					padding: cVar('iconPadding'),
+					boxSizing: 'content-box',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
@@ -117,6 +119,7 @@ export const dropdownStyle = cB('dropdown', { ...popoverWrapperStyle, position: 
 					fontSize: cVar('iconSize'),
 					padding: cVar('expandIconPadding'),
 					paddingRight: 0,
+					boxSizing: 'content-box',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center'

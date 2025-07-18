@@ -30,7 +30,8 @@ export const headlineStyle = cB(
 		cM(
 			'prefix-align',
 			{
-				paddingLeft: cVar('prefixLeft')
+				paddingLeft: cVar('prefixLeft'),
+				boxSizing: 'border-box'
 			},
 			[
 				c('&::before', {

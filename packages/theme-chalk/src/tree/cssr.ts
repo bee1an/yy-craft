@@ -10,7 +10,8 @@ export const treeStyle = c([
 		}
 	}),
 	cB('tree-node-wrapper', {
-		padding: 'var(--y-tree-wrapper-padding)'
+		padding: 'var(--y-tree-wrapper-padding)',
+		boxSizing: 'border-box'
 	}),
 	cB(
 		'tree-node',
@@ -19,6 +20,7 @@ export const treeStyle = c([
 			display: 'flex',
 			alignItems: 'center',
 			padding: 'var(--y-tree-padding)',
+			boxSizing: 'border-box',
 			cursor: 'pointer'
 		},
 		[
@@ -33,7 +35,8 @@ export const treeStyle = c([
 					right: '0',
 					top: '0',
 					bottom: '0',
-					border: 'var(--y-tree-border)'
+					border: 'var(--y-tree-border)',
+					boxSizing: 'border-box'
 				},
 				[
 					cM('bottom', {
@@ -42,6 +45,7 @@ export const treeStyle = c([
 						right: '0',
 						height: 'var(--y-tree-bottom-border-height)',
 						border: 'unset',
+						boxSizing: 'border-box',
 						backgroundColor: 'var(--y-tree-bottom-border-background-color)'
 					})
 				]

@@ -8,7 +8,8 @@ export const dividerStyle = cB(
 	[
 		cE('line', {
 			flex: 1,
-			borderTop: '1px var(--y-divider-border-style,solid) var(--y-border-color)'
+			borderTop: '1px var(--y-divider-border-style,solid) var(--y-border-color)',
+			boxSizing: 'border-box'
 		}),
 		cE('text', {
 			margin: '0 12px',
@@ -31,7 +32,8 @@ export const dividerStyle = cB(
 			},
 			[
 				cE('line', {
-					borderLeft: '1px var(--y-divider-border-style,solid) var(--y-border-color)'
+					borderLeft: '1px var(--y-divider-border-style,solid) var(--y-border-color)',
+					boxSizing: 'border-box'
 				}),
 				cE('text', {
 					margin: '4px 0'

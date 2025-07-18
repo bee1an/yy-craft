@@ -16,7 +16,8 @@ export const cardStyle = cB(
 	},
 	[
 		cM('bordered', {
-			border: '1px solid ' + cVar('borderColor')
+			border: '1px solid ' + cVar('borderColor'),
+			boxSizing: 'border-box'
 		}),
 
 		cM('hoverable', [
@@ -32,7 +33,8 @@ export const cardStyle = cB(
 					paddingLeft: 0,
 					paddingRight: 0,
 					margin: '0 ' + cVar('paddingRight') + '0 ' + cVar('paddingLeft'),
-					borderTop: '1px solid ' + cVar('borderColor')
+					borderTop: '1px solid ' + cVar('borderColor'),
+					boxSizing: 'border-box'
 				})
 			])
 		]),
@@ -40,7 +42,8 @@ export const cardStyle = cB(
 			c('>', [
 				cB('card-content', {
 					paddingTop: cVar('paddingTop'),
-					borderTop: '1px solid ' + cVar('borderColor')
+					borderTop: '1px solid ' + cVar('borderColor'),
+					boxSizing: 'border-box'
 				})
 			])
 		]),
@@ -51,7 +54,8 @@ export const cardStyle = cB(
 					paddingLeft: 0,
 					paddingRight: 0,
 					margin: '0 ' + cVar('paddingRight') + '0 ' + cVar('paddingLeft'),
-					borderTop: '1px solid ' + cVar('borderColor')
+					borderTop: '1px solid ' + cVar('borderColor'),
+					boxSizing: 'border-box'
 				})
 			])
 		]),
@@ -59,14 +63,16 @@ export const cardStyle = cB(
 			c('>', [
 				cB('card-footer', {
 					paddingTop: cVar('paddingTop'),
-					borderTop: '1px solid ' + cVar('borderColor')
+					borderTop: '1px solid ' + cVar('borderColor'),
+					boxSizing: 'border-box'
 				})
 			])
 		]),
 		cM('action-segmented', [
 			c('>', [
 				cB('card-action', {
-					borderTop: '1px solid ' + cVar('borderColor')
+					borderTop: '1px solid ' + cVar('borderColor'),
+					boxSizing: 'border-box'
 				})
 			])
 		]),
@@ -86,7 +92,8 @@ export const cardStyle = cB(
 					justifyContent: 'space-between',
 					padding: `${cVar('paddingTop')} ${cVar('paddingRight')} ${cVar(
 						'paddingBottom'
-					)} ${cVar('paddingLeft')}`
+					)} ${cVar('paddingLeft')}`,
+					boxSizing: 'border-box'
 				},
 				[
 					cE('title', {
@@ -97,18 +104,21 @@ export const cardStyle = cB(
 			),
 
 			cB('card-content', {
-				padding: `0 ${cVar('paddingRight')} ${cVar('paddingBottom')} ${cVar('paddingLeft')}`
+				padding: `0 ${cVar('paddingRight')} ${cVar('paddingBottom')} ${cVar('paddingLeft')}`,
+				boxSizing: 'border-box'
 			}),
 
 			cB('card-footer', {
-				padding: `0 ${cVar('paddingRight')} ${cVar('paddingBottom')} ${cVar('paddingLeft')}`
+				padding: `0 ${cVar('paddingRight')} ${cVar('paddingBottom')} ${cVar('paddingLeft')}`,
+				boxSizing: 'border-box'
 			}),
 
 			cB('card-action', {
 				padding: `${cVar('paddingTop')} ${cVar('paddingRight')} ${cVar(
 					'paddingBottom'
 				)} ${cVar('paddingLeft')}`,
-				backgroundColor: cVar('actionBackgroundColor')
+				backgroundColor: cVar('actionBackgroundColor'),
+				boxSizing: 'border-box'
 			})
 		])
 	]

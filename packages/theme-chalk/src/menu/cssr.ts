@@ -10,7 +10,7 @@ export const menuStyle = c(null, [
 		},
 		[
 			cM('collapsed', [
-				cB('menu-item', { paddingRight: '0px' }, [
+				cB('menu-item', { paddingRight: '0px', boxSizing: 'border-box' }, [
 					// cE('content-main', { opacity: 0 }),
 					cE('content-expand', { opacity: 0 })
 				])

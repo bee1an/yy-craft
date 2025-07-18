@@ -16,7 +16,6 @@ const CustomLayout = defineComponent({
 })
 
 export default {
-	...DefaultTheme,
 	Layout: CustomLayout,
 	enhanceApp({ app }) {
 		if (!(import.meta as any).env.SSR) app.use(Craft)

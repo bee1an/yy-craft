@@ -1,4 +1,4 @@
-import { cB, cE, cM, cVar } from '@yy-craft/utils'
+import { cB, cE, cM, cVar, flexCenter } from '@yy-craft/utils'
 
 export const layoutSiderStyle = cB(
 	'layout-sider',
@@ -39,6 +39,7 @@ export const layoutSiderStyle = cB(
 		cE(
 			'collapsed-trigger',
 			{
+				...flexCenter(),
 				position: 'absolute',
 				top: '50%',
 				right: 0,

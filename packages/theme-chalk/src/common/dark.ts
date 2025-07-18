@@ -2,8 +2,8 @@ import commonVar from './_common'
 import lightDerived from './light'
 
 const base = {
-	neutralTextBase: '#000',
-	neutralBody: '#fff',
+	neutralTextBase: '#fff',
+	neutralBody: 'rgb(16, 16, 20)',
 	// primary
 	primaryHover: '#ffdd75',
 	primaryDefault: '#ffd25a',
@@ -63,7 +63,13 @@ const derived = {
 
 	bodyColor: base.neutralBody,
 	hoverColor: '#0c0c0e',
-	layoutFooterBg: '#121214',
+
+	layoutTextColor: '#ffffffd1',
+	layoutSidebarBg: '#18181c',
+	layoutHeaderBg: '#18181c',
+	layoutFooterBg: '#18181c',
+	layoutBorderColor: '#ffffff17',
+	layoutToggleButtonBg: '#48484e',
 
 	codeTextColor: 'rgba(255, 255, 255, 0.82)',
 	codeBackgroundColor: 'rgba(255, 255, 255, 0.12)',
@@ -73,6 +79,7 @@ const derived = {
 	buttonColor2Pressed: 'rgba(230, 235, 240, 0.16)',
 
 	borderColor: '#2d2d33',
+	borderColor1: '#1c1c23',
 
 	cardActionBg: '#2a2a2c',
 	checkboxBorderColor: '#3a3d44',

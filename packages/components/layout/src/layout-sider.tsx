@@ -18,6 +18,7 @@ import {
 	watch
 } from 'vue'
 import { YBaseCollapsed } from '../../_internal/icons'
+import YyIcon from '../../icon'
 import YyScrollbar from '../../scrollbar'
 
 export const layoutSiderProps = {
@@ -163,7 +164,9 @@ export default defineComponent({
 						}}
 						onClick={toggleHandler}
 					>
-						<YBaseCollapsed></YBaseCollapsed>
+						<YyIcon size={24}>
+							<YBaseCollapsed></YBaseCollapsed>
+						</YyIcon>
 					</div>
 				)}
 			</aside>

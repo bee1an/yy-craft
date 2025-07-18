@@ -16,6 +16,8 @@ export const useResizeObserver = (
 	/**  */
 	options: UseResizeObserverOptions = {}
 ) => {
+	if (import.meta.env.SSR) return () => null
+
 	const resizeObserver = new ResizeObserver(onResize)
 
 	const cleanups: Function[] = []

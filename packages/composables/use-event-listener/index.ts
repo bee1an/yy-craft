@@ -23,6 +23,8 @@ export function useEventListener(
 	listener: EventListenerOrEventListenerObject,
 	options?: boolean | AddEventListenerOptions
 ) {
+	if (import.meta.env.SSR) return () => null
+
 	const cleanups: Function[] = []
 	const cleanup = () => {
 		cleanups.forEach((fn) => fn())

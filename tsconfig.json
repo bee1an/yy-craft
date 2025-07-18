@@ -21,7 +21,7 @@
 		// "jsxFragmentFactory": "Fragment",
 		// "jsxImportSource": "vue",
 		"verbatimModuleSyntax": true,
-		"types": ["vue-macros/macros-global"],
+		"types": ["vue-macros/macros-global", "vite/client"],
 		"preserveSymlinks": true
 	},
 	"exclude": ["node_modules", "**/__tests__", "dist/**"] // 排除文件

@@ -4,7 +4,7 @@ import { commonVars } from '../layout/_common'
 const vars = {
 	...commonVars,
 	textColor: commonLight.textColor2,
-	backgroundColor: commonLight.layoutFooterBg,
+	backgroundColor: commonLight.bgColor1,
 	borderColor: commonLight.borderColor1
 }
 

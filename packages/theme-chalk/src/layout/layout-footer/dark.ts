@@ -5,8 +5,8 @@ export const layoutFooterDark = {
 	name: 'layoutFooter',
 	vars: () => ({
 		...commonVars,
-		textColor: commonDark.layoutTextColor,
-		backgroundColor: commonDark.layoutFooterBg,
-		borderColor: commonDark.layoutBorderColor
+		textColor: commonDark.textColor6,
+		backgroundColor: commonDark.bgColor1,
+		borderColor: commonDark.borderColor2
 	})
 } satisfies ThemeConfig

@@ -5,10 +5,10 @@ export const layoutSiderDark = {
 	name: 'layout-sider',
 	vars: () => ({
 		...commonVars,
-		textColor: commonDark.layoutTextColor,
-		backgroundColor: commonDark.layoutSidebarBg,
-		borderColor: commonDark.layoutBorderColor,
-		collapsedTriggerBackgroundColor: commonDark.layoutToggleButtonBg,
+		textColor: commonDark.textColor6,
+		backgroundColor: commonDark.bgColor1,
+		borderColor: commonDark.borderColor2,
+		collapsedTriggerBackgroundColor: commonDark.bgColor3,
 		collapsedTriggerBorderColor: '#ffffff17'
 	})
 } satisfies ThemeConfig

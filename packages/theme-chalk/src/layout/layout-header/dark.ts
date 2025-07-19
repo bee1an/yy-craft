@@ -5,8 +5,8 @@ export const layoutHeaderDark = {
 	name: 'layout-header',
 	vars: () => ({
 		...commonVars,
-		textColor: commonDark.layoutTextColor,
-		backgroundColor: commonDark.layoutHeaderBg,
-		borderColor: commonDark.layoutBorderColor
+		textColor: commonDark.textColor6,
+		backgroundColor: commonDark.bgColor1,
+		borderColor: commonDark.borderColor2
 	})
 } satisfies ThemeConfig

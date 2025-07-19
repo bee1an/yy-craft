@@ -60,16 +60,15 @@ const derived = {
 	textColor2: '#767C82',
 	textColor3: '#B9BFC4',
 	textColor4: '#000000',
+	textColor5: '#ffffff85',
+	textColor6: '#ffffffd1',
 
 	bodyColor: base.neutralBody,
 	hoverColor: '#0c0c0e',
 
-	layoutTextColor: '#ffffffd1',
-	layoutSidebarBg: '#18181c',
-	layoutHeaderBg: '#18181c',
-	layoutFooterBg: '#18181c',
-	layoutBorderColor: '#ffffff17',
-	layoutToggleButtonBg: '#48484e',
+	bgColor1: '#18181c',
+	bgColor2: '#ffffff17',
+	bgColor3: '#48484e',
 
 	codeTextColor: 'rgba(255, 255, 255, 0.82)',
 	codeBackgroundColor: 'rgba(255, 255, 255, 0.12)',
@@ -80,6 +79,7 @@ const derived = {
 
 	borderColor: '#2d2d33',
 	borderColor1: '#1c1c23',
+	borderColor2: '#ffffff17',
 
 	cardActionBg: '#2a2a2c',
 	checkboxBorderColor: '#3a3d44',

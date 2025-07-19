@@ -4,9 +4,9 @@ import { commonVars } from './_common'
 const vars = {
 	...commonVars,
 	textColor: commonLight.textColor2,
-	backgroundColor: commonLight.layoutSidebarBg,
+	backgroundColor: commonLight.bodyColor,
 	borderColor: commonLight.borderColor1,
-	collapsedTriggerBackgroundColor: commonLight.layoutSidebarBg,
+	collapsedTriggerBackgroundColor: commonLight.bodyColor,
 	collapsedTriggerBorderColor: commonLight.borderColor1
 }
 

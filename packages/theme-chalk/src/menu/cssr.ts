@@ -23,7 +23,6 @@ export const menuStyle = c(null, [
 					width: '100%',
 					display: 'flex',
 					alignItems: 'center',
-					backgroundColor: cVar('backgroundColor'),
 					borderRadius: cVar('borderRadius'),
 					marginTop: cVar('marginTop'),
 					color: cVar('textColor'),

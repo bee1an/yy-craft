@@ -7,11 +7,10 @@ export const menuDark = {
 	vars: () => ({
 		...commonVars,
 		..._common,
-		backgroundColor: commonDark.bodyColor,
-		backgroundColorHover: commonDark.hoverColor,
-		backgroundColorSelected: rgba(commonDark.primaryColor, 0.1),
-		textColor: commonDark.textColor2,
+		backgroundColorHover: commonDark.bgColor2,
+		backgroundColorSelected: rgba(commonDark.primaryColor, 0.3),
+		textColor: commonDark.textColor1,
 		textColorSelected: commonDark.primaryColor,
-		groupTextColor: commonDark.textColor3
+		groupTextColor: commonDark.textColor5
 	})
 } satisfies ThemeConfig

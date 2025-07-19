@@ -5,7 +5,6 @@ import _common, { commonVars } from './_common'
 const vars = {
 	...commonVars,
 	..._common,
-	backgroundColor: commonLight.bodyColor,
 	backgroundColorHover: commonLight.hoverColor,
 	backgroundColorSelected: rgba(commonLight.primaryColor, 0.1),
 	textColor: commonLight.textColor2,

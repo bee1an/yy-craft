@@ -1,4 +1,12 @@
-import { type AppContext, type Component, type VNode, h, reactive, render } from 'vue'
+import {
+	type AppContext,
+	type Component,
+	type VNode,
+	getCurrentInstance,
+	h,
+	reactive,
+	render
+} from 'vue'
 
 export type VNodeProviderInstance = ReturnType<typeof useVNodeProvider>
 
@@ -35,6 +43,7 @@ export const useVNodeProvider = (
 		...props,
 		children: childrenFactoy
 	})
+
 	context && (providerVNode.appContext = context)
 	render(providerVNode, borrower)
 

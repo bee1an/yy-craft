@@ -5,8 +5,8 @@ export const messageDark: ThemeConfig = {
 	name: 'message',
 	vars: () => ({
 		...commonVars,
-		textColor: commonDark.textColor2,
-		backgroundColor: commonDark.bodyColor,
+		textColor: commonDark.textColor1,
+		backgroundColor: commonDark.bgColor3,
 		boxShadow: commonDark.boxShadow2,
 		successIconColor: commonDark.successColor,
 		warningIconColor: commonDark.warningColor,

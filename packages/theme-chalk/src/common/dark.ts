@@ -83,7 +83,10 @@ const derived = {
 
 	cardActionBg: '#2a2a2c',
 	checkboxBorderColor: '#3a3d44',
-	checkboxShadowColor: 'rgba(255, 200, 100, 0.25)'
+	checkboxShadowColor: 'rgba(255, 200, 100, 0.25)',
+
+	boxShadow2:
+		'0 3px 6px -4px rgba(0, 0, 0, .24), 0 6px 12px 0 rgba(0, 0, 0, .16), 0 9px 18px 8px rgba(0, 0, 0, .10)'
 }
 
 export default derived

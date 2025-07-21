@@ -162,28 +162,8 @@ import demo10 from './demo10.vue'
 ## 设置包裹元素
 
 <yy-p>
-  使用一个元素包裹触发器, 内容将会根据这个包裹元素定位,
-  <yy-text type="error">这会破坏原有的dom结构, </yy-text>
-  但当你的祖先元素是
-  <yy-a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">包含块</yy-a>
-  元素时这将很好用
+dropdown基于popover, <yy-a href="/components/popover#设置包裹元素">详情</yy-a>
 </yy-p>
-
-<yy-p>
-  提供这个prop的原因是当你需要将下拉框挂载到包含块元素不是body时, 这时计算的位置会有问题
-</yy-p>
-
-<yy-p>
-dropdown基于popover, 会根据触发器在页面中的位置进行定位, 但是如果内容元素的包含块元素不是body, 那么计算的位置就会错误
-</yy-p>
-
-<yy-p>
-dropdown根据包含块元素进行位置修正很困难, 所以需要提供一个包裹元素, 这个包裹元素是一个包含块元素, 再根据这个包裹元素进行定位修正
-</yy-p>
-
-<yy-p>你可能需要 <yy-text code>wrapper-class</yy-text> 和 <yy-text code>wrapper-style</yy-text> 来定义包裹元素的样式</yy-p>
-
-<yy-p><yy-text type="warning">不要在to不为false时使用, 这将没有任何意义</yy-text></yy-p>
 
 <demo7 />
 

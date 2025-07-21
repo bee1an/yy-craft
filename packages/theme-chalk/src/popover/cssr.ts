@@ -7,7 +7,7 @@ export const popoverStyle = c([
 
 	cB('popover', [
 		cNotM(
-			'row',
+			'raw',
 			{
 				boxShadow: cVar('boxShadow'),
 				borderRadius: cVar('borderRadius'),

@@ -1,21 +1,14 @@
 import { rgba } from '@yy-craft/utils'
 import { commonDark } from '../common'
+import { commonVars } from './_common'
 
 export const treeDark = {
 	name: 'tree',
 	vars: () => ({
-		treeWrapperPadding: '2px 0',
-		treePadding: '1px 0',
-		treeBackgroundColorHover: '#f5f5f5',
+		...commonVars,
+		treeBackgroundColorHover: commonDark.bgColor2,
 		treeBorder: '2px solid ' + commonDark.primaryColor,
-		treeBottomBorderPos: '-4px',
-		treeBottomBorderHeight: '2px',
 		treeBottomBorderBackgroundColor: commonDark.primaryColor,
-		treeTextFontSize: '14px',
-		treeExpandedIconRotate: '90deg',
-		treeSelectedBackgroundColor: rgba(commonDark.primaryColor, 0.1),
-		treeIndentSize: '21px',
-		treeIconSize: '24px',
-		treeIconTransitionTime: '0.3s'
+		treeSelectedBackgroundColor: rgba(commonDark.primaryColor, 0.3)
 	})
 }

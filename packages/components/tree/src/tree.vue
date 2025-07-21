@@ -38,9 +38,6 @@ watch(
 const tree = ref<TreeData[]>([])
 // 展开节点(数据扁平化)
 const createTree = (data: TreeOption[], level = 0) => {
-	if (!level) {
-		console.log('createTree')
-	}
 	const flattenData: TreeData[] = []
 	const treeData: TreeData[] = []
 	const presentLevel = level + 1
@@ -77,7 +74,6 @@ watch(
 	() => props.data,
 	() => {
 		tree.value = createTree(props.data).flattenData
-		// console.log('props.data changed', tree.value)
 	},
 	{ immediate: true }
 )

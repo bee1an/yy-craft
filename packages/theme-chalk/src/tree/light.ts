@@ -1,20 +1,13 @@
 import { rgba } from '@yy-craft/utils'
 import { type ExtractThemeVars, type ThemeConfig, commonLight } from '../common'
+import { commonVars } from './_common'
 
 const vars = {
-	treeWrapperPadding: '2px 0',
-	treePadding: '1px 0',
+	...commonVars,
 	treeBackgroundColorHover: '#f5f5f5',
 	treeBorder: '2px solid ' + commonLight.primaryColor,
-	treeBottomBorderPos: '-4px',
-	treeBottomBorderHeight: '2px',
 	treeBottomBorderBackgroundColor: commonLight.primaryColor,
-	treeTextFontSize: '14px',
-	treeExpandedIconRotate: '90deg',
-	treeSelectedBackgroundColor: rgba(commonLight.primaryColor, 0.1),
-	treeIndentSize: '21px',
-	treeIconSize: '24px',
-	treeIconTransitionTime: '0.3s'
+	treeSelectedBackgroundColor: rgba(commonLight.primaryColor, 0.1)
 }
 
 export const treeLight: ThemeConfig<typeof vars> = {

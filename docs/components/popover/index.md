@@ -4,6 +4,8 @@
 
 <yy-p> <yy-text type="error">bug: no style scope</yy-text> </yy-p>
 
+<yy-p> <yy-text type="error">bug2: can not use manual</yy-text> </yy-p>
+
 <script setup lang="ts">
 import demo1 from './demo1.vue'
 import demo2 from './demo2.vue'

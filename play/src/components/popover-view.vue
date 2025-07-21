@@ -70,9 +70,9 @@ const { message } = useMessage()
 					</yy-card>
 
 					<yy-card title="不要基础样式">
-						<yy-p>设置<yy-text code>row=true</yy-text>不渲染基础样式</yy-p>
+						<yy-p>设置<yy-text code>raw=true</yy-text>不渲染基础样式</yy-p>
 
-						<yy-popover row :show-arrow="false">
+						<yy-popover raw :show-arrow="false">
 							<template #trigger>
 								<yy-button>点击</yy-button>
 							</template>

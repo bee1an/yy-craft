@@ -315,7 +315,7 @@ export default defineComponent({
 					wrapper
 					show-arrow={false}
 					class={bem.b('submenu').value}
-					row
+					raw
 					distance-from-trigger={5}
 				>
 					{{
@@ -330,7 +330,7 @@ export default defineComponent({
 			<YPopover
 				style={styleVars}
 				class={bem.b().value}
-				row
+				raw
 				trigger={trigger}
 				show-popover={showPopover}
 				show-arrow={showArrow}

@@ -33,7 +33,7 @@ export const popoverBodyProps = {
 	showArrow: { type: Boolean, default: true },
 
 	/** 不要样式 */
-	row: Boolean,
+	raw: Boolean,
 
 	/** 内容类名 */
 	contentClass: null as unknown as PropType<any>,
@@ -67,9 +67,9 @@ export const popoverBodyProps = {
 export type PopoverBodyProps = ExtractPropTypes<typeof popoverBodyProps>
 
 // 箭头的宽高
-const ARROWRECTLENGTH = 10
+const ARROW_RECT_LENGTH = 10
 // 箭头旋转后包围盒的宽度
-const ARROWWRAPPERRECTLENGTH = Math.sqrt(ARROWRECTLENGTH ** 2 + ARROWRECTLENGTH ** 2)
+const ARROW_WRAPPER_RECT_LENGTH = Math.sqrt(ARROW_RECT_LENGTH ** 2 + ARROW_RECT_LENGTH ** 2)
 
 export const popoverBodyEmits = {
 	mouseenter: (() => true) as (event: MouseEvent) => void,
@@ -95,11 +95,11 @@ export default defineComponent({
 			// 根据placement模拟一个矩形
 			if (props.placement.split('-').length > 0) {
 				if (props.placement.includes('top') || props.placement.includes('bottom')) {
-					w = ARROWWRAPPERRECTLENGTH + 4
+					w = ARROW_WRAPPER_RECT_LENGTH + 4
 				}
 
 				if (props.placement.includes('left') || props.placement.includes('right')) {
-					h = ARROWWRAPPERRECTLENGTH + 4
+					h = ARROW_WRAPPER_RECT_LENGTH + 4
 				}
 			}
 
@@ -184,7 +184,7 @@ export default defineComponent({
 			triggerWidth,
 			placementDirection,
 			$emit,
-			$props: { width, showArrow, row, contentClass, contentStyle, arrowClass, arrowStyle, zIndex },
+			$props: { width, showArrow, raw, contentClass, contentStyle, arrowClass, arrowStyle, zIndex },
 			$slots: { default: defaultSlot }
 		} = this
 
@@ -206,7 +206,7 @@ export default defineComponent({
 				class={[
 					bem.b().value,
 					bem.m('placement-' + placementDirection).value,
-					bem.m(row && 'row').value
+					bem.m(raw && 'raw').value
 				]}
 				style={wapperStyle}
 				ref="contentRef"

@@ -93,8 +93,8 @@ export default defineComponent({
 
 		const theme = computed(() => {
 			return {
-				light: Object.assign({}, props.row ? {} : lightVars, {}),
-				dark: Object.assign({}, props.row ? {} : darkVars, {})
+				light: Object.assign({}, props.raw ? {} : lightVars, {}),
+				dark: Object.assign({}, props.raw ? {} : darkVars, {})
 			}
 		})
 
@@ -237,7 +237,7 @@ export default defineComponent({
 				placement,
 				width,
 				showArrow,
-				row,
+				raw,
 				contentClass,
 				contentStyle,
 				arrowClass,
@@ -282,7 +282,7 @@ export default defineComponent({
 										placement,
 										width,
 										showArrow,
-										row,
+										raw,
 										contentClass,
 										contentStyle,
 										arrowClass,

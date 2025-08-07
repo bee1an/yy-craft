@@ -4,11 +4,11 @@ import Flex from './src/flex.vue'
 const flexWithInstall = withInstall(Flex)
 
 export * from './src/flex'
-export { flexWithInstall, Flex }
+export { Flex, flexWithInstall }
 export default Flex
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyFlex: typeof Flex
-	}
+  export interface GlobalComponents {
+    YyFlex: typeof Flex
+  }
 }

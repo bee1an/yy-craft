@@ -14,11 +14,11 @@ const waveRef = ref<HTMLElement | null>(null)
 
 const active = ref(false)
 
-const start = () => {
-	active.value = true
-	waveRef.value?.getAnimations().forEach((animation) => {
-		animation.currentTime = 0
-	})
+function start() {
+  active.value = true
+  waveRef.value?.getAnimations().forEach((animation) => {
+    animation.currentTime = 0
+  })
 }
 
 defineExpose({ start })
@@ -26,9 +26,9 @@ defineExpose({ start })
 const waveThemeVars = waveTheme.vars()
 
 const theme = computed(() => {
-	const vars = { ...waveThemeVars }
+  const vars = { ...waveThemeVars }
 
-	return vars
+  return vars
 })
 
 const { styleVars } = useTheme(theme, 'wave', waveStyle, props)
@@ -37,10 +37,10 @@ watchEffect(() => {})
 </script>
 
 <template>
-	<div
-		ref="waveRef"
-		:style="styleVars"
-		:class="[bem.b().value, bem.m(active && 'active').value]"
-		@animationend="active = false"
-	></div>
+  <div
+    ref="waveRef"
+    :style="styleVars"
+    :class="[bem.b().value, bem.m(active && 'active').value]"
+    @animationend="active = false"
+  />
 </template>

@@ -7,59 +7,74 @@ const targetDirs = ['components']
 
 const docsPath = new URL('..', import.meta.url).pathname
 
-const targetPaths = targetDirs.map((dir) => ({ [`/${dir}`]: path.resolve(docsPath, dir) }))
+const targetPaths = targetDirs.map(dir => ({
+  [`/${dir}`]: path.resolve(docsPath, dir),
+}))
 
 const sidebar = targetPaths.reduce(
-	(acc, cur) => {
-		for (const key in cur) {
-			const sidebarItem: { text: string; link: string }[] = []
+  (acc, cur) => {
+    for (const key in cur) {
+      const sidebarItem: { text: string, link: string }[] = []
 
-			const components = fg.sync('*', { cwd: cur[key], onlyFiles: false })
+      const components = fg.sync('*', { cwd: cur[key], onlyFiles: false })
 
-			components.forEach((component) => {
-				const isFile = component.endsWith('.md')
+      components.forEach((component) => {
+        const isFile = component.endsWith('.md')
 
-				if (isFile)
-					sidebarItem.push({
-						text: capitalize(component.replace('.md', '')),
-						link: `${key}/${component}`
-					})
-				else sidebarItem.push({ text: capitalize(component), link: `${key}/${component}/index.md` })
-			})
+        if (isFile) {
+          sidebarItem.push({
+            text: capitalize(component.replace('.md', '')),
+            link: `${key}/${component}`,
+          })
+        }
+        else {
+          sidebarItem.push({
+            text: capitalize(component),
+            link: `${key}/${component}/index.md`,
+          })
+        }
+      })
 
-			acc[key] = sidebarItem
-		}
+      acc[key] = sidebarItem
+    }
 
-		return acc
-	},
-	{} as {
-		[x: string]: { text: string; link: string }[]
-	}
+    return acc
+  },
+  {} as {
+    [x: string]: { text: string, link: string }[]
+  },
 )
 
-const nav = targetDirs.map((dir) => ({
-	text: capitalize(dir),
-	link: sidebar[`/${dir}`][0].link,
-	activeMatch: `/${dir}/`
+const nav = targetDirs.map(dir => ({
+  text: capitalize(dir),
+  link: sidebar[`/${dir}`][0].link,
+  activeMatch: `/${dir}/`,
 }))
 
 export default defineConfig({
-	title: 'Yy Craft',
-	description: 'vue3组件库',
-	themeConfig: {
-		logo: { src: '/yy-craft-logo.svg', width: 24, height: 24 },
-		nav,
-		sidebar,
-		socialLinks: [{ icon: 'github', link: 'https://github.com/bee1an/yy-craft' }],
-		outline: {
-			label: '页面导航'
-		},
-		langMenuLabel: '多语言',
-		returnToTopLabel: '回到顶部',
-		sidebarMenuLabel: '菜单',
-		darkModeSwitchLabel: '主题',
-		lightModeSwitchTitle: '切换到浅色模式',
-		darkModeSwitchTitle: '切换到深色模式'
-	},
-	head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/yy-craft-logo.svg' }]]
+  title: 'Yy Craft',
+  description: 'vue3组件库',
+  themeConfig: {
+    logo: { src: '/yy-craft-logo.svg', width: 24, height: 24 },
+    nav,
+    sidebar,
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/bee1an/yy-craft' },
+    ],
+    outline: {
+      label: '页面导航',
+    },
+    langMenuLabel: '多语言',
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
+  },
+  head: [
+    [
+      'link',
+      { rel: 'icon', type: 'image/svg+xml', href: '/yy-craft-logo.svg' },
+    ],
+  ],
 })

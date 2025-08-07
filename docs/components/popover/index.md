@@ -56,10 +56,12 @@ import demo14 from './demo14.vue'
 
 ```vue
 <template>
-	<yy-popover trigger="hover" :keep-alive-on-hover="false">
-		<template #trigger><yy-button>悬浮</yy-button></template>
-		<div>移入我我还是会隐藏</div>
-	</yy-popover>
+  <yy-popover trigger="hover" :keep-alive-on-hover="false">
+    <template #trigger>
+      <yy-button>悬浮</yy-button>
+    </template>
+    <div>移入我我还是会隐藏</div>
+  </yy-popover>
 </template>
 ```
 
@@ -255,29 +257,29 @@ import demo14 from './demo14.vue'
 
 ## Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| trigger | 触发方式 | 'click' \| 'hover' \| 'focus' \| 'manual' | 'click' |
-| placement | 弹出位置 | string | 'bottom' |
-| width | 内容宽度 width=trigger时内容宽度与触发器宽度一致 | number \| string \| 'trigger' | - |
-| showArrow | 是否显示箭头 | boolean | true |
-| raw | 是否去除默认样式 | boolean | - |
-| contentClass | 内容类名 | any | - |
-| contentStyle | 内容样式 | StyleValue | - |
-| arrowClass | 箭头类名 | any | - |
-| arrowStyle | 箭头样式 | StyleValue | - |
-| zIndex | 层级 | number | - |
-| distanceFromTrigger | 吸附元素距离触发器的距离 | number | 10 |
-| showPopover | 手动控制显示 | boolean | - |
-| keepAliveOnHover | 鼠标悬停在内容时不隐藏 (仅在 trigger=hover 时生效) | boolean | true |
-| delay | 延迟触发时间 (仅在 trigger=hover 时生效) | number | 100 |
-| duration | 延迟隐藏时间 (仅在 trigger=hover 时生效) | number | 200 |
-| to | 弹出层挂载位置 | string \| RendererElement \| boolean | 'body' |
-| wrapper | 是否使用包裹元素 | boolean | - |
-| wrapperClass | 包裹元素的类名 | string | - |
-| wrapperStyle | 包裹元素的样式 | StyleValue | - |
-| x | 手动控制位置x坐标 (仅在 trigger=manual 时生效) | number | - |
-| y | 手动控制位置y坐标 (仅在 trigger=manual 时生效) | number | - |
+| 参数                | 说明                                               | 类型                                      | 默认值   |
+| ------------------- | -------------------------------------------------- | ----------------------------------------- | -------- |
+| trigger             | 触发方式                                           | 'click' \| 'hover' \| 'focus' \| 'manual' | 'click'  |
+| placement           | 弹出位置                                           | string                                    | 'bottom' |
+| width               | 内容宽度 width=trigger时内容宽度与触发器宽度一致   | number \| string \| 'trigger'             | -        |
+| showArrow           | 是否显示箭头                                       | boolean                                   | true     |
+| raw                 | 是否去除默认样式                                   | boolean                                   | -        |
+| contentClass        | 内容类名                                           | any                                       | -        |
+| contentStyle        | 内容样式                                           | StyleValue                                | -        |
+| arrowClass          | 箭头类名                                           | any                                       | -        |
+| arrowStyle          | 箭头样式                                           | StyleValue                                | -        |
+| zIndex              | 层级                                               | number                                    | -        |
+| distanceFromTrigger | 吸附元素距离触发器的距离                           | number                                    | 10       |
+| showPopover         | 手动控制显示                                       | boolean                                   | -        |
+| keepAliveOnHover    | 鼠标悬停在内容时不隐藏 (仅在 trigger=hover 时生效) | boolean                                   | true     |
+| delay               | 延迟触发时间 (仅在 trigger=hover 时生效)           | number                                    | 100      |
+| duration            | 延迟隐藏时间 (仅在 trigger=hover 时生效)           | number                                    | 200      |
+| to                  | 弹出层挂载位置                                     | string \| RendererElement \| boolean      | 'body'   |
+| wrapper             | 是否使用包裹元素                                   | boolean                                   | -        |
+| wrapperClass        | 包裹元素的类名                                     | string                                    | -        |
+| wrapperStyle        | 包裹元素的样式                                     | StyleValue                                | -        |
+| x                   | 手动控制位置x坐标 (仅在 trigger=manual 时生效)     | number                                    | -        |
+| y                   | 手动控制位置y坐标 (仅在 trigger=manual 时生效)     | number                                    | -        |
 
 ## Events
 

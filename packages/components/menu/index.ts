@@ -3,11 +3,11 @@ import Menu from './src/menu'
 
 const menuWithInstall = withInstall(Menu)
 export * from './src/menu'
-export { menuWithInstall, Menu }
+export { Menu, menuWithInstall }
 export default Menu
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyMenu: typeof Menu
-	}
+  export interface GlobalComponents {
+    YyMenu: typeof Menu
+  }
 }

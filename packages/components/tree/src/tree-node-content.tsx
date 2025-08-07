@@ -3,16 +3,16 @@ import { InjectSlots } from './tree'
 import { treeNodeProps } from './tree-node'
 
 export default defineComponent({
-	props: {
-		node: treeNodeProps.node
-	},
+  props: {
+    node: treeNodeProps.node,
+  },
 
-	setup(props) {
-		// 获取tree组件的slots
-		const treeCtx = inject(InjectSlots)
+  setup(props) {
+    // 获取tree组件的slots
+    const treeCtx = inject(InjectSlots)
 
-		return () =>
-			// 优先使用tree组件的slots，如果没有则使用node.value
-			treeCtx?.slots.default?.({ node: props.node }) ?? props.node.value
-	}
+    return () =>
+    // 优先使用tree组件的slots，如果没有则使用node.value
+      treeCtx?.slots.default?.({ node: props.node }) ?? props.node.value
+  },
 })

@@ -3,11 +3,11 @@ import Card from './src/card'
 
 const cardWithInstall = withInstall(Card)
 export * from './src/card'
-export { cardWithInstall, Card }
+export { Card, cardWithInstall }
 export default Card
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyCard: typeof Card
-	}
+  export interface GlobalComponents {
+    YyCard: typeof Card
+  }
 }

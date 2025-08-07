@@ -17,16 +17,19 @@
 
 // 多模块入口配置
 const inputs = Object.fromEntries(
-	fs
-		.readdirSync(uiDir)
-		.filter((file) => file.endsWith('.ts')) // 找到所有ts文件, 根据ts文件生成入口
-		.map((file) => [file.substring(0, file.lastIndexOf('.')), path.resolve(uiDir, file)])
+  fs
+    .readdirSync(uiDir)
+    .filter(file => file.endsWith('.ts')) // 找到所有ts文件, 根据ts文件生成入口
+    .map(file => [
+      file.substring(0, file.lastIndexOf('.')),
+      path.resolve(uiDir, file),
+    ]),
 )
 
 // 出口核心配置
 const outputs = {
-	preserveModules: true, // 保留模块结构
-	preserveModulesRoot: path.resolve('packages') // 指定模块入口目录
+  preserveModules: true, // 保留模块结构
+  preserveModulesRoot: path.resolve('packages'), // 指定模块入口目录
 }
 ```
 
@@ -41,11 +44,11 @@ const outputs = {
 
 **核心配置**
 
-```js
+```json
 {
-  outDir: ['dist/yy-craft/es', 'dist/yy-craft/lib', 'dist/types'], // 多出口
-  include: ['packages'], // 仅生成 packages
-  insertTypesEntry: true, // 根据rollup入口生成dts入口
+  "outDir": ["dist/yy-craft/es", "dist/yy-craft/lib", "dist/types"], // 多出口
+  "include": ["packages"], // 仅生成 packages
+  "insertTypesEntry": true // 根据rollup入口生成dts入口
 }
 ```
 

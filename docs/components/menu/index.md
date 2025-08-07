@@ -35,7 +35,7 @@
 ## 默认展开
 
 <yy-p>
-  给 <yy-text code>defaultExpandedKeys</yy-text> 传递一个数组可以配置默认展开的项, 它只会在初始化时生效 
+  给 <yy-text code>defaultExpandedKeys</yy-text> 传递一个数组可以配置默认展开的项, 它只会在初始化时生效
 </yy-p>
 
 <demo3 />

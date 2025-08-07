@@ -42,8 +42,8 @@ createApp(App).use(YyCraft).mount('#app')
 
 ```js
 import { createApp } from 'vue'
+import { buttonWithInstall, create } from 'yy-craft'
 import App from './App.vue'
-import { create, buttonWithInstall } from 'yy-craft'
 
 const app = createApp(App)
 app.use(create({ pluginMakers: [buttonWithInstall] })).mount('#app')

@@ -128,36 +128,36 @@ import demo from './demo.vue'
 
 ## Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| data | 展示数据 | `TreeOption[]` | - |
-| valueField | 节点值的字段名 | `string` | 'value' |
-| keyField | 节点键的字段名 | `string` | 'key' |
-| defaultExpandedKeys | 默认展开的节点 | `string[]` | - |
-| onLoad | 加载子节点的函数 | `(node: TreeOption) => Promise<any>` | - |
-| selectable | 是否可选择 | `boolean` | false |
-| multiple | 是否可多选 | `boolean` | false |
-| selectedKeys | 选中的节点 | `string[]` | - |
-| indentWidth | 缩进宽度 | `number` | 21 |
-| draggable | 是否可拖拽 | `boolean` | false |
-| virtualScroll | 是否启用虚拟滚动 | `boolean` | false |
-| virtualListProps | 虚拟列表配置 | `{ wrapperMaxSize?: number }` | - |
-| scrollbarProps | 滚动条配置: 仅在虚拟滚动时生效 | `ScrollbarProps` | - |
+| 参数                | 说明                           | 类型                                 | 默认值  |
+| ------------------- | ------------------------------ | ------------------------------------ | ------- |
+| data                | 展示数据                       | `TreeOption[]`                       | -       |
+| valueField          | 节点值的字段名                 | `string`                             | 'value' |
+| keyField            | 节点键的字段名                 | `string`                             | 'key'   |
+| defaultExpandedKeys | 默认展开的节点                 | `string[]`                           | -       |
+| onLoad              | 加载子节点的函数               | `(node: TreeOption) => Promise<any>` | -       |
+| selectable          | 是否可选择                     | `boolean`                            | false   |
+| multiple            | 是否可多选                     | `boolean`                            | false   |
+| selectedKeys        | 选中的节点                     | `string[]`                           | -       |
+| indentWidth         | 缩进宽度                       | `number`                             | 21      |
+| draggable           | 是否可拖拽                     | `boolean`                            | false   |
+| virtualScroll       | 是否启用虚拟滚动               | `boolean`                            | false   |
+| virtualListProps    | 虚拟列表配置                   | `{ wrapperMaxSize?: number }`        | -       |
+| scrollbarProps      | 滚动条配置: 仅在虚拟滚动时生效 | `ScrollbarProps`                     | -       |
 
 ## Events
 
-| 事件名 | 说明 | 回调参数 |
-| --- | --- | --- |
-| drag | 拖拽完成时触发 | `(info: { dragNode: TreeOption, dragNodeParent: TreeOption \| null, dropNode: TreeOption \| null, position: number }) => void` |
+| 事件名 | 说明           | 回调参数                                                                                                                       |
+| ------ | -------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| drag   | 拖拽完成时触发 | `(info: { dragNode: TreeOption, dragNodeParent: TreeOption \| null, dropNode: TreeOption \| null, position: number }) => void` |
 
 ## TreeOption 数据结构
 
 ```ts
 interface TreeOption {
-	value: string | number // 节点值
-	key: string // 节点唯一标识
-	children?: TreeOption[] // 子节点
-	isLeaf?: boolean // 是否是叶子节点
-	[key: string]: any // 其他自定义属性
+  value: string | number // 节点值
+  key: string // 节点唯一标识
+  children?: TreeOption[] // 子节点
+  isLeaf?: boolean // 是否是叶子节点
+  [key: string]: any // 其他自定义属性
 }
 ```

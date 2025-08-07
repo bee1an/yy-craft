@@ -26,11 +26,13 @@ import demo from './demo.vue'
 
 ```vue
 <template>
-	<div style="height: 200px; border: 1px solid #dcdfe6">
-		<yy-scrollbar>
-			<yy-p v-for="i in 20" :key="i">这是一段测试文本 {{ i }}</yy-p>
-		</yy-scrollbar>
-	</div>
+  <div style="height: 200px; border: 1px solid #dcdfe6">
+    <yy-scrollbar>
+      <yy-p v-for="i in 20" :key="i">
+        这是一段测试文本 {{ i }}
+      </yy-p>
+    </yy-scrollbar>
+  </div>
 </template>
 ```
 
@@ -50,11 +52,13 @@ import demo from './demo.vue'
 
 ```vue
 <template>
-	<div style="height: 200px; border: 1px solid #dcdfe6">
-		<yy-scrollbar trigger="none">
-			<yy-p v-for="i in 20" :key="i">这是一段测试文本 {{ i }}</yy-p>
-		</yy-scrollbar>
-	</div>
+  <div style="height: 200px; border: 1px solid #dcdfe6">
+    <yy-scrollbar trigger="none">
+      <yy-p v-for="i in 20" :key="i">
+        这是一段测试文本 {{ i }}
+      </yy-p>
+    </yy-scrollbar>
+  </div>
 </template>
 ```
 
@@ -74,11 +78,16 @@ import demo from './demo.vue'
 
 ```vue
 <template>
-	<div style="height: 200px;">
-		<yy-scrollbar content-class="custom-content" :content-style="{ padding: '10px' }">
-			<yy-p v-for="i in 20" :key="i">这是一段测试文本 {{ i }}</yy-p>
-		</yy-scrollbar>
-	</div>
+  <div style="height: 200px;">
+    <yy-scrollbar
+      content-class="custom-content"
+      :content-style="{ padding: '10px' }"
+    >
+      <yy-p v-for="i in 20" :key="i">
+        这是一段测试文本 {{ i }}
+      </yy-p>
+    </yy-scrollbar>
+  </div>
 </template>
 ```
 

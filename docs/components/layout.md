@@ -16,11 +16,11 @@
 
 ```vue
 <template>
-	<yy-layout>
-		<yy-layout-header>Header</yy-layout-header>
-		<yy-layout-content>Content</yy-layout-content>
-		<yy-layout-footer>Footer</yy-layout-footer>
-	</yy-layout>
+  <yy-layout>
+    <yy-layout-header>Header</yy-layout-header>
+    <yy-layout-content>Content</yy-layout-content>
+    <yy-layout-footer>Footer</yy-layout-footer>
+  </yy-layout>
 </template>
 ```
 
@@ -39,10 +39,10 @@
 
 ```vue
 <template>
-	<yy-layout has-sider>
-		<yy-layout-sider>Sider</yy-layout-sider>
-		<yy-layout-content>Content</yy-layout-content>
-	</yy-layout>
+  <yy-layout has-sider>
+    <yy-layout-sider>Sider</yy-layout-sider>
+    <yy-layout-content>Content</yy-layout-content>
+  </yy-layout>
 </template>
 ```
 
@@ -57,7 +57,7 @@
   <yy-layout>
     <yy-layout-header bordered>Header 带下边框</yy-layout-header>
     <yy-layout-content>Content</yy-layout-content>
-    <yy-layout-footer bordered>Footer 带上边框</yy-layout-footer> 
+    <yy-layout-footer bordered>Footer 带上边框</yy-layout-footer>
   </yy-layout>
 </yy-layout>
 
@@ -65,14 +65,20 @@
 
 ```vue
 <template>
-	<yy-layout has-sider>
-		<yy-layout-sider bordered>Sider 带边框</yy-layout-sider>
-		<yy-layout>
-			<yy-layout-header bordered>Header 带下边框</yy-layout-header>
-			<yy-layout-content>Content</yy-layout-content>
-			<yy-layout-footer bordered>Footer 带上边框</yy-layout-footer>
-		</yy-layout>
-	</yy-layout>
+  <yy-layout has-sider>
+    <yy-layout-sider bordered>
+      Sider 带边框
+    </yy-layout-sider>
+    <yy-layout>
+      <yy-layout-header bordered>
+        Header 带下边框
+      </yy-layout-header>
+      <yy-layout-content>Content</yy-layout-content>
+      <yy-layout-footer bordered>
+        Footer 带上边框
+      </yy-layout-footer>
+    </yy-layout>
+  </yy-layout>
 </template>
 ```
 
@@ -93,12 +99,16 @@
 
 ```vue
 <template>
-	<yy-layout has-sider>
-		<yy-layout-sider width="40">Sider 带边框</yy-layout-sider>
-		<yy-layout-content>
-			<yy-text type="info">侧边栏宽度为 40px</yy-text>
-		</yy-layout-content>
-	</yy-layout>
+  <yy-layout has-sider>
+    <yy-layout-sider width="40">
+      Sider 带边框
+    </yy-layout-sider>
+    <yy-layout-content>
+      <yy-text type="info">
+        侧边栏宽度为 40px
+      </yy-text>
+    </yy-layout-content>
+  </yy-layout>
 </template>
 ```
 
@@ -119,12 +129,16 @@
 
 ```vue
 <template>
-	<yy-layout has-sider>
-		<yy-layout-sider collapsedWidth="20" width="40">Sider 带边框</yy-layout-sider>
-		<yy-layout-content>
-			<yy-text type="info">侧边栏可以折叠啦</yy-text>
-		</yy-layout-content>
-	</yy-layout>
+  <yy-layout has-sider>
+    <yy-layout-sider collapsed-width="20" width="40">
+      Sider 带边框
+    </yy-layout-sider>
+    <yy-layout-content>
+      <yy-text type="info">
+        侧边栏可以折叠啦
+      </yy-text>
+    </yy-layout-content>
+  </yy-layout>
 </template>
 ```
 
@@ -149,12 +163,16 @@
 
 ```vue
 <template>
-	<yy-layout has-sider>
-		<yy-layout-sider collapsed collapsedWidth="20" width="40">Sider 带边框</yy-layout-sider>
-		<yy-layout-content>
-			<yy-text type="info">这是一个默认收起的侧边栏</yy-text>
-		</yy-layout-content>
-	</yy-layout>
+  <yy-layout has-sider>
+    <yy-layout-sider collapsed collapsed-width="20" width="40">
+      Sider 带边框
+    </yy-layout-sider>
+    <yy-layout-content>
+      <yy-text type="info">
+        这是一个默认收起的侧边栏
+      </yy-text>
+    </yy-layout-content>
+  </yy-layout>
 </template>
 ```
 
@@ -173,14 +191,21 @@
 
 ```vue
 <template>
-	<yy-layout has-sider>
-		<yy-layout-sider collapsed collapsedWidth="20" width="40" :showCollapsedContent="false"
-			>Sider 带边框</yy-layout-sider
-		>
-		<yy-layout-content>
-			<yy-text type="info">侧边栏收起后还有宽度, 但是内容隐藏了</yy-text>
-		</yy-layout-content>
-	</yy-layout>
+  <yy-layout has-sider>
+    <yy-layout-sider
+      collapsed
+      collapsed-width="20"
+      width="40"
+      :show-collapsed-content="false"
+    >
+      Sider 带边框
+    </yy-layout-sider>
+    <yy-layout-content>
+      <yy-text type="info">
+        侧边栏收起后还有宽度, 但是内容隐藏了
+      </yy-text>
+    </yy-layout-content>
+  </yy-layout>
 </template>
 ```
 

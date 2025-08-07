@@ -4,64 +4,70 @@ import { cmpDir } from '../utils/paths'
 import { camelcase, capitalize, kebabCase } from '../utils/tools'
 import { getEntryContent } from './common'
 
-export const createTsx = (
-	name: string,
-	option?: {
-		withStyle?: boolean
-		withTheme?: boolean
-	}
-) => {
-	const withTheme = option?.withTheme ?? false
-	const withStyle = withTheme ? true : (option?.withStyle ?? false)
+export function createTsx(
+  name: string,
+  option?: {
+    withStyle?: boolean
+    withTheme?: boolean
+  },
+) {
+  const withTheme = option?.withTheme ?? false
+  const withStyle = withTheme ? true : (option?.withStyle ?? false)
 
-	const cmpPath = resolve(cmpDir, name)
-	mkdirSync(cmpPath)
+  const cmpPath = resolve(cmpDir, name)
+  mkdirSync(cmpPath)
 
-	// step 1 create entry file
-	writeFileSync(join(cmpPath, 'index.ts'), getEntryContent(camelcase(name), 'tsx'))
+  // step 1 create entry file
+  writeFileSync(
+    join(cmpPath, 'index.ts'),
+    getEntryContent(camelcase(name), 'tsx'),
+  )
 
-	// step 2 create src and tsx
-	const srcPath = join(cmpPath, 'src')
-	mkdirSync(srcPath)
-	writeFileSync(join(srcPath, `${name}.tsx`), getContent(camelcase(name), withStyle, withTheme))
+  // step 2 create src and tsx
+  const srcPath = join(cmpPath, 'src')
+  mkdirSync(srcPath)
+  writeFileSync(
+    join(srcPath, `${name}.tsx`),
+    getContent(camelcase(name), withStyle, withTheme),
+  )
 }
 
 function getContent(name: string, withStyle: boolean, withTheme: boolean) {
-	function imports() {
-		let str = ''
-		if (!withStyle && !withTheme) {
-			return str
-		}
+  function imports() {
+    let str = ''
+    if (!withStyle && !withTheme) {
+      return str
+    }
 
-		let themeComposableVar = 'useTheme'
+    let themeComposableVar = 'useTheme'
 
-		let themeVariable = `${name}Style`
+    let themeVariable = `${name}Style`
 
-		if (withTheme) {
-			themeComposableVar += `, useThemeProps`
-			themeVariable += `, ${name}Dark, ${name}Light, type ${capitalize(name)}ThemeVars`
-		}
+    if (withTheme) {
+      themeComposableVar += `, useThemeProps`
+      themeVariable += `, ${name}Dark, ${name}Light, type ${capitalize(name)}ThemeVars`
+    }
 
-		str += `import { CreateNamespace } from '@yy-craft/utils'
+    str += `import { CreateNamespace } from '@yy-craft/utils'
 import { ${themeComposableVar} } from '@yy-craft/composables/use-theme'
 import { ${themeVariable} } from '@yy-craft/theme-chalk/src/${kebabCase(name)}'
 `
 
-		return str
-	}
+    return str
+  }
 
-	function setupContent() {
-		let content = ''
-		if (!withStyle && !withTheme) {
-			return content
-		}
+  function setupContent() {
+    let content = ''
+    if (!withStyle && !withTheme) {
+      return content
+    }
 
-		content += `
+    content += `
     const bem = new CreateNamespace('${name}')
 `
 
-		if (withTheme) {
-			content += `
+    if (withTheme) {
+      content += `
     const lightVars = ${name}Light.vars()
     const darkVars = ${name}Dark.vars()
 
@@ -76,26 +82,26 @@ import { ${themeVariable} } from '@yy-craft/theme-chalk/src/${kebabCase(name)}'
 
     return { bem, styleVars }
 `
-			return content
-		}
+      return content
+    }
 
-		content += `
+    content += `
     useTheme('${name}', ${name}Style)
     return { bem } 
   `
 
-		return content
-	}
+    return content
+  }
 
-	return `import { ${withTheme ? 'computed, ' : ''}defineComponent, type ExtractPropTypes } from 'vue'
+  return `import { ${withTheme ? 'computed, ' : ''}defineComponent, type ExtractPropTypes } from 'vue'
 ${imports()}
 export const ${name}Props = ${
-		withTheme
-			? `{
+  withTheme
+    ? `{
   ...useThemeProps<${capitalize(name)}ThemeVars>()
 }`
-			: '{}'
-	}
+    : '{}'
+}
 
 export type ${capitalize(name)}Props = ExtractPropTypes<typeof ${name}Props>
 

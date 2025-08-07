@@ -4,15 +4,15 @@ import { defineConfig } from 'vitest/config'
 import VueMacros from 'vue-macros/vite'
 
 export default defineConfig({
-	plugins: [
-		VueMacros({
-			plugins: {
-				vue: vue(),
-				vueJsx: VueJsx()
-			}
-		})
-	],
-	test: {
-		environment: 'jsdom'
-	}
+  plugins: [
+    VueMacros({
+      plugins: {
+        vue: vue(),
+        vueJsx: VueJsx(),
+      },
+    }),
+  ],
+  test: {
+    environment: 'jsdom',
+  },
 })

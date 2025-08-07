@@ -2,53 +2,53 @@
 // block__element--modifier -> yy-button__element--disabled
 
 export class CreateNamespace {
-	private _prefixName!: string
+  private _prefixName!: string
 
-	get value() {
-		const value = this._prefixName
-		this._reset()
-		return value
-	}
+  get value() {
+    const value = this._prefixName
+    this._reset()
+    return value
+  }
 
-	constructor(private name: string) {
-		this._reset()
-	}
+  constructor(private name: string) {
+    this._reset()
+  }
 
-	private _reset() {
-		this._prefixName = `yy-${this.name}`
-	}
+  private _reset() {
+    this._prefixName = `yy-${this.name}`
+  }
 
-	b(blockSuffix: string = '') {
-		if (blockSuffix) {
-			this._prefixName += `-${blockSuffix}`
-		}
+  b(blockSuffix: string = '') {
+    if (blockSuffix) {
+      this._prefixName += `-${blockSuffix}`
+    }
 
-		return this
-	}
+    return this
+  }
 
-	e(element: string | boolean = '') {
-		if (!element) {
-			this._prefixName = ''
-			return this
-		}
+  e(element: string | boolean = '') {
+    if (!element) {
+      this._prefixName = ''
+      return this
+    }
 
-		this._prefixName += `__${element}`
-		return this
-	}
+    this._prefixName += `__${element}`
+    return this
+  }
 
-	m(modifier: string | boolean = '') {
-		if (!modifier) {
-			this._prefixName = ''
-			return this
-		}
+  m(modifier: string | boolean = '') {
+    if (!modifier) {
+      this._prefixName = ''
+      return this
+    }
 
-		this._prefixName += `--${modifier}`
-		return this
-	}
+    this._prefixName += `--${modifier}`
+    return this
+  }
 
-	is(name: string, state?: boolean) {
-		return state ? `is-${name}` : ''
-	}
+  is(name: string, state?: boolean) {
+    return state ? `is-${name}` : ''
+  }
 }
 
 // const bem = new CreateNamespace('button')

@@ -3,11 +3,11 @@ import Dropdown from './src/dropdown'
 
 const dropdownWithInstall = withInstall(Dropdown)
 export * from './src/dropdown'
-export { dropdownWithInstall, Dropdown }
+export { Dropdown, dropdownWithInstall }
 export default Dropdown
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyDropdown: typeof Dropdown
-	}
+  export interface GlobalComponents {
+    YyDropdown: typeof Dropdown
+  }
 }

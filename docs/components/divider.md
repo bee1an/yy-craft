@@ -12,7 +12,7 @@
 
 ```vue
 <template>
-	<yy-divider />
+  <yy-divider />
 </template>
 ```
 
@@ -26,7 +26,7 @@
 
 ```vue
 <template>
-	<yy-divider>内容</yy-divider>
+  <yy-divider>内容</yy-divider>
 </template>
 ```
 
@@ -42,9 +42,15 @@
 
 ```vue
 <template>
-	<yy-divider content-position="left">左侧</yy-divider>
-	<yy-divider content-position="center">居中</yy-divider>
-	<yy-divider content-position="right">右侧</yy-divider>
+  <yy-divider content-position="left">
+    左侧
+  </yy-divider>
+  <yy-divider content-position="center">
+    居中
+  </yy-divider>
+  <yy-divider content-position="right">
+    右侧
+  </yy-divider>
 </template>
 ```
 
@@ -60,8 +66,12 @@
 
 ```vue
 <template>
-	<yy-divider border-style="dashed">Dashed</yy-divider>
-	<yy-divider border-style="dotted">Dotted</yy-divider>
+  <yy-divider border-style="dashed">
+    Dashed
+  </yy-divider>
+  <yy-divider border-style="dotted">
+    Dotted
+  </yy-divider>
 </template>
 ```
 
@@ -77,7 +87,7 @@
 
 ```vue
 <template>
-	<yy-divider vertical />
+  <yy-divider vertical />
 </template>
 ```
 
@@ -85,8 +95,8 @@
 
 ## Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| borderStyle | 分割线样式 | 'none' \| 'hidden' \| 'dotted' \| 'dashed' \| 'solid' \| 'double' \| 'groove' \| 'ridge' \| 'inset' \| 'outset' | - |
-| contentPosition | 内容位置 | 'left' \| 'right' \| 'center' | 'center' |
-| vertical | 是否垂直 | boolean | false |
+| 参数            | 说明       | 类型                                                                                                            | 默认值   |
+| --------------- | ---------- | --------------------------------------------------------------------------------------------------------------- | -------- |
+| borderStyle     | 分割线样式 | 'none' \| 'hidden' \| 'dotted' \| 'dashed' \| 'solid' \| 'double' \| 'groove' \| 'ridge' \| 'inset' \| 'outset' | -        |
+| contentPosition | 内容位置   | 'left' \| 'right' \| 'center'                                                                                   | 'center' |
+| vertical        | 是否垂直   | boolean                                                                                                         | false    |

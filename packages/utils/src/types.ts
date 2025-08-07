@@ -10,6 +10,8 @@ export type AnyFn = (...args: any[]) => any
 export type ElRef = Readonly<ShallowRef<HTMLElement | null>>
 
 declare const SlotSymbol: unique symbol
-export type SlotsType<T extends Record<string, any> = Record<string, any>> = {
-	[SlotSymbol]?: T
+export interface SlotsType<
+  T extends Record<string, any> = Record<string, any>,
+> {
+  [SlotSymbol]?: T
 }

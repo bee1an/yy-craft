@@ -19,12 +19,12 @@
 
 ```vue
 <template>
-	<yy-config-provider theme="light">
-		<yy-button>Light Theme</yy-button>
-	</yy-config-provider>
-	<yy-config-provider theme="dark">
-		<yy-button>Dark Theme</yy-button>
-	</yy-config-provider>
+  <yy-config-provider theme="light">
+    <yy-button>Light Theme</yy-button>
+  </yy-config-provider>
+  <yy-config-provider theme="dark">
+    <yy-button>Dark Theme</yy-button>
+  </yy-config-provider>
 </template>
 ```
 
@@ -38,12 +38,12 @@
 
 ```vue
 <template>
-	<yy-config-provider theme="light">
-		<yy-button>外层 Light</yy-button>
-		<yy-config-provider theme="dark">
-			<yy-button>内层 Dark</yy-button>
-		</yy-config-provider>
-	</yy-config-provider>
+  <yy-config-provider theme="light">
+    <yy-button>外层 Light</yy-button>
+    <yy-config-provider theme="dark">
+      <yy-button>内层 Dark</yy-button>
+    </yy-config-provider>
+  </yy-config-provider>
 </template>
 ```
 

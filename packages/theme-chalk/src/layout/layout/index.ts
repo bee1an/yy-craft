@@ -1,3 +1,3 @@
 export * from './cssr'
-export * from './light'
 export * from './dark'
+export * from './light'

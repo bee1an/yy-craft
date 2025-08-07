@@ -1,24 +1,24 @@
 {
-	"name": "yy-craft",
-	"version": "0.0.0",
-	"packageManager": "pnpm@9.12.2",
-	"description": "A vue3 components store",
-	"main": "lib/index.js",
-	"module": "es/index.js",
-	"types": "es/index.d.ts",
-	"keywords": [
-		"yy-craft",
-		"component library",
-		"ui",
-		"vue"
-	],
-	"license": "MIT",
-	"peerDependencies": {
-		"vue": ">=3.2.25"
-	},
-	"dependencies": {
-		"css-render": "0.15.14",
-		"@css-render/plugin-bem": "0.15.14"
-	},
-	"sideEffects": false
+  "name": "yy-craft",
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.12.2",
+  "description": "A vue3 components store",
+  "license": "MIT",
+  "keywords": [
+    "yy-craft",
+    "component library",
+    "ui",
+    "vue"
+  ],
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "peerDependencies": {
+    "vue": ">=3.2.25"
+  },
+  "dependencies": {
+    "@css-render/plugin-bem": "0.15.14",
+    "css-render": "0.15.14"
+  }
 }

@@ -19,36 +19,36 @@ export * from './src/headlines'
 export * from './src/p'
 export * from './src/text'
 export {
-	aWithIntall,
-	A,
-	h1WithIntall,
-	H1,
-	h2WithIntall,
-	H2,
-	h3WithIntall,
-	H3,
-	h4WithIntall,
-	H4,
-	h5WithIntall,
-	H5,
-	h6WithIntall,
-	H6,
-	pWithIntall,
-	P,
-	textWithIntall,
-	Text
+  A,
+  aWithIntall,
+  H1,
+  h1WithIntall,
+  H2,
+  h2WithIntall,
+  H3,
+  h3WithIntall,
+  H4,
+  h4WithIntall,
+  H5,
+  h5WithIntall,
+  H6,
+  h6WithIntall,
+  P,
+  pWithIntall,
+  Text,
+  textWithIntall,
 }
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyA: typeof A
-		YyH1: typeof H1
-		YyH2: typeof H2
-		YyH3: typeof H3
-		YyH4: typeof H4
-		YyH5: typeof H5
-		YyH6: typeof H6
-		YyP: typeof P
-		YyText: typeof Text
-	}
+  export interface GlobalComponents {
+    YyA: typeof A
+    YyH1: typeof H1
+    YyH2: typeof H2
+    YyH3: typeof H3
+    YyH4: typeof H4
+    YyH5: typeof H5
+    YyH6: typeof H6
+    YyP: typeof P
+    YyText: typeof Text
+  }
 }

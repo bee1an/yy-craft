@@ -2,7 +2,7 @@
  * Return a string with the first character capitalized.
  */
 export function capitalize(str: string): string {
-	return str.charAt(0).toUpperCase() + str.slice(1)
+  return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
 /**
@@ -12,7 +12,7 @@ export function capitalize(str: string): string {
  * camelcase('hello-world') // helloWorld
  */
 export function camelcase(str: string): string {
-	return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase())
+  return str.replace(/-([a-z])/g, g => g[1].toUpperCase())
 }
 
 /**
@@ -22,5 +22,5 @@ export function camelcase(str: string): string {
  * kebabCase('helloWorld') // hello-world
  */
 export function kebabCase(str: string): string {
-	return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }

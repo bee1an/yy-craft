@@ -7,5 +7,5 @@ const comp = defineAsyncComponent(() => import(props.src))
 </script>
 
 <template>
-	<comp></comp>
+  <comp />
 </template>

@@ -4,11 +4,11 @@ import Checkbox from './src/checkbox.vue'
 const checkboxWithInstall = withInstall(Checkbox)
 
 export * from './src/checkbox'
-export { checkboxWithInstall, Checkbox }
+export { Checkbox, checkboxWithInstall }
 export default Checkbox
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyCheckbox: typeof Checkbox
-	}
+  export interface GlobalComponents {
+    YyCheckbox: typeof Checkbox
+  }
 }

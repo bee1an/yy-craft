@@ -1,16 +1,17 @@
-import { commonDark, type ThemeConfig } from '../common'
+import type { ThemeConfig } from '../common'
+import { commonDark } from '../common'
 import { commonVars } from './_common'
 
 const vars = {
-	...commonVars,
-	boxShadow: commonDark.boxShadow2,
-	backgroundColor: commonDark.bgColor3,
-	textColor: commonDark.textColor1
+  ...commonVars,
+  boxShadow: commonDark.boxShadow2,
+  backgroundColor: commonDark.bgColor3,
+  textColor: commonDark.textColor1,
 }
 
 export const popoverDark: ThemeConfig<typeof vars> = {
-	name: 'popover',
-	vars: () => ({
-		...vars
-	})
+  name: 'popover',
+  vars: () => ({
+    ...vars,
+  }),
 }

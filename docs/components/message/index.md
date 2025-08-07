@@ -96,8 +96,8 @@ import DemoPlacement from './demo-placement.vue'
 <yy-p><yy-text code>useMessage</yy-text> 支持一个上下文参数, 如果你全局注册了它, 那么它将会自动获取全局上下文 </yy-p>
 
 ```ts
-import { useMessage } from 'yui-vue'
 import { getCurrentInstance } from 'vue'
+import { useMessage } from 'yui-vue'
 
 const { appContext } = getCurrentInstance()
 
@@ -106,11 +106,11 @@ useMessage(appContext)
 
 ## API
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| id | 消息唯一标识 | string | - |
-| content | 消息内容 | string \| () => VNodeChild | '' |
-| type | 消息类型 | 'success' \| 'warning' \| 'error' \| 'info' \| 'loading' | - |
-| duration | 持续时间（毫秒） | number | 3000 |
-| keepAliveOnHover | 鼠标悬停时不消失 | boolean | - |
-| placement | 显示位置 | DefaultPlacement | 'top' |
+| 参数             | 说明             | 类型                                                     | 默认值 |
+| ---------------- | ---------------- | -------------------------------------------------------- | ------ |
+| id               | 消息唯一标识     | string                                                   | -      |
+| content          | 消息内容         | string \| () => VNodeChild                               | ''     |
+| type             | 消息类型         | 'success' \| 'warning' \| 'error' \| 'info' \| 'loading' | -      |
+| duration         | 持续时间（毫秒） | number                                                   | 3000   |
+| keepAliveOnHover | 鼠标悬停时不消失 | boolean                                                  | -      |
+| placement        | 显示位置         | DefaultPlacement                                         | 'top'  |

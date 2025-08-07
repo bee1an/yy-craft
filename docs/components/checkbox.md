@@ -22,11 +22,12 @@ const indeterminate = ref(false)
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
+
 const value = ref(false)
 </script>
 
 <template>
-	<yy-checkbox v-model="value" label="点我"></yy-checkbox>
+  <yy-checkbox v-model="value" label="点我" />
 </template>
 ```
 
@@ -47,14 +48,15 @@ const value = ref(false)
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
+
 const value1 = ref(false)
 const indeterminate = ref(false)
 </script>
 
 <template>
-	<yy-checkbox v-model="value1" label="点我" :indeterminate="indeterminate"></yy-checkbox>
-	<yy-checkbox v-model="value1" label="将第一个复选框设置为选中"></yy-checkbox>
-	<yy-checkbox v-model="indeterminate" label="将第一个复选框设置为部分选中"></yy-checkbox>
+  <yy-checkbox v-model="value1" label="点我" :indeterminate="indeterminate" />
+  <yy-checkbox v-model="value1" label="将第一个复选框设置为选中" />
+  <yy-checkbox v-model="indeterminate" label="将第一个复选框设置为部分选中" />
 </template>
 ```
 

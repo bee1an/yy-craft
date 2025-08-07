@@ -3,7 +3,7 @@ import type { ExtractPropTypes } from 'vue'
 import { useThemeProps } from '@yy-craft/composables/use-theme'
 
 export const waveProps = {
-	...useThemeProps<WaveThemeVars>()
+  ...useThemeProps<WaveThemeVars>(),
 }
 
 export type WaveProps = ExtractPropTypes<typeof waveProps>

@@ -17,7 +17,7 @@
   const itemEl = computed(() => gridItemRef.value?.$el)
 
   const { width: itemWidth } = useElementSize(itemEl)
-  
+
   const windowWidth = ref(0)
 
   useEventListener(window, 'resize', () => {
@@ -39,10 +39,10 @@
 
 ```vue
 <template>
-	<yy-grid :cols="2" :gap="16">
-		<yy-button>A</yy-button>
-		<yy-button>B</yy-button>
-	</yy-grid>
+  <yy-grid :cols="2" :gap="16">
+    <yy-button>A</yy-button>
+    <yy-button>B</yy-button>
+  </yy-grid>
 </template>
 ```
 
@@ -63,12 +63,12 @@
 
 ```vue
 <template>
-	<yy-grid :cols="4" :gap="[24, 8]">
-		<yy-button>A</yy-button>
-		<yy-button>B</yy-button>
-		<yy-button>C</yy-button>
-		<yy-button>D</yy-button>
-	</yy-grid>
+  <yy-grid :cols="4" :gap="[24, 8]">
+    <yy-button>A</yy-button>
+    <yy-button>B</yy-button>
+    <yy-button>C</yy-button>
+    <yy-button>D</yy-button>
+  </yy-grid>
 </template>
 ```
 
@@ -89,12 +89,12 @@
 ```json
 // 具体的标识代表的窗口尺寸
 {
-	"xs": 0, // mobile
-	"s": 640, // tablet
-	"m": 1024, // laptop s
-	"l": 1280, // laptop
-	"xl": 1536, // laptop l
-	"xxl": 1920 // normal desktop display
+  "xs": 0, // mobile
+  "s": 640, // tablet
+  "m": 1024, // laptop s
+  "l": 1280, // laptop
+  "xl": 1536, // laptop l
+  "xxl": 1920 // normal desktop display
 }
 ```
 
@@ -128,23 +128,33 @@
 
 ```vue
 <template>
-	<yy-grid cols="1 l:3 xl:4 xxl:5" :gap="8">
-		<yy-gi>
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-		<yy-gi>
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-		<yy-gi>
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-		<yy-gi>
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-		<yy-gi>
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-	</yy-grid>
+  <yy-grid cols="1 l:3 xl:4 xxl:5" :gap="8">
+    <yy-gi>
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+    <yy-gi>
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+    <yy-gi>
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+    <yy-gi>
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+    <yy-gi>
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+  </yy-grid>
 </template>
 ```
 
@@ -182,23 +192,37 @@
 
 ```vue
 <template>
-	<yy-grid cols="1 500:3" :gap="8" style="resize: horizontal; overflow: auto; max-width: 100%">
-		<yy-gi style="display: flex">
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-		<yy-gi style="display: flex">
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-		<yy-gi style="display: flex">
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-		<yy-gi style="display: flex">
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-		<yy-gi style="display: flex">
-			<yy-button style="width: 100%; padding: 0">我们是响应式的</yy-button>
-		</yy-gi>
-	</yy-grid>
+  <yy-grid
+    cols="1 500:3"
+    :gap="8"
+    style="resize: horizontal; overflow: auto; max-width: 100%"
+  >
+    <yy-gi style="display: flex">
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+    <yy-gi style="display: flex">
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+    <yy-gi style="display: flex">
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+    <yy-gi style="display: flex">
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+    <yy-gi style="display: flex">
+      <yy-button style="width: 100%; padding: 0">
+        我们是响应式的
+      </yy-button>
+    </yy-gi>
+  </yy-grid>
 </template>
 ```
 
@@ -234,23 +258,33 @@
 
 ```vue
 <template>
-	<yy-grid :cols="4" :gap="8">
-		<yy-grid-item :span="2">
-			<yy-button style="width: 100%; height: 100%; padding: 0">2列</yy-button>
-		</yy-grid-item>
-		<yy-grid-item :span="1" :offset="1">
-			<yy-button style="width: 100%; height: 100%; padding: 0">偏移1列</yy-button>
-		</yy-grid-item>
-		<yy-grid-item :span="1" :row-span="3">
-			<yy-button style="width: 100%; height: 100%; padding: 0">跨2行</yy-button>
-		</yy-grid-item>
-		<yy-grid-item :span="1" :offset="1">
-			<yy-button style="width: 100%; height: 100%; padding: 0">填充物</yy-button>
-		</yy-grid-item>
-		<yy-grid-item :span="1" :offset="1">
-			<yy-button style="width: 100%; height: 100%; padding: 0">填充物</yy-button>
-		</yy-grid-item>
-	</yy-grid>
+  <yy-grid :cols="4" :gap="8">
+    <yy-grid-item :span="2">
+      <yy-button style="width: 100%; height: 100%; padding: 0">
+        2列
+      </yy-button>
+    </yy-grid-item>
+    <yy-grid-item :span="1" :offset="1">
+      <yy-button style="width: 100%; height: 100%; padding: 0">
+        偏移1列
+      </yy-button>
+    </yy-grid-item>
+    <yy-grid-item :span="1" :row-span="3">
+      <yy-button style="width: 100%; height: 100%; padding: 0">
+        跨2行
+      </yy-button>
+    </yy-grid-item>
+    <yy-grid-item :span="1" :offset="1">
+      <yy-button style="width: 100%; height: 100%; padding: 0">
+        填充物
+      </yy-button>
+    </yy-grid-item>
+    <yy-grid-item :span="1" :offset="1">
+      <yy-button style="width: 100%; height: 100%; padding: 0">
+        填充物
+      </yy-button>
+    </yy-grid-item>
+  </yy-grid>
 </template>
 ```
 
@@ -278,11 +312,13 @@
 
 ```vue
 <template>
-	<yy-grid :cols="4" :gap="8">
-		<yy-grid-item span="1 l:2 xl:3 xxl:4">
-			<yy-button style="width: 100%; height: 100%; padding: 0">我是响应式的项</yy-button>
-		</yy-grid-item>
-	</yy-grid>
+  <yy-grid :cols="4" :gap="8">
+    <yy-grid-item span="1 l:2 xl:3 xxl:4">
+      <yy-button style="width: 100%; height: 100%; padding: 0">
+        我是响应式的项
+      </yy-button>
+    </yy-grid-item>
+  </yy-grid>
 </template>
 ```
 
@@ -306,11 +342,13 @@
 
 ```vue
 <template>
-	<yy-grid :cols="4" :gap="8">
-		<yy-grid-item span="1 150:2">
-			<yy-button style="width: 100%; height: 100%; padding: 0">我是响应式的项</yy-button>
-		</yy-grid-item>
-	</yy-grid>
+  <yy-grid :cols="4" :gap="8">
+    <yy-grid-item span="1 150:2">
+      <yy-button style="width: 100%; height: 100%; padding: 0">
+        我是响应式的项
+      </yy-button>
+    </yy-grid-item>
+  </yy-grid>
 </template>
 ```
 

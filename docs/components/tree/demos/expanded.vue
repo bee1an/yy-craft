@@ -9,5 +9,5 @@ const expandedKeys = ref(['0', '0-0'])
 </script>
 
 <template>
-	<yy-tree :data="data1" :default-expanded-keys="expandedKeys"></yy-tree>
+  <yy-tree :data="data1" :default-expanded-keys="expandedKeys" />
 </template>

@@ -6,13 +6,13 @@ const gridWithInstall = withInstall(Grid)
 const gridItemWithInstall = withInstall(GridItem)
 export * from './src/grid'
 export * from './src/grid-item'
-export { gridWithInstall, Grid, gridItemWithInstall, GridItem }
+export { Grid, GridItem, gridItemWithInstall, gridWithInstall }
 export default Grid
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyGrid: typeof Grid
-		YyGridItem: typeof GridItem
-		YyGi: typeof GridItem
-	}
+  export interface GlobalComponents {
+    YyGrid: typeof Grid
+    YyGridItem: typeof GridItem
+    YyGi: typeof GridItem
+  }
 }

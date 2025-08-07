@@ -4,11 +4,11 @@ import Scrollbar from './src/scrollbar.vue'
 const scrollbarWithInstall = withInstall(Scrollbar)
 
 export * from './src/scrollbar'
-export { scrollbarWithInstall, Scrollbar }
+export { Scrollbar, scrollbarWithInstall }
 export default Scrollbar
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyScrollbar: typeof Scrollbar
-	}
+  export interface GlobalComponents {
+    YyScrollbar: typeof Scrollbar
+  }
 }

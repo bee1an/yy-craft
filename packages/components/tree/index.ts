@@ -5,11 +5,11 @@ const treeWithInstall = withInstall(Tree)
 
 export * from './src/tree'
 export * from './src/tree-node'
-export { treeWithInstall, Tree }
+export { Tree, treeWithInstall }
 export default Tree
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyTree: typeof Tree
-	}
+  export interface GlobalComponents {
+    YyTree: typeof Tree
+  }
 }

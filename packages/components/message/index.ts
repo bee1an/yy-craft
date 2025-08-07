@@ -5,12 +5,12 @@ export * from './src/message'
 
 export * from './src/use-message'
 
-export const messageWithInstall = () => {
-	return {
-		install: (app: App) => {
-			useMessage._context = app._context
-		}
-	}
+export function messageWithInstall() {
+  return {
+    install: (app: App) => {
+      useMessage._context = app._context
+    },
+  }
 }
 messageWithInstall.useInstall = true
 export { useMessage }

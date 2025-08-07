@@ -4,11 +4,11 @@ import Icon from './src/icon.vue'
 const iconWithInstall = withInstall(Icon)
 
 export * from './src/icon'
-export { iconWithInstall, Icon }
+export { Icon, iconWithInstall }
 export default Icon
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		YyIcon: typeof Icon
-	}
+  export interface GlobalComponents {
+    YyIcon: typeof Icon
+  }
 }

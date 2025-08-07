@@ -15,77 +15,77 @@
 </script>
 
 <template>
-	<yy-scrollbar trigger="none">
-		<router-view></router-view>
-	</yy-scrollbar>
+  <yy-scrollbar trigger="none">
+    <router-view />
+  </yy-scrollbar>
 </template>
 
 <style>
 * {
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 #app {
-	height: 100vh;
-	overflow: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .container_padding {
-	padding: 4px 24px 56px 56px;
+  padding: 4px 24px 56px 56px;
 }
 
 .flex {
-	display: flex;
+  display: flex;
 }
 
 .f_column {
-	flex-direction: column;
+  flex-direction: column;
 }
 
 .j_center {
-	justify-content: center;
+  justify-content: center;
 }
 
 .a_center {
-	align-items: center;
+  align-items: center;
 }
 
 .center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .padding {
-	padding-top: 10px;
+  padding-top: 10px;
 }
 
 #app .gray02 {
-	background-color: rgba(128, 128, 128, 0.2);
+  background-color: rgba(128, 128, 128, 0.2);
 }
 
 #app .gray03 {
-	background-color: rgba(128, 128, 128, 0.3);
+  background-color: rgba(128, 128, 128, 0.3);
 }
 
 #app .gray04 {
-	background-color: rgba(128, 128, 128, 0.4);
+  background-color: rgba(128, 128, 128, 0.4);
 }
 
 .p5 {
-	padding: 5px;
+  padding: 5px;
 }
 
 .p24 {
-	padding: 24px;
+  padding: 24px;
 }
 
 .bbox {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .h100p {
-	height: 100%;
+  height: 100%;
 }
 </style>

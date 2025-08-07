@@ -1,121 +1,127 @@
-import { type VNodeProviderInstance, useVNodeProvider } from '@yy-craft/composables'
+import type { VNodeProviderInstance } from '@yy-craft/composables'
+import type { AppContext } from 'vue'
+import type { MessageProps } from './message'
+import { useVNodeProvider } from '@yy-craft/composables'
 import { CreateNamespace } from '@yy-craft/utils/src/create'
 import { createId } from '@yy-craft/utils/src/tools'
-import { type AppContext, h } from 'vue'
+import { h } from 'vue'
 import { YProvider } from '../../_internal/provider'
-import Message, { type MessageProps } from './message'
+import Message from './message'
 
-export type MessagePlacement =
-	| 'top'
-	| 'bottom'
-	| 'top-left'
-	| 'top-right'
-	| 'bottom-left'
-	| 'bottom-right'
+export type MessagePlacement
+  = | 'top'
+    | 'bottom'
+    | 'top-left'
+    | 'top-right'
+    | 'bottom-left'
+    | 'bottom-right'
 
-const providersRecorder: Partial<Record<MessagePlacement, VNodeProviderInstance>> = {}
+const providersRecorder: Partial<
+  Record<MessagePlacement, VNodeProviderInstance>
+> = {}
 
 export type MessageOptions = {
-	placement?: MessagePlacement
+  placement?: MessagePlacement
 } & Partial<Omit<MessageProps, 'content'>>
 
-export type MessageReturn = {
-	destroy: () => void
-	content: MessageProps['content']
-	type: MessageProps['type']
+export interface MessageReturn {
+  destroy: () => void
+  content: MessageProps['content']
+  type: MessageProps['type']
 }
 
-export const useMessage = (_context?: AppContext) => {
-	const message = (
-		content: MessageProps['content'],
-		options?: MessageOptions,
-		__context?: AppContext
-	): MessageReturn => {
-		const { placement = 'top', ..._props } = options || {}
+export function useMessage(_context?: AppContext) {
+  const message = (
+    content: MessageProps['content'],
+    options?: MessageOptions,
+    __context?: AppContext,
+  ): MessageReturn => {
+    const { placement = 'top', ..._props } = options || {}
 
-		const placementVnode = providersRecorder[placement]
+    const placementVnode = providersRecorder[placement]
 
-		const props = { content, ..._props }
-		props.id ??= createId()
+    const props = { content, ..._props }
+    props.id ??= createId()
 
-		const messageVNode = () =>
-			h(Message, {
-				...props,
-				key: props.id,
-				onDestroy: () => {
-					const provider = providersRecorder[placement]!
+    const messageVNode = () =>
+      h(Message, {
+        ...props,
+        key: props.id,
+        onDestroy: () => {
+          const provider = providersRecorder[placement]!
 
-					const surplusChildren = provider.unmountChild(messageVNode)
+          const surplusChildren = provider.unmountChild(messageVNode)
 
-					if (surplusChildren.length === 0) {
-						provider.unmount()
-						Reflect.deleteProperty(providersRecorder, placement)
-					}
-				}
-			})
+          if (surplusChildren.length === 0) {
+            provider.unmount()
+            Reflect.deleteProperty(providersRecorder, placement)
+          }
+        },
+      })
 
-		if (!placementVnode) {
-			const bem = new CreateNamespace('message-provider')
+    if (!placementVnode) {
+      const bem = new CreateNamespace('message-provider')
 
-			const provider = useVNodeProvider(
-				YProvider,
-				{ class: [bem.b().value, bem.m(placement).value] },
-				__context || _context || useMessage._context
-			)
+      const provider = useVNodeProvider(
+        YProvider,
+        { class: [bem.b().value, bem.m(placement).value] },
+        __context || _context || useMessage._context,
+      )
 
-			providersRecorder[placement] = provider
+      providersRecorder[placement] = provider
 
-			document.body.appendChild(provider.el)
-		}
+      document.body.appendChild(provider.el)
+    }
 
-		providersRecorder[placement]!.mountChild(messageVNode)
+    providersRecorder[placement]!.mountChild(messageVNode)
 
-		const findMessageVNode = () => {
-			const provider = providersRecorder[placement]
+    const findMessageVNode = () => {
+      const provider = providersRecorder[placement]
 
-			if (!provider) return
-			const children = provider.children
+      if (!provider)
+        return
+      const children = provider.children
 
-			return children.find((item) => item.props!.id === props.id)
-		}
+      return children.find(item => item.props!.id === props.id)
+    }
 
-		return {
-			/** 销毁 */
-			destroy: () => {
-				findMessageVNode()!.component!.exposed!.visible.value = false
-			},
-			/** 消息内容 */
-			get content() {
-				return findMessageVNode()!.component!.exposed!.content.value
-			},
-			set content(val) {
-				findMessageVNode()!.component!.exposed!.content.value = val
-			},
-			/** 消息类型 */
-			get type() {
-				return findMessageVNode()!.component!.exposed!.type.value
-			},
-			set type(val) {
-				findMessageVNode()!.component!.exposed!.type.value = val
-			}
-		}
-	}
+    return {
+      /** 销毁 */
+      destroy: () => {
+        findMessageVNode()!.component!.exposed!.visible.value = false
+      },
+      /** 消息内容 */
+      get content() {
+        return findMessageVNode()!.component!.exposed!.content.value
+      },
+      set content(val) {
+        findMessageVNode()!.component!.exposed!.content.value = val
+      },
+      /** 消息类型 */
+      get type() {
+        return findMessageVNode()!.component!.exposed!.type.value
+      },
+      set type(val) {
+        findMessageVNode()!.component!.exposed!.type.value = val
+      },
+    }
+  }
 
-	message.success = (...args: Parameters<typeof message>) =>
-		message(args[0], { ...args[1], type: 'success' }, args[2])
+  message.success = (...args: Parameters<typeof message>) =>
+    message(args[0], { ...args[1], type: 'success' }, args[2])
 
-	message.error = (...args: Parameters<typeof message>) =>
-		message(args[0], { ...args[1], type: 'error' }, args[2])
+  message.error = (...args: Parameters<typeof message>) =>
+    message(args[0], { ...args[1], type: 'error' }, args[2])
 
-	message.warning = (...args: Parameters<typeof message>) =>
-		message(args[0], { ...args[1], type: 'warning' }, args[2])
+  message.warning = (...args: Parameters<typeof message>) =>
+    message(args[0], { ...args[1], type: 'warning' }, args[2])
 
-	message.info = (...args: Parameters<typeof message>) =>
-		message(args[0], { ...args[1], type: 'info' }, args[2])
+  message.info = (...args: Parameters<typeof message>) =>
+    message(args[0], { ...args[1], type: 'info' }, args[2])
 
-	message.loading = (...args: Parameters<typeof message>) =>
-		message(args[0], { ...args[1], type: 'loading' }, args[2])
+  message.loading = (...args: Parameters<typeof message>) =>
+    message(args[0], { ...args[1], type: 'loading' }, args[2])
 
-	return { message }
+  return { message }
 }
 useMessage._context = null as null | AppContext

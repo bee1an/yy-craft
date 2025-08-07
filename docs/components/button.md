@@ -20,15 +20,27 @@
 
 ```vue
 <template>
-	<yy-flex>
-		<yy-button>Default</yy-button>
-		<yy-button type="tertiary">Tertiary</yy-button>
-		<yy-button type="primary">Primary</yy-button>
-		<yy-button type="success">Success</yy-button>
-		<yy-button type="warning">Warning</yy-button>
-		<yy-button type="error">Error</yy-button>
-		<yy-button type="info">Info</yy-button>
-	</yy-flex>
+  <yy-flex>
+    <yy-button>Default</yy-button>
+    <yy-button type="tertiary">
+      Tertiary
+    </yy-button>
+    <yy-button type="primary">
+      Primary
+    </yy-button>
+    <yy-button type="success">
+      Success
+    </yy-button>
+    <yy-button type="warning">
+      Warning
+    </yy-button>
+    <yy-button type="error">
+      Error
+    </yy-button>
+    <yy-button type="info">
+      Info
+    </yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -52,15 +64,29 @@
 
 ```vue
 <template>
-	<yy-flex>
-		<yy-button secondary>Default</yy-button>
-		<yy-button secondary type="tertiary">Tertiary</yy-button>
-		<yy-button secondary type="primary">Primary</yy-button>
-		<yy-button secondary type="success">Success</yy-button>
-		<yy-button secondary type="warning">Warning</yy-button>
-		<yy-button secondary type="error">Error</yy-button>
-		<yy-button secondary type="info">Info</yy-button>
-	</yy-flex>
+  <yy-flex>
+    <yy-button secondary>
+      Default
+    </yy-button>
+    <yy-button secondary type="tertiary">
+      Tertiary
+    </yy-button>
+    <yy-button secondary type="primary">
+      Primary
+    </yy-button>
+    <yy-button secondary type="success">
+      Success
+    </yy-button>
+    <yy-button secondary type="warning">
+      Warning
+    </yy-button>
+    <yy-button secondary type="error">
+      Error
+    </yy-button>
+    <yy-button secondary type="info">
+      Info
+    </yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -84,15 +110,29 @@
 
 ```vue
 <template>
-	<yy-flex>
-		<yy-button tertiary>Default</yy-button>
-		<yy-button tertiary type="tertiary">Tertiary</yy-button>
-		<yy-button tertiary type="primary">Primary</yy-button>
-		<yy-button tertiary type="success">Success</yy-button>
-		<yy-button tertiary type="warning">Warning</yy-button>
-		<yy-button tertiary type="error">Error</yy-button>
-		<yy-button tertiary type="info">Info</yy-button>
-	</yy-flex>
+  <yy-flex>
+    <yy-button tertiary>
+      Default
+    </yy-button>
+    <yy-button tertiary type="tertiary">
+      Tertiary
+    </yy-button>
+    <yy-button tertiary type="primary">
+      Primary
+    </yy-button>
+    <yy-button tertiary type="success">
+      Success
+    </yy-button>
+    <yy-button tertiary type="warning">
+      Warning
+    </yy-button>
+    <yy-button tertiary type="error">
+      Error
+    </yy-button>
+    <yy-button tertiary type="info">
+      Info
+    </yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -116,15 +156,29 @@
 
 ```vue
 <template>
-	<yy-flex>
-		<yy-button quaternary>Default</yy-button>
-		<yy-button quaternary type="tertiary">Tertiary</yy-button>
-		<yy-button quaternary type="primary">Primary</yy-button>
-		<yy-button quaternary type="success">Success</yy-button>
-		<yy-button quaternary type="warning">Warning</yy-button>
-		<yy-button quaternary type="error">Error</yy-button>
-		<yy-button quaternary type="info">Info</yy-button>
-	</yy-flex>
+  <yy-flex>
+    <yy-button quaternary>
+      Default
+    </yy-button>
+    <yy-button quaternary type="tertiary">
+      Tertiary
+    </yy-button>
+    <yy-button quaternary type="primary">
+      Primary
+    </yy-button>
+    <yy-button quaternary type="success">
+      Success
+    </yy-button>
+    <yy-button quaternary type="warning">
+      Warning
+    </yy-button>
+    <yy-button quaternary type="error">
+      Error
+    </yy-button>
+    <yy-button quaternary type="info">
+      Info
+    </yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -148,15 +202,29 @@
 
 ```vue
 <template>
-	<yy-flex>
-		<yy-button dashed>Default</yy-button>
-		<yy-button dashed type="tertiary">Tertiary</yy-button>
-		<yy-button dashed type="primary">Primary</yy-button>
-		<yy-button dashed type="success">Success</yy-button>
-		<yy-button dashed type="warning">Warning</yy-button>
-		<yy-button dashed type="error">Error</yy-button>
-		<yy-button dashed type="info">Info</yy-button>
-	</yy-flex>
+  <yy-flex>
+    <yy-button dashed>
+      Default
+    </yy-button>
+    <yy-button dashed type="tertiary">
+      Tertiary
+    </yy-button>
+    <yy-button dashed type="primary">
+      Primary
+    </yy-button>
+    <yy-button dashed type="success">
+      Success
+    </yy-button>
+    <yy-button dashed type="warning">
+      Warning
+    </yy-button>
+    <yy-button dashed type="error">
+      Error
+    </yy-button>
+    <yy-button dashed type="info">
+      Info
+    </yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -181,16 +249,32 @@
 
 ```vue
 <template>
-	<yy-flex>
-		<yy-button strong>Default</yy-button>
-		<yy-button strong type="tertiary">Tertiary</yy-button>
-		<yy-button strong type="primary">Primary</yy-button>
-		<yy-button strong type="success">Success</yy-button>
-		<yy-button strong type="warning">Warning</yy-button>
-		<yy-button strong type="error">Error</yy-button>
-		<yy-button strong type="info">Info</yy-button>
-		<yy-button strong type="info">Strong</yy-button>
-	</yy-flex>
+  <yy-flex>
+    <yy-button strong>
+      Default
+    </yy-button>
+    <yy-button strong type="tertiary">
+      Tertiary
+    </yy-button>
+    <yy-button strong type="primary">
+      Primary
+    </yy-button>
+    <yy-button strong type="success">
+      Success
+    </yy-button>
+    <yy-button strong type="warning">
+      Warning
+    </yy-button>
+    <yy-button strong type="error">
+      Error
+    </yy-button>
+    <yy-button strong type="info">
+      Info
+    </yy-button>
+    <yy-button strong type="info">
+      Strong
+    </yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -198,11 +282,11 @@
 
 ## Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| type | 颜色 | 'default' \| 'tertiary' \| 'primary' \| 'success' \| 'warning' \| 'error' \| 'info' | 'default' |
-| strong | 文字是否加粗 | boolean | - |
-| secondary | 次要按钮 | boolean | - |
-| tertiary | 次次要按钮 | boolean | - |
-| quaternary | 次次次要按钮 | boolean | - |
-| dashed | 虚线按钮 | boolean | - |
+| 参数       | 说明         | 类型                                                                                | 默认值    |
+| ---------- | ------------ | ----------------------------------------------------------------------------------- | --------- |
+| type       | 颜色         | 'default' \| 'tertiary' \| 'primary' \| 'success' \| 'warning' \| 'error' \| 'info' | 'default' |
+| strong     | 文字是否加粗 | boolean                                                                             | -         |
+| secondary  | 次要按钮     | boolean                                                                             | -         |
+| tertiary   | 次次要按钮   | boolean                                                                             | -         |
+| quaternary | 次次次要按钮 | boolean                                                                             | -         |
+| dashed     | 虚线按钮     | boolean                                                                             | -         |

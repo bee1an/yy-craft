@@ -14,11 +14,11 @@
 
 ```vue
 <template>
-	<yy-flex>
-		<yy-button>1</yy-button>
-		<yy-button>2</yy-button>
-		<yy-button>3</yy-button>
-	</yy-flex>
+  <yy-flex>
+    <yy-button>1</yy-button>
+    <yy-button>2</yy-button>
+    <yy-button>3</yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -38,9 +38,9 @@
 
 ```vue
 <template>
-	<yy-flex justify="center">
-		<yy-button>center</yy-button>
-	</yy-flex>
+  <yy-flex justify="center">
+    <yy-button>center</yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -60,9 +60,9 @@
 
 ```vue
 <template>
-	<yy-flex align="flex-end">
-		<yy-button>end</yy-button>
-	</yy-flex>
+  <yy-flex align="flex-end">
+    <yy-button>end</yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -81,10 +81,10 @@
 
 ```vue
 <template>
-	<yy-flex vertical>
-		<yy-button>A</yy-button>
-		<yy-button>B</yy-button>
-	</yy-flex>
+  <yy-flex vertical>
+    <yy-button>A</yy-button>
+    <yy-button>B</yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -96,12 +96,12 @@
 
 <yy-flex vertical>
   <yy-flex size="large">
-	<yy-button>large</yy-button>
-	<yy-button>large</yy-button>
+  <yy-button>large</yy-button>
+  <yy-button>large</yy-button>
   </yy-flex>
   <yy-flex :size="[8, 24]">
-	<yy-button>8x24</yy-button>
-	<yy-button>8x24</yy-button>
+  <yy-button>8x24</yy-button>
+  <yy-button>8x24</yy-button>
   </yy-flex>
 </yy-flex>
 
@@ -109,16 +109,16 @@
 
 ```vue
 <template>
-	<yy-flex>
-		<yy-flex size="large">
-			<yy-button>large</yy-button>
-			<yy-button>large</yy-button>
-		</yy-flex>
-		<yy-flex :size="[8, 24]">
-			<yy-button>8x24</yy-button>
-			<yy-button>8x24</yy-button>
-		</yy-flex>
-	</yy-flex>
+  <yy-flex>
+    <yy-flex size="large">
+      <yy-button>large</yy-button>
+      <yy-button>large</yy-button>
+    </yy-flex>
+    <yy-flex :size="[8, 24]">
+      <yy-button>8x24</yy-button>
+      <yy-button>8x24</yy-button>
+    </yy-flex>
+  </yy-flex>
 </template>
 ```
 
@@ -146,10 +146,14 @@
 
 ```vue
 <template>
-	<yy-flex wrap style="width:200px;">
-		<yy-button style="width:120px;">1</yy-button>
-		<yy-button style="width:120px;">2</yy-button>
-	</yy-flex>
+  <yy-flex wrap style="width:200px;">
+    <yy-button style="width:120px;">
+      1
+    </yy-button>
+    <yy-button style="width:120px;">
+      2
+    </yy-button>
+  </yy-flex>
 </template>
 ```
 
@@ -157,11 +161,11 @@
 
 ## Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| align | 交叉轴对齐 | string | - |
-| inline | 是否为行内元素 | boolean | false |
-| justify | 主轴对齐 | string | flex-start |
-| size | 间距 | 'small' \| 'medium' \| 'large' \| number \| [number, number] | medium |
-| vertical | 是否垂直显示 | boolean | false |
-| wrap | 超出是否换行 | boolean | true |
+| 参数     | 说明           | 类型                                                         | 默认值     |
+| -------- | -------------- | ------------------------------------------------------------ | ---------- |
+| align    | 交叉轴对齐     | string                                                       | -          |
+| inline   | 是否为行内元素 | boolean                                                      | false      |
+| justify  | 主轴对齐       | string                                                       | flex-start |
+| size     | 间距           | 'small' \| 'medium' \| 'large' \| number \| [number, number] | medium     |
+| vertical | 是否垂直显示   | boolean                                                      | false      |
+| wrap     | 超出是否换行   | boolean                                                      | true       |

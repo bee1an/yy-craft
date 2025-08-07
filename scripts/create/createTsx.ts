@@ -106,7 +106,7 @@ export const ${name}Props = ${
 export type ${capitalize(name)}Props = ExtractPropTypes<typeof ${name}Props>
 
 export default defineComponent({
-  name: '${name}',
+  name: '${capitalize(name)}',
   props: ${name}Props,
   setup(props) {${setupContent()}},
   render() {${withTheme ? '\n\t\tconst { bem, styleVars } = this\n' : withStyle ? '\n\t\tconst { bem } = this\n' : ''}

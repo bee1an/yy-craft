@@ -18,9 +18,6 @@
     "esModuleInterop": true, // 支持ES模块和CommonJS模块
     "forceConsistentCasingInFileNames": true, // 区分文件名大小
     "preserveSymlinks": true,
-    // "jsxFactory": "h",
-    // "jsxFragmentFactory": "Fragment",
-    // "jsxImportSource": "vue",
     "verbatimModuleSyntax": true,
     "skipLibCheck": true // 跳过类库检查
   },

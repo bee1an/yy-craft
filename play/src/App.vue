@@ -15,9 +15,11 @@
 </script>
 
 <template>
-  <yy-scrollbar trigger="none">
-    <router-view />
-  </yy-scrollbar>
+  <yy-config-provider theme="dark">
+    <yy-scrollbar trigger="none">
+      <router-view />
+    </yy-scrollbar>
+  </yy-config-provider>
 </template>
 
 <style>

@@ -8,6 +8,7 @@ export default antfu(
   {
     rules: {
       'vue/no-reserved-component-names': 'off',
+      'no-console': 'warn',
     },
   },
 )

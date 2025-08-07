@@ -16,7 +16,7 @@
     "prettier": "prettier --write .",
     "test": "vitest",
     "create": "tsx scripts/create/create.ts",
-    "lint": "eslint  --fix"
+    "lint": "eslint --fix"
   },
   "peerDependencies": {
     "vue": "3.2.25"

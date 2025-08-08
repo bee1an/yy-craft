@@ -5,4 +5,5 @@ export default defineConfig({
   version: 3.2,
   defineOptions: true,
   defineSlots: true,
+  defineModels: true,
 })

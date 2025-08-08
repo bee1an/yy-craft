@@ -28,6 +28,13 @@ async function publish() {
   })
 
   shelljs.exec(`npm publish --otp ${otp}`)
+
+  shelljs.exec(`git tag -a v${version} -m "Release version ${version}"`)
+
+  shelljs.echo('')
+  shelljs.echo('--------------------------------------')
+  shelljs.echo('run: git push --follow-tags')
+  shelljs.echo('--------------------------------------')
 }
 
 publish()

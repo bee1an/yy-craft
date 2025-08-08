@@ -1,28 +1,36 @@
 <script setup lang="ts">
-// import IconTest from './components/icon-test.vue'
-// import TreeTest from './components/tree-test.vue'
-// import VirtualListTest from './components/virtual-list-test.vue'
-// import ScrollbarTest from './components/scrollbar-test.vue'
-// import CheckboxTest from './components/checkbox-test.vue'
-// import ButtonTest from './components/button-test.vue'
-// import DividerTest from './components/divider-test.vue'
-// import FlexTest from './components/flex-test.vue'
-// import CardTest from './components/card-test.vue'
-// import TypographyTest from './components/typography-test.vue'
-// import MessageTest from './components/message-test.vue'
-// import GridTest from './components/grid-test.vue'
-// import LayoutTest from './components/layout-test.vue'
+import { ref, watch } from 'vue'
+
+const theme = ref('dark')
+
+theme.value = localStorage.getItem('theme') ?? 'dark'
+
+watch(theme, () => {
+  document.documentElement.classList.toggle('dark', theme.value === 'dark')
+
+  localStorage.setItem('theme', theme.value)
+}, { immediate: true })
 </script>
 
 <template>
-  <yy-config-provider theme="dark">
+  <yy-config-provider :theme="theme">
     <yy-scrollbar trigger="none">
+      <div h-20 flex="~" items-center justify-center text-4xl>
+        <yy-icon cursor-pointer>
+          <span i-carbon-sun dark:i-carbon-moon text-4xl @click="theme = theme === 'dark' ? 'light' : 'dark'" />
+        </yy-icon>
+      </div>
+
       <router-view />
     </yy-scrollbar>
   </yy-config-provider>
 </template>
 
 <style>
+html.dark {
+  color-scheme: dark;
+}
+
 * {
   padding: 0;
   margin: 0;

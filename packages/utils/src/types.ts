@@ -1,4 +1,4 @@
-import type { ShallowRef } from 'vue'
+import type { Ref, ShallowRef } from 'vue'
 
 /** Void function */
 export type Fn = () => void
@@ -15,3 +15,5 @@ export interface SlotsType<
 > {
   [SlotSymbol]?: T
 }
+
+export type MaybeRef<T> = T | Ref<T>

@@ -1,6 +1,6 @@
 import path from 'node:path'
 import prompts from 'prompts'
-import shelljs from 'shelljs' // 命令执行器
+import shelljs, { echo } from 'shelljs' // 命令执行器
 import { rootDir } from './utils/paths'
 
 async function publish() {
@@ -28,6 +28,12 @@ async function publish() {
   })
 
   shelljs.exec(`npm publish --otp ${otp}`)
+
+  shelljs.exec(`git tag -a v${version} -m "Release version ${version}"`)
+
+  echo('--------------------------------------')
+  echo('run: git push --follow-tags')
+  echo('--------------------------------------')
 }
 
 publish()

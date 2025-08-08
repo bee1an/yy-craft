@@ -1,5 +1,4 @@
 import commonVar from './_common'
-import lightDerived from './light'
 
 const base = {
   neutralTextBase: '#fff',
@@ -31,7 +30,6 @@ const base = {
 
 const derived = {
   ...commonVar,
-  ...lightDerived,
 
   // primary color
   primaryColor: base.primaryDefault,
@@ -69,6 +67,8 @@ const derived = {
   bgColor1: '#18181c',
   bgColor2: '#ffffff17',
   bgColor3: '#48484e',
+  bgColor4: base.neutralTextBase,
+  bgColor5: '#ffffff33',
 
   codeTextColor: 'rgba(255, 255, 255, 0.82)',
   codeBackgroundColor: 'rgba(255, 255, 255, 0.12)',
@@ -87,6 +87,8 @@ const derived = {
 
   boxShadow2:
     '0 3px 6px -4px rgba(0, 0, 0, .24), 0 6px 12px 0 rgba(0, 0, 0, .16), 0 9px 18px 8px rgba(0, 0, 0, .10)',
+  boxShadow4:
+    '0px 2px 4px 0 rgba(0, 0, 0, 0.4)',
 }
 
 export default derived

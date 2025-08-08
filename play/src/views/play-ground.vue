@@ -1,30 +1,16 @@
 <script setup lang="ts">
-function fileSelected(files: FileList, event: Event) {
-  console.log('change', files, event)
-}
+import { ref } from 'vue'
+
+const value = ref(500)
 </script>
 
 <template>
-  <div class="wrapper">
-    <yy-upload
-      @change="fileSelected"
-    >
-      <yy-button>
-        上传文件
-      </yy-button>
-    </yy-upload>
+  <div flex="~" h-150 items-center justify-center>
+    <div w-100>
+      <yy-slider v-model="value" :min="50" :max="10000" />
+      <div text-center mt-1>
+        {{ value }}
+      </div>
+    </div>
   </div>
 </template>
-
-<style>
-  html {
-  color-scheme: dark;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-</style>

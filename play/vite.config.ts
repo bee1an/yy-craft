@@ -3,6 +3,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
+import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
 import VueMacros from 'vue-macros/vite'
 
@@ -16,6 +17,7 @@ export default defineConfig({
         vueJsx: VueJsx(),
       },
     }) as PluginOption,
+    UnoCSS(),
   ],
   resolve: {
     alias: {

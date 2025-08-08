@@ -20,7 +20,7 @@ export const scrollbarInternalProps = {
   contentStyle: null as unknown as PropType<StyleValue>,
 }
 
-interface ScrollHandlerType {
+type ScrollHandlerType = {
   (options?: ScrollToOptions): void
   (x?: number, y?: number): void
 }

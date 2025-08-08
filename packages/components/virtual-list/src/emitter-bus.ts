@@ -1,6 +1,6 @@
 import { EventEmitter } from '@yy-craft/utils/src/eventEmitter'
 
-export interface VirtualListEvents {
+export type VirtualListEvents = {
   /** 渲染完成 */
   renderComplete: []
   /** 触发滚动 */

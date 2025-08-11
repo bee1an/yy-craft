@@ -12,6 +12,8 @@ const props = defineProps(sliderProps)
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void
+  (e: 'change', value: number): void
+  (e: 'input', value: number): void
 }>()
 
 const bem = new CreateNamespace('slider')
@@ -35,34 +37,56 @@ const { width } = useElementSize(trackRef)
 
 const triggerLeft = ref(0)
 
-const resolveLeft = ref(0)
+// [0, 1]
+const fraction = ref(0)
 
 // initial
 watch(() => [props.modelValue, props.max, props.min], ([modelValue, max, min]) => {
-  resolveLeft.value = (modelValue - min) / (max - min)
+  fraction.value = (modelValue - min) / (max - min)
 }, { immediate: true })
 
-// drag
-useBaseDrag(triggerRef, {
-  down() {
-    triggerLeft.value = resolveLeft.value * width.value
-  },
-  move({ stepX }) {
-    triggerLeft.value += stepX
+const resolveValue = computed(() => (props.max - props.min) * fraction.value + props.min)
 
-    resolveLeft.value = Math.min(1, Math.max(0, triggerLeft.value / width.value))
-  },
-  up() {
-    triggerLeft.value = resolveLeft.value * width.value
-  },
-})
+let lastInputVal: undefined | number
+function tryEmitInput() {
+  if (lastInputVal === resolveValue.value)
+    return
+
+  lastInputVal = resolveValue.value
+  emit('input', resolveValue.value)
+}
+
+function cb(beforeDown?: (e: MouseEvent) => any) {
+  return {
+    down(e: MouseEvent) {
+      beforeDown?.(e)
+      triggerLeft.value = fraction.value * width.value
+    },
+    move({ stepX }: { stepX: number }) {
+      triggerLeft.value += stepX
+
+      fraction.value = Math.min(1, Math.max(0, triggerLeft.value / width.value))
+
+      tryEmitInput()
+    },
+    up() {
+      triggerLeft.value = fraction.value * width.value
+      tryEmitInput()
+      emit('change', resolveValue.value)
+    },
+  }
+}
+
+// trigger drag
+useBaseDrag(triggerRef, cb())
+
+// track drag
+useBaseDrag(trackRef, cb(e => fraction.value = e.offsetX / width.value))
 
 // update
 watch(triggerLeft, () => {
-  const nextValue = (props.max - props.min) * resolveLeft.value + props.min
-
-  if (nextValue !== props.modelValue) {
-    emit('update:modelValue', nextValue)
+  if (resolveValue.value !== props.modelValue) {
+    emit('update:modelValue', resolveValue.value)
   }
 })
 </script>
@@ -70,8 +94,12 @@ watch(triggerLeft, () => {
 <template>
   <div :style="styleVars" :class="bem.b().value">
     <div ref="trackRef" :class="bem.e('track').value">
-      <div :style="{ width: `${resolveLeft * 100}%` }" :class="bem.e('bar').value" />
-      <div ref="triggerRef" :style="{ left: `${resolveLeft * 100}%` }" :class="bem.e('trigger').value" />
+      <div :style="{ width: `${fraction * 100}%` }" :class="bem.e('bar').value" />
+      <div
+        ref="triggerRef"
+        :style="{ left: `${fraction * 100}%` }" :class="bem.e('trigger').value"
+        @mousedown.stop
+      />
     </div>
   </div>
 </template>

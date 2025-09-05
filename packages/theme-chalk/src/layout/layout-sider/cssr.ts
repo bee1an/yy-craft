@@ -10,7 +10,7 @@ export const layoutSiderStyle = cB(
     color: cVar('textColor'),
     backgroundColor: cVar('backgroundColor'),
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     transition: `width ${cVar('transitionDuration')} ${cVar(
       'transitionTimingFunction',
     )},color ${cVar('transitionDuration')} ${cVar(

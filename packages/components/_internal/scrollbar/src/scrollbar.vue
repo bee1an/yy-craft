@@ -210,6 +210,7 @@ const { styleVars } = useTheme(
       :class="[bem.b('rail').value, bem.b('rail').m('horizontal').value]"
     >
       <div
+        ref="hoirzontalController"
         :class="[
           bem.b('rail').e('controller').value,
           bem

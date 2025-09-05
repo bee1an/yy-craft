@@ -1,7 +1,7 @@
 {
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@9.12.2",
+  "packageManager": "pnpm@10.15.1",
   "scripts": {
     "build": "tsx scripts/cleanup.ts -d && rolldown -c rolldown.config.ts && tsx scripts/replace-dts.ts",
     "build:dev": "cross-env NODE_ENV=development pnpm build",

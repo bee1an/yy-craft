@@ -113,6 +113,14 @@ export default defineComponent({
       }
     }
 
+    const resolveContentClass = computed(() => {
+      return [
+        props.contentClass,
+        bem.e('content').value,
+        bem.e('content').m(!props.showCollapsedContent && collapsed && 'hide').value,
+      ]
+    })
+
     return {
       bem,
       styleVars,
@@ -122,6 +130,7 @@ export default defineComponent({
       showCollapsedTrigger,
       layoutSiderContainer,
       transitionendHandler,
+      resolveContentClass,
     }
   },
   render() {
@@ -133,12 +142,11 @@ export default defineComponent({
       toggleHandler,
       showCollapsedTrigger,
       transitionendHandler,
+      resolveContentClass,
       $props: {
         bordered,
-        contentClass,
         contentStyle,
         collapsedWidth,
-        showCollapsedContent,
       },
       $slots: { default: defaultSlot },
     } = this
@@ -150,16 +158,23 @@ export default defineComponent({
         onTransitionend={transitionendHandler}
         ref="layoutSiderContainer"
       >
-        <YyScrollbar
-          contentClass={[
-            contentClass,
-            bem.e('content').value,
-            bem.e('content').m(!showCollapsedContent && collapsed && 'hide').value,
-          ]}
-          contentStyle={contentStyle}
-        >
-          {defaultSlot?.()}
-        </YyScrollbar>
+        {collapsed
+          ? (
+              <div
+                class={resolveContentClass}
+                style={[contentStyle ?? {}, { overflow: 'hidden' }]}
+              >
+                {defaultSlot?.()}
+              </div>
+            )
+          : (
+              <YyScrollbar
+                contentClass={resolveContentClass}
+                contentStyle={contentStyle}
+              >
+                {defaultSlot?.()}
+              </YyScrollbar>
+            )}
 
         {showCollapsedTrigger && (
           <div
